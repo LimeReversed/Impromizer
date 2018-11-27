@@ -1,0 +1,44 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.28010.2041
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Headline Randomizer", "Headline Randomizer\Headline Randomizer.csproj", "{BBF08091-F8C4-4622-87B3-5063546B8DFF}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Headline Randomizer Svenska", "Headline Randomizer Svenska\Headline Randomizer Svenska.csproj", "{BBF08092-F8C4-4622-87B3-5063546B8DFF}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Headline Randomizer Svenska 2", "Headline Randomizer Svenska 2\Headline Randomizer Svenska 2.csproj", "{01CF8460-18F9-485A-BD22-E6E986490E43}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		New|Any CPU = New|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{BBF08091-F8C4-4622-87B3-5063546B8DFF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BBF08091-F8C4-4622-87B3-5063546B8DFF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BBF08091-F8C4-4622-87B3-5063546B8DFF}.New|Any CPU.ActiveCfg = New|Any CPU
+		{BBF08091-F8C4-4622-87B3-5063546B8DFF}.New|Any CPU.Build.0 = New|Any CPU
+		{BBF08091-F8C4-4622-87B3-5063546B8DFF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BBF08091-F8C4-4622-87B3-5063546B8DFF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BBF08092-F8C4-4622-87B3-5063546B8DFF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BBF08092-F8C4-4622-87B3-5063546B8DFF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BBF08092-F8C4-4622-87B3-5063546B8DFF}.New|Any CPU.ActiveCfg = New|Any CPU
+		{BBF08092-F8C4-4622-87B3-5063546B8DFF}.New|Any CPU.Build.0 = New|Any CPU
+		{BBF08092-F8C4-4622-87B3-5063546B8DFF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BBF08092-F8C4-4622-87B3-5063546B8DFF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{01CF8460-18F9-485A-BD22-E6E986490E43}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{01CF8460-18F9-485A-BD22-E6E986490E43}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{01CF8460-18F9-485A-BD22-E6E986490E43}.New|Any CPU.ActiveCfg = New|Any CPU
+		{01CF8460-18F9-485A-BD22-E6E986490E43}.New|Any CPU.Build.0 = New|Any CPU
+		{01CF8460-18F9-485A-BD22-E6E986490E43}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{01CF8460-18F9-485A-BD22-E6E986490E43}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {C53ED60F-A0F0-4083-A670-0877F8CBA533}
+	EndGlobalSection
+EndGlobal
