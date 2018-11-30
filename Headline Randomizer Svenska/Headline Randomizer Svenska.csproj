@@ -177,7 +177,7 @@
     <Content Include="Text\verb request.txt">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="Text\verbs imperfekt.txt">
+    <Content Include="Text\verbs perfekt.txt">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Text\verbs presens.txt">

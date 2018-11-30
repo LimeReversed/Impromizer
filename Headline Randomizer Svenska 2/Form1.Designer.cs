@@ -42,6 +42,7 @@
             this.btnGenerate7 = new System.Windows.Forms.Button();
             this.btnRensa3 = new System.Windows.Forms.Button();
             this.btnGenerate6 = new System.Windows.Forms.Button();
+            this.tabPage5 = new System.Windows.Forms.TabPage();
             this.tabPage1 = new System.Windows.Forms.TabPage();
             this.btnGenerate8 = new System.Windows.Forms.Button();
             this.btnClear2 = new System.Windows.Forms.Button();
@@ -63,7 +64,6 @@
             this.btnAddWord = new System.Windows.Forms.Button();
             this.cbForms = new System.Windows.Forms.ComboBox();
             this.cbBook = new System.Windows.Forms.ComboBox();
-            this.tabPage5 = new System.Windows.Forms.TabPage();
             this.customTabControl1.SuspendLayout();
             this.tabPage3.SuspendLayout();
             this.tabPage2.SuspendLayout();
@@ -126,7 +126,7 @@
             this.tabPage3.ForeColor = System.Drawing.Color.White;
             this.tabPage3.Location = new System.Drawing.Point(4, 36);
             this.tabPage3.Name = "tabPage3";
-            this.tabPage3.Padding = new System.Windows.Forms.Padding(3, 3, 3, 3);
+            this.tabPage3.Padding = new System.Windows.Forms.Padding(3);
             this.tabPage3.Size = new System.Drawing.Size(606, 292);
             this.tabPage3.TabIndex = 0;
             this.tabPage3.Text = "Rubriker";
@@ -364,6 +364,16 @@
             this.btnGenerate6.MouseDown += new System.Windows.Forms.MouseEventHandler(this.Generate6_MouseDown);
             this.btnGenerate6.MouseUp += new System.Windows.Forms.MouseEventHandler(this.Generate6_MouseUp);
             // 
+            // tabPage5
+            // 
+            this.tabPage5.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.tabPage5.Location = new System.Drawing.Point(4, 36);
+            this.tabPage5.Name = "tabPage5";
+            this.tabPage5.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage5.Size = new System.Drawing.Size(606, 292);
+            this.tabPage5.TabIndex = 4;
+            this.tabPage5.Text = "Scen";
+            // 
             // tabPage1
             // 
             this.tabPage1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
@@ -371,7 +381,7 @@
             this.tabPage1.Controls.Add(this.btnClear2);
             this.tabPage1.Location = new System.Drawing.Point(4, 36);
             this.tabPage1.Name = "tabPage1";
-            this.tabPage1.Padding = new System.Windows.Forms.Padding(3, 3, 3, 3);
+            this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
             this.tabPage1.Size = new System.Drawing.Size(606, 292);
             this.tabPage1.TabIndex = 2;
             this.tabPage1.Text = "Övrigt";
@@ -432,7 +442,7 @@
             this.tabPage4.ForeColor = System.Drawing.Color.White;
             this.tabPage4.Location = new System.Drawing.Point(4, 36);
             this.tabPage4.Name = "tabPage4";
-            this.tabPage4.Padding = new System.Windows.Forms.Padding(3, 3, 3, 3);
+            this.tabPage4.Padding = new System.Windows.Forms.Padding(3);
             this.tabPage4.Size = new System.Drawing.Size(606, 292);
             this.tabPage4.TabIndex = 1;
             this.tabPage4.Text = "Egen mening";
@@ -649,25 +659,15 @@
             this.cbBook.FormattingEnabled = true;
             this.cbBook.Items.AddRange(new object[] {
             "Adjektiv",
-            "Döda substantiv",
+            "Substantiv - Något",
+            "Substantiv - Någon",
             "Skämtnamn",
-            "Levande substantiv",
             "Verb"});
             this.cbBook.Location = new System.Drawing.Point(10, 23);
             this.cbBook.Name = "cbBook";
             this.cbBook.Size = new System.Drawing.Size(135, 26);
             this.cbBook.TabIndex = 1;
             this.cbBook.SelectedIndexChanged += new System.EventHandler(this.cbBook_SelectedIndexChanged);
-            // 
-            // tabPage5
-            // 
-            this.tabPage5.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.tabPage5.Location = new System.Drawing.Point(4, 36);
-            this.tabPage5.Name = "tabPage5";
-            this.tabPage5.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage5.Size = new System.Drawing.Size(606, 292);
-            this.tabPage5.TabIndex = 4;
-            this.tabPage5.Text = "Scen";
             // 
             // Form1
             // 

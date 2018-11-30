@@ -18,8 +18,6 @@ namespace Headline_Randomizer
         Lists list = new Lists();
         Random r = new Random();
 
-        
-
         public Form1()
         {
             InitializeComponent();
