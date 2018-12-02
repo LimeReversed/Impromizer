@@ -229,7 +229,7 @@ namespace Headline_Randomizer
             {
                 return "an";
             }
-            else { return ""; }
+            else { return null; }
         }
 
         // Compares with the current noun and returns the right indefinite. 
@@ -237,13 +237,13 @@ namespace Headline_Randomizer
         {
             if (this.EnEllerEttEnum() == Indefinite.En)
             {
-                return "en";
+                return "en ";
             }
             else if (this.EnEllerEttEnum() == Indefinite.Ett)
             {
-                return "ett";
+                return "ett ";
             }
-            else { return ""; }
+            else { return null; }
         }
 
         // Compares with the current noun and returns the right genitive. 

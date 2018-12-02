@@ -577,7 +577,7 @@ namespace Headline_Randomizer
                 int verbNr = r.Next(0, list.verb.Count);
                 int somethingNr = r.Next(0, list.something.Count);
 
-                presentationWindow.tbxResult.AppendText($"Är du trött på att {list.verb[verbNr].BasForm()} {(list.verb[verbNr].PostVerbs() == "-" ? "" : $"{list.verb[verbNr].PostVerbs()} ")}{list.something[somethingNr].Plural()}? Vi har lösningen för dig!");
+                presentationWindow.tbxResult.AppendText($"Är du trött på att {list.verb[verbNr].BasForm()} {list.verb[verbNr].PostVerbs()}{list.something[somethingNr].Plural()}? Vi har lösningen för dig!");
 
                 list.something.RemoveAt(somethingNr);
                 list.verb.RemoveAt(verbNr);
@@ -761,7 +761,7 @@ namespace Headline_Randomizer
 
             if (slant == 0)
             {
-                string newMission = $"ni ska {list.verb[verbNr].BasForm()} {list.verb[verbNr].PostVerbs()}{list.someone[someoneNr].EnEllerEtt()} {list.someone[someoneNr].Singular()}";
+                string newMission = $"ni ska {list.verb[verbNr].BasForm()} {list.verb[verbNr].PostVerbs()}{list.someone[someoneNr].EnEllerEtt()}{list.someone[someoneNr].Singular()}";
 
                 if (!missionPressed)
                 {
@@ -789,7 +789,7 @@ namespace Headline_Randomizer
             } 
             else if (slant == 1)
             {
-                string newMission = $"ni ska {list.verb[verbNr].BasForm()} {list.verb[verbNr].PostVerbs()}{list.something[somethingNr].EnEllerEtt()} {list.something[somethingNr].Singular()}";
+                string newMission = $"ni ska {list.verb[verbNr].BasForm()} {list.verb[verbNr].PostVerbs()}{list.something[somethingNr].EnEllerEtt()}{list.something[somethingNr].Singular()}";
 
                 if (!missionPressed)
                 {
