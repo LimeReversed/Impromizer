@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Drawing;
 using System.Windows.Forms;
 using System.IO;
+using System.Text;
 
 // Svenska 
 namespace Headline_Randomizer
@@ -140,6 +141,46 @@ namespace Headline_Randomizer
             btnGenerate8.BackgroundImage = global::Headline_Randomizer.Properties.Resources.tiredofbig_image;
         }
 
+        private void Generate9_MouseDown(object sender, MouseEventArgs e)
+        {
+            btnGenerate9.BackgroundImage = global::Headline_Randomizer.Properties.Resources.husmorbuttonsmall;
+        }
+
+        private void Generate9_MouseUp(object sender, MouseEventArgs e)
+        {
+            btnGenerate9.BackgroundImage = global::Headline_Randomizer.Properties.Resources.husmorbuttonbig;
+        }
+
+        private void btnGenerate10_MouseDown(object sender, MouseEventArgs e)
+        {
+            btnGenerate10.BackgroundImage = global::Headline_Randomizer.Properties.Resources.locationbuttonsmall;
+        }
+
+        private void btnGenerate10_MouseUp(object sender, MouseEventArgs e)
+        {
+            btnGenerate10.BackgroundImage = global::Headline_Randomizer.Properties.Resources.locationbuttonbig;
+        }
+
+        private void btnGenerate11_MouseUp(object sender, MouseEventArgs e)
+        {
+            btnGenerate11.BackgroundImage = global::Headline_Randomizer.Properties.Resources.relationbuttonbig;
+        }
+
+        private void btnGenerate11_MouseDown(object sender, MouseEventArgs e)
+        {
+            btnGenerate11.BackgroundImage = global::Headline_Randomizer.Properties.Resources.relationbuttonsmall;
+        }
+
+        private void btnGenerate12_MouseDown(object sender, MouseEventArgs e)
+        {
+            btnGenerate12.BackgroundImage = global::Headline_Randomizer.Properties.Resources.protipsmall;
+        }
+
+        private void btnGenerate12_MouseUp(object sender, MouseEventArgs e)
+        {
+            btnGenerate12.BackgroundImage = global::Headline_Randomizer.Properties.Resources.protipbig;
+        }
+
         private void BtnGenerate2_Click(object sender, EventArgs e)
         {
             int slant = r.Next(0, 2);
@@ -159,7 +200,7 @@ namespace Headline_Randomizer
                 int somethingNr = r.Next(0, list.something.Count);
                 int adjectiveNr = r.Next(0, list.adjective.Count);
 
-                presentationWindow.tbxResult.AppendText($"{list.verb[verbNr].Presens()} {(list.verb[verbNr].PostVerbs() == "-" ? "" : $"{list.verb[verbNr].PostVerbs()} ")}{list.adjective[adjectiveNr].Singular(list.something, somethingNr)} {list.something[somethingNr].Singular()}");
+                presentationWindow.tbxResult.AppendText($"{list.verb[verbNr].Presens()} {list.verb[verbNr].PostVerbs()}{list.adjective[adjectiveNr].Singular(list.something, somethingNr)} {list.something[somethingNr].Singular()}");
 
                 FixText.AdjustSize(presentationWindow.tbxResult);
                 list.verb.RemoveAt(verbNr);
@@ -183,7 +224,7 @@ namespace Headline_Randomizer
                 int verbNr = r.Next(0, list.verb.Count);
                 int adjectiveNr = r.Next(0, list.adjective.Count);
 
-                presentationWindow.tbxResult.AppendText($"{list.verb[verbNr].Presens()} {(list.verb[verbNr].PostVerbs() == "-" ? "" : $"{list.verb[verbNr].PostVerbs()} ")}{list.adjective[adjectiveNr].Singular(list.someone, someoneNr2)} {list.someone[someoneNr2].Singular()}");
+                presentationWindow.tbxResult.AppendText($"{list.verb[verbNr].Presens()} {list.verb[verbNr].PostVerbs()}{list.adjective[adjectiveNr].Singular(list.someone, someoneNr2)} {list.someone[someoneNr2].Singular()}");
 
                 FixText.AdjustSize(presentationWindow.tbxResult);
                 list.someone.RemoveAt(someoneNr2);
@@ -227,7 +268,7 @@ namespace Headline_Randomizer
             char firstLetter = list.adjective[adjectiveNr].Plural()[0];
             string firstLetterStr = Convert.ToString(firstLetter);
 
-            presentationWindow.tbxResult.AppendText($"{firstLetterStr.ToUpper()}{list.adjective[adjectiveNr].Plural().Substring(1, list.adjective[adjectiveNr].Plural().Length - 1)} {list.someone[someoneNr].Plural()} ");
+            presentationWindow.tbxResult.AppendText($"{FixText.FirstLetterUpper(list.adjective[adjectiveNr].Plural())} {list.someone[someoneNr].Plural()} ");
             list.someone.RemoveAt(someoneNr);
             list.adjective.RemoveAt(adjectiveNr);
 
@@ -235,7 +276,7 @@ namespace Headline_Randomizer
             int adjectiveNr2 = r.Next(0, list.adjective.Count);
             int verbNr = r.Next(0, list.verb.Count);
 
-            presentationWindow.tbxResult.AppendText($"{list.verb[verbNr].Presens()} {(list.verb[verbNr].PostVerbs() == "-" ? "" : $"{list.verb[verbNr].PostVerbs()} ")}{list.adjective[adjectiveNr2].Plural()} {list.someone[someoneNr2].Plural()}");
+            presentationWindow.tbxResult.AppendText($"{list.verb[verbNr].Presens()} {list.verb[verbNr].PostVerbs()}{list.adjective[adjectiveNr2].Plural()} {list.someone[someoneNr2].Plural()}");
 
             FixText.AdjustSize(presentationWindow.tbxResult);
             list.someone.RemoveAt(someoneNr2);
@@ -252,7 +293,7 @@ namespace Headline_Randomizer
             int verbNr = r.Next(0, list.verb.Count);
             int somethingNr = r.Next(0, list.something.Count);
 
-            presentationWindow.tbxResult.AppendText($"{list.jokeName[jokeNameNr].Name()} vann {list.nobelPrize[nobelNr].Prize()} för att ha {list.verb[verbNr].Perfekt()} {(list.verb[verbNr].PostVerbs() == "-" ? "" : $"{list.verb[verbNr].PostVerbs()} ")}{list.something[somethingNr].Plural()}");
+            presentationWindow.tbxResult.AppendText($"{list.jokeName[jokeNameNr].Name()} vann {list.nobelPrize[nobelNr].Prize()} för att ha {list.verb[verbNr].Perfekt()} {list.verb[verbNr].PostVerbs()}{list.something[somethingNr].Plural()}");
 
             FixText.AdjustSize(presentationWindow.tbxResult);
             list.jokeName.RemoveAt(jokeNameNr);
@@ -450,7 +491,7 @@ namespace Headline_Randomizer
                     }
                     else if (element.FormChoice == "Efter verb")
                     {
-                        presentationWindow.tbxResult.AppendText($"{(sparaPostVerb == "-" ? "" : $"{sparaPostVerb} ")}");
+                        presentationWindow.tbxResult.AppendText($"{(sparaPostVerb == "-" ? "" : $"{sparaPostVerb} ")}"); // remove ifstatement
                     }
                     list.verb.RemoveAt(rNr);
                 }
@@ -491,7 +532,7 @@ namespace Headline_Randomizer
             int verbNr = r.Next(0, list.verb.Count);
             int someoneNr = r.Next(0, list.someone.Count);
 
-            presentationWindow.tbxResult.AppendText($"Kom ihåg, {list.verb[verbNr].Request()} alltid {(list.verb[verbNr].PostVerbs() == "-" ? "" : $"{list.verb[verbNr].PostVerbs()} ")}{list.someone[someoneNr].DinEllerDitt("plural")} {list.someone[someoneNr].Plural()}");
+            presentationWindow.tbxResult.AppendText($"Kom ihåg, {list.verb[verbNr].Request()} alltid {list.verb[verbNr].PostVerbs()}{list.someone[someoneNr].DinEllerDitt("plural")} {list.someone[someoneNr].Plural()}");
 
             list.verb.RemoveAt(verbNr);
             list.someone.RemoveAt(someoneNr);
@@ -524,7 +565,7 @@ namespace Headline_Randomizer
                 int verbNr = r.Next(0, list.verb.Count);
                 int someoneNr = r.Next(0, list.someone.Count);
 
-                presentationWindow.tbxResult.AppendText($"Är du trött på att {list.verb[verbNr].BasForm()} {(list.verb[verbNr].PostVerbs() == "-" ? "" : $"{list.verb[verbNr].PostVerbs()} ")}{list.someone[someoneNr].Plural()}? Vi har lösningen för dig!");
+                presentationWindow.tbxResult.AppendText($"Är du trött på att {list.verb[verbNr].BasForm()} {list.verb[verbNr].PostVerbs()}{list.someone[someoneNr].Plural()}? Vi har lösningen för dig!");
 
                 list.someone.RemoveAt(someoneNr);
                 list.verb.RemoveAt(verbNr);
@@ -553,7 +594,7 @@ namespace Headline_Randomizer
 
         private void Tabchanged(object sender, EventArgs e)
         {
-            if (customTabControl1.ActiveIndex == 1)
+            if (customTabControl1.ActiveIndex == 1 || customTabControl1.ActiveIndex == 2)
             {
                 customTabControl1.Size = new Size(614, 233);
             }
@@ -603,6 +644,178 @@ namespace Headline_Randomizer
                 FixText.AdjustSize(presentationWindow.tbxResult);
             }
         }
+
+        StringBuilder scene = new StringBuilder();
+        string locationString = "";
+        string relationString = "";
+        string missionString = "";
+        bool locationPressed = false;
+        bool relationPressed = false;
+        bool missionPressed = false;
+        List<string> sceneitems = new List<string>();
+
+        string WriteOut()
+        {
+            scene.Clear();
+            int counter = 0;
+            foreach (string element in sceneitems)
+            {
+                if (counter == 0)
+                {
+                    scene.Append(element);
+                }
+                
+                else if (counter == 1)
+                {
+                    scene.Append(", ");
+                    scene.Append(element);
+                }
+                else if (counter == 2)
+                {
+                    scene.Append(" och ");
+                    scene.Append(element);
+                }
+                counter++;
+            }
+            return FixText.FirstLetterUpper(scene.ToString());
+        }
+
+        private void btnGenerate10_Click(object sender, EventArgs e)
+        {
+            int locationNr = r.Next(0, list.location.Count);
+            string newLocation = $"ni är {list.location[locationNr].Name()}";
+
+            if (!locationPressed)
+            {
+                sceneitems.Add(newLocation);
+                locationString = newLocation;
+                locationPressed = true;
+            }
+            else if (locationPressed)
+            {
+                    for (int i = 0; i < sceneitems.Count; i++)
+                    {
+                        if (sceneitems[i].Contains(locationString))
+                        {
+                            sceneitems[i] = newLocation;
+                        }
+                    }
+                locationString = newLocation;
+            }
+
+            
+            presentationWindow.tbxResult.Text = WriteOut();
+
+            list.location.RemoveAt(locationNr);
+            list.LoadNeeded(1);
+            FixText.AdjustSize(presentationWindow.tbxResult);
+        }
+
+        private void btnRensa_Click(object sender, EventArgs e)
+        {
+            scene.Clear();
+            sceneitems.Clear();
+            presentationWindow.tbxResult.Text = "";
+            locationString = "";
+            relationString = "";
+            missionString = "";
+            locationPressed = false;
+            relationPressed = false;
+            missionPressed = false;
+
+        }
+
+        private void btnGenerate11_Click(object sender, EventArgs e)
+        {
+
+            string newRelation = $"ni är rivaler";
+
+            if (!relationPressed)
+            {
+                sceneitems.Add(newRelation);
+                relationString = newRelation;
+                relationPressed = true;
+            }
+            else if (relationPressed)
+            {
+                for (int i = 0; i < sceneitems.Count; i++)
+                {
+                    if (sceneitems[i].Contains(relationString))
+                    {
+                        sceneitems[i] = newRelation;
+                    }
+                }
+                relationString = newRelation;
+            }
+            presentationWindow.tbxResult.Text = WriteOut();
+            FixText.AdjustSize(presentationWindow.tbxResult);
+
+        }
+
+        private void btnGenerate12_Click(object sender, EventArgs e)
+        {
+            int verbNr = r.Next(0, list.verb.Count);
+            int someoneNr = r.Next(0, list.someone.Count);
+            int somethingNr = r.Next(0, list.something.Count);
+            int slant = r.Next(0, 2);
+
+            if (slant == 0)
+            {
+                string newMission = $"ni ska {list.verb[verbNr].BasForm()} {list.verb[verbNr].PostVerbs()}{list.someone[someoneNr].EnEllerEtt()} {list.someone[someoneNr].Singular()}";
+
+                if (!missionPressed)
+                {
+                    sceneitems.Add(newMission);
+                    missionString = newMission;
+                    missionPressed = true;
+                }
+                else if (missionPressed)
+                {
+                    for (int i = 0; i < sceneitems.Count; i++)
+                    {
+                        if (sceneitems[i].Contains(missionString))
+                        {
+                            sceneitems[i] = newMission;
+                        }
+                    }
+                    missionString = newMission;
+                }
+                presentationWindow.tbxResult.Text = WriteOut();
+
+                list.verb.RemoveAt(verbNr);
+                list.someone.RemoveAt(someoneNr);
+                list.LoadNeeded(1);
+                FixText.AdjustSize(presentationWindow.tbxResult);
+            } 
+            else if (slant == 1)
+            {
+                string newMission = $"ni ska {list.verb[verbNr].BasForm()} {list.verb[verbNr].PostVerbs()}{list.something[somethingNr].EnEllerEtt()} {list.something[somethingNr].Singular()}";
+
+                if (!missionPressed)
+                {
+                    sceneitems.Add(newMission);
+                    missionString = newMission;
+                    missionPressed = true;
+                }
+                else if (missionPressed)
+                {
+                    for (int i = 0; i < sceneitems.Count; i++)
+                    {
+                        if (sceneitems[i].Contains(missionString))
+                        {
+                            sceneitems[i] = newMission;
+                        }
+                    }
+                    missionString = newMission;
+                }
+
+                presentationWindow.tbxResult.Text = WriteOut();
+                list.verb.RemoveAt(verbNr);
+                list.something.RemoveAt(somethingNr);
+                list.LoadNeeded(1);
+                FixText.AdjustSize(presentationWindow.tbxResult);
+            }
+        }
     }
 
     class Lists
@@ -618,6 +831,8 @@ namespace Headline_Randomizer
         public List<Words> adjective = new List<Words>();
         public List<Words> nobelPrize = new List<Words>();
         public List<Custom> choicesList = new List<Custom>();
+        public List<Words> location = new List<Words>();
+        public List<Words> relation = new List<Words>();
 
     public void LoadNeeded(int amount)
         {
@@ -732,6 +947,20 @@ namespace Headline_Randomizer
                 {
                     NobelPrizes vread = new NobelPrizes(fileRow);
                     nobelPrize.Add(vread);
+                }
+                sr.Close();
+            }
+
+            if (location.Count <= amount)
+            {
+                StreamReader sr = new StreamReader(@"Text\location.txt");
+
+                string fileRow;
+
+                while ((fileRow = sr.ReadLine()) != null)
+                {
+                    Location vread = new Location(fileRow);
+                    location.Add(vread);
                 }
                 sr.Close();
             }

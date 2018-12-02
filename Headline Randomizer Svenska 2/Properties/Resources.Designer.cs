@@ -123,6 +123,46 @@ namespace Headline_Randomizer.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap husmorbuttonbig {
+            get {
+                object obj = ResourceManager.GetObject("husmorbuttonbig", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap husmorbuttonsmall {
+            get {
+                object obj = ResourceManager.GetObject("husmorbuttonsmall", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap locationbuttonbig {
+            get {
+                object obj = ResourceManager.GetObject("locationbuttonbig", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap locationbuttonsmall {
+            get {
+                object obj = ResourceManager.GetObject("locationbuttonsmall", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap newsbutton_image {
             get {
                 object obj = ResourceManager.GetObject("newsbutton image", resourceCulture);
@@ -176,6 +216,26 @@ namespace Headline_Randomizer.Properties {
         internal static System.Drawing.Bitmap protipsmall {
             get {
                 object obj = ResourceManager.GetObject("protipsmall", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap relationbuttonbig {
+            get {
+                object obj = ResourceManager.GetObject("relationbuttonbig", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap relationbuttonsmall {
+            get {
+                object obj = ResourceManager.GetObject("relationbuttonsmall", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

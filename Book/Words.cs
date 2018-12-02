@@ -154,7 +154,15 @@ namespace Headline_Randomizer
 
         public override string PostVerbs()
         {
-            return postVerbs;
+            if (postVerbs == "")
+            {
+                return "";
+            }
+            else
+            {
+                return $"{postVerbs} ";
+            }
+            
         }
 
         public override string SForm()
@@ -321,6 +329,12 @@ namespace Headline_Randomizer
             }
         }
 
+        // Univeral cotructor for only sing and plu, specifically added for relations. 
+        public Nouns(string singular, string plural) : base()
+        {
+            this.singular = singular;
+            this.plural = plural;
+        }
 
     }
 
@@ -348,6 +362,14 @@ namespace Headline_Randomizer
         {
         }
 
+    }
+
+    // Noun - Relatinship - Tänk om
+    public class Relation : Nouns
+    {
+        public Relation(string singular, string plural) : base(singular, plural)
+        {
+        }
     }
 
     // Adjectives
@@ -455,6 +477,19 @@ namespace Headline_Randomizer
 
     }
 
+    public class Location : Names
+    {
+        public override string Name()
+        {
+            return name;
+        }
+
+        public Location(string name) : base(name)
+        {
+            this.name = name;
+        }
+    }
+
     // Nobel prize
     public class NobelPrizes : Words
     {
@@ -475,6 +510,7 @@ namespace Headline_Randomizer
             this.prize = prize;
         }
     }
+
     public enum Indefinite { En, Ett, Null, A, An }
     public enum Genitive { DinDina, DittDina, DinDin, DittDitt }
 }

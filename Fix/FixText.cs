@@ -1,12 +1,21 @@
 ﻿using System.Drawing;
 using System.Linq;
 using System.Windows.Forms;
+using System;
 
 
 namespace Headline_Randomizer
 {
     public class FixText
     {
+        static public string FirstLetterUpper(string line)
+        {
+            char firstLetter = line[0];
+            string firstLetterStr = Convert.ToString(firstLetter);
+            return $"{firstLetterStr.ToUpper()}{line.Substring(1, line.Length - 1)}";
+        }
+
+
         // Method for sizing text automatically
         static private float GetFontSize(TextBox label, string text, int margin, float min_size, float max_size)
         {
