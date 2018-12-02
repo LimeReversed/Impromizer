@@ -667,11 +667,12 @@ namespace Headline_Randomizer
                 
                 else if (counter == 1)
                 {
-                    scene.Append(", ");
+                    scene.Append(" och ");
                     scene.Append(element);
                 }
                 else if (counter == 2)
                 {
+                    scene.Replace(" och ", ", ");
                     scene.Append(" och ");
                     scene.Append(element);
                 }
@@ -727,8 +728,8 @@ namespace Headline_Randomizer
 
         private void btnGenerate11_Click(object sender, EventArgs e)
         {
-
-            string newRelation = $"ni är rivaler";
+            int relationNr = r.Next(0, list.relation.Count);
+            string newRelation = $"ni är {list.relation[relationNr].Plural()}";
 
             if (!relationPressed)
             {
@@ -748,6 +749,8 @@ namespace Headline_Randomizer
                 relationString = newRelation;
             }
             presentationWindow.tbxResult.Text = WriteOut();
+            list.relation.RemoveAt(relationNr);
+            list.LoadNeeded(1);
             FixText.AdjustSize(presentationWindow.tbxResult);
 
         }
@@ -921,6 +924,7 @@ namespace Headline_Randomizer
                 sr.Close();
                 sr2.Close();
                 sr3.Close();
+                sr4.Close();
             }
 
             if (jokeName.Count <= amount)
@@ -964,6 +968,21 @@ namespace Headline_Randomizer
                 }
                 sr.Close();
             }
+
+            if (relation.Count <= amount)
+            {
+                StreamReader sr2 = new StreamReader(@"Text\relation plural.txt");
+
+                string fileRow2;
+
+                while ((fileRow2 = sr2.ReadLine()) != null)
+                {
+                    Relation vread = new Relation("", fileRow2);
+                    relation.Add(vread);
+                }
+                sr2.Close();
+            }
+
         }
 
     }
