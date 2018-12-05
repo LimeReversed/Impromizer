@@ -137,6 +137,9 @@
     <Content Include="Text\adjectives.txt">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Include="Text\animated aoran.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="Text\animatednouns.txt">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
@@ -148,6 +151,9 @@
     </Content>
     <Content Include="Text\nobelprizes.txt">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Text\non-animated aoran.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Text\non-animatednouns.txt">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
@@ -165,6 +171,15 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <ProjectReference Include="..\Book\Book.csproj">
+      <Project>{f96683cf-cd08-4814-81be-d88930297a4f}</Project>
+      <Name>Book</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Fix\Fix.csproj">
+      <Project>{455a7134-573f-4ba8-b8d5-1749726fa8dc}</Project>
+      <Name>Fix</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

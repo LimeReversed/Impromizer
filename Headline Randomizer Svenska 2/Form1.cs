@@ -565,7 +565,7 @@ namespace Headline_Randomizer
                 int verbNr = r.Next(0, list.verb.Count);
                 int someoneNr = r.Next(0, list.someone.Count);
 
-                presentationWindow.tbxResult.AppendText($"Är du trött på att {list.verb[verbNr].BasForm()} {list.verb[verbNr].PostVerbs()}{list.someone[someoneNr].Plural()}? Vi har lösningen för dig!");
+                presentationWindow.tbxResult.AppendText($"Är du trött på att {list.verb[verbNr].BasForm()} {list.verb[verbNr].PostVerbs()}{list.someone[someoneNr].Plural()}?");
 
                 list.someone.RemoveAt(someoneNr);
                 list.verb.RemoveAt(verbNr);
@@ -577,7 +577,7 @@ namespace Headline_Randomizer
                 int verbNr = r.Next(0, list.verb.Count);
                 int somethingNr = r.Next(0, list.something.Count);
 
-                presentationWindow.tbxResult.AppendText($"Är du trött på att {list.verb[verbNr].BasForm()} {list.verb[verbNr].PostVerbs()}{list.something[somethingNr].Plural()}? Vi har lösningen för dig!");
+                presentationWindow.tbxResult.AppendText($"Är du trött på att {list.verb[verbNr].BasForm()} {list.verb[verbNr].PostVerbs()}{list.something[somethingNr].Plural()}?");
 
                 list.something.RemoveAt(somethingNr);
                 list.verb.RemoveAt(verbNr);
@@ -657,27 +657,20 @@ namespace Headline_Randomizer
         string WriteOut()
         {
             scene.Clear();
-            int counter = 0;
-            foreach (string element in sceneitems)
+
+            if (sceneitems.Count == 1)
             {
-                if (counter == 0)
-                {
-                    scene.Append(element);
-                }
-                
-                else if (counter == 1)
-                {
-                    scene.Append(" och ");
-                    scene.Append(element);
-                }
-                else if (counter == 2)
-                {
-                    scene.Replace(" och ", ", ");
-                    scene.Append(" och ");
-                    scene.Append(element);
-                }
-                counter++;
+                scene.Append(sceneitems[0]);
             }
+            else if (sceneitems.Count == 2)
+            {
+                scene.Append($"{sceneitems[0]} och {sceneitems[1]}");
+            }
+            else if (sceneitems.Count == 3)
+            {
+                scene.Append($"{sceneitems[0]}, {sceneitems[1]} och {sceneitems[2]}");
+            }
+
             return FixText.FirstLetterUpper(scene.ToString());
         }
 
@@ -729,7 +722,7 @@ namespace Headline_Randomizer
         private void btnGenerate11_Click(object sender, EventArgs e)
         {
             int relationNr = r.Next(0, list.relation.Count);
-            string newRelation = $"ni är {list.relation[relationNr].Plural()}";
+            string newRelation = $"ni {list.relation[relationNr].Plural()}";
 
             if (!relationPressed)
             {
@@ -839,6 +832,8 @@ namespace Headline_Randomizer
 
     public void LoadNeeded(int amount)
         {
+            //!fileRow.EndOf<stream
+            //fileForRead.ReadLine()
             if (verb.Count <= amount)
             {
                 StreamReader sr = new StreamReader(@"Text\verb basform.txt");

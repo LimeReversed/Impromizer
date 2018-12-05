@@ -45,19 +45,19 @@ namespace Headline_Randomizer
         private void btnGenerate1_Click(object sender, EventArgs e)
         {
             presentationWindow.tbxResult.Text = "";
-            int liveNounNr = r.Next(0, list.liveNoun.Count);
+            int someoneNr = r.Next(0, list.someone.Count);
             int adjectiveNr = r.Next(0, list.adjective.Count);
             int nr2 = r.Next(1, 11);
             int nr1 = r.Next(1, (nr2 + 2));
 
-            presentationWindow.tbxResult.Text = $"{nr1} out of {nr2} agree {list.liveNoun[liveNounNr].Plural} are {list.adjective[adjectiveNr].Descriptive}";
+            presentationWindow.tbxResult.Text = $"{nr1} out of {nr2} agree {list.someone[someoneNr].Plural()} are {list.adjective[adjectiveNr].Descriptive()}";
 
             // Use method to adjust size of string. 
-            list.AdjustSize(presentationWindow);
+            FixText.AdjustSize(presentationWindow.tbxResult);
 
             // Remove used words
             list.adjective.RemoveAt(adjectiveNr);
-            list.liveNoun.RemoveAt(liveNounNr);
+            list.someone.RemoveAt(someoneNr);
 
             // Reload the lists that need reloading...
             list.LoadNeeded(1);
@@ -117,19 +117,32 @@ namespace Headline_Randomizer
         private void BtnGenerate2_Click(object sender, EventArgs e)
         {
             presentationWindow.tbxResult.Text = "";
-            int liveNounNr = r.Next(0, list.liveNoun.Count);
-            presentationWindow.tbxResult.AppendText($"According to {list.liveNoun[liveNounNr].Plural}, ");
-            list.liveNoun.RemoveAt(liveNounNr);
+            int someoneNr = r.Next(0, list.someone.Count);
+            
+            int slant = r.Next(0, 2);
+            presentationWindow.tbxResult.AppendText($"{FixText.FirstLetterUpper(list.someone[someoneNr].Singular())} ");
+            list.someone.RemoveAt(someoneNr);
 
-            int liveNounNr2 = r.Next(0, list.liveNoun.Count);
             int verbNr = r.Next(0, list.verb.Count);
-            int deadNounNr = r.Next(0, list.deadNoun.Count);
-            presentationWindow.tbxResult.AppendText($"{list.liveNoun[liveNounNr2].Plural} {list.verb[verbNr].BaseForm} {list.deadNoun[deadNounNr].Plural}");
+            int adjectiveNr = r.Next(0, list.adjective.Count);
 
-            list.AdjustSize(presentationWindow);
-            list.liveNoun.RemoveAt(liveNounNr2);
+            if (slant == 0)
+            {
+                int someoneNr2 = r.Next(0, list.someone.Count);
+                presentationWindow.tbxResult.AppendText($"{list.verb[verbNr].SForm()} {list.adjective[adjectiveNr].Descriptive()} {list.someone[someoneNr2].Singular()}");
+                list.someone.RemoveAt(someoneNr2);
+            }
+            else if (slant == 1)
+            {
+                int somethingNr = r.Next(0, list.something.Count);
+                presentationWindow.tbxResult.AppendText($"{list.verb[verbNr].SForm()} {list.adjective[adjectiveNr].Descriptive()} {list.something[somethingNr].Singular()}");
+                list.something.RemoveAt(somethingNr);
+            }
+           
+
+            FixText.AdjustSize(presentationWindow.tbxResult);
             list.verb.RemoveAt(verbNr);
-            list.deadNoun.RemoveAt(deadNounNr);
+            list.adjective.RemoveAt(adjectiveNr);
 
             list.LoadNeeded(1);
         }
@@ -137,22 +150,18 @@ namespace Headline_Randomizer
         private void btnGenerate3_Click(object sender, EventArgs e)
         {
             presentationWindow.tbxResult.Text = "";
-            int liveNounNr = r.Next(0, list.liveNoun.Count);
+            int someoneNr = r.Next(0, list.someone.Count);
 
-            // Get the first letter of the first livenoun
-            char firstLetter = list.liveNoun[liveNounNr].Singular[0];
-            string firstLetterStr = Convert.ToString(firstLetter);
+            presentationWindow.tbxResult.AppendText($"{FixText.FirstLetterUpper(list.someone[someoneNr].Singular())} thinks ");
+            list.someone.RemoveAt(someoneNr);
 
-            presentationWindow.tbxResult.AppendText($"{firstLetterStr.ToUpper()}{list.liveNoun[liveNounNr].Singular.Substring(1, list.liveNoun[liveNounNr].Singular.Length - 1)} thinks ");
-            list.liveNoun.RemoveAt(liveNounNr);
+            int someoneNr2 = r.Next(0, list.someone.Count);
+            int somethingNr = r.Next(0, list.something.Count);
+            presentationWindow.tbxResult.AppendText($"{list.someone[someoneNr2].Plural()} are {list.something[somethingNr].Plural()}");
 
-            int liveNounNr2 = r.Next(0, list.liveNoun.Count);
-            int deadNounNr = r.Next(0, list.deadNoun.Count);
-            presentationWindow.tbxResult.AppendText($"{list.liveNoun[liveNounNr2].Plural} are {list.deadNoun[deadNounNr].Plural}");
-
-            list.AdjustSize(presentationWindow);
-            list.liveNoun.RemoveAt(liveNounNr2);
-            list.deadNoun.RemoveAt(deadNounNr);
+            FixText.AdjustSize(presentationWindow.tbxResult);
+            list.someone.RemoveAt(someoneNr2);
+            list.something.RemoveAt(somethingNr);
 
 
             list.LoadNeeded(1);
@@ -161,24 +170,21 @@ namespace Headline_Randomizer
         private void btnGenerate4_Click(object sender, EventArgs e)
         {
             presentationWindow.tbxResult.Text = "";
-            int liveNounNr = r.Next(0, list.liveNoun.Count);
+            int someoneNr = r.Next(0, list.someone.Count);
             int adjectiveNr = r.Next(0, list.adjective.Count);
 
-            char firstLetter = list.adjective[adjectiveNr].Descriptive[0];
-            string firstLetterStr = Convert.ToString(firstLetter);
-
-            presentationWindow.tbxResult.AppendText($"{firstLetterStr.ToUpper()}{list.adjective[adjectiveNr].Descriptive.Substring(1, list.adjective[adjectiveNr].Descriptive.Length - 1)} {list.liveNoun[liveNounNr].Plural} ");
-            list.liveNoun.RemoveAt(liveNounNr);
+            presentationWindow.tbxResult.AppendText($"{FixText.FirstLetterUpper(list.adjective[adjectiveNr].Descriptive())} {list.someone[someoneNr].Plural()} ");
+            list.someone.RemoveAt(someoneNr);
             list.adjective.RemoveAt(adjectiveNr);
 
-            int liveNounNr2 = r.Next(0, list.liveNoun.Count);
+            int someoneNr2 = r.Next(0, list.someone.Count);
             int adjectiveNr2 = r.Next(0, list.adjective.Count);
             int verbNr = r.Next(0, list.verb.Count);
 
-            presentationWindow.tbxResult.AppendText($"{list.verb[verbNr].BaseForm} {list.adjective[adjectiveNr2].Descriptive} {list.liveNoun[liveNounNr2].Plural}");
+            presentationWindow.tbxResult.AppendText($"{list.verb[verbNr].BasForm()} {list.adjective[adjectiveNr2].Descriptive()} {list.someone[someoneNr2].Plural()}");
 
-            list.AdjustSize(presentationWindow);
-            list.liveNoun.RemoveAt(liveNounNr2);
+            FixText.AdjustSize(presentationWindow.tbxResult);
+            list.someone.RemoveAt(someoneNr2);
             list.adjective.RemoveAt(adjectiveNr2);
             list.verb.RemoveAt(verbNr);
             list.LoadNeeded(1);
@@ -190,15 +196,15 @@ namespace Headline_Randomizer
             int jokeNameNr = r.Next(0, list.jokeName.Count);
             int nobelNr = r.Next(0, list.nobelPrize.Count);
             int verbNr = r.Next(0, list.verb.Count);
-            int deadNounNr = r.Next(0, list.deadNoun.Count);
+            int somethingNr = r.Next(0, list.something.Count);
 
-            presentationWindow.tbxResult.AppendText($"{list.jokeName[jokeNameNr].Name} wins the Nobel {list.nobelPrize[nobelNr].Prize} for {list.verb[verbNr].IngForm} {list.deadNoun[deadNounNr].Plural}");
+            presentationWindow.tbxResult.AppendText($"{list.jokeName[jokeNameNr].Name()} wins the Nobel {list.nobelPrize[nobelNr].Prize()} for {list.verb[verbNr].IngForm()} {list.something[somethingNr].Plural()}");
 
-            list.AdjustSize(presentationWindow);
+            FixText.AdjustSize(presentationWindow.tbxResult);
             list.jokeName.RemoveAt(jokeNameNr);
             list.nobelPrize.RemoveAt(nobelNr);
             list.verb.RemoveAt(verbNr);
-            list.deadNoun.RemoveAt(deadNounNr);
+            list.something.RemoveAt(somethingNr);
             list.LoadNeeded(1);
         }
 
@@ -239,27 +245,27 @@ namespace Headline_Randomizer
             }
             else
             {
-                    Lists newcombo = new Lists(cbBook.Text, cbBook.Text, cbForms.Text);
+                    Custom newcombo = new Custom(cbBook.Text, cbBook.Text, cbForms.Text);
                     list.choicesList.Add(newcombo);
             }
 
             tbxAdded.Text = "";
-            foreach (Lists element in list.choicesList)
+            foreach (Custom element in list.choicesList)
             {
 
-                tbxAdded.AppendText($"{(list.choicesList.IndexOf(element) == 0 ? "" : " + ")}{element.ForAdded}");
+                tbxAdded.AppendText($"{(list.choicesList.IndexOf(element) == 0 ? "" : " + ")}{element.ToAddedTbx}");
             }
         }
 
         private void btnAddNr_Click(object sender, EventArgs e)
         {
-            Lists newcombo = new Lists("#", nupFrom.Value, nupTo.Value);
+            Custom newcombo = new Custom("#", nupFrom.Value, nupTo.Value);
             list.choicesList.Add(newcombo);
 
             tbxAdded.Text = "";
-            foreach (Lists element in list.choicesList)
+            foreach (Custom element in list.choicesList)
             {
-                tbxAdded.AppendText($"{(list.choicesList.IndexOf(element) == 0 ? "" : " + ")}{element.ForAdded}");
+                tbxAdded.AppendText($"{(list.choicesList.IndexOf(element) == 0 ? "" : " + ")}{element.ToAddedTbx}");
             }
         }
 
@@ -271,15 +277,15 @@ namespace Headline_Randomizer
             }
             else
             {
-                Lists newcombo = new Lists("custom", tbxCustom.Text.Trim());
+                Custom newcombo = new Custom("custom", tbxCustom.Text.Trim());
                 list.choicesList.Add(newcombo);
             }
 
             tbxAdded.Text = "";
-            foreach (Lists element in list.choicesList)
+            foreach (Custom element in list.choicesList)
             {
 
-                tbxAdded.AppendText($"{(list.choicesList.IndexOf(element) == 0 ? "" : " + ")}{element.ForAdded}");
+                tbxAdded.AppendText($"{(list.choicesList.IndexOf(element) == 0 ? "" : " + ")}{element.ToAddedTbx}");
             }
         }
 
@@ -296,70 +302,70 @@ namespace Headline_Randomizer
         private void btnGenerate_Click(object sender, EventArgs e)
         {
             presentationWindow.tbxResult.Text = "";
-             foreach (Lists element in list.choicesList)
+             foreach (Custom element in list.choicesList)
              {
-                if (element.BookChoice == "Adjective" && element.FormChoice == "Descriptive")
+                if (element.WordClassChoice == "Adjective" && element.FormChoice == "Descriptive")
                 {
                     int rNr = r.Next(0, list.adjective.Count);
-                    presentationWindow.tbxResult.AppendText($"{list.adjective[rNr].Descriptive} ");
+                    presentationWindow.tbxResult.AppendText($"{list.adjective[rNr].Descriptive()} ");
                     list.adjective.RemoveAt(rNr);
                 }
-                else if (element.BookChoice == "Dead noun")
+                else if (element.WordClassChoice == "Dead noun")
                 {
-                    int rNr = r.Next(0, list.deadNoun.Count);
+                    int rNr = r.Next(0, list.something.Count);
 
                     if (element.FormChoice == "Singular")
                     {
-                        presentationWindow.tbxResult.AppendText($"{list.deadNoun[rNr].Singular} ");
+                        presentationWindow.tbxResult.AppendText($"{list.something[rNr].Singular()} ");
                     }
                     else if (element.FormChoice == "Plural")
                     {
-                        presentationWindow.tbxResult.AppendText($"{list.deadNoun[rNr].Plural} ");
+                        presentationWindow.tbxResult.AppendText($"{list.something[rNr].Plural()} ");
                     }
-                    list.deadNoun.RemoveAt(rNr);
+                    list.something.RemoveAt(rNr);
                 }
-                else if (element.BookChoice == "Joke name" && element.FormChoice == "Name")
+                else if (element.WordClassChoice == "Joke name" && element.FormChoice == "Name")
                 {
                     int rNr = r.Next(0, list.jokeName.Count);
-                    presentationWindow.tbxResult.AppendText($"{list.jokeName[rNr].Name} ");
+                    presentationWindow.tbxResult.AppendText($"{list.jokeName[rNr].Name()} ");
                     list.jokeName.RemoveAt(rNr);
                 }
-                else if (element.BookChoice == "Live noun")
+                else if (element.WordClassChoice == "Live noun")
                 {
-                    int rNr = r.Next(0, list.liveNoun.Count);
+                    int rNr = r.Next(0, list.someone.Count);
 
                     if (element.FormChoice == "Singular")
                     {
-                        presentationWindow.tbxResult.AppendText($"{list.liveNoun[rNr].Singular} ");
+                        presentationWindow.tbxResult.AppendText($"{list.someone[rNr].Singular()} ");
                     }
                     else if (element.FormChoice == "Plural")
                     {
-                        presentationWindow.tbxResult.AppendText($"{list.liveNoun[rNr].Plural} ");
+                        presentationWindow.tbxResult.AppendText($"{list.someone[rNr].Plural()} ");
                     }
-                    list.liveNoun.RemoveAt(rNr);
+                    list.someone.RemoveAt(rNr);
                 }
-                else if (element.BookChoice == "Verb")
+                else if (element.WordClassChoice == "Verb")
                 {
                     int rNr = r.Next(0, list.verb.Count);
                     if (element.FormChoice == "Base form")
                     {
-                        presentationWindow.tbxResult.AppendText($"{list.verb[rNr].BaseForm} ");
+                        presentationWindow.tbxResult.AppendText($"{list.verb[rNr].BasForm()} ");
                     }
                     else if (element.FormChoice == "-s form")
                     {
-                        presentationWindow.tbxResult.AppendText($"{list.verb[rNr].SForm} ");
+                        presentationWindow.tbxResult.AppendText($"{list.verb[rNr].SForm()} ");
                     }
                     else if (element.FormChoice == "-ing form")
                     {
-                        presentationWindow.tbxResult.AppendText($"{list.verb[rNr].IngForm} ");
+                        presentationWindow.tbxResult.AppendText($"{list.verb[rNr].IngForm()} ");
                     }
                     list.verb.RemoveAt(rNr);
                 }
-                else if (element.ForAdded == "custom")
+                else if (element.ToAddedTbx == "custom")
                 {
-                    presentationWindow.tbxResult.AppendText($"{element.Custom} ");
+                    presentationWindow.tbxResult.AppendText($"{element.CustomString} ");
                 }
-                else if (element.ForAdded == "#")
+                else if (element.ToAddedTbx == "#")
                 {
                     int rNr = r.Next(Convert.ToInt32(element.FromValue), Convert.ToInt32(element.ToValue));
                     presentationWindow.tbxResult.AppendText($"{Convert.ToString(rNr)} ");
@@ -390,28 +396,28 @@ namespace Headline_Randomizer
             presentationWindow.tbxResult.Text = "";
 
             int verbNr = r.Next(0, list.verb.Count);
-            int liveNounNr = r.Next(0, list.liveNoun.Count);
+            int someoneNr = r.Next(0, list.someone.Count);
 
-            presentationWindow.tbxResult.AppendText($"Remember, always {list.verb[verbNr].BaseForm} your {list.liveNoun[liveNounNr].Plural}");
+            presentationWindow.tbxResult.AppendText($"Remember, always {list.verb[verbNr].BasForm()} your {list.someone[someoneNr].Plural()}");
 
             list.verb.RemoveAt(verbNr);
-            list.liveNoun.RemoveAt(liveNounNr);
+            list.someone.RemoveAt(someoneNr);
             list.LoadNeeded(1);
-            list.AdjustSize(presentationWindow);
+            FixText.AdjustSize(presentationWindow.tbxResult);
         }
 
         private void btnGenerate7_Click(object sender, EventArgs e)
         {
             presentationWindow.tbxResult.Text = "";
-            int deadNounNr = r.Next(0, list.deadNoun.Count);
+            int somethingNr = r.Next(0, list.something.Count);
             int adjectiveNr = r.Next(0, list.adjective.Count);
 
-            presentationWindow.tbxResult.AppendText($"Happiness is {list.adjective[adjectiveNr].Descriptive} {list.deadNoun[deadNounNr].Plural}");
+            presentationWindow.tbxResult.AppendText($"Happiness is {list.adjective[adjectiveNr].Descriptive()} {list.something[somethingNr].Plural()}");
 
-            list.deadNoun.RemoveAt(deadNounNr);
+            list.something.RemoveAt(somethingNr);
             list.adjective.RemoveAt(adjectiveNr);
             list.LoadNeeded(1);
-            list.AdjustSize(presentationWindow);
+            FixText.AdjustSize(presentationWindow.tbxResult);
         }
 
         private void btnGenerate8_Click(object sender, EventArgs e)
@@ -423,26 +429,26 @@ namespace Headline_Randomizer
             if (slant == 0)
             {
                 int adjectiveNr = r.Next(0, list.adjective.Count);
-                int liveNounNr = r.Next(0, list.liveNoun.Count);
+                int someoneNr = r.Next(0, list.someone.Count);
 
-                presentationWindow.tbxResult.AppendText($"Protip, your {list.liveNoun[liveNounNr].Plural} can never be too {list.adjective[adjectiveNr].Descriptive}");
+                presentationWindow.tbxResult.AppendText($"Protip, your {list.someone[someoneNr].Plural()} can never be too {list.adjective[adjectiveNr].Descriptive()}");
 
-                list.liveNoun.RemoveAt(liveNounNr);
+                list.someone.RemoveAt(someoneNr);
                 list.adjective.RemoveAt(adjectiveNr);
                 list.LoadNeeded(1);
-                list.AdjustSize(presentationWindow);
+                FixText.AdjustSize(presentationWindow.tbxResult);
             }
             else if (slant == 1)
             {
                 int adjectiveNr = r.Next(0, list.adjective.Count);
-                int deadNounNr = r.Next(0, list.deadNoun.Count);
+                int somethingNr = r.Next(0, list.something.Count);
 
-                presentationWindow.tbxResult.AppendText($"Protip, your {list.deadNoun[deadNounNr].Plural} can never be too {list.adjective[adjectiveNr].Descriptive}");
+                presentationWindow.tbxResult.AppendText($"Protip, your {list.something[somethingNr].Plural()} can never be too {list.adjective[adjectiveNr].Descriptive()}");
 
-                list.deadNoun.RemoveAt(deadNounNr);
+                list.something.RemoveAt(somethingNr);
                 list.adjective.RemoveAt(adjectiveNr);
                 list.LoadNeeded(1);
-                list.AdjustSize(presentationWindow);
+                FixText.AdjustSize(presentationWindow.tbxResult);
             }
             
         }
@@ -502,15 +508,15 @@ namespace Headline_Randomizer
         private void btnGenerate9_Click(object sender, EventArgs e)
         {
             presentationWindow.tbxResult.Text = "";
-            int liveNounNr = r.Next(0, list.liveNoun.Count);
+            int someoneNr = r.Next(0, list.someone.Count);
             int verbNr = r.Next(0, list.verb.Count);
 
-            presentationWindow.tbxResult.AppendText($"Are you tired of {list.verb[verbNr].IngForm} your {list.liveNoun[liveNounNr].Plural}? Well we have the solution for you!");
+            presentationWindow.tbxResult.AppendText($"Are you tired of {list.verb[verbNr].IngForm()} your {list.someone[someoneNr].Plural()}? Well we have the solution for you!");
 
-            list.liveNoun.RemoveAt(liveNounNr);
+            list.someone.RemoveAt(someoneNr);
             list.verb.RemoveAt(verbNr);
             list.LoadNeeded(1);
-            list.AdjustSize(presentationWindow);
+            FixText.AdjustSize(presentationWindow.tbxResult);
         }
 
         private void btnClear3_Click(object sender, EventArgs e)
@@ -531,44 +537,17 @@ namespace Headline_Randomizer
 
     class Lists
     {
-        public string ForAdded { get; set; }
-        public string BookChoice { get; set; }
-        public string FormChoice { get; set; }
-        public decimal FromValue { get; set; }
-        public decimal ToValue { get; set; }
-        public string Custom { get; set; }
-
-        public Lists(string forAdded, string bookChoice, string formChoice)
-        {
-            this.ForAdded = forAdded;
-            this.BookChoice = bookChoice;
-            this.FormChoice = formChoice;
-        }
-
-        public Lists(string forAdded, decimal fromValue, decimal toValue)
-        {
-            this.ForAdded = forAdded;
-            this.FromValue = fromValue;
-            this.ToValue = toValue;
-        }
-
-        public Lists(string forAdded, string custom)
-        {
-            this.ForAdded = forAdded;
-            this.Custom = custom;
-        }
-
         public Lists()
         {
         }
 
-        public List<Book> verb = new List<Book>();
-        public List<Book> deadNoun = new List<Book>();
-        public List<Book> liveNoun = new List<Book>();
-        public List<Book> jokeName = new List<Book>();
-        public List<Book> adjective = new List<Book>();
-        public List<Book> nobelPrize = new List<Book>();
-        public List<Lists> choicesList = new List<Lists>();
+        public List<Words> verb = new List<Words>();
+        public List<Words> something = new List<Words>();
+        public List<Words> someone = new List<Words>();
+        public List<Words> jokeName = new List<Words>();
+        public List<Words> adjective = new List<Words>();
+        public List<Words> nobelPrize = new List<Words>();
+        public List<Custom> choicesList = new List<Custom>();
 
         public void LoadNeeded(int amount)
         {
@@ -592,38 +571,44 @@ namespace Headline_Randomizer
                 sr3.Close();
             }
 
-            if (deadNoun.Count <= amount)
+            if (something.Count <= amount)
             {
                 StreamReader sr = new StreamReader(@"Text\non-animatednouns.txt");
-                StreamReader sr2 = new StreamReader(@"Text\non-animatednouns2.txt");
+                StreamReader sr2 = new StreamReader(@"Text\non-animatednouns2.txt"); 
+                StreamReader sr3 = new StreamReader(@"Text\non-animated aoran.txt");
 
                 string fileRow;
                 string fileRow2;
+                string fileRow3;
 
-                while ((fileRow = sr.ReadLine()) != null && ((fileRow2 = sr2.ReadLine()) != null))
+                while ((fileRow = sr.ReadLine()) != null && ((fileRow2 = sr2.ReadLine()) != null) && ((fileRow3 = sr3.ReadLine()) != null))
                 {
-                    DeadNouns vread = new DeadNouns(fileRow, fileRow2);
-                    deadNoun.Add(vread);
+                    Something vread = new Something(fileRow, fileRow2, fileRow3, true);
+                    something.Add(vread);
                 }
                 sr.Close();
                 sr2.Close();
+                sr3.Close();
             }
 
-            if (liveNoun.Count <= amount)
+            if (someone.Count <= amount)
             {
                 StreamReader sr = new StreamReader(@"Text\animatednouns.txt");
                 StreamReader sr2 = new StreamReader(@"Text\animatednouns2.txt");
+                StreamReader sr3 = new StreamReader(@"Text\animated aoran.txt");
 
                 string fileRow;
                 string fileRow2;
+                string fileRow3;
 
-                while ((fileRow = sr.ReadLine()) != null && ((fileRow2 = sr2.ReadLine()) != null))
+                while ((fileRow = sr.ReadLine()) != null && ((fileRow2 = sr2.ReadLine()) != null) && ((fileRow3 = sr3.ReadLine()) != null))
                 {
-                    LiveNouns vread = new LiveNouns(fileRow, fileRow2);
-                    liveNoun.Add(vread);
+                    Something vread = new Something(fileRow, fileRow2, fileRow3, true);
+                    someone.Add(vread);
                 }
                 sr.Close();
                 sr2.Close();
+                sr3.Close();
             }
 
             if (adjective.Count <= amount)
@@ -668,302 +653,5 @@ namespace Headline_Randomizer
                 sr.Close();
             }
         }
-
-        // Method for sizing text automatically
-        private float GetFontSize(TextBox label, string text, int margin, float min_size, float max_size)
-        {
-            // Only bother if there's text.
-            if (text.Length == 0) return min_size;
-
-            // See how much room we have, allowing a bit
-            // for the Label's internal margin.
-            int wid = label.Width - margin;
-            int hgt = label.Height - margin;
-
-            // Make a Graphics object to measure the text.
-            using (Graphics gr = label.CreateGraphics())
-            {
-                while (max_size - min_size > 0.1f)
-                {
-                    float pt = (min_size + max_size) / 2f;
-                    using (Font test_font =
-                        new Font(label.Font.FontFamily, pt))
-                    {
-                        // See if this font is too big.
-                        SizeF text_size =
-                            gr.MeasureString(text, test_font);
-                        if ((text_size.Width > wid) ||
-                            (text_size.Height > hgt))
-                            max_size = pt;
-                        else
-                            min_size = pt;
-                    }
-                }
-                return min_size;
-            }
-        }
-
-        public void AdjustSize(PresentationWindow form2)
-        {
-            if (form2.tbxResult.Text.Count() > 35)
-            {
-                int middleChar = form2.tbxResult.Text.Count() / 2;
-                while (form2.tbxResult.Text[middleChar] != 32)
-                {
-                    middleChar = middleChar + 1;
-                }
-                form2.tbxResult.Text = form2.tbxResult.Text.Insert(middleChar + 1, "\r\n");
-
-                form2.tbxResult.Location = new System.Drawing.Point(10, 8);
-                form2.tbxResult.Font = new System.Drawing.Font("Adobe Fan Heiti Std", GetFontSize(form2.tbxResult, form2.tbxResult.Text, 3, 1f, 100f), System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            }
-            else
-            {
-                form2.tbxResult.Font = new System.Drawing.Font("Adobe Fan Heiti Std", GetFontSize(form2.tbxResult, form2.tbxResult.Text, 3, 1f, 100f), System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-                form2.tbxResult.Location = new System.Drawing.Point(10, 25);
-            }
-        }
-
     }
-
-    abstract class Book
-    {
-        // Virtual variables here to be able to reach them through List<Book>
-        public virtual string Descriptive
-        {
-            get { return ""; }
-            set { Descriptive = value; }
-        }
-
-        public virtual string BaseForm
-        {
-            get { return ""; }
-            set { BaseForm = value; }
-        }
-
-        public virtual string SForm
-        {
-            get { return ""; }
-            set { SForm = value; }
-        }
-
-        public virtual string IngForm
-        {
-            get { return ""; }
-            set { IngForm = value; }
-        }
-
-        public virtual string Singular
-        {
-            get { return ""; }
-            set { Singular = value; }
-        }
-
-        public virtual string Plural
-        {
-            get { return ""; }
-            set { Plural = value; }
-        }
-
-        public virtual string Name
-        {
-            get { return ""; }
-            set { Name = value; }
-        }
-
-        public virtual string Prize
-        {
-            get { return ""; }
-            set { Name = value; }
-        }
-    }
-
-    // Words
-    class Verbs : Book
-    {
-        protected string baseForm;
-        protected string sForm;
-        protected string ingForm;
-
-        // Override variables for the verb specific virtual variables here to catch them.
-        public override string BaseForm
-        {
-            get { return this.baseForm; }
-            set { this.baseForm = value; }
-        }
-
-        public override string SForm
-        {
-            get { return sForm; }
-            set { sForm = value; }
-        }
-
-        public override string IngForm
-        {
-            get { return ingForm; }
-            set { ingForm = value; }
-        }
-
-        // One empty and one filled konstructor. One to create a Verbs object without having
-        // to enter meaningless data and one for when I want to create an object and add to list.  
-        public Verbs() { }
-
-        public Verbs(string baseForm, string sForm, string ingForm) : base()
-        {
-            this.baseForm = baseForm;
-            this.sForm = sForm;
-            this.ingForm = ingForm;
-        }
-
-    }
-
-    abstract class Nouns : Book
-    {
-        protected string singular;
-        protected string plural;
-
-        public override string Singular
-        {
-            get
-            {
-                return this.singular;
-            }
-            set
-            {
-                this.singular = value;
-            }
-        }
-
-        public override string Plural
-        {
-            get
-            {
-                return this.plural;
-            }
-            set
-            {
-                this.plural = value;
-            }
-        }
-
-        public Nouns() { }
-
-        public Nouns(string singular, string plural) : base()
-        {
-            this.Singular = singular;
-            this.Plural = plural;
-        }
-    }
-
-    class DeadNouns : Nouns
-    {
-        public DeadNouns() { }
-
-        public DeadNouns(string singular, string plural) : base(singular, plural)
-        {
-        }
-
-    }
-
-    class LiveNouns : Nouns
-    {
-        public LiveNouns() { }
-
-        public LiveNouns(string singular, string plural) : base(singular, plural)
-        {
-        }
-
-    }
-
-    class Adjectives : Book
-    {
-        public string descriptive;
-
-        public Adjectives() { }
-
-        public Adjectives(string descriptive) : base()
-        {
-            this.descriptive = descriptive;
-        }
-
-        public override string Descriptive
-        {
-            get
-            {
-                return this.descriptive;
-            }
-            set
-            {
-                this.descriptive = value;
-            }
-
-        }
-
-    }
-
-    // Names
-    abstract class Names : Book
-    {
-        protected string name;
-
-        public override string Name
-        {
-            get
-            {
-                return this.name;
-            }
-        
-            set
-            {
-                this.name = value;
-            }
-        }
-
-        public Names() { }
-
-        public Names(string name) : base()
-        {
-            this.name = name;
-        }
-    }
-
-    class JokeNames : Names
-    {
-        public JokeNames() { }
-
-        public JokeNames(string name) : base (name)
-        {
-        }
-
-    }
-
-    // Nobel prize
-    class NobelPrizes : Book
-    {
-        protected string prize;
-
-        public override string Prize
-        {
-            get
-            {
-                return this.prize;
-            }
-
-            set
-            {
-                this.prize = value;
-            }
-        }
-
-        public NobelPrizes()
-        {
-            
-        }
-
-        public NobelPrizes(string prize)
-        {
-            this.prize = prize;
-        }
-    }
-
 }
