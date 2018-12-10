@@ -14,6 +14,9 @@ namespace Headline_Randomizer
         PresentationWindow presentationWindow = new PresentationWindow();
         Lists list = new Lists();
         Random r = new Random();
+        int position;
+
+
 
         public Form1()
         {
@@ -49,15 +52,11 @@ namespace Headline_Randomizer
 
             presentationWindow.tbxResult.Text = $"{nr1} av {nr2} tycker att {list.someone[someoneNr].Plural()} är {list.adjective[adjectiveNr].Plural()}";
 
-            // Use method to adjust size of string. 
-            FixText.AdjustSize(presentationWindow.tbxResult);
-
             // Remove used words
             list.adjective.RemoveAt(adjectiveNr);
             list.someone.RemoveAt(someoneNr);
 
-            // Reload the lists that need reloading...
-            list.LoadNeeded(1);
+            list.EndingRitual(1, presentationWindow.tbxResult, ref position);
         }
 
         // Click animation eventhandlers
@@ -222,12 +221,12 @@ namespace Headline_Randomizer
 
                 presentationWindow.tbxResult.AppendText($"{list.verb[verbNr].Presens()} {list.verb[verbNr].PostVerbs()}{list.adjective[adjectiveNr].Singular(list.something, somethingNr)} {list.something[somethingNr].Singular()}");
 
-                FixText.AdjustSize(presentationWindow.tbxResult);
+                
                 list.verb.RemoveAt(verbNr);
                 list.something.RemoveAt(somethingNr);
                 list.adjective.RemoveAt(adjectiveNr);
 
-                list.LoadNeeded(1);
+                list.EndingRitual(1, presentationWindow.tbxResult, ref position);
             }
             else if (slant == 1)
             {
@@ -246,12 +245,11 @@ namespace Headline_Randomizer
 
                 presentationWindow.tbxResult.AppendText($"{list.verb[verbNr].Presens()} {list.verb[verbNr].PostVerbs()}{list.adjective[adjectiveNr].Singular(list.someone, someoneNr2)} {list.someone[someoneNr2].Singular()}");
 
-                FixText.AdjustSize(presentationWindow.tbxResult);
                 list.someone.RemoveAt(someoneNr2);
                 list.verb.RemoveAt(verbNr);
                 list.adjective.RemoveAt(adjectiveNr);
 
-                list.LoadNeeded(1);
+                list.EndingRitual(1, presentationWindow.tbxResult, ref position);
             }
         }
 
@@ -271,12 +269,9 @@ namespace Headline_Randomizer
             int somethingNr = r.Next(0, list.something.Count);
             presentationWindow.tbxResult.AppendText($"{list.someone[someoneNr2].Plural()} är {list.something[somethingNr].Plural()}");
 
-            FixText.AdjustSize(presentationWindow.tbxResult);
             list.someone.RemoveAt(someoneNr2);
             list.something.RemoveAt(somethingNr);
-
-
-            list.LoadNeeded(1);
+            list.EndingRitual(1, presentationWindow.tbxResult, ref position);
         }
 
         private void btnGenerate4_Click(object sender, EventArgs e)
@@ -298,11 +293,10 @@ namespace Headline_Randomizer
 
             presentationWindow.tbxResult.AppendText($"{list.verb[verbNr].Presens()} {list.verb[verbNr].PostVerbs()}{list.adjective[adjectiveNr2].Plural()} {list.someone[someoneNr2].Plural()}");
 
-            FixText.AdjustSize(presentationWindow.tbxResult);
             list.someone.RemoveAt(someoneNr2);
             list.adjective.RemoveAt(adjectiveNr2);
             list.verb.RemoveAt(verbNr);
-            list.LoadNeeded(1);
+            list.EndingRitual(1, presentationWindow.tbxResult, ref position);
         }
 
         private void btnGenerate5_Click(object sender, EventArgs e)
@@ -315,12 +309,11 @@ namespace Headline_Randomizer
 
             presentationWindow.tbxResult.AppendText($"{list.jokeName[jokeNameNr].Name()} vann {list.nobelPrize[nobelNr].Prize()} för att ha {list.verb[verbNr].Perfekt()} {list.verb[verbNr].PostVerbs()}{list.something[somethingNr].Plural()}");
 
-            FixText.AdjustSize(presentationWindow.tbxResult);
             list.jokeName.RemoveAt(jokeNameNr);
             list.nobelPrize.RemoveAt(nobelNr);
             list.verb.RemoveAt(verbNr);
             list.something.RemoveAt(somethingNr);
-            list.LoadNeeded(1);
+            list.EndingRitual(1, presentationWindow.tbxResult, ref position);
         }
 
         private void cbBook_SelectedIndexChanged(object sender, EventArgs e)
@@ -530,11 +523,9 @@ namespace Headline_Randomizer
                 string theRest = presentationWindow.tbxResult.Text.Substring(1, presentationWindow.tbxResult.Text.Length - 1);
 
                 presentationWindow.tbxResult.Text = $"{firstLetterStr.ToUpper()}{theRest}";
-                presentationWindow.tbxResult.Font = new Font("Adobe Fan Heiti Std", 24, FontStyle.Regular, GraphicsUnit.Point, ((byte)(0)));
-                presentationWindow.tbxResult.Location = new System.Drawing.Point(10, 23);
-                list.LoadNeeded(5);
+                
              }
-             
+            list.EndingRitual(5, presentationWindow.tbxResult, ref position);
         }
 
         private void btnCustomClear_Click(object sender, EventArgs e)
@@ -556,8 +547,7 @@ namespace Headline_Randomizer
 
             list.verb.RemoveAt(verbNr);
             list.someone.RemoveAt(someoneNr);
-            list.LoadNeeded(1);
-            FixText.AdjustSize(presentationWindow.tbxResult);
+            list.EndingRitual(1, presentationWindow.tbxResult, ref position);
         }
 
         private void btnGenerate7_Click(object sender, EventArgs e)
@@ -570,8 +560,7 @@ namespace Headline_Randomizer
 
             list.something.RemoveAt(somethingNr);
             list.adjective.RemoveAt(adjectiveNr);
-            list.LoadNeeded(1);
-            FixText.AdjustSize(presentationWindow.tbxResult);
+            list.EndingRitual(1, presentationWindow.tbxResult, ref position);
         }
 
         private void btnGenerate8_Click(object sender, EventArgs e)
@@ -589,8 +578,7 @@ namespace Headline_Randomizer
 
                 list.someone.RemoveAt(someoneNr);
                 list.verb.RemoveAt(verbNr);
-                list.LoadNeeded(1);
-                FixText.AdjustSize(presentationWindow.tbxResult);
+                list.EndingRitual(1, presentationWindow.tbxResult, ref position);
             }
             else if (slant == 1)
             {
@@ -601,10 +589,9 @@ namespace Headline_Randomizer
 
                 list.something.RemoveAt(somethingNr);
                 list.verb.RemoveAt(verbNr);
-                list.LoadNeeded(1);
-                FixText.AdjustSize(presentationWindow.tbxResult);
+                list.EndingRitual(1, presentationWindow.tbxResult, ref position);
+
             }
-            
         }
 
         private void btnClear2_Click(object sender, EventArgs e)
@@ -648,8 +635,7 @@ namespace Headline_Randomizer
 
                 list.someone.RemoveAt(someoneNr);
                 list.adjective.RemoveAt(adjectiveNr);
-                list.LoadNeeded(1);
-                FixText.AdjustSize(presentationWindow.tbxResult);
+                list.EndingRitual(1, presentationWindow.tbxResult, ref position);
             }
             else if (slant == 1)
             {
@@ -660,8 +646,7 @@ namespace Headline_Randomizer
 
                 list.something.RemoveAt(somethingNr);
                 list.adjective.RemoveAt(adjectiveNr);
-                list.LoadNeeded(1);
-                FixText.AdjustSize(presentationWindow.tbxResult);
+                list.EndingRitual(1, presentationWindow.tbxResult, ref position);
             }
         }
 
@@ -729,8 +714,7 @@ namespace Headline_Randomizer
             presentationWindow.tbxResult.Text = $"Ni är {list.location[locationNr].Name()}";
 
             list.location.RemoveAt(locationNr);
-            list.LoadNeeded(1);
-            FixText.AdjustSize(presentationWindow.tbxResult);
+            list.EndingRitual(1, presentationWindow.tbxResult, ref position);
         }
 
         private void btnRensa_Click(object sender, EventArgs e)
@@ -801,8 +785,7 @@ namespace Headline_Randomizer
                 list.statusförhållande.RemoveAt(statusNr);
                 statusPNr++;
             }
-            list.LoadNeeded(1);
-            FixText.AdjustSize(presentationWindow.tbxResult);
+            list.EndingRitual(1, presentationWindow.tbxResult, ref position);
         }
 
         private void btnGenerate12_Click(object sender, EventArgs e)
@@ -819,8 +802,7 @@ namespace Headline_Randomizer
 
                 list.verb.RemoveAt(verbNr);
                 list.someone.RemoveAt(someoneNr);
-                list.LoadNeeded(1);
-                FixText.AdjustSize(presentationWindow.tbxResult);
+                list.EndingRitual(1, presentationWindow.tbxResult, ref position);
             } 
             else if (slant == 1)
             {
@@ -828,8 +810,7 @@ namespace Headline_Randomizer
 
                 list.verb.RemoveAt(verbNr);
                 list.something.RemoveAt(somethingNr);
-                list.LoadNeeded(1);
-                FixText.AdjustSize(presentationWindow.tbxResult);
+                list.EndingRitual(1, presentationWindow.tbxResult, ref position);
             }
         }
 
@@ -900,7 +881,34 @@ namespace Headline_Randomizer
             }
         }
 
-        
+        private void backToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (position <= 0)
+            {
+
+            }
+            else
+            {
+                position--;
+                presentationWindow.tbxResult.Text = list.results[position];
+                FixText.AdjustSize(presentationWindow.tbxResult);
+                // Vad händer när trycka på rensa?
+            }
+        }
+
+        private void forwardToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (position >= list.results.Count - 1)
+            {
+            }
+            else
+            {
+                position++;
+                presentationWindow.tbxResult.Text = list.results[position];
+                FixText.AdjustSize(presentationWindow.tbxResult);
+            }
+            
+        }
     }
 
     class Lists
@@ -919,6 +927,7 @@ namespace Headline_Randomizer
         public List<Words> location = new List<Words>();
         public List<Words> statusförhållande = new List<Words>();
         public List<Words> relationKänsla = new List<Words>();
+        public List<string> results = new List<string>();
 
         public void LoadNeeded(int amount)
         {
@@ -1086,5 +1095,13 @@ namespace Headline_Randomizer
 
         }
 
+        public void EndingRitual(int loadNr, TextBox tb, ref int position)
+        {
+            LoadNeeded(loadNr);
+            FixText.AdjustSize(tb);
+            results.Add(tb.Text);
+            position = results.Count -1;
+        } 
+        
     }
 }

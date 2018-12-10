@@ -71,6 +71,11 @@
             this.btnAddWord = new System.Windows.Forms.Button();
             this.cbForms = new System.Windows.Forms.ComboBox();
             this.cbBook = new System.Windows.Forms.ComboBox();
+            this.menuStrip1 = new System.Windows.Forms.MenuStrip();
+            this.backToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.forwardToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.saveResultToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.listSavesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.customTabControl1.SuspendLayout();
             this.tabPage3.SuspendLayout();
             this.tabPage2.SuspendLayout();
@@ -84,6 +89,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.nupTo)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nupFrom)).BeginInit();
             this.groupBox8.SuspendLayout();
+            this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
             // customTabControl1
@@ -115,7 +121,7 @@
             this.customTabControl1.Font = new System.Drawing.Font("Calibri", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.customTabControl1.HotTrack = true;
             this.customTabControl1.ItemSize = new System.Drawing.Size(111, 31);
-            this.customTabControl1.Location = new System.Drawing.Point(38, 12);
+            this.customTabControl1.Location = new System.Drawing.Point(38, 41);
             this.customTabControl1.Name = "customTabControl1";
             this.customTabControl1.SelectedIndex = 0;
             this.customTabControl1.Size = new System.Drawing.Size(614, 332);
@@ -822,16 +828,69 @@
             this.cbBook.TabIndex = 1;
             this.cbBook.SelectedIndexChanged += new System.EventHandler(this.cbBook_SelectedIndexChanged);
             // 
+            // menuStrip1
+            // 
+            this.menuStrip1.BackColor = System.Drawing.Color.Black;
+            this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.backToolStripMenuItem,
+            this.forwardToolStripMenuItem,
+            this.saveResultToolStripMenuItem,
+            this.listSavesToolStripMenuItem});
+            this.menuStrip1.LayoutStyle = System.Windows.Forms.ToolStripLayoutStyle.HorizontalStackWithOverflow;
+            this.menuStrip1.Location = new System.Drawing.Point(0, 0);
+            this.menuStrip1.Name = "menuStrip1";
+            this.menuStrip1.Size = new System.Drawing.Size(691, 27);
+            this.menuStrip1.TabIndex = 7;
+            this.menuStrip1.Text = "menuStrip1";
+            // 
+            // backToolStripMenuItem
+            // 
+            this.backToolStripMenuItem.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.backToolStripMenuItem.ForeColor = System.Drawing.Color.White;
+            this.backToolStripMenuItem.Name = "backToolStripMenuItem";
+            this.backToolStripMenuItem.Size = new System.Drawing.Size(70, 23);
+            this.backToolStripMenuItem.Text = "< Bakåt";
+            this.backToolStripMenuItem.Click += new System.EventHandler(this.backToolStripMenuItem_Click);
+            // 
+            // forwardToolStripMenuItem
+            // 
+            this.forwardToolStripMenuItem.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.forwardToolStripMenuItem.ForeColor = System.Drawing.Color.White;
+            this.forwardToolStripMenuItem.Name = "forwardToolStripMenuItem";
+            this.forwardToolStripMenuItem.Size = new System.Drawing.Size(78, 23);
+            this.forwardToolStripMenuItem.Text = "Framåt >";
+            this.forwardToolStripMenuItem.Click += new System.EventHandler(this.forwardToolStripMenuItem_Click);
+            // 
+            // saveResultToolStripMenuItem
+            // 
+            this.saveResultToolStripMenuItem.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.saveResultToolStripMenuItem.ForeColor = System.Drawing.Color.White;
+            this.saveResultToolStripMenuItem.Name = "saveResultToolStripMenuItem";
+            this.saveResultToolStripMenuItem.Size = new System.Drawing.Size(92, 23);
+            this.saveResultToolStripMenuItem.Text = "Save result";
+            this.saveResultToolStripMenuItem.Visible = false;
+            // 
+            // listSavesToolStripMenuItem
+            // 
+            this.listSavesToolStripMenuItem.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.listSavesToolStripMenuItem.ForeColor = System.Drawing.Color.White;
+            this.listSavesToolStripMenuItem.Name = "listSavesToolStripMenuItem";
+            this.listSavesToolStripMenuItem.Size = new System.Drawing.Size(85, 23);
+            this.listSavesToolStripMenuItem.Text = "List saves";
+            this.listSavesToolStripMenuItem.Visible = false;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.ClientSize = new System.Drawing.Size(691, 354);
+            this.ClientSize = new System.Drawing.Size(691, 384);
             this.Controls.Add(this.customTabControl1);
+            this.Controls.Add(this.menuStrip1);
             this.ForeColor = System.Drawing.Color.White;
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
+            this.MainMenuStrip = this.menuStrip1;
             this.Name = "Form1";
             this.StartPosition = System.Windows.Forms.FormStartPosition.Manual;
             this.Text = "Headline Randomizer";
@@ -852,7 +911,10 @@
             ((System.ComponentModel.ISupportInitialize)(this.nupTo)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.nupFrom)).EndInit();
             this.groupBox8.ResumeLayout(false);
+            this.menuStrip1.ResumeLayout(false);
+            this.menuStrip1.PerformLayout();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -899,6 +961,11 @@
         private System.Windows.Forms.Button btnRelationLeft;
         private System.Windows.Forms.Button btnRelationRight;
         private System.Windows.Forms.PictureBox pictureBox1;
+        private System.Windows.Forms.MenuStrip menuStrip1;
+        public System.Windows.Forms.ToolStripMenuItem backToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem forwardToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem saveResultToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem listSavesToolStripMenuItem;
     }
 }
 

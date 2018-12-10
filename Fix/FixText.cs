@@ -56,15 +56,19 @@ namespace Headline_Randomizer
             // It begins in the middle and then searches upwards to find the nearest space to make the split. 
             if (tb.Text.Count() > 35)
             {
-                int middleChar = tb.Text.Count() / 2;
-                while (tb.Text[middleChar] != 32)
+                if (!tb.Text.Contains("\r\n"))
                 {
-                    middleChar = middleChar + 1;
+                    int middleChar = tb.Text.Count() / 2;
+                    while (tb.Text[middleChar] != 32)
+                    {
+                        middleChar = middleChar + 1;
+                    }
+                    tb.Text = tb.Text.Insert(middleChar + 1, "\r\n");
                 }
-                tb.Text = tb.Text.Insert(middleChar + 1, "\r\n");
 
-                tb.Location = new System.Drawing.Point(10, 8);
-                tb.Font = new System.Drawing.Font("Adobe Fan Heiti Std", GetFontSize(tb, tb.Text, 3, 1f, 100f), System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+                    tb.Location = new System.Drawing.Point(10, 8);
+                    tb.Font = new System.Drawing.Font("Adobe Fan Heiti Std", GetFontSize(tb, tb.Text, 3, 1f, 100f), System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+                
             }
             else
             {
