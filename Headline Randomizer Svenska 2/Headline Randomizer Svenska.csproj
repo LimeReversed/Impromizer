@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
   <PropertyGroup>
@@ -137,6 +137,26 @@
     <None Include="Resources\relationbuttonsmall.png" />
     <None Include="Resources\husmorbuttonbig.png" />
     <None Include="Resources\husmorbuttonsmall.png" />
+    <None Include="Resources\relationbutton lång.png" />
+    <None Include="Resources\arrowcubeleft.png" />
+    <None Include="Resources\arrowcuberight.png" />
+    <None Include="Resources\arrowcubeleft1.png" />
+    <None Include="Resources\arrowcuberight1.png" />
+    <None Include="Resources\arrowcubeleft2.png" />
+    <None Include="Resources\arrowcubeleft3.png" />
+    <None Include="Resources\relationbutton lång1.png" />
+    <None Include="Resources\arrowcuberight2.png" />
+    <None Include="Resources\relationbutton lång2.png" />
+    <None Include="Resources\relationbutton lång big.png" />
+    <None Include="Resources\relationbutton lång3.png" />
+    <None Include="Resources\relationarrowleft.png" />
+    <None Include="Resources\relationarrowright.png" />
+    <None Include="Resources\relationbutton hela vägen.png" />
+    <None Include="Resources\relationbutton lång small.png" />
+    <None Include="Resources\relationbutton lång4.png" />
+    <None Include="Resources\relationarrowleft1.png" />
+    <None Include="Resources\relationarrowleft_small.png" />
+    <None Include="Resources\relationarrowright_small.png" />
     <Content Include="Text\adjektivEttForm.txt">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
@@ -149,10 +169,10 @@
     <Content Include="Text\DSub EnEttDinDitt.txt">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="Text\d�dasubstantivplural.txt">
+    <Content Include="Text\dödasubstantivplural.txt">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="Text\d�dasubstantivsing.txt">
+    <Content Include="Text\dödasubstantivsing.txt">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Text\jokenames2.txt">
@@ -176,7 +196,13 @@
     <Content Include="Text\post verbs.txt">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="Text\relation plural.txt">
+    <Content Include="Text\relation känsla olika.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Text\relation känsla samma.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Text\relation statusförhållande.txt">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Text\verb basform.txt">

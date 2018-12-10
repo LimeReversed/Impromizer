@@ -43,10 +43,13 @@
             this.btnRensa3 = new System.Windows.Forms.Button();
             this.btnGenerate6 = new System.Windows.Forms.Button();
             this.tabPage5 = new System.Windows.Forms.TabPage();
+            this.btnRelationLeft = new System.Windows.Forms.Button();
+            this.btnRelationRight = new System.Windows.Forms.Button();
             this.btnGenerate12 = new System.Windows.Forms.Button();
-            this.btnGenerate11 = new System.Windows.Forms.Button();
             this.btnRensa4 = new System.Windows.Forms.Button();
             this.btnGenerate10 = new System.Windows.Forms.Button();
+            this.btnGenerate11 = new System.Windows.Forms.Button();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.tabPage1 = new System.Windows.Forms.TabPage();
             this.btnGenerate8 = new System.Windows.Forms.Button();
             this.btnClear2 = new System.Windows.Forms.Button();
@@ -72,6 +75,7 @@
             this.tabPage3.SuspendLayout();
             this.tabPage2.SuspendLayout();
             this.tabPage5.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.tabPage1.SuspendLayout();
             this.tabPage4.SuspendLayout();
             this.groupBox5.SuspendLayout();
@@ -142,6 +146,7 @@
             this.btnGenerate5.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("btnGenerate5.BackgroundImage")));
             this.btnGenerate5.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
             this.btnGenerate5.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnGenerate5.FlatAppearance.BorderColor = System.Drawing.Color.White;
             this.btnGenerate5.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnGenerate5.Font = new System.Drawing.Font("Calibri", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnGenerate5.ForeColor = System.Drawing.Color.White;
@@ -163,7 +168,7 @@
             this.btnClear.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.btnClear.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
             this.btnClear.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnClear.FlatAppearance.BorderSize = 2;
+            this.btnClear.FlatAppearance.BorderColor = System.Drawing.Color.White;
             this.btnClear.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnClear.Font = new System.Drawing.Font("Calibri", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnClear.ForeColor = System.Drawing.Color.White;
@@ -183,6 +188,7 @@
             this.btnGenerate4.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("btnGenerate4.BackgroundImage")));
             this.btnGenerate4.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
             this.btnGenerate4.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnGenerate4.FlatAppearance.BorderColor = System.Drawing.Color.White;
             this.btnGenerate4.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnGenerate4.Font = new System.Drawing.Font("Calibri", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnGenerate4.ForeColor = System.Drawing.Color.White;
@@ -205,6 +211,7 @@
             this.btnGenerate3.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("btnGenerate3.BackgroundImage")));
             this.btnGenerate3.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
             this.btnGenerate3.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnGenerate3.FlatAppearance.BorderColor = System.Drawing.Color.White;
             this.btnGenerate3.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnGenerate3.Font = new System.Drawing.Font("Calibri", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnGenerate3.ForeColor = System.Drawing.Color.White;
@@ -227,6 +234,7 @@
             this.BtnGenerate2.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("BtnGenerate2.BackgroundImage")));
             this.BtnGenerate2.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
             this.BtnGenerate2.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.BtnGenerate2.FlatAppearance.BorderColor = System.Drawing.Color.White;
             this.BtnGenerate2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.BtnGenerate2.Font = new System.Drawing.Font("Calibri", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.BtnGenerate2.ForeColor = System.Drawing.Color.White;
@@ -333,7 +341,6 @@
             this.btnRensa3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.btnRensa3.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
             this.btnRensa3.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnRensa3.FlatAppearance.BorderSize = 2;
             this.btnRensa3.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnRensa3.Font = new System.Drawing.Font("Calibri", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnRensa3.ForeColor = System.Drawing.Color.White;
@@ -374,16 +381,51 @@
             // tabPage5
             // 
             this.tabPage5.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.tabPage5.Controls.Add(this.btnRelationLeft);
+            this.tabPage5.Controls.Add(this.btnRelationRight);
             this.tabPage5.Controls.Add(this.btnGenerate12);
-            this.tabPage5.Controls.Add(this.btnGenerate11);
             this.tabPage5.Controls.Add(this.btnRensa4);
             this.tabPage5.Controls.Add(this.btnGenerate10);
+            this.tabPage5.Controls.Add(this.btnGenerate11);
+            this.tabPage5.Controls.Add(this.pictureBox1);
             this.tabPage5.Location = new System.Drawing.Point(4, 36);
             this.tabPage5.Name = "tabPage5";
             this.tabPage5.Padding = new System.Windows.Forms.Padding(3);
             this.tabPage5.Size = new System.Drawing.Size(606, 292);
             this.tabPage5.TabIndex = 4;
             this.tabPage5.Text = "Scen";
+            // 
+            // btnRelationLeft
+            // 
+            this.btnRelationLeft.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.btnRelationLeft.BackgroundImage = global::Headline_Randomizer.Properties.Resources.relationarrowleft1;
+            this.btnRelationLeft.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnRelationLeft.Enabled = false;
+            this.btnRelationLeft.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnRelationLeft.Location = new System.Drawing.Point(0, 98);
+            this.btnRelationLeft.Name = "btnRelationLeft";
+            this.btnRelationLeft.Size = new System.Drawing.Size(96, 98);
+            this.btnRelationLeft.TabIndex = 25;
+            this.btnRelationLeft.UseVisualStyleBackColor = false;
+            this.btnRelationLeft.Visible = false;
+            this.btnRelationLeft.Click += new System.EventHandler(this.RelationLeft);
+            this.btnRelationLeft.MouseDown += new System.Windows.Forms.MouseEventHandler(this.RelationLeft_MounseDown);
+            this.btnRelationLeft.MouseUp += new System.Windows.Forms.MouseEventHandler(this.RelationLeft_MounseUp);
+            // 
+            // btnRelationRight
+            // 
+            this.btnRelationRight.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.btnRelationRight.BackgroundImage = global::Headline_Randomizer.Properties.Resources.relationarrowright;
+            this.btnRelationRight.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnRelationRight.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnRelationRight.Location = new System.Drawing.Point(510, 98);
+            this.btnRelationRight.Name = "btnRelationRight";
+            this.btnRelationRight.Size = new System.Drawing.Size(96, 98);
+            this.btnRelationRight.TabIndex = 24;
+            this.btnRelationRight.UseVisualStyleBackColor = false;
+            this.btnRelationRight.Click += new System.EventHandler(this.RelationRight);
+            this.btnRelationRight.MouseDown += new System.Windows.Forms.MouseEventHandler(this.RelationRight_MounseDown);
+            this.btnRelationRight.MouseUp += new System.Windows.Forms.MouseEventHandler(this.RelationRight_MounseUp);
             // 
             // btnGenerate12
             // 
@@ -396,7 +438,7 @@
             this.btnGenerate12.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnGenerate12.Font = new System.Drawing.Font("Calibri", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnGenerate12.ForeColor = System.Drawing.Color.White;
-            this.btnGenerate12.Location = new System.Drawing.Point(0, 98);
+            this.btnGenerate12.Location = new System.Drawing.Point(0, 0);
             this.btnGenerate12.Name = "btnGenerate12";
             this.btnGenerate12.Padding = new System.Windows.Forms.Padding(0, 0, 0, 10);
             this.btnGenerate12.Size = new System.Drawing.Size(303, 98);
@@ -409,44 +451,19 @@
             this.btnGenerate12.MouseDown += new System.Windows.Forms.MouseEventHandler(this.btnGenerate12_MouseDown);
             this.btnGenerate12.MouseUp += new System.Windows.Forms.MouseEventHandler(this.btnGenerate12_MouseUp);
             // 
-            // btnGenerate11
-            // 
-            this.btnGenerate11.BackColor = System.Drawing.SystemColors.WindowFrame;
-            this.btnGenerate11.BackgroundImage = global::Headline_Randomizer.Properties.Resources.relationbuttonbig;
-            this.btnGenerate11.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.btnGenerate11.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnGenerate11.FlatAppearance.BorderColor = System.Drawing.Color.White;
-            this.btnGenerate11.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.btnGenerate11.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnGenerate11.Font = new System.Drawing.Font("Calibri", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnGenerate11.ForeColor = System.Drawing.Color.White;
-            this.btnGenerate11.Location = new System.Drawing.Point(303, 0);
-            this.btnGenerate11.Name = "btnGenerate11";
-            this.btnGenerate11.Padding = new System.Windows.Forms.Padding(0, 0, 0, 10);
-            this.btnGenerate11.Size = new System.Drawing.Size(303, 98);
-            this.btnGenerate11.TabIndex = 22;
-            this.btnGenerate11.TabStop = false;
-            this.btnGenerate11.Text = "&Relation";
-            this.btnGenerate11.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
-            this.btnGenerate11.UseVisualStyleBackColor = false;
-            this.btnGenerate11.Click += new System.EventHandler(this.btnGenerate11_Click);
-            this.btnGenerate11.MouseDown += new System.Windows.Forms.MouseEventHandler(this.btnGenerate11_MouseDown);
-            this.btnGenerate11.MouseUp += new System.Windows.Forms.MouseEventHandler(this.btnGenerate11_MouseUp);
-            // 
             // btnRensa4
             // 
             this.btnRensa4.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.btnRensa4.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
             this.btnRensa4.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnRensa4.FlatAppearance.BorderSize = 2;
             this.btnRensa4.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnRensa4.Font = new System.Drawing.Font("Calibri", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnRensa4.ForeColor = System.Drawing.Color.White;
             this.btnRensa4.ImageAlign = System.Drawing.ContentAlignment.TopLeft;
             this.btnRensa4.ImageKey = "(none)";
-            this.btnRensa4.Location = new System.Drawing.Point(301, 97);
+            this.btnRensa4.Location = new System.Drawing.Point(-4, 195);
             this.btnRensa4.Name = "btnRensa4";
-            this.btnRensa4.Size = new System.Drawing.Size(307, 99);
+            this.btnRensa4.Size = new System.Drawing.Size(614, 101);
             this.btnRensa4.TabIndex = 20;
             this.btnRensa4.Text = "Rensa";
             this.btnRensa4.UseVisualStyleBackColor = false;
@@ -463,7 +480,7 @@
             this.btnGenerate10.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnGenerate10.Font = new System.Drawing.Font("Calibri", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnGenerate10.ForeColor = System.Drawing.Color.White;
-            this.btnGenerate10.Location = new System.Drawing.Point(0, 0);
+            this.btnGenerate10.Location = new System.Drawing.Point(303, 0);
             this.btnGenerate10.Name = "btnGenerate10";
             this.btnGenerate10.Padding = new System.Windows.Forms.Padding(0, 0, 0, 10);
             this.btnGenerate10.Size = new System.Drawing.Size(303, 98);
@@ -475,6 +492,39 @@
             this.btnGenerate10.Click += new System.EventHandler(this.btnGenerate10_Click);
             this.btnGenerate10.MouseDown += new System.Windows.Forms.MouseEventHandler(this.btnGenerate10_MouseDown);
             this.btnGenerate10.MouseUp += new System.Windows.Forms.MouseEventHandler(this.btnGenerate10_MouseUp);
+            // 
+            // btnGenerate11
+            // 
+            this.btnGenerate11.BackColor = System.Drawing.SystemColors.WindowFrame;
+            this.btnGenerate11.BackgroundImage = global::Headline_Randomizer.Properties.Resources.relationbutton_lång4;
+            this.btnGenerate11.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+            this.btnGenerate11.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnGenerate11.FlatAppearance.BorderColor = System.Drawing.Color.White;
+            this.btnGenerate11.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.btnGenerate11.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnGenerate11.Font = new System.Drawing.Font("Calibri", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnGenerate11.ForeColor = System.Drawing.Color.White;
+            this.btnGenerate11.Location = new System.Drawing.Point(92, 98);
+            this.btnGenerate11.Name = "btnGenerate11";
+            this.btnGenerate11.Padding = new System.Windows.Forms.Padding(0, 0, 0, 10);
+            this.btnGenerate11.Size = new System.Drawing.Size(420, 98);
+            this.btnGenerate11.TabIndex = 22;
+            this.btnGenerate11.TabStop = false;
+            this.btnGenerate11.Text = "&Relation\r\n(Alla samma)";
+            this.btnGenerate11.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
+            this.btnGenerate11.UseVisualStyleBackColor = false;
+            this.btnGenerate11.Click += new System.EventHandler(this.btnGenerate11_Click);
+            this.btnGenerate11.MouseDown += new System.Windows.Forms.MouseEventHandler(this.btnGenerate11_MouseDown);
+            this.btnGenerate11.MouseUp += new System.Windows.Forms.MouseEventHandler(this.btnGenerate11_MouseUp);
+            // 
+            // pictureBox1
+            // 
+            this.pictureBox1.BackgroundImage = global::Headline_Randomizer.Properties.Resources.relationbutton_hela_vägen;
+            this.pictureBox1.Location = new System.Drawing.Point(1, 99);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(606, 98);
+            this.pictureBox1.TabIndex = 26;
+            this.pictureBox1.TabStop = false;
             // 
             // tabPage1
             // 
@@ -517,7 +567,6 @@
             this.btnClear2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.btnClear2.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
             this.btnClear2.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnClear2.FlatAppearance.BorderSize = 2;
             this.btnClear2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnClear2.Font = new System.Drawing.Font("Calibri", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnClear2.ForeColor = System.Drawing.Color.White;
@@ -551,6 +600,7 @@
             // 
             // btnCustomClear
             // 
+            this.btnCustomClear.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
             this.btnCustomClear.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnCustomClear.Font = new System.Drawing.Font("Calibri", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnCustomClear.ForeColor = System.Drawing.Color.White;
@@ -585,6 +635,7 @@
             // 
             // btnGenerate
             // 
+            this.btnGenerate.FlatAppearance.BorderColor = System.Drawing.Color.White;
             this.btnGenerate.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnGenerate.Font = new System.Drawing.Font("Calibri", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnGenerate.ForeColor = System.Drawing.Color.White;
@@ -789,6 +840,7 @@
             this.tabPage3.ResumeLayout(false);
             this.tabPage2.ResumeLayout(false);
             this.tabPage5.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.tabPage1.ResumeLayout(false);
             this.tabPage4.ResumeLayout(false);
             this.groupBox5.ResumeLayout(false);
@@ -844,6 +896,9 @@
         private System.Windows.Forms.Button btnGenerate11;
         private System.Windows.Forms.Button btnRensa4;
         private System.Windows.Forms.Button btnGenerate10;
+        private System.Windows.Forms.Button btnRelationLeft;
+        private System.Windows.Forms.Button btnRelationRight;
+        private System.Windows.Forms.PictureBox pictureBox1;
     }
 }
 

@@ -9,6 +9,16 @@ namespace Headline_Randomizer
     public abstract class Words
     {
         // Virtual methods here to be able to reach them through List<Words>
+        public virtual string KänslaPlural()
+        {
+            return "";
+        }
+
+        public virtual string KänslaSingular()
+        {
+            return "";
+        }
+
         public virtual string BasForm()
         {
             return "";
@@ -115,6 +125,16 @@ namespace Headline_Randomizer
         }
 
         public virtual string Descriptive()
+        {
+            return "";
+        }
+
+        public virtual string Känsla()
+        {
+            return "";
+        }
+
+        public virtual string StatusFörhållande()
         {
             return "";
         }
@@ -364,15 +384,7 @@ namespace Headline_Randomizer
 
     }
 
-    // Noun - Relatinship - Tänk om
-    public class Relation : Nouns
-    {
-        public Relation(string singular, string plural) : base(singular, plural)
-        {
-        }
-    }
-
-    // Adjectives
+     // Adjectives
     public class Adjectives : Words
     {
         protected string ettForm;
@@ -508,6 +520,37 @@ namespace Headline_Randomizer
         public NobelPrizes(string prize)
         {
             this.prize = prize;
+        }
+    }
+
+    public class Relation : Words
+    {
+        protected string känslaSingular, känslaPlural, statusförhållande;
+
+        public override string KänslaPlural()
+        {
+            return känslaPlural;
+        }
+
+        public override string KänslaSingular()
+        {
+            return känslaSingular;
+        }
+
+        public override string StatusFörhållande()
+        {
+            return statusförhållande;
+        }
+
+        public Relation(string statusförhållande) : base()
+        {
+            this.statusförhållande = statusförhållande;
+        }
+
+        public Relation(string känslaSingular, string känslaPlural) : base()
+        {
+            this.känslaSingular = känslaSingular;
+            this.känslaPlural = känslaPlural;
         }
     }
 

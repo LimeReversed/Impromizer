@@ -163,12 +163,12 @@ namespace Headline_Randomizer
 
         private void btnGenerate11_MouseUp(object sender, MouseEventArgs e)
         {
-            btnGenerate11.BackgroundImage = global::Headline_Randomizer.Properties.Resources.relationbuttonbig;
+            btnGenerate11.BackgroundImage = global::Headline_Randomizer.Properties.Resources.relationbutton_lång4;
         }
 
         private void btnGenerate11_MouseDown(object sender, MouseEventArgs e)
         {
-            btnGenerate11.BackgroundImage = global::Headline_Randomizer.Properties.Resources.relationbuttonsmall;
+            btnGenerate11.BackgroundImage = global::Headline_Randomizer.Properties.Resources.relationbutton_lång_small;
         }
 
         private void btnGenerate12_MouseDown(object sender, MouseEventArgs e)
@@ -179,6 +179,26 @@ namespace Headline_Randomizer
         private void btnGenerate12_MouseUp(object sender, MouseEventArgs e)
         {
             btnGenerate12.BackgroundImage = global::Headline_Randomizer.Properties.Resources.protipbig;
+        }
+
+        private void RelationRight_MounseDown(object sender, MouseEventArgs e)
+        {
+            btnRelationRight.BackgroundImage = global::Headline_Randomizer.Properties.Resources.relationarrowright_small;
+        }
+
+        private void RelationRight_MounseUp(object sender, MouseEventArgs e)
+        {
+            btnRelationRight.BackgroundImage = global::Headline_Randomizer.Properties.Resources.relationarrowright;
+        }
+
+        private void RelationLeft_MounseDown(object sender, MouseEventArgs e)
+        {
+            btnRelationLeft.BackgroundImage = global::Headline_Randomizer.Properties.Resources.relationarrowleft_small;
+        }
+
+        private void RelationLeft_MounseUp(object sender, MouseEventArgs e)
+        {
+            btnRelationLeft.BackgroundImage = global::Headline_Randomizer.Properties.Resources.relationarrowleft;
         }
 
         private void BtnGenerate2_Click(object sender, EventArgs e)
@@ -594,7 +614,7 @@ namespace Headline_Randomizer
 
         private void Tabchanged(object sender, EventArgs e)
         {
-            if (customTabControl1.ActiveIndex == 1 || customTabControl1.ActiveIndex == 2)
+            if (customTabControl1.ActiveIndex == 1)
             {
                 customTabControl1.Size = new Size(614, 233);
             }
@@ -645,60 +665,68 @@ namespace Headline_Randomizer
             }
         }
 
-        StringBuilder scene = new StringBuilder();
-        string locationString = "";
-        string relationString = "";
-        string missionString = "";
-        bool locationPressed = false;
-        bool relationPressed = false;
-        bool missionPressed = false;
-        List<string> sceneitems = new List<string>();
+        //StringBuilder scene = new StringBuilder();
+        //string locationString = "";
+        //string relationString = "";
+        //string missionString = "";
+        //bool locationPressed = false;
+        //bool relationPressed = false;
+        //bool missionPressed = false;
+        //List<string> sceneitems = new List<string>();
 
-        string WriteOut()
-        {
-            scene.Clear();
+        //string WriteOut()
+        //{
+        //    scene.Clear();
 
-            if (sceneitems.Count == 1)
-            {
-                scene.Append(sceneitems[0]);
-            }
-            else if (sceneitems.Count == 2)
-            {
-                scene.Append($"{sceneitems[0]} och {sceneitems[1]}");
-            }
-            else if (sceneitems.Count == 3)
-            {
-                scene.Append($"{sceneitems[0]}, {sceneitems[1]} och {sceneitems[2]}");
-            }
+        //    if (sceneitems.Count == 1)
+        //    {
+        //        scene.Append(sceneitems[0]);
+        //    }
+        //    else if (sceneitems.Count == 2)
+        //    {
+        //        scene.Append($"{sceneitems[0]} och {sceneitems[1]}");
+        //    }
+        //    else if (sceneitems.Count == 3)
+        //    {
+        //        scene.Append($"{sceneitems[0]}, {sceneitems[1]} och {sceneitems[2]}");
+        //    }
 
-            return FixText.FirstLetterUpper(scene.ToString());
-        }
+        //    return FixText.FirstLetterUpper(scene.ToString());
+        //}
 
         private void btnGenerate10_Click(object sender, EventArgs e)
         {
+            //int locationNr = r.Next(0, list.location.Count);
+            //string newLocation = $"ni är {list.location[locationNr].Name()}";
+
+            //if (!locationPressed)
+            //{
+            //    sceneitems.Add(newLocation);
+            //    locationString = newLocation;
+            //    locationPressed = true;
+            //}
+            //else if (locationPressed)
+            //{
+            //        for (int i = 0; i < sceneitems.Count; i++)
+            //        {
+            //            if (sceneitems[i].Contains(locationString))
+            //            {
+            //                sceneitems[i] = newLocation;
+            //            }
+            //        }
+            //    locationString = newLocation;
+            //}
+
+
+            //presentationWindow.tbxResult.Text = WriteOut();
+
+            //list.location.RemoveAt(locationNr);
+            //list.LoadNeeded(1);
+            //FixText.AdjustSize(presentationWindow.tbxResult);
+
+            presentationWindow.tbxResult.Text = "";
             int locationNr = r.Next(0, list.location.Count);
-            string newLocation = $"ni är {list.location[locationNr].Name()}";
-
-            if (!locationPressed)
-            {
-                sceneitems.Add(newLocation);
-                locationString = newLocation;
-                locationPressed = true;
-            }
-            else if (locationPressed)
-            {
-                    for (int i = 0; i < sceneitems.Count; i++)
-                    {
-                        if (sceneitems[i].Contains(locationString))
-                        {
-                            sceneitems[i] = newLocation;
-                        }
-                    }
-                locationString = newLocation;
-            }
-
-            
-            presentationWindow.tbxResult.Text = WriteOut();
+            presentationWindow.tbxResult.Text = $"Ni är {list.location[locationNr].Name()}";
 
             list.location.RemoveAt(locationNr);
             list.LoadNeeded(1);
@@ -707,49 +735,79 @@ namespace Headline_Randomizer
 
         private void btnRensa_Click(object sender, EventArgs e)
         {
-            scene.Clear();
-            sceneitems.Clear();
+            //scene.Clear();
+            //sceneitems.Clear();
             presentationWindow.tbxResult.Text = "";
-            locationString = "";
-            relationString = "";
-            missionString = "";
-            locationPressed = false;
-            relationPressed = false;
-            missionPressed = false;
+            PNr = 1;
+            statusPNr = 1;
+            //locationString = "";
+            //relationString = "";
+            //missionString = "";
+            //locationPressed = false;
+            //relationPressed = false;
+            //missionPressed = false;
 
         }
 
+        string CheckInte(string sträng)
+        {
+            if (sträng.Contains("inte"))
+            {
+                sträng = sträng.Replace("inte", "");
+                sträng = sträng.Trim();
+                sträng = sträng.Insert(0, "inte ");
+                sträng = sträng.Replace("  ", " ");
+                return sträng;
+            }
+            else
+            {
+                return sträng;
+            }
+            
+        }
+
+        int PNr = 1;
+        int statusPNr = 1;
         private void btnGenerate11_Click(object sender, EventArgs e)
         {
-            int relationNr = r.Next(0, list.relation.Count);
-            string newRelation = $"ni {list.relation[relationNr].Plural()}";
+            presentationWindow.tbxResult.Text = "";
+            if (btnGenerate11.Text == "&Relation\r\n(Alla samma)")
+            {
+                int känslaNr = r.Next(0, list.relationKänsla.Count);
+                presentationWindow.tbxResult.Text = $"Ni {list.relationKänsla[känslaNr].KänslaPlural()} varandra";
+                list.relationKänsla.RemoveAt(känslaNr);
+            }
 
-            if (!relationPressed)
+            else if (btnGenerate11.Text == "&Relation\r\n(Alla olika)" || btnGenerate11.Text == "&Relation\r\n(Alla olika - Tryck igen för fler)")
             {
-                sceneitems.Add(newRelation);
-                relationString = newRelation;
-                relationPressed = true;
+                int känslaNr = r.Next(0, list.relationKänsla.Count);
+
+                presentationWindow.tbxResult.Text = $"Person {PNr} {list.relationKänsla[känslaNr].KänslaSingular()} {PNr + 1}";
+                list.relationKänsla.RemoveAt(känslaNr);
+
+                int känslaNr2 = r.Next(0, list.relationKänsla.Count);
+                presentationWindow.tbxResult.AppendText($", medan {PNr + 1} {CheckInte(list.relationKänsla[känslaNr2].KänslaSingular())} {PNr}");
+                
+                PNr++;
+                
+                list.relationKänsla.RemoveAt(känslaNr2);
+                btnGenerate11.Text = "&Relation\r\n(Alla olika - Tryck igen för fler)";
             }
-            else if (relationPressed)
+
+            else if (btnGenerate11.Text == "&Relation\r\n(Statusförhållanden)")
             {
-                for (int i = 0; i < sceneitems.Count; i++)
-                {
-                    if (sceneitems[i].Contains(relationString))
-                    {
-                        sceneitems[i] = newRelation;
-                    }
-                }
-                relationString = newRelation;
+                int statusNr = r.Next(0, list.statusförhållande.Count);
+                presentationWindow.tbxResult.Text = $"Person {statusPNr} och {statusPNr + 1} är {list.statusförhållande[statusNr].StatusFörhållande()}";
+                list.statusförhållande.RemoveAt(statusNr);
+                statusPNr++;
             }
-            presentationWindow.tbxResult.Text = WriteOut();
-            list.relation.RemoveAt(relationNr);
             list.LoadNeeded(1);
             FixText.AdjustSize(presentationWindow.tbxResult);
-
         }
 
         private void btnGenerate12_Click(object sender, EventArgs e)
         {
+            presentationWindow.tbxResult.Text = "";
             int verbNr = r.Next(0, list.verb.Count);
             int someoneNr = r.Next(0, list.someone.Count);
             int somethingNr = r.Next(0, list.something.Count);
@@ -757,26 +815,7 @@ namespace Headline_Randomizer
 
             if (slant == 0)
             {
-                string newMission = $"ni ska {list.verb[verbNr].BasForm()} {list.verb[verbNr].PostVerbs()}{list.someone[someoneNr].EnEllerEtt()}{list.someone[someoneNr].Singular()}";
-
-                if (!missionPressed)
-                {
-                    sceneitems.Add(newMission);
-                    missionString = newMission;
-                    missionPressed = true;
-                }
-                else if (missionPressed)
-                {
-                    for (int i = 0; i < sceneitems.Count; i++)
-                    {
-                        if (sceneitems[i].Contains(missionString))
-                        {
-                            sceneitems[i] = newMission;
-                        }
-                    }
-                    missionString = newMission;
-                }
-                presentationWindow.tbxResult.Text = WriteOut();
+                presentationWindow.tbxResult.Text = $"Ni ska {list.verb[verbNr].BasForm()} {list.verb[verbNr].PostVerbs()}{list.someone[someoneNr].EnEllerEtt()}{list.someone[someoneNr].Singular()}";
 
                 list.verb.RemoveAt(verbNr);
                 list.someone.RemoveAt(someoneNr);
@@ -785,33 +824,83 @@ namespace Headline_Randomizer
             } 
             else if (slant == 1)
             {
-                string newMission = $"ni ska {list.verb[verbNr].BasForm()} {list.verb[verbNr].PostVerbs()}{list.something[somethingNr].EnEllerEtt()}{list.something[somethingNr].Singular()}";
+                presentationWindow.tbxResult.Text = $"Ni ska {list.verb[verbNr].BasForm()} {list.verb[verbNr].PostVerbs()}{list.something[somethingNr].EnEllerEtt()}{list.something[somethingNr].Singular()}";
 
-                if (!missionPressed)
-                {
-                    sceneitems.Add(newMission);
-                    missionString = newMission;
-                    missionPressed = true;
-                }
-                else if (missionPressed)
-                {
-                    for (int i = 0; i < sceneitems.Count; i++)
-                    {
-                        if (sceneitems[i].Contains(missionString))
-                        {
-                            sceneitems[i] = newMission;
-                        }
-                    }
-                    missionString = newMission;
-                }
-
-                presentationWindow.tbxResult.Text = WriteOut();
                 list.verb.RemoveAt(verbNr);
                 list.something.RemoveAt(somethingNr);
                 list.LoadNeeded(1);
                 FixText.AdjustSize(presentationWindow.tbxResult);
             }
         }
+
+        int nr = 0;
+        private void RelationRight(object sender, EventArgs e)
+        {
+            nr++;
+            if (nr == 0)
+            {
+                btnGenerate11.Text = "&Relation\r\n(Alla samma)";
+                btnRelationRight.Enabled = true;
+                btnRelationLeft.Enabled = false;
+                btnRelationRight.Visible = true;
+                btnRelationLeft.Visible = false;
+            }
+            else if (nr == 1)
+            {
+                btnGenerate11.Text = "&Relation\r\n(Alla olika)";
+                btnRelationRight.Enabled = true;
+                btnRelationLeft.Enabled = true;
+                btnRelationRight.Visible = true;
+                btnRelationLeft.Visible = true;
+            }
+            else if (nr == 2)
+            {
+                btnGenerate11.Text = "&Relation\r\n(Statusförhållanden)";
+                btnRelationRight.Enabled = false;
+                btnRelationLeft.Enabled = true;
+                btnRelationRight.Visible = false;
+                btnRelationLeft.Visible = true;
+            }
+            else if (nr > 2)
+            {
+                nr = 2;
+            }
+        }
+
+        private void RelationLeft(object sender, EventArgs e)
+        {
+            nr--;
+            if (nr == 0)
+            {
+                btnGenerate11.Text = "&Relation\r\n(Alla samma)";
+                btnRelationRight.Enabled = true;
+                btnRelationLeft.Enabled = false;
+                btnRelationRight.Visible = true;
+                btnRelationLeft.Visible = false;
+            }
+            else if (nr == 1)
+            {
+                btnGenerate11.Text = "&Relation\r\n(Alla olika)";
+                btnRelationRight.Enabled = true;
+                btnRelationLeft.Enabled = true;
+                btnRelationRight.Visible = true;
+                btnRelationLeft.Visible = true;
+            }
+            else if (nr == 2)
+            {
+                btnGenerate11.Text = "&Relation\r\n(Statusförhållanden)";
+                btnRelationRight.Enabled = false;
+                btnRelationLeft.Enabled = true;
+                btnRelationRight.Visible = false;
+                btnRelationLeft.Visible = true;
+            }
+            else if (nr < 0)
+            {
+                nr = 0;
+            }
+        }
+
+        
     }
 
     class Lists
@@ -828,9 +917,10 @@ namespace Headline_Randomizer
         public List<Words> nobelPrize = new List<Words>();
         public List<Custom> choicesList = new List<Custom>();
         public List<Words> location = new List<Words>();
-        public List<Words> relation = new List<Words>();
+        public List<Words> statusförhållande = new List<Words>();
+        public List<Words> relationKänsla = new List<Words>();
 
-    public void LoadNeeded(int amount)
+        public void LoadNeeded(int amount)
         {
             //!fileRow.EndOf<stream
             //fileForRead.ReadLine()
@@ -964,17 +1054,33 @@ namespace Headline_Randomizer
                 sr.Close();
             }
 
-            if (relation.Count <= amount)
+            if (statusförhållande.Count <= amount)
             {
-                StreamReader sr2 = new StreamReader(@"Text\relation plural.txt");
+                StreamReader sr1 = new StreamReader(@"Text\relation statusförhållande.txt");
 
-                string fileRow2;
+                string fileRow1;
 
-                while ((fileRow2 = sr2.ReadLine()) != null)
+                while ((fileRow1 = sr1.ReadLine()) != null)
                 {
-                    Relation vread = new Relation("", fileRow2);
-                    relation.Add(vread);
+                    Relation vread = new Relation(fileRow1);
+                    statusförhållande.Add(vread);
                 }
+                sr1.Close();
+            }
+
+            if (relationKänsla.Count <= amount)
+            {
+                StreamReader sr1 = new StreamReader(@"Text\relation känsla olika.txt");
+                StreamReader sr2 = new StreamReader(@"Text\relation känsla samma.txt");
+
+                string fileRow1, fileRow2;
+
+                while ((fileRow1 = sr1.ReadLine()) != null && (fileRow2 = sr2.ReadLine()) != null)
+                {
+                    Relation vread = new Relation(fileRow1, fileRow2);
+                    relationKänsla.Add(vread);
+                }
+                sr1.Close();
                 sr2.Close();
             }
 
