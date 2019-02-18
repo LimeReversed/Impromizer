@@ -4,6 +4,7 @@ using System.Drawing;
 using System.Windows.Forms;
 using System.IO;
 using System.Text;
+using System.Data.SqlClient;
 
 // Svenska 
 namespace Headline_Randomizer
@@ -18,16 +19,21 @@ namespace Headline_Randomizer
 
 
 
+
         public Form1()
         {
             InitializeComponent();
 
             // Loading lists from file
-            list.LoadNeeded(1);
+            //Db.ResetDefault("all");
 
             // Show the second window at a precise location relative to the main window.
             presentationWindow.Location = new Point(Location.X + 8, Location.Y + Size.Height);
             presentationWindow.Show();
+
+            Form3 form3 = new Form3();
+            form3.Show();
+
         }
 
         private void MoveWindow1(object sender, EventArgs e)
@@ -56,7 +62,7 @@ namespace Headline_Randomizer
             list.adjective.RemoveAt(adjectiveNr);
             list.someone.RemoveAt(someoneNr);
 
-            list.EndingRitual(1, presentationWindow.tbxResult, ref position);
+            EndingRitual(1, presentationWindow.tbxResult, ref position);
         }
 
         // Click animation eventhandlers
@@ -221,12 +227,12 @@ namespace Headline_Randomizer
 
                 presentationWindow.tbxResult.AppendText($"{list.verb[verbNr].Presens()} {list.verb[verbNr].PostVerbs()}{list.adjective[adjectiveNr].Singular(list.something, somethingNr)} {list.something[somethingNr].Singular()}");
 
-                
+
                 list.verb.RemoveAt(verbNr);
                 list.something.RemoveAt(somethingNr);
                 list.adjective.RemoveAt(adjectiveNr);
 
-                list.EndingRitual(1, presentationWindow.tbxResult, ref position);
+                EndingRitual(1, presentationWindow.tbxResult, ref position);
             }
             else if (slant == 1)
             {
@@ -249,7 +255,7 @@ namespace Headline_Randomizer
                 list.verb.RemoveAt(verbNr);
                 list.adjective.RemoveAt(adjectiveNr);
 
-                list.EndingRitual(1, presentationWindow.tbxResult, ref position);
+                EndingRitual(1, presentationWindow.tbxResult, ref position);
             }
         }
 
@@ -271,7 +277,7 @@ namespace Headline_Randomizer
 
             list.someone.RemoveAt(someoneNr2);
             list.something.RemoveAt(somethingNr);
-            list.EndingRitual(1, presentationWindow.tbxResult, ref position);
+            EndingRitual(1, presentationWindow.tbxResult, ref position);
         }
 
         private void btnGenerate4_Click(object sender, EventArgs e)
@@ -296,7 +302,7 @@ namespace Headline_Randomizer
             list.someone.RemoveAt(someoneNr2);
             list.adjective.RemoveAt(adjectiveNr2);
             list.verb.RemoveAt(verbNr);
-            list.EndingRitual(1, presentationWindow.tbxResult, ref position);
+            EndingRitual(1, presentationWindow.tbxResult, ref position);
         }
 
         private void btnGenerate5_Click(object sender, EventArgs e)
@@ -313,7 +319,7 @@ namespace Headline_Randomizer
             list.nobelPrize.RemoveAt(nobelNr);
             list.verb.RemoveAt(verbNr);
             list.something.RemoveAt(somethingNr);
-            list.EndingRitual(1, presentationWindow.tbxResult, ref position);
+            EndingRitual(1, presentationWindow.tbxResult, ref position);
         }
 
         private void cbBook_SelectedIndexChanged(object sender, EventArgs e)
@@ -355,8 +361,8 @@ namespace Headline_Randomizer
             }
             else
             {
-                    Custom newcombo = new Custom(cbBook.Text, cbBook.Text, cbForms.Text);
-                    list.choicesList.Add(newcombo);
+                Custom newcombo = new Custom(cbBook.Text, cbBook.Text, cbForms.Text);
+                list.choicesList.Add(newcombo);
             }
 
             tbxAdded.Text = "";
@@ -433,8 +439,8 @@ namespace Headline_Randomizer
         private void btnGenerate_Click(object sender, EventArgs e)
         {
             presentationWindow.tbxResult.Text = "";
-             foreach (Custom element in list.choicesList)
-             {
+            foreach (Custom element in list.choicesList)
+            {
                 if (element.WordClassChoice == "Adjektiv")
                 {
                     int rNr = r.Next(0, list.adjective.Count);
@@ -485,7 +491,7 @@ namespace Headline_Randomizer
                 else if (element.WordClassChoice == "Verb")
                 {
                     int rNr = r.Next(0, list.verb.Count);
-                    
+
 
                     if (element.FormChoice == "Basform")
                     {
@@ -504,7 +510,7 @@ namespace Headline_Randomizer
                     }
                     else if (element.FormChoice == "Efter verb")
                     {
-                        presentationWindow.tbxResult.AppendText($"{(sparaPostVerb == "-" ? "" : $"{sparaPostVerb} ")}"); 
+                        presentationWindow.tbxResult.AppendText($"{(sparaPostVerb == "-" ? "" : $"{sparaPostVerb} ")}");
                         if (presentationWindow.tbxResult.Text.Contains(" "))
                         {
                             presentationWindow.tbxResult.Text = presentationWindow.tbxResult.Text.Replace("  ", " ");
@@ -527,9 +533,9 @@ namespace Headline_Randomizer
                 string theRest = presentationWindow.tbxResult.Text.Substring(1, presentationWindow.tbxResult.Text.Length - 1);
 
                 presentationWindow.tbxResult.Text = $"{firstLetterStr.ToUpper()}{theRest}";
-                
-             }
-            list.EndingRitual(5, presentationWindow.tbxResult, ref position);
+
+            }
+            EndingRitual(5, presentationWindow.tbxResult, ref position);
         }
 
         private void btnCustomClear_Click(object sender, EventArgs e)
@@ -551,7 +557,7 @@ namespace Headline_Randomizer
 
             list.verb.RemoveAt(verbNr);
             list.someone.RemoveAt(someoneNr);
-            list.EndingRitual(1, presentationWindow.tbxResult, ref position);
+            EndingRitual(1, presentationWindow.tbxResult, ref position);
         }
 
         private void btnGenerate7_Click(object sender, EventArgs e)
@@ -564,7 +570,7 @@ namespace Headline_Randomizer
 
             list.something.RemoveAt(somethingNr);
             list.adjective.RemoveAt(adjectiveNr);
-            list.EndingRitual(1, presentationWindow.tbxResult, ref position);
+            EndingRitual(1, presentationWindow.tbxResult, ref position);
         }
 
         private void btnGenerate8_Click(object sender, EventArgs e)
@@ -582,7 +588,7 @@ namespace Headline_Randomizer
 
                 list.someone.RemoveAt(someoneNr);
                 list.verb.RemoveAt(verbNr);
-                list.EndingRitual(1, presentationWindow.tbxResult, ref position);
+                EndingRitual(1, presentationWindow.tbxResult, ref position);
             }
             else if (slant == 1)
             {
@@ -593,7 +599,7 @@ namespace Headline_Randomizer
 
                 list.something.RemoveAt(somethingNr);
                 list.verb.RemoveAt(verbNr);
-                list.EndingRitual(1, presentationWindow.tbxResult, ref position);
+                EndingRitual(1, presentationWindow.tbxResult, ref position);
 
             }
         }
@@ -639,7 +645,7 @@ namespace Headline_Randomizer
 
                 list.someone.RemoveAt(someoneNr);
                 list.adjective.RemoveAt(adjectiveNr);
-                list.EndingRitual(1, presentationWindow.tbxResult, ref position);
+                EndingRitual(1, presentationWindow.tbxResult, ref position);
             }
             else if (slant == 1)
             {
@@ -650,7 +656,7 @@ namespace Headline_Randomizer
 
                 list.something.RemoveAt(somethingNr);
                 list.adjective.RemoveAt(adjectiveNr);
-                list.EndingRitual(1, presentationWindow.tbxResult, ref position);
+                EndingRitual(1, presentationWindow.tbxResult, ref position);
             }
         }
 
@@ -718,7 +724,7 @@ namespace Headline_Randomizer
             presentationWindow.tbxResult.Text = $"Ni är {list.location[locationNr].Name()}";
 
             list.location.RemoveAt(locationNr);
-            list.EndingRitual(1, presentationWindow.tbxResult, ref position);
+            EndingRitual(1, presentationWindow.tbxResult, ref position);
         }
 
         private void btnRensa_Click(object sender, EventArgs e)
@@ -751,7 +757,7 @@ namespace Headline_Randomizer
             {
                 return sträng;
             }
-            
+
         }
 
         int PNr = 1;
@@ -775,9 +781,9 @@ namespace Headline_Randomizer
 
                 int känslaNr2 = r.Next(0, list.relationKänsla.Count);
                 presentationWindow.tbxResult.AppendText($", medan {PNr + 1} {CheckInte(list.relationKänsla[känslaNr2].KänslaSingular())} {PNr}");
-                
+
                 PNr++;
-                
+
                 list.relationKänsla.RemoveAt(känslaNr2);
                 btnGenerate11.Text = "&Relation\r\n(Alla olika - Tryck igen för fler)";
             }
@@ -789,7 +795,7 @@ namespace Headline_Randomizer
                 list.statusförhållande.RemoveAt(statusNr);
                 statusPNr++;
             }
-            list.EndingRitual(1, presentationWindow.tbxResult, ref position);
+            EndingRitual(1, presentationWindow.tbxResult, ref position);
         }
 
         private void btnGenerate12_Click(object sender, EventArgs e)
@@ -806,15 +812,15 @@ namespace Headline_Randomizer
 
                 list.verb.RemoveAt(verbNr);
                 list.someone.RemoveAt(someoneNr);
-                list.EndingRitual(1, presentationWindow.tbxResult, ref position);
-            } 
+                EndingRitual(1, presentationWindow.tbxResult, ref position);
+            }
             else if (slant == 1)
             {
                 presentationWindow.tbxResult.Text = $"Ni ska {list.verb[verbNr].BasForm()} {list.verb[verbNr].PostVerbs()}{list.something[somethingNr].EnEllerEtt()}{list.something[somethingNr].Singular()}";
 
                 list.verb.RemoveAt(verbNr);
                 list.something.RemoveAt(somethingNr);
-                list.EndingRitual(1, presentationWindow.tbxResult, ref position);
+                EndingRitual(1, presentationWindow.tbxResult, ref position);
             }
         }
 
@@ -911,7 +917,21 @@ namespace Headline_Randomizer
                 presentationWindow.tbxResult.Text = list.results[position];
                 FixText.AdjustSize(presentationWindow.tbxResult);
             }
-            
+
+        }
+
+        private void settingsToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Form3 form3 = new Form3();
+            form3.Show();
+        }
+
+        public void EndingRitual(int loadNr, TextBox tb, ref int position)
+        {
+            //LoadNeeded(loadNr);
+            FixText.AdjustSize(tb);
+            Db.recentStrings.Add(tb.Text);
+            position = Db.recentStrings.Count - 1;
         }
     }
 
@@ -935,7 +955,7 @@ namespace Headline_Randomizer
 
         public void LoadNeeded(int amount)
         {
-            //!fileRow.EndOf<stream
+            //!fileRow.EndOf < stream
             //fileForRead.ReadLine()
             if (verb.Count <= amount)
             {
@@ -953,8 +973,7 @@ namespace Headline_Randomizer
 
                 while ((fileRow = sr.ReadLine()) != null && ((fileRow2 = sr2.ReadLine()) != null) && ((fileRow3 = sr3.ReadLine()) != null) && ((fileRow4 = sr4.ReadLine()) != null) && ((fileRow5 = sr5.ReadLine()) != null))
                 {
-                    Verbs vread = new Verbs(fileRow, fileRow2, fileRow3, fileRow4, fileRow5);
-                    verb.Add(vread);
+                    DbInsert($"INSERT INTO TblVerb (BaseForm, Request, Perfekt, Presens, PostVerb, Used) VALUES ('{fileRow}', '{fileRow5}', '{fileRow3}', '{fileRow2}', '{fileRow4}', '0')");
                 }
                 sr.Close();
                 sr2.Close();
@@ -975,8 +994,7 @@ namespace Headline_Randomizer
 
                 while ((fileRow = sr.ReadLine()) != null && ((fileRow2 = sr2.ReadLine()) != null) && ((fileRow3 = sr3.ReadLine()) != null))
                 {
-                    Something vread = new Something(fileRow, fileRow2, fileRow3);
-                    something.Add(vread);
+                    DbInsert($"INSERT INTO TblNouns (Singular, Plural, Animated, Used) VALUES ('{fileRow}', '{fileRow2}', 0, 0)");
                 }
                 sr.Close();
                 sr2.Close();
@@ -995,8 +1013,7 @@ namespace Headline_Randomizer
 
                 while ((fileRow = sr.ReadLine()) != null && ((fileRow2 = sr2.ReadLine()) != null) && ((fileRow3 = sr3.ReadLine()) != null))
                 {
-                    Someone vread = new Someone(fileRow, fileRow2, fileRow3);
-                    someone.Add(vread);
+                    DbInsert($"INSERT INTO TblNouns (Singular, Plural, Animated, Used) VALUES ('{fileRow}', '{fileRow2}', '1', '0')");
                 }
                 sr.Close();
                 sr2.Close();
@@ -1008,7 +1025,6 @@ namespace Headline_Randomizer
                 StreamReader sr = new StreamReader(@"Text\adjektivsingular.txt");
                 StreamReader sr2 = new StreamReader(@"Text\adjektivplural.txt");
                 StreamReader sr3 = new StreamReader(@"Text\adjektivEttForm.txt");
-                StreamReader sr4 = new StreamReader(@"Text\adjektivplural.txt");
 
                 string fileRow;
                 string fileRow2;
@@ -1016,13 +1032,12 @@ namespace Headline_Randomizer
 
                 while ((fileRow = sr.ReadLine()) != null && ((fileRow2 = sr2.ReadLine()) != null) && ((fileRow3 = sr3.ReadLine()) != null))
                 {
-                    Adjectives vread = new Adjectives(fileRow, fileRow2, fileRow3);
-                    adjective.Add(vread);
+                    DbInsert($"INSERT INTO TblAdjective (EnForm, EttForm, Plural, Used) VALUES ('{fileRow}', '{fileRow3}', '{fileRow2}', '0')");
                 }
                 sr.Close();
                 sr2.Close();
                 sr3.Close();
-                sr4.Close();
+
             }
 
             if (jokeName.Count <= amount)
@@ -1033,8 +1048,7 @@ namespace Headline_Randomizer
 
                 while ((fileRow = sr.ReadLine()) != null)
                 {
-                    JokeNames vread = new JokeNames(fileRow);
-                    jokeName.Add(vread);
+                    DbInsert($"INSERT INTO TblJokeNames (Name, Used) VALUES ('{fileRow}', '0')");
                 }
                 sr.Close();
             }
@@ -1047,8 +1061,7 @@ namespace Headline_Randomizer
 
                 while ((fileRow = sr.ReadLine()) != null)
                 {
-                    NobelPrizes vread = new NobelPrizes(fileRow);
-                    nobelPrize.Add(vread);
+                    DbInsert($"INSERT INTO TblNobelPrizes (Prize, Used) VALUES ('{fileRow}', '0')");
                 }
                 sr.Close();
             }
@@ -1099,13 +1112,23 @@ namespace Headline_Randomizer
 
         }
 
-        public void EndingRitual(int loadNr, TextBox tb, ref int position)
+        static public void DbInsert(string insert)
         {
-            LoadNeeded(loadNr);
-            FixText.AdjustSize(tb);
-            results.Add(tb.Text);
-            position = results.Count -1;
-        } 
-        
+            string connectionstring = @"data source=(localdb)\mssqllocaldb; attachdbfilename = e:\tresorit\headline randomizer\headline randomizer\headline randomizer svenska 2.1\wordsdatabase.mdf; integrated security=true";
+            using (SqlConnection connection = new SqlConnection(connectionstring))
+            {
+                connection.Open();
+                using (SqlCommand command = new SqlCommand(insert, connection))
+                {
+                    command.ExecuteNonQuery();
+
+                }
+            }
+        }
+
+
     }
 }
+
+
+

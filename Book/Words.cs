@@ -223,6 +223,13 @@ namespace Headline_Randomizer
         protected Genitive dinEllerDitt;
         protected Indefinite aOrAn;
 
+        static public void Test()
+        {
+           
+        }
+
+        
+
         public override Indefinite AOrAnEnum()
         {
             return aOrAn;

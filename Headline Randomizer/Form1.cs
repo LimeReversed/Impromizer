@@ -52,6 +52,9 @@ namespace Headline_Randomizer
 
             presentationWindow.tbxResult.Text = $"{nr1} out of {nr2} agree {list.someone[someoneNr].Plural()} are {list.adjective[adjectiveNr].Descriptive()}";
 
+            // To create a string without /n and save to txt-file for stream. 
+            Lists.SaveToFile(presentationWindow.tbxResult.Text);
+
             // Use method to adjust size of string. 
             FixText.AdjustSize(presentationWindow.tbxResult);
 
@@ -138,8 +141,8 @@ namespace Headline_Randomizer
                 presentationWindow.tbxResult.AppendText($"{list.verb[verbNr].SForm()} {list.adjective[adjectiveNr].Descriptive()} {list.something[somethingNr].Singular()}");
                 list.something.RemoveAt(somethingNr);
             }
-           
 
+            Lists.SaveToFile(presentationWindow.tbxResult.Text);
             FixText.AdjustSize(presentationWindow.tbxResult);
             list.verb.RemoveAt(verbNr);
             list.adjective.RemoveAt(adjectiveNr);
@@ -159,6 +162,7 @@ namespace Headline_Randomizer
             int somethingNr = r.Next(0, list.something.Count);
             presentationWindow.tbxResult.AppendText($"{list.someone[someoneNr2].Plural()} are {list.something[somethingNr].Plural()}");
 
+            Lists.SaveToFile(presentationWindow.tbxResult.Text);
             FixText.AdjustSize(presentationWindow.tbxResult);
             list.someone.RemoveAt(someoneNr2);
             list.something.RemoveAt(somethingNr);
@@ -183,6 +187,7 @@ namespace Headline_Randomizer
 
             presentationWindow.tbxResult.AppendText($"{list.verb[verbNr].BasForm()} {list.adjective[adjectiveNr2].Descriptive()} {list.someone[someoneNr2].Plural()}");
 
+            Lists.SaveToFile(presentationWindow.tbxResult.Text);
             FixText.AdjustSize(presentationWindow.tbxResult);
             list.someone.RemoveAt(someoneNr2);
             list.adjective.RemoveAt(adjectiveNr2);
@@ -200,6 +205,7 @@ namespace Headline_Randomizer
 
             presentationWindow.tbxResult.AppendText($"{list.jokeName[jokeNameNr].Name()} wins the Nobel {list.nobelPrize[nobelNr].Prize()} for {list.verb[verbNr].IngForm()} {list.something[somethingNr].Plural()}");
 
+            Lists.SaveToFile(presentationWindow.tbxResult.Text);
             FixText.AdjustSize(presentationWindow.tbxResult);
             list.jokeName.RemoveAt(jokeNameNr);
             list.nobelPrize.RemoveAt(nobelNr);
@@ -402,6 +408,7 @@ namespace Headline_Randomizer
 
             list.verb.RemoveAt(verbNr);
             list.someone.RemoveAt(someoneNr);
+            Lists.SaveToFile(presentationWindow.tbxResult.Text);
             list.LoadNeeded(1);
             FixText.AdjustSize(presentationWindow.tbxResult);
         }
@@ -416,6 +423,7 @@ namespace Headline_Randomizer
 
             list.something.RemoveAt(somethingNr);
             list.adjective.RemoveAt(adjectiveNr);
+            Lists.SaveToFile(presentationWindow.tbxResult.Text);
             list.LoadNeeded(1);
             FixText.AdjustSize(presentationWindow.tbxResult);
         }
@@ -435,6 +443,7 @@ namespace Headline_Randomizer
 
                 list.someone.RemoveAt(someoneNr);
                 list.adjective.RemoveAt(adjectiveNr);
+                Lists.SaveToFile(presentationWindow.tbxResult.Text);
                 list.LoadNeeded(1);
                 FixText.AdjustSize(presentationWindow.tbxResult);
             }
@@ -447,6 +456,7 @@ namespace Headline_Randomizer
 
                 list.something.RemoveAt(somethingNr);
                 list.adjective.RemoveAt(adjectiveNr);
+                Lists.SaveToFile(presentationWindow.tbxResult.Text);
                 list.LoadNeeded(1);
                 FixText.AdjustSize(presentationWindow.tbxResult);
             }
@@ -515,6 +525,7 @@ namespace Headline_Randomizer
 
             list.someone.RemoveAt(someoneNr);
             list.verb.RemoveAt(verbNr);
+            Lists.SaveToFile(presentationWindow.tbxResult.Text);
             list.LoadNeeded(1);
             FixText.AdjustSize(presentationWindow.tbxResult);
         }
@@ -548,6 +559,16 @@ namespace Headline_Randomizer
         public List<Words> adjective = new List<Words>();
         public List<Words> nobelPrize = new List<Words>();
         public List<Custom> choicesList = new List<Custom>();
+
+        public static void SaveToFile(string text)
+        {
+            string text2 = $"{text}.     ";
+            StreamWriter sw = new StreamWriter($"OnSteam.txt");
+
+            sw.WriteLine(text2);
+
+            sw.Close();
+        }
 
         public void LoadNeeded(int amount)
         {
