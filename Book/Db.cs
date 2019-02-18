@@ -75,8 +75,6 @@ namespace Headline_Randomizer
             if (word == "nouns" || word == "all")
             {
 
-                Db.Command("TRUNCATE TABLE[TblNouns];");
-
                 StreamReader sr = new StreamReader(@"Text\levandesubstantivsing.txt");
                 StreamReader sr2 = new StreamReader(@"Text\levandesubstantivplural.txt");
                 StreamReader sr3 = new StreamReader(@"Text\LSub EnEttDinDitt.txt");

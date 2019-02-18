@@ -11,11 +11,14 @@ using System.Data.SqlClient;
 
 namespace Headline_Randomizer
 {
-    public partial class Form3 : Form
+    public partial class Options : Form
     {
-        public Form3()
+        public Options()
         {
             InitializeComponent();
+            cbTabell.SelectedIndex = 0;
+            //DbDisplay.CurrentCell = DbDisplay.Rows[0].Cells[1];
+            //DbDisplay.Columns[0].Visible = false;
         }
 
         //
@@ -111,7 +114,7 @@ namespace Headline_Randomizer
                     Lables.Add(lblColumn6);
                     Lables.Add(lblColumn7);
                     Lables.Add(lblColumn8);
-                    Lables.Add(lblColumn9);
+
 
                     List<TextBox> TextBoxes = new List<TextBox>();
                     TextBoxes.Add(tbxAddColumn1);
@@ -122,22 +125,33 @@ namespace Headline_Randomizer
                     TextBoxes.Add(tbxAddColumn6);
                     TextBoxes.Add(tbxAddColumn7);
                     TextBoxes.Add(tbxAddColumn8);
-                    TextBoxes.Add(tbxAddColumn9);
-
+             
                     // Hide all
-                    for (int i = 0; i < 9; i++)
+                    for (int i = 0; i < 8; i++)
                     {
                         Lables[i].Hide();
                         TextBoxes[i].Hide();
                     }
 
                     // Show and name only a specified number of objects in the lists. 
-                    for (int i = 0; i < reader.FieldCount - 2; i++)
+
+                    int iterationCount = 0;
+                    for (int i = 0; i < reader.FieldCount - 3; i++)
                     {
                         TextBoxes[i].Show();
                         Lables[i].Show();
                         Lables[i].Text = reader.GetName(i + 1);
+                        iterationCount = i;
                     }
+
+                    // When all necessary textboxes have been added, then I want the Censur level
+                    // to appear next to the last textbox where ever it is. 
+                    // So I just get the location info of the textbox that would have appeared next to it
+                    // and set that location to the combobox instead. 
+                    cbCensurLevel.Location = TextBoxes[iterationCount + 1].Location;
+                    lblColumn9.Location = Lables[iterationCount + 1].Location;
+                    lblColumn9.Text = "Censur level";
+
                     reader.Close();
                 }
                 
@@ -188,42 +202,45 @@ namespace Headline_Randomizer
 
         private void btnChangeValue_Click(object sender, EventArgs e)
         {
-
-            updateInProgress = true;
-            //string column = DbDisplay.Columns[Convert.ToInt32(tbxChangeColumn.Text) - 1].HeaderText;
-            string column = DbDisplay.Columns[Convert.ToInt32(numChangeColumn.Value) - 1].HeaderText;
-            //string Id = DbDisplay.Rows[Convert.ToInt32(tbxChangeRow.Text) - 1].Cells[0].Value.ToString();
-            string Id = DbDisplay.Rows[Convert.ToInt32(numChangeRow.Value) - 1].Cells[0].Value.ToString();
-
-            if (column == "Censur level")
+            if (numChangeColumn.Value == 1)
             {
-                if (!short.TryParse(tbxChangeValue.Text, out short result) || result > 2 || result < 0)
+                MessageBox.Show("Kolumnen 'Id' går inte att ändra");
+            }
+            else
+            {
+                updateInProgress = true;
+                string column = DbDisplay.Columns[Convert.ToInt32(numChangeColumn.Value) - 1].HeaderText;
+                string Id = DbDisplay.Rows[Convert.ToInt32(numChangeRow.Value) - 1].Cells[0].Value.ToString();
+
+                if (column == "Censur level")
                 {
-                    MessageBox.Show("Censor level kan bara bestå av ett värde från 0 - 2");
+                    if (!short.TryParse(tbxChangeValue.Text, out short result) || result > 2 || result < 0)
+                    {
+                        MessageBox.Show("Censor level kan bara bestå av ett värde från 0 - 2");
+                    }
+                    else
+                    {
+                        Db.Command($"UPDATE {GetTableName()} SET [{column}] = '{result}' WHERE Id = '{Id}'");
+                    }
                 }
                 else
                 {
-                    Db.Command($"UPDATE {GetTableName()} SET [{column}] = '{result}' WHERE Id = '{Id}'");
+                    Db.Command($"UPDATE {GetTableName()} SET [{column}] = '{tbxChangeValue.Text}' WHERE Id = '{Id}'");
+                }
+
+
+                updateInProgress = false;
+                UpdateGridView($"SELECT * FROM {GetTableName()}");
+
+                if (Convert.ToInt32(numChangeRow.Value) < DbDisplay.Rows.Count)
+                {
+                    DbDisplay.CurrentCell = DbDisplay.Rows[Convert.ToInt32(numChangeRow.Value)].Cells[Convert.ToInt32(numChangeColumn.Value) - 1];
+                }
+                else
+                {
+                    DbDisplay.CurrentCell = DbDisplay.Rows[Convert.ToInt32(numChangeRow.Value) - 1].Cells[Convert.ToInt32(numChangeColumn.Value) - 1];
                 }
             }
-            else
-            {
-                Db.Command($"UPDATE {GetTableName()} SET [{column}] = '{tbxChangeValue.Text}' WHERE Id = '{Id}'");
-            }
-            
-
-            updateInProgress = false;
-            UpdateGridView($"SELECT * FROM {GetTableName()}");
-
-            if (Convert.ToInt32(numChangeRow.Value) < DbDisplay.Rows.Count)
-            {
-                DbDisplay.CurrentCell = DbDisplay.Rows[Convert.ToInt32(numChangeRow.Value)].Cells[Convert.ToInt32(numChangeColumn.Value) - 1];
-            }
-            else
-            {
-                DbDisplay.CurrentCell = DbDisplay.Rows[Convert.ToInt32(numChangeRow.Value) - 1].Cells[Convert.ToInt32(numChangeColumn.Value) - 1];
-            }
-                
         }
 
         private void btnDeleteRow_Click(object sender, EventArgs e)
@@ -260,40 +277,40 @@ namespace Headline_Randomizer
                 case "Adjektiv":
 
                     // If the textbox that needs to be a small number, is a small number, then continue. 
-                    if (!short.TryParse(tbxAddColumn5.Text, out short result) || result > 2 || result < 0)
+                    if (!short.TryParse(cbCensurLevel.Text[0].ToString(), out short result) || result > 2 || result < 0)
                     {
                         MessageBox.Show("Censor level kan bara bestå av ett värde från 0 - 2");
                     }
                     else
                     {
                         Db.Command($"INSERT INTO TblAdjective VALUES ('{tbxAddColumn1.Text}', '{tbxAddColumn2.Text}','{tbxAddColumn3.Text}', " +
-                        $"'{tbxAddColumn4.Text}', '{tbxAddColumn5.Text}', 0)");
+                        $"'{tbxAddColumn4.Text}', '{result}', 0)");
                     }
                     break;
 
                 case "Substantiv":
 
-                    if (!short.TryParse(tbxAddColumn6.Text, out result) || result > 2 || result < 0)
+                    if (!short.TryParse(cbCensurLevel.Text[0].ToString(), out result) || result > 2 || result < 0)
                     {
                         MessageBox.Show("Censor level kan bara bestå av ett värde från 0 - 2");
                     }
                     else
                     {
                         Db.Command($"INSERT INTO TblNouns VALUES ('{tbxAddColumn1.Text}', '{tbxAddColumn2.Text}','{tbxAddColumn3.Text}', " +
-                        $"'{tbxAddColumn4.Text}', '{tbxAddColumn5.Text}', '{tbxAddColumn6.Text}','{tbxAddColumn7.Text}', 0)");
+                        $"'{tbxAddColumn4.Text}', '{tbxAddColumn5.Text}', '{tbxAddColumn6.Text}','{result}', 0)");
                     }
                     break;
 
                 case "Verb":
 
-                    if (!short.TryParse(tbxAddColumn6.Text, out result) || result > 2 || result < 0)
+                    if (!short.TryParse(cbCensurLevel.Text[0].ToString(), out result) || result > 2 || result < 0)
                     {
                         MessageBox.Show("Censor level kan bara bestå av ett värde från 0 - 2");
                     }
                     else
                     {
                         Db.Command($"INSERT INTO TblVerb VALUES ('{tbxAddColumn1.Text}', '{tbxAddColumn2.Text}','{tbxAddColumn3.Text}', " +
-                        $"'{tbxAddColumn4.Text}', '{tbxAddColumn5.Text}', '{tbxAddColumn6.Text}', 0)");
+                        $"'{tbxAddColumn4.Text}', '{tbxAddColumn5.Text}', '{result}', 0)");
                     }
                     break;
             }

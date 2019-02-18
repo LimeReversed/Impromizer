@@ -31,8 +31,8 @@ namespace Headline_Randomizer
             presentationWindow.Location = new Point(Location.X + 8, Location.Y + Size.Height);
             presentationWindow.Show();
 
-            Form3 form3 = new Form3();
-            form3.Show();
+            Options options = new Options();
+            options.Show();
 
         }
 
@@ -922,8 +922,8 @@ namespace Headline_Randomizer
 
         private void settingsToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            Form3 form3 = new Form3();
-            form3.Show();
+            Options options = new Options();
+            options.Show();
         }
 
         public void EndingRitual(int loadNr, TextBox tb, ref int position)

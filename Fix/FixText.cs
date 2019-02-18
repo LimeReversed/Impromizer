@@ -10,9 +10,8 @@ namespace Headline_Randomizer
     {
         static public string FirstLetterUpper(string line)
         {
-            char firstLetter = line[0];
-            string firstLetterStr = Convert.ToString(firstLetter);
-            return $"{firstLetterStr.ToUpper()}{line.Substring(1, line.Length - 1)}";
+            string firstLetter = line[0].ToString().ToUpper();
+            return $"{firstLetter}{line.Substring(1, line.Length - 1)}";
         }
 
 
