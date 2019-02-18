@@ -53,20 +53,19 @@
             this.groupBox3 = new System.Windows.Forms.GroupBox();
             this.btnDeleteRow = new System.Windows.Forms.Button();
             this.label4 = new System.Windows.Forms.Label();
-            this.tbxDeleteRow = new System.Windows.Forms.TextBox();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.label3 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
-            this.tbxChangeColumn = new System.Windows.Forms.TextBox();
-            this.tbxChangeRow = new System.Windows.Forms.TextBox();
             this.btnChangeValue = new System.Windows.Forms.Button();
             this.tbxChangeValue = new System.Windows.Forms.TextBox();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.cbTabell = new System.Windows.Forms.ComboBox();
             this.DbDisplay = new System.Windows.Forms.DataGridView();
             this.Settings = new System.Windows.Forms.TabPage();
-            this.numericUpDown1 = new System.Windows.Forms.NumericUpDown();
+            this.numChangeRow = new System.Windows.Forms.NumericUpDown();
+            this.numDeleteRow = new System.Windows.Forms.NumericUpDown();
+            this.numChangeColumn = new System.Windows.Forms.NumericUpDown();
             this.tabControl1.SuspendLayout();
             this.Database.SuspendLayout();
             this.groupBox4.SuspendLayout();
@@ -74,7 +73,9 @@
             this.groupBox2.SuspendLayout();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.DbDisplay)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numChangeRow)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numDeleteRow)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numChangeColumn)).BeginInit();
             this.SuspendLayout();
             // 
             // tabControl1
@@ -94,7 +95,6 @@
             // Database
             // 
             this.Database.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.Database.Controls.Add(this.numericUpDown1);
             this.Database.Controls.Add(this.groupBox4);
             this.Database.Controls.Add(this.groupBox3);
             this.Database.Controls.Add(this.groupBox2);
@@ -315,9 +315,9 @@
             // 
             // groupBox3
             // 
+            this.groupBox3.Controls.Add(this.numDeleteRow);
             this.groupBox3.Controls.Add(this.btnDeleteRow);
             this.groupBox3.Controls.Add(this.label4);
-            this.groupBox3.Controls.Add(this.tbxDeleteRow);
             this.groupBox3.ForeColor = System.Drawing.Color.White;
             this.groupBox3.Location = new System.Drawing.Point(681, 9);
             this.groupBox3.Margin = new System.Windows.Forms.Padding(2);
@@ -331,10 +331,10 @@
             // btnDeleteRow
             // 
             this.btnDeleteRow.ForeColor = System.Drawing.Color.Black;
-            this.btnDeleteRow.Location = new System.Drawing.Point(15, 47);
+            this.btnDeleteRow.Location = new System.Drawing.Point(12, 48);
             this.btnDeleteRow.Margin = new System.Windows.Forms.Padding(2);
             this.btnDeleteRow.Name = "btnDeleteRow";
-            this.btnDeleteRow.Size = new System.Drawing.Size(62, 24);
+            this.btnDeleteRow.Size = new System.Drawing.Size(67, 24);
             this.btnDeleteRow.TabIndex = 7;
             this.btnDeleteRow.Text = "Ta bort";
             this.btnDeleteRow.UseVisualStyleBackColor = true;
@@ -343,30 +343,22 @@
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(15, 23);
+            this.label4.Location = new System.Drawing.Point(9, 23);
             this.label4.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(30, 17);
             this.label4.TabIndex = 8;
             this.label4.Text = "Rad";
             // 
-            // tbxDeleteRow
-            // 
-            this.tbxDeleteRow.Location = new System.Drawing.Point(48, 21);
-            this.tbxDeleteRow.Margin = new System.Windows.Forms.Padding(2);
-            this.tbxDeleteRow.Name = "tbxDeleteRow";
-            this.tbxDeleteRow.Size = new System.Drawing.Size(29, 24);
-            this.tbxDeleteRow.TabIndex = 7;
-            // 
             // groupBox2
             // 
+            this.groupBox2.Controls.Add(this.numChangeColumn);
             this.groupBox2.Controls.Add(this.label3);
             this.groupBox2.Controls.Add(this.label2);
+            this.groupBox2.Controls.Add(this.numChangeRow);
             this.groupBox2.Controls.Add(this.label1);
-            this.groupBox2.Controls.Add(this.tbxChangeColumn);
             this.groupBox2.Controls.Add(this.btnChangeValue);
             this.groupBox2.Controls.Add(this.tbxChangeValue);
-            this.groupBox2.Controls.Add(this.tbxChangeRow);
             this.groupBox2.ForeColor = System.Drawing.Color.White;
             this.groupBox2.Location = new System.Drawing.Point(310, 9);
             this.groupBox2.Margin = new System.Windows.Forms.Padding(2);
@@ -380,7 +372,7 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(114, 22);
+            this.label3.Location = new System.Drawing.Point(109, 22);
             this.label3.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(71, 17);
@@ -407,29 +399,13 @@
             this.label1.TabIndex = 4;
             this.label1.Text = "Rad";
             // 
-            // tbxChangeColumn
-            // 
-            this.tbxChangeColumn.Location = new System.Drawing.Point(62, 49);
-            this.tbxChangeColumn.Margin = new System.Windows.Forms.Padding(2);
-            this.tbxChangeColumn.Name = "tbxChangeColumn";
-            this.tbxChangeColumn.Size = new System.Drawing.Size(25, 24);
-            this.tbxChangeColumn.TabIndex = 3;
-            // 
-            // tbxChangeRow
-            // 
-            this.tbxChangeRow.Location = new System.Drawing.Point(62, 19);
-            this.tbxChangeRow.Margin = new System.Windows.Forms.Padding(2);
-            this.tbxChangeRow.Name = "tbxChangeRow";
-            this.tbxChangeRow.Size = new System.Drawing.Size(25, 24);
-            this.tbxChangeRow.TabIndex = 2;
-            // 
             // btnChangeValue
             // 
             this.btnChangeValue.ForeColor = System.Drawing.Color.Black;
-            this.btnChangeValue.Location = new System.Drawing.Point(117, 48);
+            this.btnChangeValue.Location = new System.Drawing.Point(112, 48);
             this.btnChangeValue.Margin = new System.Windows.Forms.Padding(2);
             this.btnChangeValue.Name = "btnChangeValue";
-            this.btnChangeValue.Size = new System.Drawing.Size(186, 23);
+            this.btnChangeValue.Size = new System.Drawing.Size(191, 23);
             this.btnChangeValue.TabIndex = 1;
             this.btnChangeValue.Text = "Ändra + Nästa rad";
             this.btnChangeValue.UseVisualStyleBackColor = true;
@@ -437,10 +413,10 @@
             // 
             // tbxChangeValue
             // 
-            this.tbxChangeValue.Location = new System.Drawing.Point(187, 20);
+            this.tbxChangeValue.Location = new System.Drawing.Point(184, 20);
             this.tbxChangeValue.Margin = new System.Windows.Forms.Padding(2);
             this.tbxChangeValue.Name = "tbxChangeValue";
-            this.tbxChangeValue.Size = new System.Drawing.Size(116, 24);
+            this.tbxChangeValue.Size = new System.Drawing.Size(119, 24);
             this.tbxChangeValue.TabIndex = 0;
             // 
             // groupBox1
@@ -501,12 +477,59 @@
             this.Settings.Text = "Settings";
             this.Settings.UseVisualStyleBackColor = true;
             // 
-            // numericUpDown1
+            // numChangeRow
             // 
-            this.numericUpDown1.Location = new System.Drawing.Point(268, 71);
-            this.numericUpDown1.Name = "numericUpDown1";
-            this.numericUpDown1.Size = new System.Drawing.Size(37, 24);
-            this.numericUpDown1.TabIndex = 7;
+            this.numChangeRow.Location = new System.Drawing.Point(62, 20);
+            this.numChangeRow.Minimum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            this.numChangeRow.Name = "numChangeRow";
+            this.numChangeRow.Size = new System.Drawing.Size(37, 24);
+            this.numChangeRow.TabIndex = 7;
+            this.numChangeRow.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.numChangeRow.Value = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            // 
+            // numDeleteRow
+            // 
+            this.numDeleteRow.Location = new System.Drawing.Point(42, 20);
+            this.numDeleteRow.Minimum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            this.numDeleteRow.Name = "numDeleteRow";
+            this.numDeleteRow.Size = new System.Drawing.Size(37, 24);
+            this.numDeleteRow.TabIndex = 8;
+            this.numDeleteRow.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.numDeleteRow.Value = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            // 
+            // numChangeColumn
+            // 
+            this.numChangeColumn.Location = new System.Drawing.Point(62, 47);
+            this.numChangeColumn.Minimum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            this.numChangeColumn.Name = "numChangeColumn";
+            this.numChangeColumn.Size = new System.Drawing.Size(37, 24);
+            this.numChangeColumn.TabIndex = 9;
+            this.numChangeColumn.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.numChangeColumn.Value = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
             // 
             // Form3
             // 
@@ -527,7 +550,9 @@
             this.groupBox2.PerformLayout();
             this.groupBox1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.DbDisplay)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numChangeRow)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numDeleteRow)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numChangeColumn)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -545,8 +570,6 @@
         private System.Windows.Forms.TextBox tbxChangeValue;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.TextBox tbxChangeColumn;
-        private System.Windows.Forms.TextBox tbxChangeRow;
         private System.Windows.Forms.GroupBox groupBox4;
         private System.Windows.Forms.Label lblColumn9;
         private System.Windows.Forms.TextBox tbxAddColumn9;
@@ -570,8 +593,9 @@
         private System.Windows.Forms.GroupBox groupBox3;
         private System.Windows.Forms.Button btnDeleteRow;
         private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.TextBox tbxDeleteRow;
         private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.NumericUpDown numericUpDown1;
+        private System.Windows.Forms.NumericUpDown numChangeRow;
+        private System.Windows.Forms.NumericUpDown numDeleteRow;
+        private System.Windows.Forms.NumericUpDown numChangeColumn;
     }
 }

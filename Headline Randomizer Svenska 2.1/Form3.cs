@@ -83,6 +83,10 @@ namespace Headline_Randomizer
                 connection.Close();
                 updateInProgress = false;
 
+                numDeleteRow.Maximum = DbDisplay.RowCount;
+                numChangeRow.Maximum = DbDisplay.RowCount;
+                numChangeColumn.Maximum = DbDisplay.ColumnCount;
+
             }
         }
 
@@ -186,8 +190,10 @@ namespace Headline_Randomizer
         {
 
             updateInProgress = true;
-            string column = DbDisplay.Columns[Convert.ToInt32(tbxChangeColumn.Text) - 1].HeaderText;
-            string Id = DbDisplay.Rows[Convert.ToInt32(tbxChangeRow.Text) - 1].Cells[0].Value.ToString();
+            //string column = DbDisplay.Columns[Convert.ToInt32(tbxChangeColumn.Text) - 1].HeaderText;
+            string column = DbDisplay.Columns[Convert.ToInt32(numChangeColumn.Value) - 1].HeaderText;
+            //string Id = DbDisplay.Rows[Convert.ToInt32(tbxChangeRow.Text) - 1].Cells[0].Value.ToString();
+            string Id = DbDisplay.Rows[Convert.ToInt32(numChangeRow.Value) - 1].Cells[0].Value.ToString();
 
             if (column == "Censur level")
             {
@@ -209,13 +215,13 @@ namespace Headline_Randomizer
             updateInProgress = false;
             UpdateGridView($"SELECT * FROM {GetTableName()}");
 
-            if (Convert.ToInt32(tbxChangeRow.Text) < DbDisplay.Rows.Count)
+            if (Convert.ToInt32(numChangeRow.Value) < DbDisplay.Rows.Count)
             {
-                DbDisplay.CurrentCell = DbDisplay.Rows[Convert.ToInt32(tbxChangeRow.Text)].Cells[Convert.ToInt32(tbxChangeColumn.Text) - 1];
+                DbDisplay.CurrentCell = DbDisplay.Rows[Convert.ToInt32(numChangeRow.Value)].Cells[Convert.ToInt32(numChangeColumn.Value) - 1];
             }
             else
             {
-                DbDisplay.CurrentCell = DbDisplay.Rows[Convert.ToInt32(tbxChangeRow.Text) - 1].Cells[Convert.ToInt32(tbxChangeColumn.Text) - 1];
+                DbDisplay.CurrentCell = DbDisplay.Rows[Convert.ToInt32(numChangeRow.Value) - 1].Cells[Convert.ToInt32(numChangeColumn.Value) - 1];
             }
                 
         }
@@ -225,7 +231,7 @@ namespace Headline_Randomizer
             updateInProgress = true;
 
             // Get the value of the first column on the specified row, then use it in the query string. 
-            string Id = DbDisplay.Rows[Convert.ToInt32(tbxDeleteRow.Text) - 1].Cells[0].Value.ToString();
+            string Id = DbDisplay.Rows[Convert.ToInt32(numDeleteRow.Value) - 1].Cells[0].Value.ToString();
             Db.Command($"DELETE FROM {GetTableName()} WHERE Id = '{Id}'");
             
             updateInProgress = false;
@@ -233,14 +239,14 @@ namespace Headline_Randomizer
 
             // If the number of total rows is less than the number of the specified row, then don't
             // select the row after (because there are none left)
-            if (DbDisplay.Rows.Count < Convert.ToInt32(tbxChangeRow.Text))
+            if (DbDisplay.Rows.Count < Convert.ToInt32(numChangeRow.Value))
             {
-                DbDisplay.CurrentCell = DbDisplay.Rows[Convert.ToInt32(tbxChangeRow.Text) - 2].Cells[Convert.ToInt32(tbxChangeColumn.Text) - 1];
+                DbDisplay.CurrentCell = DbDisplay.Rows[Convert.ToInt32(numChangeRow.Value) - 2].Cells[Convert.ToInt32(numChangeColumn.Value) - 1];
             }
             // If there are rows left, then move to the next row. 
             else
             {
-                DbDisplay.CurrentCell = DbDisplay.Rows[Convert.ToInt32(tbxChangeRow.Text) - 1].Cells[Convert.ToInt32(tbxChangeColumn.Text) - 1];
+                DbDisplay.CurrentCell = DbDisplay.Rows[Convert.ToInt32(numChangeRow.Value) - 1].Cells[Convert.ToInt32(numChangeColumn.Value) - 1];
             }
             
         }
@@ -305,9 +311,14 @@ namespace Headline_Randomizer
             }
             else
             {
-                tbxChangeColumn.Text = (DbDisplay.CurrentCell.ColumnIndex + 1).ToString();
-                tbxChangeRow.Text = (DbDisplay.CurrentCell.RowIndex + 1).ToString();
-                tbxDeleteRow.Text = (DbDisplay.CurrentCell.RowIndex + 1).ToString();
+                //tbxChangeColumn.Text = (DbDisplay.CurrentCell.ColumnIndex + 1).ToString();
+                //tbxChangeRow.Text = (DbDisplay.CurrentCell.RowIndex + 1).ToString();
+                //tbxDeleteRow.Text = (DbDisplay.CurrentCell.RowIndex + 1).ToString();
+
+                numChangeColumn.Value = DbDisplay.CurrentCell.ColumnIndex + 1;
+                numChangeRow.Value = DbDisplay.CurrentCell.RowIndex + 1;
+                numDeleteRow.Value = DbDisplay.CurrentCell.RowIndex + 1;
+
             }
             
         }
