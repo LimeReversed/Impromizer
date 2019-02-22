@@ -17,8 +17,6 @@ namespace Headline_Randomizer
         {
             InitializeComponent();
             cbTabell.SelectedIndex = 0;
-            //DbDisplay.CurrentCell = DbDisplay.Rows[0].Cells[1];
-            //DbDisplay.Columns[0].Visible = false;
         }
 
         //
@@ -36,7 +34,7 @@ namespace Headline_Randomizer
         public void UpdateGridView(string query)
         {
             updateInProgress = true;
-            using (SqlConnection connection = new SqlConnection(@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename = E:\Tresorit\Headline Randomizer\Headline Randomizer\Headline Randomizer Svenska 2.1\WordsDatabase.mdf; Integrated Security=True"))
+            using (SqlConnection connection = new SqlConnection(@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename = c:\Emil\Tresorit\Headline Randomizer\Headline Randomizer\Headline Randomizer Svenska 2.1\WordsDatabase.mdf; Integrated Security=True"))
             {
                 connection.Open();
                 using (SqlCommand command = new SqlCommand(query, connection))
@@ -52,20 +50,26 @@ namespace Headline_Randomizer
                         //I first need to create this object, whetever it is, to have something to add
                         // in Columns.Add. 
                         DataGridViewTextBoxColumn column = new DataGridViewTextBoxColumn();
+                        column.Frozen = true;
                         DbDisplay.Columns.Add(column);
                     }
 
                     // Add info to the GridView cells from the database.
 
                     // Creating an array because it opens for the loop solution below. 
-                    string[] row = new string[reader.FieldCount];
+                    //Before i used: string[] row = new string[reader.FieldCount]; but then when I tried to sort
+                    // the id in the gridview, it got sorted in a weird way. Because it was a string. 
+                    // This way I'm creating a string that isn't locked to one type. 
+                    var row = new object[reader.FieldCount];
+
                     while (reader.Read())
                     {
                         // While there are rows... 
                         for (int i = 0; i < reader.FieldCount; i++)
                         {
                             // ...Go through all the columns in the current row... the add to the array.
-                            string addToColumn = reader.GetSqlValue(i).ToString();
+                            // Var to prepare the variable for different types of content. 
+                            var addToColumn = reader.GetSqlValue(i);
                             row[i] = addToColumn;
 
                             // If it the first iteration of the loop (where the column headers would be empty)
@@ -86,6 +90,7 @@ namespace Headline_Randomizer
                 connection.Close();
                 updateInProgress = false;
 
+                // So that you can't enter a value that is less or more than the actual Nr of rows/columns.
                 numDeleteRow.Maximum = DbDisplay.RowCount;
                 numChangeRow.Maximum = DbDisplay.RowCount;
                 numChangeColumn.Maximum = DbDisplay.ColumnCount;
@@ -96,7 +101,7 @@ namespace Headline_Randomizer
         // Sees to that only the needed number of textboxes show under "Add value" and that their labels are correct.  
         public void UpdateLables(string query)
         {
-            using (SqlConnection connection = new SqlConnection(@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=E:\Tresorit\Headline Randomizer\Headline Randomizer\Headline Randomizer Svenska 2.1\WordsDatabase.mdf;Integrated Security=True"))
+            using (SqlConnection connection = new SqlConnection(@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=C:\Emil\Tresorit\Headline Randomizer\Headline Randomizer\Headline Randomizer Svenska 2.1\WordsDatabase.mdf;Integrated Security=True"))
             {
                 connection.Open();
                 using (SqlCommand command = new SqlCommand(query, connection))
@@ -328,17 +333,23 @@ namespace Headline_Randomizer
             }
             else
             {
-                //tbxChangeColumn.Text = (DbDisplay.CurrentCell.ColumnIndex + 1).ToString();
-                //tbxChangeRow.Text = (DbDisplay.CurrentCell.RowIndex + 1).ToString();
-                //tbxDeleteRow.Text = (DbDisplay.CurrentCell.RowIndex + 1).ToString();
+                if (DbDisplay.CurrentCell == null)
+                {
 
-                numChangeColumn.Value = DbDisplay.CurrentCell.ColumnIndex + 1;
-                numChangeRow.Value = DbDisplay.CurrentCell.RowIndex + 1;
-                numDeleteRow.Value = DbDisplay.CurrentCell.RowIndex + 1;
-
+                }
+                else
+                {
+                    numChangeColumn.Value = DbDisplay.CurrentCell.ColumnIndex + 1;
+                    numChangeRow.Value = DbDisplay.CurrentCell.RowIndex + 1;
+                    numDeleteRow.Value = DbDisplay.CurrentCell.RowIndex + 1;
+                }
             }
             
         }
 
+        private void btnResetDb_Click(object sender, EventArgs e)
+        {
+            Db.ResetDefault("all");
+        }
     }
 }

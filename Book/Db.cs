@@ -18,6 +18,7 @@ namespace Headline_Randomizer
        
         static public List<Custom> choicesList = new List<Custom>();
         static public List<string> recentStrings = new List<string>();
+        static string connectionString = @"Data Source=(LocalDB)\MSSQLLocalDB; AttachDbFilename = C:\Emil\Tresorit\Headline Randomizer\Headline Randomizer\Headline Randomizer Svenska 2.1\WordsDatabase.mdf; Integrated Security=True";
 
         static public void ResetDefault(string word)
         {
@@ -114,31 +115,35 @@ namespace Headline_Randomizer
 
             }
 
-            //if (word == "jokename" || word == "all")
-            //{
-            //    StreamReader sr = new StreamReader(@"Text\jokenames2.txt");
+            if (word == "jokename" || word == "all")
+            {
+                Db.Command("TRUNCATE TABLE[TblJokeNames];");
 
-            //    string fileRow;
+                StreamReader sr = new StreamReader(@"Text\jokenames2.txt");
 
-            //    while ((fileRow = sr.ReadLine()) != null)
-            //    {
-            //        Db.Command($"INSERT INTO TblJokeNames (Name, Used) VALUES ('{fileRow}', '0')");
-            //    }
-            //    sr.Close();
-            //}
+                string fileRow;
 
-            //if (word == "nobelprize" || word == "all")
-            //{
-            //    StreamReader sr = new StreamReader(@"Text\nobelprizes2.txt");
+                while ((fileRow = sr.ReadLine()) != null)
+                {
+                    Db.Command($"INSERT INTO TblJokeNames (Name, Used) VALUES ('{fileRow}', '0')");
+                }
+                sr.Close();
+            }
 
-            //    string fileRow;
+            if (word == "nobelprize" || word == "all")
+            {
+                Db.Command("TRUNCATE TABLE[TblNobelPrizes];");
 
-            //    while ((fileRow = sr.ReadLine()) != null)
-            //    {
-            //        Db.Command($"INSERT INTO TblNobelPrizes (Prize, Used) VALUES ('{fileRow}', '0')");
-            //    }
-            //    sr.Close();
-            //}
+                StreamReader sr = new StreamReader(@"Text\nobelprizes2.txt");
+
+                string fileRow;
+
+                while ((fileRow = sr.ReadLine()) != null)
+                {
+                    Db.Command($"INSERT INTO TblNobelPrizes (Prize, Used) VALUES ('{fileRow}', '0')");
+                }
+                sr.Close();
+            }
 
             //if (location.Count <= amount)
             //{
@@ -188,7 +193,7 @@ namespace Headline_Randomizer
 
         static public void Command(string commandstring)
         {
-            string connectionString = @"Data Source=(LocalDB)\MSSQLLocalDB; AttachDbFilename = E:\Tresorit\Headline Randomizer\Headline Randomizer\Headline Randomizer Svenska 2.1\WordsDatabase.mdf; Integrated Security=True";
+            
             using (SqlConnection connection = new SqlConnection(connectionString))
             {
                 connection.Open();
@@ -203,8 +208,6 @@ namespace Headline_Randomizer
 
         static public string GetValue(string query)
         {
-            string connectionString = @"Data Source=(LocalDB)\MSSQLLocalDB; AttachDbFilename = E:\Tresorit\Headline Randomizer\Headline Randomizer\Headline Randomizer Svenska 2.1\WordsDatabase.mdf; Integrated Security=True";
-
             using (SqlConnection connection = new SqlConnection(connectionString))
             {
                 connection.Open();
@@ -216,6 +219,7 @@ namespace Headline_Randomizer
                     {
                         value = reader.GetSqlValue(0).ToString();
                     }
+                    
                     connection.Close();
                     reader.Close();
                     return value;
@@ -223,23 +227,125 @@ namespace Headline_Randomizer
             }
         }
 
-        static public string GetDataType(string query, int columnNr)
-        {
-            using (SqlConnection connection = new SqlConnection(@"Data Source=(LocalDB)\MSSQLLocalDB; AttachDbFilename = E:\Tresorit\Headline Randomizer\Headline Randomizer\Headline Randomizer Svenska 2.1\WordsDatabase.mdf; Integrated Security=True"))
+        static public string RandomizeValue(string selectStatement, string restOfQuery)
+        {             
+            using (SqlConnection connection = new SqlConnection(connectionString))
             {
-                using (SqlCommand command = new SqlCommand(query, connection))
+                connection.Open();
+
+                using (SqlCommand command = new SqlCommand($"SELECT COUNT(*) {restOfQuery}", connection))
                 {
-                    connection.Open();
+                    int rowCount = (Int32)command.ExecuteScalar();
+
+                    command.CommandText = $"{selectStatement} {restOfQuery}";
+                    Random r = new Random();
+                    string value = "";
                     SqlDataReader reader = command.ExecuteReader();
-                    string type = "";
+
+                    int i = r.Next(0, rowCount);
+                    int j = 0;
+
                     while (reader.Read())
                     {
-                        type = reader.GetName(columnNr);
+
+                        if (j == i)
+                        {
+                            return value = reader.GetSqlValue(0).ToString();
+                        }
+                        else { j++; }
                     }
+
                     connection.Close();
                     reader.Close();
-                    return type;
+                    return "";
+
                 }
+            }
+        }
+
+        static public void ResetUsed(int antal)
+        {
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            {
+                connection.Open();
+                SqlCommand command = new SqlCommand();
+                command.Connection = connection;
+                int antalRader = 0;
+
+                // Adjective
+                command.CommandText = $"SELECT COUNT(*) FROM TblAdjective WHERE Used = 0";
+                antalRader = (Int32)command.ExecuteScalar();
+
+                if (antalRader < antal)
+                {
+                    string rad1 = GetValue("SELECT TOP 1 Id FROM TblAdjective ORDER BY Id ASC");
+                    string sistaRad = GetValue("SELECT TOP 1 Id FROM TblAdjective ORDER BY Id DESC");
+                    command.CommandText = $"UPDATE TblAdjective SET Used = 0 WHERE Id BETWEEN {rad1} AND {sistaRad}";
+                    command.ExecuteNonQuery();
+                }
+                
+
+                // Someone
+                command.CommandText = $"SELECT COUNT(*) FROM TblNouns WHERE Animated = 1 AND Used = 0";
+                antalRader = (Int32)command.ExecuteScalar();
+
+                if (antalRader < antal)
+                {
+                    string rad1 = GetValue("SELECT TOP 1 Id FROM TblNouns WHERE Animated = 1 ORDER BY Id ASC");
+                    string sistaRad = GetValue("SELECT TOP 1 Id FROM TblNouns WHERE Animated = 1 ORDER BY Id DESC");
+                    command.CommandText = $"UPDATE TblNouns SET Used = 0 WHERE Id BETWEEN {rad1} AND {sistaRad}";
+                    command.ExecuteNonQuery();
+                }
+
+                // Something
+                command.CommandText = $"SELECT COUNT(*) FROM TblNouns WHERE Animated = 0 AND Used = 0";
+                antalRader = (Int32)command.ExecuteScalar();
+
+                if (antalRader < antal)
+                {
+                    string rad1 = GetValue("SELECT TOP 1 Id FROM TblNouns WHERE Animated = 0 ORDER BY Id ASC");
+                    string sistaRad = GetValue("SELECT TOP 1 Id FROM TblNouns WHERE Animated = 0 ORDER BY Id DESC");
+                    command.CommandText = $"UPDATE TblNouns SET Used = 0 WHERE Id BETWEEN {rad1} AND {sistaRad}";
+                    command.ExecuteNonQuery();
+                }
+
+                // Verb
+                command.CommandText = $"SELECT COUNT(*) FROM TblVerb WHERE Used = 0";
+                antalRader = (Int32)command.ExecuteScalar();
+
+                if (antalRader < antal)
+                {
+                    string rad1 = GetValue("SELECT TOP 1 Id FROM TblVerb ORDER BY Id ASC");
+                    string sistaRad = GetValue("SELECT TOP 1 Id FROM TblVerb ORDER BY Id DESC");
+                    command.CommandText = $"UPDATE TblVerb SET Used = 0 WHERE Id BETWEEN {rad1} AND {sistaRad}";
+                    command.ExecuteNonQuery();
+                }
+
+                // Nobel Prize
+                command.CommandText = $"SELECT COUNT(*) FROM TblNobelPrizes WHERE Used = 0";
+                antalRader = (Int32)command.ExecuteScalar();
+
+                if (antalRader < antal)
+                {
+                    string rad1 = GetValue("SELECT TOP 1 Id FROM TblNobelPrizes ORDER BY Id ASC");
+                    string sistaRad = GetValue("SELECT TOP 1 Id FROM TblNobelPrizes ORDER BY Id DESC");
+                    command.CommandText = $"UPDATE TblNobelPrizes SET Used = 0 WHERE Id BETWEEN {rad1} AND {sistaRad}";
+                    command.ExecuteNonQuery();
+                }
+
+                // Joke Names
+                command.CommandText = $"SELECT COUNT(*) FROM TblJokeNames WHERE Used = 0";
+                antalRader = (Int32)command.ExecuteScalar();
+
+                if (antalRader < antal)
+                {
+                    string rad1 = GetValue("SELECT TOP 1 Id FROM TblJokeNames ORDER BY Id ASC");
+                    string sistaRad = GetValue("SELECT TOP 1 Id FROM TblJokeNames ORDER BY Id DESC");
+                    command.CommandText = $"UPDATE TblJokeNames SET Used = 0 WHERE Id BETWEEN {rad1} AND {sistaRad}";
+                    command.ExecuteNonQuery();
+                }
+
+                connection.Close();
             }
         }
     }

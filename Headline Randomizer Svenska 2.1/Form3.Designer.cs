@@ -31,6 +31,8 @@
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.Database = new System.Windows.Forms.TabPage();
             this.groupBox4 = new System.Windows.Forms.GroupBox();
+            this.cbCensurLevel = new System.Windows.Forms.ComboBox();
+            this.lblColumn9 = new System.Windows.Forms.Label();
             this.lblColumn8 = new System.Windows.Forms.Label();
             this.tbxAddColumn8 = new System.Windows.Forms.TextBox();
             this.lblColumn7 = new System.Windows.Forms.Label();
@@ -49,11 +51,14 @@
             this.btnAddRow = new System.Windows.Forms.Button();
             this.tbxAddColumn1 = new System.Windows.Forms.TextBox();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
+            this.numDeleteRow = new System.Windows.Forms.NumericUpDown();
             this.btnDeleteRow = new System.Windows.Forms.Button();
             this.label4 = new System.Windows.Forms.Label();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.numChangeColumn = new System.Windows.Forms.NumericUpDown();
             this.label3 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
+            this.numChangeRow = new System.Windows.Forms.NumericUpDown();
             this.label1 = new System.Windows.Forms.Label();
             this.btnChangeValue = new System.Windows.Forms.Button();
             this.tbxChangeValue = new System.Windows.Forms.TextBox();
@@ -61,21 +66,18 @@
             this.cbTabell = new System.Windows.Forms.ComboBox();
             this.DbDisplay = new System.Windows.Forms.DataGridView();
             this.Settings = new System.Windows.Forms.TabPage();
-            this.numChangeRow = new System.Windows.Forms.NumericUpDown();
-            this.numDeleteRow = new System.Windows.Forms.NumericUpDown();
-            this.numChangeColumn = new System.Windows.Forms.NumericUpDown();
-            this.lblColumn9 = new System.Windows.Forms.Label();
-            this.cbCensurLevel = new System.Windows.Forms.ComboBox();
+            this.btnResetDb = new System.Windows.Forms.Button();
             this.tabControl1.SuspendLayout();
             this.Database.SuspendLayout();
             this.groupBox4.SuspendLayout();
             this.groupBox3.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.numDeleteRow)).BeginInit();
             this.groupBox2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.numChangeColumn)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numChangeRow)).BeginInit();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.DbDisplay)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numChangeRow)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numDeleteRow)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numChangeColumn)).BeginInit();
+            this.Settings.SuspendLayout();
             this.SuspendLayout();
             // 
             // tabControl1
@@ -86,10 +88,11 @@
             this.tabControl1.Controls.Add(this.Database);
             this.tabControl1.Controls.Add(this.Settings);
             this.tabControl1.Font = new System.Drawing.Font("Calibri", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tabControl1.Location = new System.Drawing.Point(10, 12);
+            this.tabControl1.Location = new System.Drawing.Point(15, 18);
+            this.tabControl1.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
-            this.tabControl1.Size = new System.Drawing.Size(800, 579);
+            this.tabControl1.Size = new System.Drawing.Size(1200, 891);
             this.tabControl1.TabIndex = 0;
             // 
             // Database
@@ -101,10 +104,11 @@
             this.Database.Controls.Add(this.groupBox1);
             this.Database.Controls.Add(this.DbDisplay);
             this.Database.Font = new System.Drawing.Font("Calibri", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Database.Location = new System.Drawing.Point(4, 24);
+            this.Database.Location = new System.Drawing.Point(4, 33);
+            this.Database.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.Database.Name = "Database";
-            this.Database.Padding = new System.Windows.Forms.Padding(3);
-            this.Database.Size = new System.Drawing.Size(792, 551);
+            this.Database.Padding = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.Database.Size = new System.Drawing.Size(1192, 854);
             this.Database.TabIndex = 1;
             this.Database.Text = "Database";
             // 
@@ -130,98 +134,108 @@
             this.groupBox4.Controls.Add(this.btnAddRow);
             this.groupBox4.Controls.Add(this.tbxAddColumn1);
             this.groupBox4.ForeColor = System.Drawing.Color.White;
-            this.groupBox4.Location = new System.Drawing.Point(19, 113);
-            this.groupBox4.Margin = new System.Windows.Forms.Padding(2);
+            this.groupBox4.Location = new System.Drawing.Point(28, 174);
             this.groupBox4.Name = "groupBox4";
-            this.groupBox4.Padding = new System.Windows.Forms.Padding(2);
-            this.groupBox4.Size = new System.Drawing.Size(753, 140);
+            this.groupBox4.Size = new System.Drawing.Size(1130, 215);
             this.groupBox4.TabIndex = 7;
             this.groupBox4.TabStop = false;
             this.groupBox4.Text = "Lägg till rad";
             // 
+            // cbCensurLevel
+            // 
+            this.cbCensurLevel.FormattingEnabled = true;
+            this.cbCensurLevel.Items.AddRange(new object[] {
+            "0 (Censurera ej)",
+            "1 (Sex/droger)"});
+            this.cbCensurLevel.Location = new System.Drawing.Point(676, 143);
+            this.cbCensurLevel.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.cbCensurLevel.Name = "cbCensurLevel";
+            this.cbCensurLevel.Size = new System.Drawing.Size(193, 32);
+            this.cbCensurLevel.TabIndex = 8;
+            // 
+            // lblColumn9
+            // 
+            this.lblColumn9.AutoSize = true;
+            this.lblColumn9.Location = new System.Drawing.Point(672, 114);
+            this.lblColumn9.Name = "lblColumn9";
+            this.lblColumn9.Size = new System.Drawing.Size(89, 24);
+            this.lblColumn9.TabIndex = 20;
+            this.lblColumn9.Text = "Kolumn 9";
+            // 
             // lblColumn8
             // 
             this.lblColumn8.AutoSize = true;
-            this.lblColumn8.Location = new System.Drawing.Point(304, 74);
-            this.lblColumn8.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.lblColumn8.Location = new System.Drawing.Point(456, 114);
             this.lblColumn8.Name = "lblColumn8";
-            this.lblColumn8.Size = new System.Drawing.Size(60, 17);
+            this.lblColumn8.Size = new System.Drawing.Size(89, 24);
             this.lblColumn8.TabIndex = 18;
             this.lblColumn8.Text = "Kolumn 8";
             // 
             // tbxAddColumn8
             // 
             this.tbxAddColumn8.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.tbxAddColumn8.Location = new System.Drawing.Point(307, 93);
-            this.tbxAddColumn8.Margin = new System.Windows.Forms.Padding(2);
+            this.tbxAddColumn8.Location = new System.Drawing.Point(460, 143);
             this.tbxAddColumn8.Name = "tbxAddColumn8";
-            this.tbxAddColumn8.Size = new System.Drawing.Size(130, 24);
+            this.tbxAddColumn8.Size = new System.Drawing.Size(194, 32);
             this.tbxAddColumn8.TabIndex = 7;
             // 
             // lblColumn7
             // 
             this.lblColumn7.AutoSize = true;
-            this.lblColumn7.Location = new System.Drawing.Point(161, 74);
-            this.lblColumn7.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.lblColumn7.Location = new System.Drawing.Point(242, 114);
             this.lblColumn7.Name = "lblColumn7";
-            this.lblColumn7.Size = new System.Drawing.Size(60, 17);
+            this.lblColumn7.Size = new System.Drawing.Size(89, 24);
             this.lblColumn7.TabIndex = 16;
             this.lblColumn7.Text = "Kolumn 7";
             // 
             // tbxAddColumn7
             // 
             this.tbxAddColumn7.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.tbxAddColumn7.Location = new System.Drawing.Point(164, 93);
-            this.tbxAddColumn7.Margin = new System.Windows.Forms.Padding(2);
+            this.tbxAddColumn7.Location = new System.Drawing.Point(246, 143);
             this.tbxAddColumn7.Name = "tbxAddColumn7";
-            this.tbxAddColumn7.Size = new System.Drawing.Size(130, 24);
+            this.tbxAddColumn7.Size = new System.Drawing.Size(194, 32);
             this.tbxAddColumn7.TabIndex = 6;
             // 
             // lblColumn6
             // 
             this.lblColumn6.AutoSize = true;
-            this.lblColumn6.Location = new System.Drawing.Point(17, 74);
-            this.lblColumn6.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.lblColumn6.Location = new System.Drawing.Point(26, 114);
             this.lblColumn6.Name = "lblColumn6";
-            this.lblColumn6.Size = new System.Drawing.Size(60, 17);
+            this.lblColumn6.Size = new System.Drawing.Size(89, 24);
             this.lblColumn6.TabIndex = 14;
             this.lblColumn6.Text = "Kolumn 6";
             // 
             // tbxAddColumn6
             // 
             this.tbxAddColumn6.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.tbxAddColumn6.Location = new System.Drawing.Point(20, 93);
-            this.tbxAddColumn6.Margin = new System.Windows.Forms.Padding(2);
+            this.tbxAddColumn6.Location = new System.Drawing.Point(30, 143);
             this.tbxAddColumn6.Name = "tbxAddColumn6";
-            this.tbxAddColumn6.Size = new System.Drawing.Size(130, 24);
+            this.tbxAddColumn6.Size = new System.Drawing.Size(194, 32);
             this.tbxAddColumn6.TabIndex = 5;
             // 
             // lblColumn5
             // 
             this.lblColumn5.AutoSize = true;
-            this.lblColumn5.Location = new System.Drawing.Point(591, 25);
-            this.lblColumn5.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.lblColumn5.Location = new System.Drawing.Point(886, 38);
             this.lblColumn5.Name = "lblColumn5";
-            this.lblColumn5.Size = new System.Drawing.Size(60, 17);
+            this.lblColumn5.Size = new System.Drawing.Size(89, 24);
             this.lblColumn5.TabIndex = 12;
             this.lblColumn5.Text = "Kolumn 5";
             // 
             // tbxAddColumn5
             // 
             this.tbxAddColumn5.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.tbxAddColumn5.Location = new System.Drawing.Point(594, 44);
-            this.tbxAddColumn5.Margin = new System.Windows.Forms.Padding(2);
+            this.tbxAddColumn5.Location = new System.Drawing.Point(891, 68);
             this.tbxAddColumn5.Name = "tbxAddColumn5";
-            this.tbxAddColumn5.Size = new System.Drawing.Size(130, 24);
+            this.tbxAddColumn5.Size = new System.Drawing.Size(194, 32);
             this.tbxAddColumn5.TabIndex = 4;
             // 
             // lblColumn4
             // 
             this.lblColumn4.AutoSize = true;
-            this.lblColumn4.Location = new System.Drawing.Point(448, 25);
-            this.lblColumn4.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.lblColumn4.Location = new System.Drawing.Point(672, 38);
             this.lblColumn4.Name = "lblColumn4";
-            this.lblColumn4.Size = new System.Drawing.Size(60, 17);
+            this.lblColumn4.Size = new System.Drawing.Size(89, 24);
             this.lblColumn4.TabIndex = 10;
             this.lblColumn4.Text = "Kolumn 4";
             // 
@@ -229,57 +243,51 @@
             // 
             this.tbxAddColumn4.BackColor = System.Drawing.Color.White;
             this.tbxAddColumn4.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.tbxAddColumn4.Location = new System.Drawing.Point(451, 44);
-            this.tbxAddColumn4.Margin = new System.Windows.Forms.Padding(2);
+            this.tbxAddColumn4.Location = new System.Drawing.Point(676, 68);
             this.tbxAddColumn4.Name = "tbxAddColumn4";
-            this.tbxAddColumn4.Size = new System.Drawing.Size(130, 24);
+            this.tbxAddColumn4.Size = new System.Drawing.Size(194, 32);
             this.tbxAddColumn4.TabIndex = 3;
             // 
             // lblColumn3
             // 
             this.lblColumn3.AutoSize = true;
-            this.lblColumn3.Location = new System.Drawing.Point(304, 25);
-            this.lblColumn3.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.lblColumn3.Location = new System.Drawing.Point(456, 38);
             this.lblColumn3.Name = "lblColumn3";
-            this.lblColumn3.Size = new System.Drawing.Size(60, 17);
+            this.lblColumn3.Size = new System.Drawing.Size(89, 24);
             this.lblColumn3.TabIndex = 8;
             this.lblColumn3.Text = "Kolumn 3";
             // 
             // tbxAddColumn3
             // 
             this.tbxAddColumn3.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.tbxAddColumn3.Location = new System.Drawing.Point(307, 44);
-            this.tbxAddColumn3.Margin = new System.Windows.Forms.Padding(2);
+            this.tbxAddColumn3.Location = new System.Drawing.Point(460, 68);
             this.tbxAddColumn3.Name = "tbxAddColumn3";
-            this.tbxAddColumn3.Size = new System.Drawing.Size(130, 24);
+            this.tbxAddColumn3.Size = new System.Drawing.Size(194, 32);
             this.tbxAddColumn3.TabIndex = 2;
             // 
             // lblColumn2
             // 
             this.lblColumn2.AutoSize = true;
-            this.lblColumn2.Location = new System.Drawing.Point(161, 25);
-            this.lblColumn2.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.lblColumn2.Location = new System.Drawing.Point(242, 38);
             this.lblColumn2.Name = "lblColumn2";
-            this.lblColumn2.Size = new System.Drawing.Size(60, 17);
+            this.lblColumn2.Size = new System.Drawing.Size(89, 24);
             this.lblColumn2.TabIndex = 6;
             this.lblColumn2.Text = "Kolumn 2";
             // 
             // tbxAddColumn2
             // 
             this.tbxAddColumn2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.tbxAddColumn2.Location = new System.Drawing.Point(164, 44);
-            this.tbxAddColumn2.Margin = new System.Windows.Forms.Padding(2);
+            this.tbxAddColumn2.Location = new System.Drawing.Point(246, 68);
             this.tbxAddColumn2.Name = "tbxAddColumn2";
-            this.tbxAddColumn2.Size = new System.Drawing.Size(130, 24);
+            this.tbxAddColumn2.Size = new System.Drawing.Size(194, 32);
             this.tbxAddColumn2.TabIndex = 1;
             // 
             // lblColumn1
             // 
             this.lblColumn1.AutoSize = true;
-            this.lblColumn1.Location = new System.Drawing.Point(17, 25);
-            this.lblColumn1.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.lblColumn1.Location = new System.Drawing.Point(26, 38);
             this.lblColumn1.Name = "lblColumn1";
-            this.lblColumn1.Size = new System.Drawing.Size(60, 17);
+            this.lblColumn1.Size = new System.Drawing.Size(89, 24);
             this.lblColumn1.TabIndex = 4;
             this.lblColumn1.Text = "Kolumn 1";
             // 
@@ -288,10 +296,9 @@
             this.btnAddRow.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.btnAddRow.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnAddRow.ForeColor = System.Drawing.Color.White;
-            this.btnAddRow.Location = new System.Drawing.Point(594, 74);
-            this.btnAddRow.Margin = new System.Windows.Forms.Padding(2);
+            this.btnAddRow.Location = new System.Drawing.Point(891, 114);
             this.btnAddRow.Name = "btnAddRow";
-            this.btnAddRow.Size = new System.Drawing.Size(130, 43);
+            this.btnAddRow.Size = new System.Drawing.Size(195, 66);
             this.btnAddRow.TabIndex = 9;
             this.btnAddRow.Text = "Lägg till";
             this.btnAddRow.UseVisualStyleBackColor = false;
@@ -300,10 +307,9 @@
             // tbxAddColumn1
             // 
             this.tbxAddColumn1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.tbxAddColumn1.Location = new System.Drawing.Point(20, 44);
-            this.tbxAddColumn1.Margin = new System.Windows.Forms.Padding(2);
+            this.tbxAddColumn1.Location = new System.Drawing.Point(30, 68);
             this.tbxAddColumn1.Name = "tbxAddColumn1";
-            this.tbxAddColumn1.Size = new System.Drawing.Size(130, 24);
+            this.tbxAddColumn1.Size = new System.Drawing.Size(194, 32);
             this.tbxAddColumn1.TabIndex = 0;
             // 
             // groupBox3
@@ -312,24 +318,41 @@
             this.groupBox3.Controls.Add(this.btnDeleteRow);
             this.groupBox3.Controls.Add(this.label4);
             this.groupBox3.ForeColor = System.Drawing.Color.White;
-            this.groupBox3.Location = new System.Drawing.Point(649, 9);
-            this.groupBox3.Margin = new System.Windows.Forms.Padding(2);
+            this.groupBox3.Location = new System.Drawing.Point(974, 14);
             this.groupBox3.Name = "groupBox3";
-            this.groupBox3.Padding = new System.Windows.Forms.Padding(2);
-            this.groupBox3.Size = new System.Drawing.Size(123, 100);
+            this.groupBox3.Size = new System.Drawing.Size(184, 154);
             this.groupBox3.TabIndex = 3;
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "Ta bort rad";
+            // 
+            // numDeleteRow
+            // 
+            this.numDeleteRow.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.numDeleteRow.Location = new System.Drawing.Point(78, 35);
+            this.numDeleteRow.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.numDeleteRow.Minimum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            this.numDeleteRow.Name = "numDeleteRow";
+            this.numDeleteRow.Size = new System.Drawing.Size(78, 37);
+            this.numDeleteRow.TabIndex = 0;
+            this.numDeleteRow.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.numDeleteRow.Value = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
             // 
             // btnDeleteRow
             // 
             this.btnDeleteRow.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.btnDeleteRow.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnDeleteRow.ForeColor = System.Drawing.Color.White;
-            this.btnDeleteRow.Location = new System.Drawing.Point(20, 62);
-            this.btnDeleteRow.Margin = new System.Windows.Forms.Padding(2);
+            this.btnDeleteRow.Location = new System.Drawing.Point(30, 95);
             this.btnDeleteRow.Name = "btnDeleteRow";
-            this.btnDeleteRow.Size = new System.Drawing.Size(84, 27);
+            this.btnDeleteRow.Size = new System.Drawing.Size(126, 42);
             this.btnDeleteRow.TabIndex = 1;
             this.btnDeleteRow.Text = "Ta bort";
             this.btnDeleteRow.UseVisualStyleBackColor = false;
@@ -338,10 +361,9 @@
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(17, 28);
-            this.label4.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label4.Location = new System.Drawing.Point(26, 43);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(30, 17);
+            this.label4.Size = new System.Drawing.Size(42, 24);
             this.label4.TabIndex = 8;
             this.label4.Text = "Rad";
             // 
@@ -355,42 +377,77 @@
             this.groupBox2.Controls.Add(this.btnChangeValue);
             this.groupBox2.Controls.Add(this.tbxChangeValue);
             this.groupBox2.ForeColor = System.Drawing.Color.White;
-            this.groupBox2.Location = new System.Drawing.Point(285, 9);
-            this.groupBox2.Margin = new System.Windows.Forms.Padding(2);
+            this.groupBox2.Location = new System.Drawing.Point(428, 14);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Padding = new System.Windows.Forms.Padding(2);
-            this.groupBox2.Size = new System.Drawing.Size(340, 100);
+            this.groupBox2.Size = new System.Drawing.Size(510, 154);
             this.groupBox2.TabIndex = 3;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Ändra i cell";
             // 
+            // numChangeColumn
+            // 
+            this.numChangeColumn.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.numChangeColumn.Location = new System.Drawing.Point(93, 95);
+            this.numChangeColumn.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.numChangeColumn.Minimum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            this.numChangeColumn.Name = "numChangeColumn";
+            this.numChangeColumn.Size = new System.Drawing.Size(68, 37);
+            this.numChangeColumn.TabIndex = 1;
+            this.numChangeColumn.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.numChangeColumn.Value = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            // 
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(122, 28);
-            this.label3.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label3.Location = new System.Drawing.Point(183, 43);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(71, 17);
+            this.label3.Size = new System.Drawing.Size(102, 24);
             this.label3.TabIndex = 6;
             this.label3.Text = "Nytt värde:";
             // 
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(7, 66);
-            this.label2.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label2.Location = new System.Drawing.Point(10, 102);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(50, 17);
+            this.label2.Size = new System.Drawing.Size(74, 24);
             this.label2.TabIndex = 5;
             this.label2.Text = "Kolumn";
+            // 
+            // numChangeRow
+            // 
+            this.numChangeRow.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.numChangeRow.Location = new System.Drawing.Point(93, 35);
+            this.numChangeRow.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.numChangeRow.Minimum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            this.numChangeRow.Name = "numChangeRow";
+            this.numChangeRow.Size = new System.Drawing.Size(68, 37);
+            this.numChangeRow.TabIndex = 0;
+            this.numChangeRow.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.numChangeRow.Value = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
             // 
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(27, 25);
-            this.label1.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label1.Location = new System.Drawing.Point(40, 38);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(30, 17);
+            this.label1.Size = new System.Drawing.Size(42, 24);
             this.label1.TabIndex = 4;
             this.label1.Text = "Rad";
             // 
@@ -399,10 +456,9 @@
             this.btnChangeValue.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.btnChangeValue.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnChangeValue.ForeColor = System.Drawing.Color.White;
-            this.btnChangeValue.Location = new System.Drawing.Point(125, 62);
-            this.btnChangeValue.Margin = new System.Windows.Forms.Padding(2);
+            this.btnChangeValue.Location = new System.Drawing.Point(188, 95);
             this.btnChangeValue.Name = "btnChangeValue";
-            this.btnChangeValue.Size = new System.Drawing.Size(199, 27);
+            this.btnChangeValue.Size = new System.Drawing.Size(298, 42);
             this.btnChangeValue.TabIndex = 3;
             this.btnChangeValue.Text = "Ändra + Nästa rad";
             this.btnChangeValue.UseVisualStyleBackColor = false;
@@ -411,21 +467,18 @@
             // tbxChangeValue
             // 
             this.tbxChangeValue.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.tbxChangeValue.Location = new System.Drawing.Point(197, 25);
-            this.tbxChangeValue.Margin = new System.Windows.Forms.Padding(2);
+            this.tbxChangeValue.Location = new System.Drawing.Point(296, 38);
             this.tbxChangeValue.Name = "tbxChangeValue";
-            this.tbxChangeValue.Size = new System.Drawing.Size(127, 24);
+            this.tbxChangeValue.Size = new System.Drawing.Size(190, 32);
             this.tbxChangeValue.TabIndex = 2;
             // 
             // groupBox1
             // 
             this.groupBox1.Controls.Add(this.cbTabell);
             this.groupBox1.ForeColor = System.Drawing.Color.White;
-            this.groupBox1.Location = new System.Drawing.Point(19, 8);
-            this.groupBox1.Margin = new System.Windows.Forms.Padding(2);
+            this.groupBox1.Location = new System.Drawing.Point(28, 12);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Padding = new System.Windows.Forms.Padding(2);
-            this.groupBox1.Size = new System.Drawing.Size(239, 101);
+            this.groupBox1.Size = new System.Drawing.Size(358, 155);
             this.groupBox1.TabIndex = 2;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Välj tabell";
@@ -438,10 +491,9 @@
             "Adjektiv",
             "Substantiv",
             "Verb"});
-            this.cbTabell.Location = new System.Drawing.Point(18, 44);
-            this.cbTabell.Margin = new System.Windows.Forms.Padding(2);
+            this.cbTabell.Location = new System.Drawing.Point(27, 68);
             this.cbTabell.Name = "cbTabell";
-            this.cbTabell.Size = new System.Drawing.Size(205, 23);
+            this.cbTabell.Size = new System.Drawing.Size(306, 32);
             this.cbTabell.TabIndex = 1;
             this.cbTabell.SelectedIndexChanged += new System.EventHandler(this.cbTabell_Changed);
             // 
@@ -456,111 +508,47 @@
             this.DbDisplay.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.DbDisplay.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.DbDisplay.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.DbDisplay.Location = new System.Drawing.Point(-4, 261);
+            this.DbDisplay.Location = new System.Drawing.Point(-6, 402);
+            this.DbDisplay.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.DbDisplay.MultiSelect = false;
             this.DbDisplay.Name = "DbDisplay";
             this.DbDisplay.ReadOnly = true;
             this.DbDisplay.RowHeadersWidth = 25;
-            this.DbDisplay.Size = new System.Drawing.Size(800, 293);
+            this.DbDisplay.Size = new System.Drawing.Size(1200, 451);
             this.DbDisplay.TabIndex = 0;
             this.DbDisplay.CurrentCellChanged += new System.EventHandler(this.DbDisplay_CurrentCellChanged);
             // 
             // Settings
             // 
             this.Settings.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.Settings.Controls.Add(this.btnResetDb);
             this.Settings.Font = new System.Drawing.Font("Calibri", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Settings.Location = new System.Drawing.Point(4, 24);
+            this.Settings.Location = new System.Drawing.Point(4, 33);
+            this.Settings.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.Settings.Name = "Settings";
-            this.Settings.Padding = new System.Windows.Forms.Padding(3);
-            this.Settings.Size = new System.Drawing.Size(792, 551);
+            this.Settings.Padding = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.Settings.Size = new System.Drawing.Size(1192, 854);
             this.Settings.TabIndex = 0;
             this.Settings.Text = "Settings";
             // 
-            // numChangeRow
+            // btnResetDb
             // 
-            this.numChangeRow.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.numChangeRow.Location = new System.Drawing.Point(62, 23);
-            this.numChangeRow.Minimum = new decimal(new int[] {
-            1,
-            0,
-            0,
-            0});
-            this.numChangeRow.Name = "numChangeRow";
-            this.numChangeRow.Size = new System.Drawing.Size(45, 27);
-            this.numChangeRow.TabIndex = 0;
-            this.numChangeRow.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.numChangeRow.Value = new decimal(new int[] {
-            1,
-            0,
-            0,
-            0});
-            // 
-            // numDeleteRow
-            // 
-            this.numDeleteRow.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.numDeleteRow.Location = new System.Drawing.Point(52, 23);
-            this.numDeleteRow.Minimum = new decimal(new int[] {
-            1,
-            0,
-            0,
-            0});
-            this.numDeleteRow.Name = "numDeleteRow";
-            this.numDeleteRow.Size = new System.Drawing.Size(52, 27);
-            this.numDeleteRow.TabIndex = 0;
-            this.numDeleteRow.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.numDeleteRow.Value = new decimal(new int[] {
-            1,
-            0,
-            0,
-            0});
-            // 
-            // numChangeColumn
-            // 
-            this.numChangeColumn.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.numChangeColumn.Location = new System.Drawing.Point(62, 62);
-            this.numChangeColumn.Minimum = new decimal(new int[] {
-            1,
-            0,
-            0,
-            0});
-            this.numChangeColumn.Name = "numChangeColumn";
-            this.numChangeColumn.Size = new System.Drawing.Size(45, 27);
-            this.numChangeColumn.TabIndex = 1;
-            this.numChangeColumn.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.numChangeColumn.Value = new decimal(new int[] {
-            1,
-            0,
-            0,
-            0});
-            // 
-            // lblColumn9
-            // 
-            this.lblColumn9.AutoSize = true;
-            this.lblColumn9.Location = new System.Drawing.Point(448, 74);
-            this.lblColumn9.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-            this.lblColumn9.Name = "lblColumn9";
-            this.lblColumn9.Size = new System.Drawing.Size(60, 17);
-            this.lblColumn9.TabIndex = 20;
-            this.lblColumn9.Text = "Kolumn 9";
-            // 
-            // cbCensurLevel
-            // 
-            this.cbCensurLevel.FormattingEnabled = true;
-            this.cbCensurLevel.Items.AddRange(new object[] {
-            "0 (Censurera ej)",
-            "1 (Sex/droger)"});
-            this.cbCensurLevel.Location = new System.Drawing.Point(451, 93);
-            this.cbCensurLevel.Name = "cbCensurLevel";
-            this.cbCensurLevel.Size = new System.Drawing.Size(130, 23);
-            this.cbCensurLevel.TabIndex = 8;
+            this.btnResetDb.Location = new System.Drawing.Point(87, 74);
+            this.btnResetDb.Name = "btnResetDb";
+            this.btnResetDb.Size = new System.Drawing.Size(279, 38);
+            this.btnResetDb.TabIndex = 0;
+            this.btnResetDb.Text = "Reset Database to default";
+            this.btnResetDb.UseVisualStyleBackColor = true;
+            this.btnResetDb.Click += new System.EventHandler(this.btnResetDb_Click);
             // 
             // Options
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.ClientSize = new System.Drawing.Size(821, 599);
+            this.ClientSize = new System.Drawing.Size(1232, 922);
             this.Controls.Add(this.tabControl1);
+            this.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.Name = "Options";
             this.Text = "Options";
             this.tabControl1.ResumeLayout(false);
@@ -569,13 +557,14 @@
             this.groupBox4.PerformLayout();
             this.groupBox3.ResumeLayout(false);
             this.groupBox3.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.numDeleteRow)).EndInit();
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.numChangeColumn)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numChangeRow)).EndInit();
             this.groupBox1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.DbDisplay)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numChangeRow)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numDeleteRow)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numChangeColumn)).EndInit();
+            this.Settings.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -620,5 +609,6 @@
         private System.Windows.Forms.NumericUpDown numChangeColumn;
         private System.Windows.Forms.Label lblColumn9;
         private System.Windows.Forms.ComboBox cbCensurLevel;
+        private System.Windows.Forms.Button btnResetDb;
     }
 }

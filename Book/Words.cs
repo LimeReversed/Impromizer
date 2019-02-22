@@ -3,11 +3,18 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Data.SqlClient;
 
 namespace Headline_Randomizer
 {
     public abstract class Words
     {
+        // Creating static object of the word classes to be called when using their mwthods
+        static public Adjectives adjective = new Adjectives();
+        static public Verbs verb = new Verbs();
+        static public Someone someone = new Someone();
+        static public Something something = new Something();
+
         // Virtual methods here to be able to reach them through List<Words>
         public virtual string KänslaPlural()
         {
@@ -19,17 +26,17 @@ namespace Headline_Randomizer
             return "";
         }
 
-        public virtual string BasForm()
+        public virtual string BasForm(int id)
         {
             return "";
         }
 
-        public virtual string Presens()
+        public virtual string Presens(int id)
         {
             return "";
         }
 
-        public virtual string Perfekt()
+        public virtual string Perfekt(int id)
         {
             return "";
         }
@@ -44,12 +51,7 @@ namespace Headline_Randomizer
             return "";
         }
 
-        public virtual string Singular()
-        {
-            return "";
-        }
-
-        public virtual string Singular(List<Words> nounList, int nounNr)
+        public virtual string Singular(int adjectiveId, int nounId)
         {
             return "";
         }
@@ -59,39 +61,34 @@ namespace Headline_Randomizer
             return "";
         }
 
-        public virtual string Plural()
+        public virtual string Plural(int id)
         {
             return "";
         }
 
-        public virtual string Name()
+        public virtual string Singular(int id)
         {
             return "";
         }
 
-        public virtual string Prize()
+        public virtual string Name(int id)
         {
             return "";
         }
 
-        public virtual string PostVerbs()
+        public virtual string Prize(int id)
         {
             return "";
         }
 
-        public virtual string Request()
+        public virtual string PostVerbs(int id)
         {
             return "";
         }
 
-        public virtual Indefinite EnEllerEttEnum()
+        public virtual string Request(int id)
         {
-            return 0;
-        }
-
-        public virtual Indefinite AOrAnEnum()
-        {
-            return 0;
+            return "";
         }
 
         public virtual string AOrAn()
@@ -99,12 +96,7 @@ namespace Headline_Randomizer
             return "";
         }
 
-        public virtual Genitive DinEllerDittEnum()
-        {
-            return 0;
-        }
-
-        public virtual string EnEllerEtt()
+        public virtual string EnEllerEtt(int id)
         {
             return "";
         }
@@ -114,12 +106,12 @@ namespace Headline_Randomizer
             return "";
         }
 
-        public virtual string EttForm()
+        public virtual string EttForm(int id)
         {
             return "";
         }
 
-        public virtual string EnForm()
+        public virtual string EnForm(int id)
         {
             return "";
         }
@@ -138,429 +130,318 @@ namespace Headline_Randomizer
         {
             return "";
         }
+
+        public virtual int RandomizeId()
+        {
+            return 404;
+        }
+
+        public virtual void Used(int idNr) { }
     }
 
     // Words
     // Verbs
     public class Verbs : Words
     {
-        protected string basForm;
-        protected string presens;
-        protected string perfekt;
-        protected string postVerbs;
-        protected string request;
-        protected string sForm;
-        protected string ingForm;
-
-        public override string BasForm()
+        public override int RandomizeId()
         {
-            return basForm;
+            //return Db.GetValue($"SELECT TOP 1 * FROM TblVerb WHERE Used = 0 ORDER BY NEWID()");
+            return Convert.ToInt32($"{Db.RandomizeValue("Select Id", "FROM TblVerb WHERE Used = 0")}");
         }
 
-        public override string Presens()
+        public override void Used(int idNr)
         {
-            return presens;
+            Db.Command($"UPDATE TblVerb SET Used = 1 WHERE Id = {idNr}");
         }
 
-        public override string Perfekt()
+        public override string BasForm(int id)
         {
-            return perfekt;
+            return Db.GetValue($"SELECT BaseForm FROM TblVerb WHERE Id = {id}");
         }
 
-        public override string Request()
+        public override string Presens(int id)
         {
-            return request;
+            return Db.GetValue($"SELECT Presens FROM TblVerb WHERE Id = {id}");
         }
 
-        public override string PostVerbs()
+        public override string Perfekt(int id)
         {
-            if (postVerbs == "")
+            return Db.GetValue($"SELECT Perfekt FROM TblVerb WHERE Id = {id}");
+        }
+
+        public override string Request(int id)
+        {
+            return Db.GetValue($"SELECT Request FROM TblVerb WHERE Id = {id}");
+        }
+
+        public override string PostVerbs(int id)
+        {
+            if (Db.GetValue($"SELECT PostVerb FROM TblVerb WHERE Id = {id}") == "")
             {
                 return "";
             }
             else
             {
-                return $"{postVerbs} ";
+                return $"{Db.GetValue($"SELECT PostVerb FROM TblVerb WHERE Id = {id}")} ";
             }
             
+
         }
 
-        public override string SForm()
-        {
-            return sForm;
-        }
+        //public override string SForm()
+        //{
+        //    return sForm;
+        //}
 
-        public override string IngForm()
-        {
-            return ingForm;
-        }
+        //public override string IngForm()
+        //{
+        //    return ingForm;
+        //}
 
-        // Swedish Constructor
-        public Verbs(string basForm, string presens, string perfekt, string postVerbs, string request) : base()
-        {
-            this.basForm = basForm;
-            this.presens = presens;
-            this.perfekt = perfekt;
-            this.postVerbs = postVerbs;
-            this.request = request;
-        }
+        //// Swedish Constructor
+        //public Verbs(string basForm, string presens, string perfekt, string postVerbs, string request) : base()
+        //{
+        //    this.basForm = basForm;
+        //    this.presens = presens;
+        //    this.perfekt = perfekt;
+        //    this.postVerbs = postVerbs;
+        //    this.request = request;
+        //}
 
-        // English Constructor
-        public Verbs(string basForm, string sForm, string ingForm) : base()
+        //// English Constructor
+        //public Verbs(string basForm, string sForm, string ingForm) : base()
+        //{
+        //    this.basForm = basForm;
+        //    this.sForm = sForm;
+        //    this.ingForm = ingForm;
+        //}
+
+        public Verbs()
         {
-            this.basForm = basForm;
-            this.sForm = sForm;
-            this.ingForm = ingForm;
+
         }
     }
 
     // Nouns
     public abstract class Nouns : Words
     {
-        protected string singular;
-        protected string plural;
-        protected Indefinite enEllerEtt;
-        protected Genitive dinEllerDitt;
-        protected Indefinite aOrAn;
-
-        static public void Test()
+        public override string EnEllerEtt(int id)
         {
-           
+            return Db.GetValue($"SELECT en/ett FROM TblNouns WHERE Id = {id}");
         }
 
-        
-
-        public override Indefinite AOrAnEnum()
+        public override string Plural(int id)
         {
-            return aOrAn;
+            return Db.GetValue($"SELECT Plural FROM TblNouns WHERE Id = {id}");
         }
 
-        public override Indefinite EnEllerEttEnum()
+        public override string Singular(int id)
         {
-            return enEllerEtt;
+            return Db.GetValue($"SELECT Singular FROM TblNouns WHERE Id = {id}");
         }
 
-        public override Genitive DinEllerDittEnum()
+        public override void Used(int idNr)
         {
-            return dinEllerDitt;
+            Db.Command($"UPDATE TblNouns SET Used = 1 WHERE Id = {idNr}");
         }
-
-        // Compares with the current noun and returns the right genitive. 
-        public override string AOrAn()
-        {
-            if (aOrAn == Indefinite.A)
-            {
-                return "a";
-            }
-            else if (aOrAn == Indefinite.An)
-            {
-                return "an";
-            }
-            else { return null; }
-        }
-
-        // Compares with the current noun and returns the right indefinite. 
-        public override string EnEllerEtt()
-        {
-            if (this.EnEllerEttEnum() == Indefinite.En)
-            {
-                return "en ";
-            }
-            else if (this.EnEllerEttEnum() == Indefinite.Ett)
-            {
-                return "ett ";
-            }
-            else { return null; }
-        }
-
-        // Compares with the current noun and returns the right genitive. 
-        public override string DinEllerDitt(string pluralOrSingular)
-        {
-            if (pluralOrSingular == "singular")
-            {
-                if (this.dinEllerDitt == Genitive.DinDina || this.dinEllerDitt == Genitive.DinDin)
-                {
-                    return "din";
-                }
-                else if (this.dinEllerDitt == Genitive.DittDina || this.dinEllerDitt == Genitive.DittDitt)
-                {
-                    return "ditt";
-                }
-                else { return ""; }
-            }
-            else if (pluralOrSingular == "plural")
-            {
-                if (this.dinEllerDitt == Genitive.DinDina || this.dinEllerDitt == Genitive.DittDina)
-                {
-                    return "dina";
-                }
-                else if (this.dinEllerDitt == Genitive.DinDin)
-                {
-                    return "din";
-                }
-                else if (this.dinEllerDitt == Genitive.DinDin)
-                {
-                    return "ditt";
-                }
-                else { return ""; }
-            }
-            else { return ""; }
-
-        }
-
-        public override string Singular()
-        {
-            return singular;
-        }
-
-        public override string Plural()
-        {
-            return plural;
-        }
-
-        // English Contructor - Turns string from txt to enum instantly without going through a separate method first. 
-        public Nouns(string singular, string plural, string engindefinite, bool english) : base()
-        {
-            this.singular = singular;
-            this.plural = plural;
-            if (engindefinite == "a")
-            {
-                this.aOrAn = Indefinite.A;
-            }
-            else if (engindefinite == "an")
-            {
-                this.aOrAn = Indefinite.An;
-            }
-            else
-            {
-                this.aOrAn = Indefinite.Null;
-            }
-        }
-
-        // Swedish Constructor - Turns string from txt to enum instantly without going through a separate method first. 
-        public Nouns(string singular, string plural, string indefiniteAndGenitive) : base()
-        {
-            this.singular = singular;
-            this.plural = plural;
-            if (indefiniteAndGenitive == "en/dina")
-            { this.enEllerEtt = Indefinite.En; this.dinEllerDitt = Genitive.DinDina; }
-            else if (indefiniteAndGenitive == "ett/dina")
-            { this.enEllerEtt = Indefinite.Ett; this.dinEllerDitt = Genitive.DittDina; }
-            else if (indefiniteAndGenitive == "din/din")
-            {
-                this.enEllerEtt = Indefinite.Null; this.dinEllerDitt = Genitive.DinDin;
-            }
-            else if (indefiniteAndGenitive == "ditt/ditt")
-            {
-                this.enEllerEtt = Indefinite.Null; this.dinEllerDitt = Genitive.DittDitt;
-            }
-        }
-
-        // Univeral cotructor for only sing and plu, specifically added for relations. 
-        public Nouns(string singular, string plural) : base()
-        {
-            this.singular = singular;
-            this.plural = plural;
-        }
-
     }
 
     // Noun - Something
     public class Something : Nouns
     {
-        public Something(string singular, string plural, string indefiniteAndGenitive) : base(singular, plural, indefiniteAndGenitive)
+        public override int RandomizeId()
         {
+            return Convert.ToInt32($"{Db.RandomizeValue("Select Id", "FROM TblNouns WHERE Used = 0 AND Animated = 0")}");
         }
-
-        public Something(string singular, string plural, string engIndefinite, bool english) : base(singular, plural, engIndefinite, english)
-        {
-        }
-
     }
 
     // Noun - Someone
     public class Someone : Nouns
     {
-        public Someone(string singular, string plural, string indefiniteAndGenitive) : base(singular, plural, indefiniteAndGenitive)
+        public override int RandomizeId()
         {
+            return Convert.ToInt32($"{Db.RandomizeValue("SELECT Id", "FROM TblNouns WHERE Used = 0 AND Animated = 1")}");
         }
 
-        public Someone(string singular, string plural, string engIndefinite, bool english) : base(singular, plural, engIndefinite, english)
-        {
-        }
+        //public Someone() : base()
+        //{
+
+        //}
 
     }
 
      // Adjectives
     public class Adjectives : Words
     {
-        protected string ettForm;
-        protected string enForm;
-        protected string plural;
-        protected string descriptive;
-
-        public override string EttForm()
+        public override int RandomizeId()
         {
-            return ettForm;
+            return Convert.ToInt32($"{Db.RandomizeValue("Select Id", "FROM TblAdjective WHERE Used = 0")}");
         }
 
-        public override string EnForm()
+        public override void Used(int idNr)
         {
-            return enForm;
+            Db.Command($"UPDATE TblAdjective SET Used = 1 WHERE Id = {idNr}");
         }
 
-        public override string Plural()
+        public override string EttForm(int id)
+         {
+            return Db.GetValue($"SELECT EttForm FROM TblAdjective WHERE Id = {id}");
+         }
+
+        public override string EnForm(int id)
         {
-            return plural;
+            return Db.GetValue($"SELECT EnForm FROM TblAdjective WHERE Id = {id}");
         }
 
-        public override string Singular()
+        public override string Plural(int id)
         {
-            return enForm;
+            return Db.GetValue($"SELECT Plural FROM TblAdjective WHERE Id = {id}");
         }
 
-        public override string Descriptive()
-        {
-            return descriptive;
-        }
+        //public override string Descriptive()
+        //{
+        //    return descriptive;
+        //}
 
         // Compares current adjective with the right noun and returns the right adjective
-        public override string Singular(List<Words> nounList, int nounNr)
+        public override string Singular(int adjectiveId, int nounId)
         {
-            if (nounList[nounNr].EnEllerEttEnum() == Indefinite.En || nounList[nounNr].DinEllerDittEnum() == Genitive.DinDin)
-                return $"{this.enForm}";
-            else if (nounList[nounNr].EnEllerEttEnum() == Indefinite.Ett || nounList[nounNr].DinEllerDittEnum() == Genitive.DittDitt)
+            string enValue = Db.GetValue($"SELECT [en/ett] FROM TblNouns WHERE Id = {nounId}");
+            string dinValue = Db.GetValue($"SELECT [din/dina] FROM TblNouns WHERE Id = {nounId}");
+
+            if (enValue == "en"  || dinValue == @"din/din" || enValue == "")
+                return Db.GetValue($"SELECT EnForm FROM TblAdjective WHERE Id = {adjectiveId}");
+            else if (enValue == "ett" || dinValue == @"ditt/ditt")
             {
-                return $"{this.ettForm}";
+                return Db.GetValue($"SELECT EttForm FROM TblAdjective WHERE Id = {adjectiveId}");
             }
             else { return ""; }
         }
 
-        public override string Plural(List<Words> nounList, int nounNr)
+        //public override string Plural(List<Words> nounList, int nounNr)
+        //{
+
+        //    if (nounList[nounNr].EnEllerEttEnum() == Indefinite.En || nounList[nounNr].EnEllerEttEnum() == Indefinite.Ett)
+        //        return $"{this.plural}";
+        //    else if (nounList[nounNr].DinEllerDittEnum() == Genitive.DittDitt)
+        //    {
+        //        return $"{this.ettForm}";
+        //    }
+        //    else if (nounList[nounNr].DinEllerDittEnum() == Genitive.DinDin)
+        //    {
+        //        return $"{this.enForm}";
+        //    }
+        //    else { return ""; }
+        //}
+
+        //// Swedish Constructor
+        //public Adjectives(string enForm, string plural, string ettForm) : base()
+        //{
+        //    this.enForm = enForm;
+        //    this.plural = plural;
+        //    this.ettForm = ettForm;
+        //}
+
+        ////English constructor
+        //public Adjectives(string descriptive) : base()
+        //{
+        //    this.descriptive = descriptive;
+        //}
+
+        public Adjectives()
         {
 
-            if (nounList[nounNr].EnEllerEttEnum() == Indefinite.En || nounList[nounNr].EnEllerEttEnum() == Indefinite.Ett)
-                return $"{this.plural}";
-            else if (nounList[nounNr].DinEllerDittEnum() == Genitive.DittDitt)
-            {
-                return $"{this.ettForm}";
-            }
-            else if (nounList[nounNr].DinEllerDittEnum() == Genitive.DinDin)
-            {
-                return $"{this.enForm}";
-            }
-            else { return ""; }
-        }
-
-        // Swedish Constructor
-        public Adjectives(string enForm, string plural, string ettForm) : base()
-        {
-            this.enForm = enForm;
-            this.plural = plural;
-            this.ettForm = ettForm;
-        }
-
-        //English constructor
-        public Adjectives(string descriptive) : base()
-        {
-            this.descriptive = descriptive;
         }
     }
 
     // Names
     public abstract class Names : Words
     {
-        protected string name;
-
-        public override string Name()
-        {
-            return name;
-        }
-
-        public Names() { }
-
-        public Names(string name) : base()
-        {
-            this.name = name;
-        }
     }
 
     // Joke Names
     public class JokeNames : Names
     {
-        public JokeNames() { }
-
-        public JokeNames(string name) : base(name)
+        public override int RandomizeId()
         {
+            return Convert.ToInt32($"{Db.RandomizeValue("Select Id", "FROM TblJokeNames WHERE Used = 0")}");
+        }
+
+        public override void Used(int idNr)
+        {
+            Db.Command($"UPDATE TblJokeNames SET Used = 1 WHERE Id = {idNr}");
+        }
+
+        public override string Name(int id)
+        {
+            return Db.GetValue($"SELECT Name FROM TblJokeNames WHERE Id = { id }");
         }
 
     }
 
-    public class Location : Names
-    {
-        public override string Name()
-        {
-            return name;
-        }
+    //public class Location : Names
+    //{
+    //    public override int RandomizeId()
+    //    {
+    //        return Convert.ToInt32($"{Db.RandomizeValue("Select Id", "FROM TblLocation WHERE Used = 0")}");
+    //    }
 
-        public Location(string name) : base(name)
-        {
-            this.name = name;
-        }
-    }
+    //    public override void Used(int idNr)
+    //    {
+    //        Db.Command($"UPDATE TblLocations SET Used = 1 WHERE Id = {idNr}");
+    //    }
+    //}
 
     // Nobel prize
     public class NobelPrizes : Words
     {
-        protected string prize;
-
-        public override string Prize()
+        public override int RandomizeId()
         {
-            return prize;
+            return Convert.ToInt32($"{Db.RandomizeValue("Select Id", "FROM TblNobelPrizes WHERE Used = 0")}");
         }
 
-        public NobelPrizes()
+        public override void Used(int idNr)
         {
-
+            Db.Command($"UPDATE TblNobelPrizes SET Used = 1 WHERE Id = {idNr}");
         }
 
-        public NobelPrizes(string prize)
+        public override string Prize(int id)
         {
-            this.prize = prize;
+            return Db.GetValue($"SELECT Prize FROM TblNobelPrizes WHERE Id = { id }");
         }
     }
 
-    public class Relation : Words
-    {
-        protected string känslaSingular, känslaPlural, statusförhållande;
+    //public class Relation : Words
+    //{
+    //    protected string känslaSingular, känslaPlural, statusförhållande;
 
-        public override string KänslaPlural()
-        {
-            return känslaPlural;
-        }
+    //    public override string KänslaPlural()
+    //    {
+    //        return känslaPlural;
+    //    }
 
-        public override string KänslaSingular()
-        {
-            return känslaSingular;
-        }
+    //    public override string KänslaSingular()
+    //    {
+    //        return känslaSingular;
+    //    }
 
-        public override string StatusFörhållande()
-        {
-            return statusförhållande;
-        }
+    //    public override string StatusFörhållande()
+    //    {
+    //        return statusförhållande;
+    //    }
 
-        public Relation(string statusförhållande) : base()
-        {
-            this.statusförhållande = statusförhållande;
-        }
+    //    public Relation(string statusförhållande) : base()
+    //    {
+    //        this.statusförhållande = statusförhållande;
+    //    }
 
-        public Relation(string känslaSingular, string känslaPlural) : base()
-        {
-            this.känslaSingular = känslaSingular;
-            this.känslaPlural = känslaPlural;
-        }
-    }
+    //    public Relation(string känslaSingular, string känslaPlural) : base()
+    //    {
+    //        this.känslaSingular = känslaSingular;
+    //        this.känslaPlural = känslaPlural;
+    //    }
 
-    public enum Indefinite { En, Ett, Null, A, An }
-    public enum Genitive { DinDina, DittDina, DinDin, DittDitt }
+    //    Relation() { }
+    //}
+
 }
