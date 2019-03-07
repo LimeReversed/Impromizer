@@ -10,8 +10,16 @@ namespace Headline_Randomizer
     {
         static public string FirstLetterUpper(string line)
         {
-            string firstLetter = line[0].ToString().ToUpper();
-            return $"{firstLetter}{line.Substring(1, line.Length - 1)}";
+            if (line == "")
+            {
+                MessageBox.Show("Det fanns inget att generera");
+                return "";
+            }
+            else
+            {
+                string firstLetter = line[0].ToString().ToUpper();
+                return $"{firstLetter}{line.Substring(1, line.Length - 1)}";
+            }
         }
 
 

@@ -7252,7 +7252,26 @@
         4MMqR+j/ztVxiEKu6P+uhb5A/VsUdfX/DzAmXfM252HuAAAAAElFTkSuQmCC
 </value>
   </data>
+  <metadata name="toolTip.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>173, 17</value>
+  </metadata>
+  <data name="cbWords.ToolTip" xml:space="preserve">
+    <value>Adjektiv: Ord som beskriver hur någon eller något är eller ser ut.
+
+Substantiv (Något): Ord på saker och ting, exempelvis bil och vind.
+
+Substantiv (Någon): Ord på exempelvis personer och djur, såsom kvinna och hund.
+
+Skämtnamn: Roliga namn. 
+
+Verb: Ord som beskriver vad någon gör.
+
+ </value>
+  </data>
   <metadata name="menuStrip1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>17, 17</value>
+  </metadata>
+  <metadata name="$this.TrayHeight" type="System.Int32, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>67</value>
   </metadata>
 </root>

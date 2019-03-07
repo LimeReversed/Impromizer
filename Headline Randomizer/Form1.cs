@@ -310,13 +310,13 @@ namespace Headline_Randomizer
             presentationWindow.tbxResult.Text = "";
              foreach (Custom element in list.choicesList)
              {
-                if (element.WordClassChoice == "Adjective" && element.FormChoice == "Descriptive")
+                if (element.WordChoice == "Adjective" && element.FormChoice == "Descriptive")
                 {
                     int rNr = r.Next(0, list.adjective.Count);
                     presentationWindow.tbxResult.AppendText($"{list.adjective[rNr].Descriptive()} ");
                     list.adjective.RemoveAt(rNr);
                 }
-                else if (element.WordClassChoice == "Dead noun")
+                else if (element.WordChoice == "Dead noun")
                 {
                     int rNr = r.Next(0, list.something.Count);
 
@@ -330,13 +330,13 @@ namespace Headline_Randomizer
                     }
                     list.something.RemoveAt(rNr);
                 }
-                else if (element.WordClassChoice == "Joke name" && element.FormChoice == "Name")
+                else if (element.WordChoice == "Joke name" && element.FormChoice == "Name")
                 {
                     int rNr = r.Next(0, list.jokeName.Count);
                     presentationWindow.tbxResult.AppendText($"{list.jokeName[rNr].Name()} ");
                     list.jokeName.RemoveAt(rNr);
                 }
-                else if (element.WordClassChoice == "Live noun")
+                else if (element.WordChoice == "Live noun")
                 {
                     int rNr = r.Next(0, list.someone.Count);
 
@@ -350,7 +350,7 @@ namespace Headline_Randomizer
                     }
                     list.someone.RemoveAt(rNr);
                 }
-                else if (element.WordClassChoice == "Verb")
+                else if (element.WordChoice == "Verb")
                 {
                     int rNr = r.Next(0, list.verb.Count);
                     if (element.FormChoice == "Base form")

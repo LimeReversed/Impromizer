@@ -8,34 +8,40 @@ namespace Headline_Randomizer
 {
     public class Custom
     {
-        public string ToAddedTbx { get; set; }
-        public string WordClassChoice { get; set; }
+        public string WordChoice { get; set; }
         public string FormChoice { get; set; }
+        public string ConnectionChoice { get; set; }
         public decimal FromValue { get; set; }
         public decimal ToValue { get; set; }
-        public string CustomString { get; set; }
+        public bool CustomString { get; set; }
+        public int PositionNr { get; set; }
+        public int Id { get; set; }
+        public int ConnectionPosition { get; set; }
 
         // For adding custom words
-        public Custom(string toAddedTbx, string wordClassChoice, string formChoice)
+        public Custom(string wordChoice, string formChoice, string connectionChoice, int id, int connectionPosition, int positionNr)
         {
-            this.ToAddedTbx = toAddedTbx;
-            this.WordClassChoice = wordClassChoice;
+            this.WordChoice = wordChoice;
             this.FormChoice = formChoice;
+            this.ConnectionChoice = connectionChoice;
+            this.Id = id;
+            this.PositionNr = positionNr;
+            this.ConnectionPosition = connectionPosition;
         }
 
         // For adding custom number
-        public Custom(string toAddedTbx, decimal fromValue, decimal toValue)
+        public Custom(string wordChoice, decimal fromValue, decimal toValue)
         {
-            this.ToAddedTbx = toAddedTbx;
+            this.WordChoice = wordChoice;
             this.FromValue = fromValue;
             this.ToValue = toValue;
         }
 
         // For add custom string
-        public Custom(string toAddedTbx, string customString)
+        public Custom(string wordChoice, bool customString)
         {
-            this.ToAddedTbx = toAddedTbx;
-            this.CustomString = customString;
+            this.WordChoice = wordChoice;
+            this.CustomString = true;
         }
 
         public Custom()

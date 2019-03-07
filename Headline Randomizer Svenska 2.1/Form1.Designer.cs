@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
             this.customTabControl1 = new System.Windows.Forms.CustomTabControl();
             this.tabPage3 = new System.Windows.Forms.TabPage();
@@ -68,16 +69,17 @@
             this.label1 = new System.Windows.Forms.Label();
             this.nupFrom = new System.Windows.Forms.NumericUpDown();
             this.groupBox8 = new System.Windows.Forms.GroupBox();
+            this.cbConnect = new System.Windows.Forms.ComboBox();
             this.btnAddWord = new System.Windows.Forms.Button();
             this.cbForms = new System.Windows.Forms.ComboBox();
-            this.cbBook = new System.Windows.Forms.ComboBox();
+            this.cbWords = new System.Windows.Forms.ComboBox();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.backToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.saveResultToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.listSavesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.forwardToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.settingsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.button1 = new System.Windows.Forms.Button();
+            this.toolTip = new System.Windows.Forms.ToolTip(this.components);
             this.customTabControl1.SuspendLayout();
             this.tabPage3.SuspendLayout();
             this.tabPage2.SuspendLayout();
@@ -143,7 +145,7 @@
             this.tabPage3.ForeColor = System.Drawing.Color.White;
             this.tabPage3.Location = new System.Drawing.Point(4, 36);
             this.tabPage3.Name = "tabPage3";
-            this.tabPage3.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage3.Padding = new System.Windows.Forms.Padding(3, 3, 3, 3);
             this.tabPage3.Size = new System.Drawing.Size(606, 292);
             this.tabPage3.TabIndex = 0;
             this.tabPage3.Text = "Rubriker";
@@ -398,7 +400,7 @@
             this.tabPage5.Controls.Add(this.pictureBox1);
             this.tabPage5.Location = new System.Drawing.Point(4, 36);
             this.tabPage5.Name = "tabPage5";
-            this.tabPage5.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage5.Padding = new System.Windows.Forms.Padding(3, 3, 3, 3);
             this.tabPage5.Size = new System.Drawing.Size(606, 292);
             this.tabPage5.TabIndex = 4;
             this.tabPage5.Text = "Scen";
@@ -541,7 +543,7 @@
             this.tabPage1.Controls.Add(this.btnClear2);
             this.tabPage1.Location = new System.Drawing.Point(4, 36);
             this.tabPage1.Name = "tabPage1";
-            this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage1.Padding = new System.Windows.Forms.Padding(3, 3, 3, 3);
             this.tabPage1.Size = new System.Drawing.Size(606, 292);
             this.tabPage1.TabIndex = 2;
             this.tabPage1.Text = "Övrigt";
@@ -592,7 +594,6 @@
             // 
             this.tabPage4.AutoScroll = true;
             this.tabPage4.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.tabPage4.Controls.Add(this.button1);
             this.tabPage4.Controls.Add(this.btnCustomClear);
             this.tabPage4.Controls.Add(this.groupBox5);
             this.tabPage4.Controls.Add(this.btnGenerate);
@@ -602,7 +603,7 @@
             this.tabPage4.ForeColor = System.Drawing.Color.White;
             this.tabPage4.Location = new System.Drawing.Point(4, 36);
             this.tabPage4.Name = "tabPage4";
-            this.tabPage4.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage4.Padding = new System.Windows.Forms.Padding(3, 3, 3, 3);
             this.tabPage4.Size = new System.Drawing.Size(606, 292);
             this.tabPage4.TabIndex = 1;
             this.tabPage4.Text = "Egen mening";
@@ -613,9 +614,9 @@
             this.btnCustomClear.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnCustomClear.Font = new System.Drawing.Font("Calibri", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnCustomClear.ForeColor = System.Drawing.Color.White;
-            this.btnCustomClear.Location = new System.Drawing.Point(466, 200);
+            this.btnCustomClear.Location = new System.Drawing.Point(475, 246);
             this.btnCustomClear.Name = "btnCustomClear";
-            this.btnCustomClear.Size = new System.Drawing.Size(105, 33);
+            this.btnCustomClear.Size = new System.Drawing.Size(105, 27);
             this.btnCustomClear.TabIndex = 13;
             this.btnCustomClear.Text = "Rensa";
             this.btnCustomClear.UseVisualStyleBackColor = true;
@@ -626,34 +627,35 @@
             this.groupBox5.Controls.Add(this.tbxAdded);
             this.groupBox5.Font = new System.Drawing.Font("Calibri", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.groupBox5.ForeColor = System.Drawing.Color.White;
-            this.groupBox5.Location = new System.Drawing.Point(38, 191);
+            this.groupBox5.Location = new System.Drawing.Point(25, 191);
             this.groupBox5.Name = "groupBox5";
-            this.groupBox5.Size = new System.Drawing.Size(417, 82);
+            this.groupBox5.Size = new System.Drawing.Size(432, 82);
             this.groupBox5.TabIndex = 12;
             this.groupBox5.TabStop = false;
             this.groupBox5.Text = "Tillagda ord/nummer";
             // 
             // tbxAdded
             // 
-            this.tbxAdded.Font = new System.Drawing.Font("Calibri", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tbxAdded.Location = new System.Drawing.Point(12, 21);
+            this.tbxAdded.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.tbxAdded.Location = new System.Drawing.Point(13, 21);
             this.tbxAdded.Multiline = true;
             this.tbxAdded.Name = "tbxAdded";
-            this.tbxAdded.Size = new System.Drawing.Size(393, 51);
+            this.tbxAdded.Size = new System.Drawing.Size(405, 51);
             this.tbxAdded.TabIndex = 3;
             // 
             // btnGenerate
             // 
+            this.btnGenerate.BackColor = System.Drawing.SystemColors.HotTrack;
             this.btnGenerate.FlatAppearance.BorderColor = System.Drawing.Color.White;
             this.btnGenerate.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnGenerate.Font = new System.Drawing.Font("Calibri", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnGenerate.ForeColor = System.Drawing.Color.White;
-            this.btnGenerate.Location = new System.Drawing.Point(466, 239);
+            this.btnGenerate.Location = new System.Drawing.Point(475, 200);
             this.btnGenerate.Name = "btnGenerate";
-            this.btnGenerate.Size = new System.Drawing.Size(105, 33);
+            this.btnGenerate.Size = new System.Drawing.Size(105, 42);
             this.btnGenerate.TabIndex = 10;
             this.btnGenerate.Text = "Generera";
-            this.btnGenerate.UseVisualStyleBackColor = true;
+            this.btnGenerate.UseVisualStyleBackColor = false;
             this.btnGenerate.Click += new System.EventHandler(this.btnGenerate_Click);
             // 
             // groupBox6
@@ -662,21 +664,21 @@
             this.groupBox6.Controls.Add(this.tbxCustom);
             this.groupBox6.Font = new System.Drawing.Font("Calibri", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.groupBox6.ForeColor = System.Drawing.Color.White;
-            this.groupBox6.Location = new System.Drawing.Point(38, 117);
+            this.groupBox6.Location = new System.Drawing.Point(25, 120);
             this.groupBox6.Name = "groupBox6";
-            this.groupBox6.Size = new System.Drawing.Size(533, 61);
+            this.groupBox6.Size = new System.Drawing.Size(558, 61);
             this.groupBox6.TabIndex = 11;
             this.groupBox6.TabStop = false;
-            this.groupBox6.Text = "Eget ord";
+            this.groupBox6.Text = "Lägg till egna ord";
             // 
             // btnAddCustom
             // 
             this.btnAddCustom.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.btnAddCustom.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnAddCustom.ForeColor = System.Drawing.Color.White;
-            this.btnAddCustom.Location = new System.Drawing.Point(428, 22);
+            this.btnAddCustom.ForeColor = System.Drawing.Color.Gray;
+            this.btnAddCustom.Location = new System.Drawing.Point(453, 22);
             this.btnAddCustom.Name = "btnAddCustom";
-            this.btnAddCustom.Size = new System.Drawing.Size(96, 26);
+            this.btnAddCustom.Size = new System.Drawing.Size(96, 27);
             this.btnAddCustom.TabIndex = 5;
             this.btnAddCustom.Text = "Lägg till";
             this.btnAddCustom.UseVisualStyleBackColor = false;
@@ -684,11 +686,12 @@
             // 
             // tbxCustom
             // 
-            this.tbxCustom.Font = new System.Drawing.Font("Calibri", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.tbxCustom.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.tbxCustom.Location = new System.Drawing.Point(9, 22);
             this.tbxCustom.Name = "tbxCustom";
-            this.tbxCustom.Size = new System.Drawing.Size(408, 26);
+            this.tbxCustom.Size = new System.Drawing.Size(423, 27);
             this.tbxCustom.TabIndex = 3;
+            this.tbxCustom.TextChanged += new System.EventHandler(this.tbxCustom_TextChanged);
             // 
             // groupBox7
             // 
@@ -699,21 +702,21 @@
             this.groupBox7.Controls.Add(this.nupFrom);
             this.groupBox7.Font = new System.Drawing.Font("Calibri", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.groupBox7.ForeColor = System.Drawing.Color.White;
-            this.groupBox7.Location = new System.Drawing.Point(333, 14);
+            this.groupBox7.Location = new System.Drawing.Point(339, 14);
             this.groupBox7.Name = "groupBox7";
-            this.groupBox7.Size = new System.Drawing.Size(238, 90);
+            this.groupBox7.Size = new System.Drawing.Size(244, 98);
             this.groupBox7.TabIndex = 9;
             this.groupBox7.TabStop = false;
-            this.groupBox7.Text = "Slumpa nummer";
+            this.groupBox7.Text = "Lägg till slumpat nummer";
             // 
             // btnAddNr
             // 
             this.btnAddNr.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.btnAddNr.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnAddNr.ForeColor = System.Drawing.Color.White;
-            this.btnAddNr.Location = new System.Drawing.Point(133, 23);
+            this.btnAddNr.Location = new System.Drawing.Point(136, 24);
             this.btnAddNr.Name = "btnAddNr";
-            this.btnAddNr.Size = new System.Drawing.Size(96, 58);
+            this.btnAddNr.Size = new System.Drawing.Size(96, 62);
             this.btnAddNr.TabIndex = 4;
             this.btnAddNr.Text = "Lägg till";
             this.btnAddNr.UseVisualStyleBackColor = false;
@@ -723,7 +726,7 @@
             // 
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(10, 23);
+            this.label2.Location = new System.Drawing.Point(9, 25);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(42, 18);
             this.label2.TabIndex = 3;
@@ -732,7 +735,7 @@
             // nupTo
             // 
             this.nupTo.Font = new System.Drawing.Font("Calibri", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.nupTo.Location = new System.Drawing.Point(65, 55);
+            this.nupTo.Location = new System.Drawing.Point(57, 60);
             this.nupTo.Maximum = new decimal(new int[] {
             9999,
             0,
@@ -753,7 +756,7 @@
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(29, 55);
+            this.label1.Location = new System.Drawing.Point(20, 61);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(30, 18);
             this.label1.TabIndex = 1;
@@ -762,7 +765,7 @@
             // nupFrom
             // 
             this.nupFrom.Font = new System.Drawing.Font("Calibri", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.nupFrom.Location = new System.Drawing.Point(64, 23);
+            this.nupFrom.Location = new System.Drawing.Point(57, 24);
             this.nupFrom.Maximum = new decimal(new int[] {
             9999,
             0,
@@ -777,27 +780,41 @@
             // groupBox8
             // 
             this.groupBox8.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.groupBox8.Controls.Add(this.cbConnect);
             this.groupBox8.Controls.Add(this.btnAddWord);
             this.groupBox8.Controls.Add(this.cbForms);
-            this.groupBox8.Controls.Add(this.cbBook);
+            this.groupBox8.Controls.Add(this.cbWords);
             this.groupBox8.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.groupBox8.Font = new System.Drawing.Font("Calibri", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.groupBox8.ForeColor = System.Drawing.Color.White;
-            this.groupBox8.Location = new System.Drawing.Point(38, 14);
+            this.groupBox8.Location = new System.Drawing.Point(25, 14);
             this.groupBox8.Name = "groupBox8";
-            this.groupBox8.Size = new System.Drawing.Size(269, 90);
+            this.groupBox8.Size = new System.Drawing.Size(295, 98);
             this.groupBox8.TabIndex = 8;
             this.groupBox8.TabStop = false;
-            this.groupBox8.Text = "Slumpa ord";
+            this.groupBox8.Text = "Lägg till slumpat ord";
+            // 
+            // cbConnect
+            // 
+            this.cbConnect.BackColor = System.Drawing.Color.White;
+            this.cbConnect.Enabled = false;
+            this.cbConnect.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cbConnect.FormattingEnabled = true;
+            this.cbConnect.Location = new System.Drawing.Point(11, 59);
+            this.cbConnect.Name = "cbConnect";
+            this.cbConnect.Size = new System.Drawing.Size(180, 27);
+            this.cbConnect.TabIndex = 4;
+            this.cbConnect.SelectedIndexChanged += new System.EventHandler(this.cbConnect_SelectedIndexChanged);
+            this.cbConnect.TextUpdate += new System.EventHandler(this.cbConnect_TextUpdate);
             // 
             // btnAddWord
             // 
             this.btnAddWord.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.btnAddWord.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnAddWord.ForeColor = System.Drawing.Color.White;
-            this.btnAddWord.Location = new System.Drawing.Point(151, 23);
+            this.btnAddWord.ForeColor = System.Drawing.Color.Gray;
+            this.btnAddWord.Location = new System.Drawing.Point(197, 59);
             this.btnAddWord.Name = "btnAddWord";
-            this.btnAddWord.Size = new System.Drawing.Size(109, 58);
+            this.btnAddWord.Size = new System.Drawing.Size(88, 27);
             this.btnAddWord.TabIndex = 3;
             this.btnAddWord.Text = "Lägg till";
             this.btnAddWord.UseVisualStyleBackColor = false;
@@ -805,31 +822,38 @@
             // 
             // cbForms
             // 
-            this.cbForms.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cbForms.Font = new System.Drawing.Font("Calibri", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cbForms.BackColor = System.Drawing.Color.White;
+            this.cbForms.Enabled = false;
+            this.cbForms.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cbForms.FormattingEnabled = true;
-            this.cbForms.Location = new System.Drawing.Point(10, 55);
+            this.cbForms.ItemHeight = 19;
+            this.cbForms.Location = new System.Drawing.Point(170, 24);
             this.cbForms.Name = "cbForms";
-            this.cbForms.Size = new System.Drawing.Size(135, 26);
+            this.cbForms.Size = new System.Drawing.Size(115, 27);
             this.cbForms.TabIndex = 2;
+            this.cbForms.SelectedIndexChanged += new System.EventHandler(this.cbForms_SelectedIndexChanged);
+            this.cbForms.TextUpdate += new System.EventHandler(this.cbForms_TextUpdate);
             // 
-            // cbBook
+            // cbWords
             // 
-            this.cbBook.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cbBook.Font = new System.Drawing.Font("Calibri", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.cbBook.ForeColor = System.Drawing.Color.Black;
-            this.cbBook.FormattingEnabled = true;
-            this.cbBook.Items.AddRange(new object[] {
+            this.cbWords.BackColor = System.Drawing.Color.White;
+            this.cbWords.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cbWords.ForeColor = System.Drawing.Color.Black;
+            this.cbWords.FormattingEnabled = true;
+            this.cbWords.Items.AddRange(new object[] {
             "Adjektiv",
-            "Substantiv - Något",
-            "Substantiv - Någon",
+            "Substantiv (Något)",
+            "Substantiv (Någon)",
             "Skämtnamn",
             "Verb"});
-            this.cbBook.Location = new System.Drawing.Point(10, 23);
-            this.cbBook.Name = "cbBook";
-            this.cbBook.Size = new System.Drawing.Size(135, 26);
-            this.cbBook.TabIndex = 1;
-            this.cbBook.SelectedIndexChanged += new System.EventHandler(this.cbBook_SelectedIndexChanged);
+            this.cbWords.Location = new System.Drawing.Point(11, 24);
+            this.cbWords.Name = "cbWords";
+            this.cbWords.Size = new System.Drawing.Size(153, 27);
+            this.cbWords.TabIndex = 1;
+            this.cbWords.Text = "Välj...";
+            this.toolTip.SetToolTip(this.cbWords, resources.GetString("cbWords.ToolTip"));
+            this.cbWords.SelectedIndexChanged += new System.EventHandler(this.cbBook_SelectedIndexChanged);
+            this.cbWords.TextUpdate += new System.EventHandler(this.cbWords_TextUpdate);
             // 
             // menuStrip1
             // 
@@ -897,15 +921,12 @@
             this.settingsToolStripMenuItem.Text = "Options";
             this.settingsToolStripMenuItem.Click += new System.EventHandler(this.settingsToolStripMenuItem_Click);
             // 
-            // button1
+            // toolTip
             // 
-            this.button1.Location = new System.Drawing.Point(6, 110);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(75, 23);
-            this.button1.TabIndex = 14;
-            this.button1.Text = "button1";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
+            this.toolTip.AutomaticDelay = 0;
+            this.toolTip.AutoPopDelay = 999999999;
+            this.toolTip.InitialDelay = 500;
+            this.toolTip.ReshowDelay = 100;
             // 
             // Form1
             // 
@@ -965,7 +986,7 @@
         private System.Windows.Forms.Button btnGenerate;
         private System.Windows.Forms.GroupBox groupBox8;
         private System.Windows.Forms.ComboBox cbForms;
-        private System.Windows.Forms.ComboBox cbBook;
+        private System.Windows.Forms.ComboBox cbWords;
         private System.Windows.Forms.Button btnAddWord;
         private System.Windows.Forms.NumericUpDown nupTo;
         private System.Windows.Forms.Label label1;
@@ -995,7 +1016,8 @@
         private System.Windows.Forms.ToolStripMenuItem saveResultToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem listSavesToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem settingsToolStripMenuItem;
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.ComboBox cbConnect;
+        private System.Windows.Forms.ToolTip toolTip;
     }
 }
 

@@ -435,7 +435,7 @@ namespace Headline_Randomizer
             presentationWindow.tbxResult.Text = "";
              foreach (Custom element in list.choicesList)
              {
-                if (element.WordClassChoice == "Adjektiv")
+                if (element.WordChoice == "Adjektiv")
                 {
                     int rNr = r.Next(0, list.adjective.Count);
                     if (element.FormChoice == "Singular")
@@ -448,7 +448,7 @@ namespace Headline_Randomizer
                     }
                     list.adjective.RemoveAt(rNr);
                 }
-                else if (element.WordClassChoice == "Substantiv - Något")
+                else if (element.WordChoice == "Substantiv - Något")
                 {
                     int rNr = r.Next(0, list.something.Count);
 
@@ -462,13 +462,13 @@ namespace Headline_Randomizer
                     }
                     list.something.RemoveAt(rNr);
                 }
-                else if (element.WordClassChoice == "Skämtnamn" && element.FormChoice == "Name")
+                else if (element.WordChoice == "Skämtnamn" && element.FormChoice == "Name")
                 {
                     int rNr = r.Next(0, list.jokeName.Count);
                     presentationWindow.tbxResult.AppendText($"{list.jokeName[rNr].Name()} ");
                     list.jokeName.RemoveAt(rNr);
                 }
-                else if (element.WordClassChoice == "Substantiv - Någon")
+                else if (element.WordChoice == "Substantiv - Någon")
                 {
                     int rNr = r.Next(0, list.someone.Count);
 
@@ -482,7 +482,7 @@ namespace Headline_Randomizer
                     }
                     list.someone.RemoveAt(rNr);
                 }
-                else if (element.WordClassChoice == "Verb")
+                else if (element.WordChoice == "Verb")
                 {
                     int rNr = r.Next(0, list.verb.Count);
                     

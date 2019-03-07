@@ -18,7 +18,7 @@ namespace Headline_Randomizer
        
         static public List<Custom> choicesList = new List<Custom>();
         static public List<string> recentStrings = new List<string>();
-        static string connectionString = @"Data Source=(LocalDB)\MSSQLLocalDB; AttachDbFilename = C:\Emil\Tresorit\Headline Randomizer\Headline Randomizer\Headline Randomizer Svenska 2.1\WordsDatabase.mdf; Integrated Security=True";
+        static public string connectionString = @"Data Source=(LocalDB)\MSSQLLocalDB; AttachDbFilename = " + AppDomain.CurrentDomain.BaseDirectory + "WordsDatabase.mdf; Integrated Security=True";
 
         static public void ResetDefault(string word)
         {
@@ -194,7 +194,7 @@ namespace Headline_Randomizer
         static public void Command(string commandstring)
         {
             
-            using (SqlConnection connection = new SqlConnection(connectionString))
+            using (SqlConnection connection = new SqlConnection(Db.connectionString))
             {
                 connection.Open();
                 using (SqlCommand command = new SqlCommand(commandstring, connection))
@@ -208,7 +208,7 @@ namespace Headline_Randomizer
 
         static public string GetValue(string query)
         {
-            using (SqlConnection connection = new SqlConnection(connectionString))
+            using (SqlConnection connection = new SqlConnection(Db.connectionString))
             {
                 connection.Open();
                 using (SqlCommand command = new SqlCommand(query, connection))
@@ -229,7 +229,7 @@ namespace Headline_Randomizer
 
         static public string RandomizeValue(string selectStatement, string restOfQuery)
         {             
-            using (SqlConnection connection = new SqlConnection(connectionString))
+            using (SqlConnection connection = new SqlConnection(Db.connectionString))
             {
                 connection.Open();
 
@@ -265,7 +265,7 @@ namespace Headline_Randomizer
 
         static public void ResetUsed(int antal)
         {
-            using (SqlConnection connection = new SqlConnection(connectionString))
+            using (SqlConnection connection = new SqlConnection(Db.connectionString))
             {
                 connection.Open();
                 SqlCommand command = new SqlCommand();

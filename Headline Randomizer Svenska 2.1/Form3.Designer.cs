@@ -490,7 +490,9 @@
             this.cbTabell.Items.AddRange(new object[] {
             "Adjektiv",
             "Substantiv",
-            "Verb"});
+            "Verb",
+            "Joke names",
+            "Nobel prizes"});
             this.cbTabell.Location = new System.Drawing.Point(27, 68);
             this.cbTabell.Name = "cbTabell";
             this.cbTabell.Size = new System.Drawing.Size(306, 32);

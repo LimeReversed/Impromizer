@@ -14,6 +14,8 @@ namespace Headline_Randomizer
         static public Verbs verb = new Verbs();
         static public Someone someone = new Someone();
         static public Something something = new Something();
+        static public JokeNames jokeName = new JokeNames();
+        static public NobelPrizes nobelPrize = new NobelPrizes();
 
         // Virtual methods here to be able to reach them through List<Words>
         public virtual string KänslaPlural()
@@ -56,7 +58,7 @@ namespace Headline_Randomizer
             return "";
         }
 
-        public virtual string Plural(List<Words> nounList, int nounNr)
+        public virtual string Plural(int adjectiveId, int nounId)
         {
             return "";
         }
@@ -101,7 +103,7 @@ namespace Headline_Randomizer
             return "";
         }
 
-        public virtual string DinEllerDitt(string pluralOrSingular)
+        public virtual string DinEllerDitt(int id, bool singular)
         {
             return "";
         }
@@ -225,9 +227,22 @@ namespace Headline_Randomizer
     // Nouns
     public abstract class Nouns : Words
     {
+        public override string DinEllerDitt(int id, bool singular)
+        {
+            if (singular)
+            {
+                return Db.GetValue($"SELECT [din/ditt] FROM TblPreSubstantiv WHERE Id IN (SELECT [Pre Substantiv] FROM TblNouns WHERE Id = {id})");
+            }
+            else
+            {
+                return Db.GetValue($"SELECT [din/ditt plural] FROM TblPreSubstantiv WHERE Id IN (SELECT [Pre Substantiv] FROM TblNouns WHERE Id = {id})");
+            }
+        }
+
         public override string EnEllerEtt(int id)
         {
-            return Db.GetValue($"SELECT en/ett FROM TblNouns WHERE Id = {id}");
+            // Koppla Primary key Id med foreign key Pre Substantiv
+            return Db.GetValue($"SELECT [en/ett] FROM TblPreSubstantiv WHERE Id IN (SELECT [Pre Substantiv] FROM TblNouns WHERE Id = {id})");
         }
 
         public override string Plural(int id)
@@ -306,33 +321,37 @@ namespace Headline_Randomizer
         // Compares current adjective with the right noun and returns the right adjective
         public override string Singular(int adjectiveId, int nounId)
         {
-            string enValue = Db.GetValue($"SELECT [en/ett] FROM TblNouns WHERE Id = {nounId}");
-            string dinValue = Db.GetValue($"SELECT [din/dina] FROM TblNouns WHERE Id = {nounId}");
+            string preSub = Db.GetValue($"SELECT [Pre Substantiv] FROM TblNouns WHERE Id = {nounId}");
 
-            if (enValue == "en"  || dinValue == @"din/din" || enValue == "")
+            if (preSub == @"din/dina"  || preSub == @"din/din")
                 return Db.GetValue($"SELECT EnForm FROM TblAdjective WHERE Id = {adjectiveId}");
-            else if (enValue == "ett" || dinValue == @"ditt/ditt")
+            else if (preSub == @"ditt/dina" || preSub == @"ditt/ditt")
             {
                 return Db.GetValue($"SELECT EttForm FROM TblAdjective WHERE Id = {adjectiveId}");
             }
             else { return ""; }
         }
 
-        //public override string Plural(List<Words> nounList, int nounNr)
-        //{
+        public override string Plural(int adjectiveId, int nounId)
+        {
 
-        //    if (nounList[nounNr].EnEllerEttEnum() == Indefinite.En || nounList[nounNr].EnEllerEttEnum() == Indefinite.Ett)
-        //        return $"{this.plural}";
-        //    else if (nounList[nounNr].DinEllerDittEnum() == Genitive.DittDitt)
-        //    {
-        //        return $"{this.ettForm}";
-        //    }
-        //    else if (nounList[nounNr].DinEllerDittEnum() == Genitive.DinDin)
-        //    {
-        //        return $"{this.enForm}";
-        //    }
-        //    else { return ""; }
-        //}
+            string preSub = Db.GetValue($"SELECT [Pre Substantiv] FROM TblNouns WHERE Id = {nounId}");
+
+            if (preSub == @"din/dina" || preSub == @"ditt/dina")
+                return Db.GetValue($"SELECT Plural FROM TblAdjective WHERE Id = {adjectiveId}");
+
+            else if (preSub == @"ditt/ditt")
+            {
+                return Db.GetValue($"SELECT EttForm FROM TblAdjective WHERE Id = {adjectiveId}");
+            }
+
+            else if (preSub == @"din/din")
+            {
+                return Db.GetValue($"SELECT EnForm FROM TblAdjective WHERE Id = {adjectiveId}");
+            }
+
+            else { return ""; }
+        }
 
         //// Swedish Constructor
         //public Adjectives(string enForm, string plural, string ettForm) : base()

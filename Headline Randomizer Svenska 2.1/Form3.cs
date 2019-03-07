@@ -34,7 +34,7 @@ namespace Headline_Randomizer
         public void UpdateGridView(string query)
         {
             updateInProgress = true;
-            using (SqlConnection connection = new SqlConnection(@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename = c:\Emil\Tresorit\Headline Randomizer\Headline Randomizer\Headline Randomizer Svenska 2.1\WordsDatabase.mdf; Integrated Security=True"))
+            using (SqlConnection connection = new SqlConnection(Db.connectionString))
             {
                 connection.Open();
                 using (SqlCommand command = new SqlCommand(query, connection))
@@ -82,7 +82,7 @@ namespace Headline_Randomizer
                         // Add the current row to the gridview. Had I not used the array then I would have had to
                         // write a lot more code. One reason is that I'd have to specify the GetSqlValue().
                         DbDisplay.Rows.Add(row);
-                        
+
                     }
                     reader.Close();
                 }
@@ -101,7 +101,7 @@ namespace Headline_Randomizer
         // Sees to that only the needed number of textboxes show under "Add value" and that their labels are correct.  
         public void UpdateLables(string query)
         {
-            using (SqlConnection connection = new SqlConnection(@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=C:\Emil\Tresorit\Headline Randomizer\Headline Randomizer\Headline Randomizer Svenska 2.1\WordsDatabase.mdf;Integrated Security=True"))
+            using (SqlConnection connection = new SqlConnection(Db.connectionString))
             {
                 connection.Open();
                 using (SqlCommand command = new SqlCommand(query, connection))
@@ -130,7 +130,7 @@ namespace Headline_Randomizer
                     TextBoxes.Add(tbxAddColumn6);
                     TextBoxes.Add(tbxAddColumn7);
                     TextBoxes.Add(tbxAddColumn8);
-             
+
                     // Hide all
                     for (int i = 0; i < 8; i++)
                     {
@@ -159,7 +159,7 @@ namespace Headline_Randomizer
 
                     reader.Close();
                 }
-                
+
                 connection.Close();
             }
 
