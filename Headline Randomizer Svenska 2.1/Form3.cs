@@ -189,6 +189,10 @@ namespace Headline_Randomizer
                 case "Joke names":
                     return "TblJokeNames";
 
+                case "Saved results":
+                case "Sparade resultat":
+                    return "TblSavedResults";
+
                 default:
                     return "";
             }

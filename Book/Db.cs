@@ -18,7 +18,8 @@ namespace Headline_Randomizer
        
         static public List<Custom> choicesList = new List<Custom>();
         static public List<string> recentStrings = new List<string>();
-        static public string connectionString = @"Data Source=(LocalDB)\MSSQLLocalDB; AttachDbFilename = " + AppDomain.CurrentDomain.BaseDirectory + "WordsDatabase.mdf; Integrated Security=True";
+        static public string connectionString = @"Data Source=(LocalDB)\MSSQLLocalDB; AttachDbFilename =E:\Tresorit\Headline Randomizer\Headline Randomizer\Headline Randomizer Svenska 2.1\WordsDatabase.mdf; Integrated Security=True";
+            //@"Data Source=(LocalDB)\MSSQLLocalDB; AttachDbFilename = " + AppDomain.CurrentDomain.BaseDirectory + "WordsDatabase.mdf; Integrated Security=True";
 
         static public void ResetDefault(string word)
         {

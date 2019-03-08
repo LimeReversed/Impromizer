@@ -155,11 +155,8 @@
     <Content Include="Text\relation statusförhållande.txt">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="WordsDatabase.mdf">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
+    <Content Include="WordsDatabase.mdf" />
     <Content Include="WordsDatabase_log.ldf">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
       <DependentUpon>WordsDatabase.mdf</DependentUpon>
     </Content>
     <None Include="Resources\locationbuttonbig.png" />

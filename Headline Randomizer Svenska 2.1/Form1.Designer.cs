@@ -19,7 +19,7 @@
             }
             base.Dispose(disposing);
         }
-
+        
         #region Windows Form Designer generated code
 
         /// <summary>
@@ -75,8 +75,7 @@
             this.cbWords = new System.Windows.Forms.ComboBox();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.backToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.saveResultToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.listSavesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            saveResultToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.forwardToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.settingsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolTip = new System.Windows.Forms.ToolTip(this.components);
@@ -637,10 +636,10 @@
             // tbxAdded
             // 
             this.tbxAdded.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tbxAdded.Location = new System.Drawing.Point(13, 21);
+            this.tbxAdded.Location = new System.Drawing.Point(11, 21);
             this.tbxAdded.Multiline = true;
             this.tbxAdded.Name = "tbxAdded";
-            this.tbxAdded.Size = new System.Drawing.Size(405, 51);
+            this.tbxAdded.Size = new System.Drawing.Size(410, 51);
             this.tbxAdded.TabIndex = 3;
             // 
             // btnGenerate
@@ -687,9 +686,9 @@
             // tbxCustom
             // 
             this.tbxCustom.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tbxCustom.Location = new System.Drawing.Point(9, 22);
+            this.tbxCustom.Location = new System.Drawing.Point(11, 22);
             this.tbxCustom.Name = "tbxCustom";
-            this.tbxCustom.Size = new System.Drawing.Size(423, 27);
+            this.tbxCustom.Size = new System.Drawing.Size(421, 27);
             this.tbxCustom.TabIndex = 3;
             this.tbxCustom.TextChanged += new System.EventHandler(this.tbxCustom_TextChanged);
             // 
@@ -862,8 +861,7 @@
             this.menuStrip1.ImageScalingSize = new System.Drawing.Size(24, 24);
             this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.backToolStripMenuItem,
-            this.saveResultToolStripMenuItem,
-            this.listSavesToolStripMenuItem,
+            saveResultToolStripMenuItem,
             this.forwardToolStripMenuItem,
             this.settingsToolStripMenuItem});
             this.menuStrip1.LayoutStyle = System.Windows.Forms.ToolStripLayoutStyle.HorizontalStackWithOverflow;
@@ -886,21 +884,12 @@
             // 
             // saveResultToolStripMenuItem
             // 
-            this.saveResultToolStripMenuItem.Font = new System.Drawing.Font("Calibri", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.saveResultToolStripMenuItem.ForeColor = System.Drawing.Color.White;
-            this.saveResultToolStripMenuItem.Name = "saveResultToolStripMenuItem";
-            this.saveResultToolStripMenuItem.Size = new System.Drawing.Size(35, 27);
-            this.saveResultToolStripMenuItem.Text = "☆";
-            this.saveResultToolStripMenuItem.Visible = false;
-            // 
-            // listSavesToolStripMenuItem
-            // 
-            this.listSavesToolStripMenuItem.Font = new System.Drawing.Font("Calibri", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.listSavesToolStripMenuItem.ForeColor = System.Drawing.Color.White;
-            this.listSavesToolStripMenuItem.Name = "listSavesToolStripMenuItem";
-            this.listSavesToolStripMenuItem.Size = new System.Drawing.Size(95, 27);
-            this.listSavesToolStripMenuItem.Text = "List saves";
-            this.listSavesToolStripMenuItem.Visible = false;
+            saveResultToolStripMenuItem.Font = new System.Drawing.Font("Calibri", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            saveResultToolStripMenuItem.ForeColor = System.Drawing.Color.White;
+            saveResultToolStripMenuItem.Name = "saveResultToolStripMenuItem";
+            saveResultToolStripMenuItem.Size = new System.Drawing.Size(35, 27);
+            saveResultToolStripMenuItem.Text = "☆";
+            saveResultToolStripMenuItem.Click += new System.EventHandler(this.saveResultToolStripMenuItem_Click);
             // 
             // forwardToolStripMenuItem
             // 
@@ -1013,11 +1002,10 @@
         private System.Windows.Forms.MenuStrip menuStrip1;
         public System.Windows.Forms.ToolStripMenuItem backToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem forwardToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem saveResultToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem listSavesToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem settingsToolStripMenuItem;
         private System.Windows.Forms.ComboBox cbConnect;
         private System.Windows.Forms.ToolTip toolTip;
+        static public System.Windows.Forms.ToolStripMenuItem saveResultToolStripMenuItem;
     }
 }
 

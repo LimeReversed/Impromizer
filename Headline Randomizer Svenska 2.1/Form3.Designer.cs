@@ -492,7 +492,8 @@
             "Substantiv",
             "Verb",
             "Joke names",
-            "Nobel prizes"});
+            "Nobel prizes",
+            "Sparade resultat"});
             this.cbTabell.Location = new System.Drawing.Point(27, 68);
             this.cbTabell.Name = "cbTabell";
             this.cbTabell.Size = new System.Drawing.Size(306, 32);

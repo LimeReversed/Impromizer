@@ -16,7 +16,6 @@ namespace Headline_Randomizer
         Random r = new Random();
         int position;
 
-
         public Form1()
         {
             InitializeComponent();
@@ -614,7 +613,6 @@ namespace Headline_Randomizer
 
             if (cbWords.Text == "Adjektiv")
             {
-                // Glöm inte etablera detta i addword och generera
                 cbForms.Text = "Välj...";
                 cbForms.Items.Add("N-genus");
                 cbForms.Items.Add("T-genus");
@@ -646,7 +644,6 @@ namespace Headline_Randomizer
                 cbForms.Items.Add("Basform");
                 cbForms.Items.Add("Presens");
                 cbForms.Items.Add("Perfekt");
-                // Låt användaren koppla detta till föregående och nästa också. Kan det då heta efterverb?? Verbkompis?
                 cbForms.Items.Add("Efter verb");
             }
 
@@ -656,13 +653,13 @@ namespace Headline_Randomizer
             }
         }
 
-        // Only have the connect to next noun if no souns have been added yet. Then it becomes +1 so it becomes 1.
-        // Change this too, nounsadded++ is deleted.
         bool nounsAdded = false;
         bool verbsAdded = false;
 
+        // Add different items, depending on the current choices. 
         private void cbForms_SelectedIndexChanged(object sender, EventArgs e)
         {
+            // Needed to remove for example pink color after wrong choice. 
             cbConnect.Items.Clear();
             cbConnect.Enabled = false;
             cbConnect.Text = "";
@@ -713,6 +710,7 @@ namespace Headline_Randomizer
 
         private void btnAddWord_Click(object sender, EventArgs e)
         {
+            // If the used missed making a choice, mark what they missed in pink. 
             if (cbWords.Text == "Välj...")
             {
                 cbWords.BackColor = Color.Pink;
@@ -727,16 +725,19 @@ namespace Headline_Randomizer
             }
             else
             {
+                // If all is clear, then add to ChoiceList. 
                 Custom newItem = new Custom(cbWords.Text, cbForms.Text, cbConnect.Text, 0, 0, Db.choicesList.Count);
                 Db.choicesList.Add(newItem);
             }
 
+            // Write out all choices made in the "Added wors/numbers" textbox
             tbxAdded.Text = "";
             foreach (Custom element in Db.choicesList)
             {
                 tbxAdded.AppendText($"{(Db.choicesList.IndexOf(element) == 0 ? "" : " + ")}{element.WordChoice}");
             }
 
+            // Keep tabs on whether Nouns and verbs have been added. 
             if (cbWords.Text == "Substantiv (Någon)" || cbWords.Text == "Substantiv (Något)")
             {
                 nounsAdded = true;
@@ -781,6 +782,7 @@ namespace Headline_Randomizer
 
         private void nupFrom_ValueChanged(object sender, EventArgs e)
         {
+            // "FromValue" should always be under "ToValue"
             if (nupFrom.Value > nupTo.Value - 1) nupFrom.Value = nupTo.Value - 1;
         }
 
@@ -796,12 +798,13 @@ namespace Headline_Randomizer
             presentationWindow.tbxResult.Text = "";
 
 
-            // Randomize all nouns first and add them to a list. 
-            
+            // Update all relevant objects on the choicelist with RandomId. 
             foreach (Custom element in Db.choicesList)
             {
                 if (element.WordChoice == "Substantiv (Någon)" && (element.FormChoice == "Singular" || element.FormChoice == "Plural"))
                 {
+                    // Add randomId to the Id-variable in the current instance.
+                    // Then set that word to used and reload if needed. 
                     element.Id = Words.someone.RandomizeId();
                     Words.someone.Used(element.Id);
                     Db.ResetUsed(5);
@@ -838,14 +841,19 @@ namespace Headline_Randomizer
                 else { }
             }
 
+            // When the RanomizedId has been added, then figure out which of them 
+            // the below should be connected to.
             foreach (Custom element in Db.choicesList)
             {
                 if (element.WordChoice == "Verb" && element.FormChoice == "Efter verb" && element.ConnectionChoice == "Syfta till nästa verb")
                 {
+                    // Go from where the current item is in the choicesList and move up until it 
+                    // reaches the next verb. 
                     for (int i = element.PositionNr; i < Db.choicesList.Count; i++)
                     {
                         if (Db.choicesList[i].WordChoice == "Verb" && Db.choicesList[i].FormChoice != "Efter verb")
                         {
+                            // Insert the position of this verb into the current instance. 
                             element.ConnectionPosition = i;
                             break;
                         }
@@ -854,6 +862,7 @@ namespace Headline_Randomizer
 
                 else if (element.WordChoice == "Verb" && element.FormChoice == "Efter verb" && element.ConnectionChoice == "Syfta till tidigare verb")
                 {
+                    // Here we go down instead of up. 
                     for (int i = element.PositionNr; i >= 0; i--)
                     {
                         if (Db.choicesList[i].WordChoice == "Verb" && Db.choicesList[i].FormChoice != "Efter verb")
@@ -897,14 +906,14 @@ namespace Headline_Randomizer
                 else { }
             }
 
-
+            // After RandomIds have been added and we know what they should be connected to...
+            // ... it's time to write them out in the correct order. 
             foreach (Custom element in Db.choicesList)
             {
                 try
                 {
                     if (element.FormChoice == "En eller Ett")
                     {
-                        // Döp om connection Id, för det handlar om positionen. 
                         int nr = Db.choicesList[element.ConnectionPosition].Id;
                         presentationWindow.tbxResult.AppendText($"{Words.someone.EnEllerEtt(nr)} ");
                     }
@@ -914,8 +923,6 @@ namespace Headline_Randomizer
                     MessageBox.Show("En/Ett försöker syfta till ett substantiv som inte finns. Försök igen!");
                 }
 
-                // Kanske borde ge alternativen att ta fram bara EttForm, EnForm eller plural och sedan ha en funktion "Låt datorn avgöra
-                // Fixa en funktion att låta efterverb syfta på tidigare eller senare verb.
                 if (element.WordChoice == "Adjektiv")
                 {
                     try
@@ -924,26 +931,29 @@ namespace Headline_Randomizer
                         {
                         presentationWindow.tbxResult.AppendText($"{Words.adjective.EnForm(element.Id)} ");
                         }
+
                         else if (element.FormChoice == "T-genus")
                         {
                             presentationWindow.tbxResult.AppendText($"{Words.adjective.EttForm(element.Id)} ");
                         }
+
                         else if (element.FormChoice == "Plural")
                         {
                             presentationWindow.tbxResult.AppendText($"{Words.adjective.Plural(element.Id)} ");
                         }
-                        // Det lägg redan till ett värde på nouns added när det är "syfta till nästa"
-                        //  Ska det då heta nouns added? Ska det heta det här med minus 1? 
+
                         else if (element.FormChoice == "Automatisk")
                         {
-                            // Om FormChoice valet för det NounId som finns i nounlistan på platsen som motsvarar antalet nouns added den gången
-                            // detta adjectiv lades till. 
-
+                            // Take the Id of the position in choiceList that we earlier
+                            // decided that the current adjective should be connected to. 
+                            // And get the Id of that Noun. Then set that to nounId because
+                            // that's easier to read. 
                             int nounId = Db.choicesList[element.ConnectionPosition].Id;
 
+
                             if (Db.choicesList[element.ConnectionPosition].FormChoice == "Singular")
-                            {   // element.COnnectionId är kopplat till 23. Så många finns ju inte. 
-                                
+                            {                     
+                                // Write it out. element.Id is the current adjective ID Nr. 
                                 presentationWindow.tbxResult.AppendText($"{Words.adjective.Singular(element.Id, nounId)} ");
                             }
                             else if (Db.choicesList[element.ConnectionPosition].FormChoice == "Plural")
@@ -960,8 +970,6 @@ namespace Headline_Randomizer
                     }
                 }
 
-                // choose the first one on the list then remove that first one and continue.
-                // Ah den tar bort Id från nounslistan nedan, så att ovan inte kan hämta det senare. 
                 else if (element.WordChoice == "Substantiv (Något)" && element.FormChoice == "Singular")
                 {
                     presentationWindow.tbxResult.AppendText($"{Words.something.Singular(element.Id)} ");
@@ -1009,19 +1017,24 @@ namespace Headline_Randomizer
 
                     
                 }
-                // It doesnt say custom anymore, maybe add that back?
+
                 else if (element.CustomString)
                 {
                     presentationWindow.tbxResult.AppendText($"{element.WordChoice} ");
                 }
+
                 else if (element.WordChoice == "Nr")
                 {
+                    // Randomize a number between set "FromValue" and "ToValue". 
+                    // ToValue is +1 because the Randomizer object demands (From and including) - (To but not including).
+                    // So it needs to be one over set ToValue. 
                     int rNr = r.Next(Convert.ToInt32(element.FromValue), Convert.ToInt32(element.ToValue + 1));
                     presentationWindow.tbxResult.AppendText($"{Convert.ToString(rNr)} ");
                 }
             }
 
             string toUpper = FixText.FirstLetterUpper(presentationWindow.tbxResult.Text);
+            // Sometimes there's an extra space. This removes that. 
             toUpper = toUpper.Replace("  ", " ");
             presentationWindow.tbxResult.Text = toUpper;
             EndingRitual(5, presentationWindow.tbxResult, ref position);
@@ -1186,6 +1199,25 @@ namespace Headline_Randomizer
             {
                 btnAddCustom.ForeColor = Color.White;
                 tbxCustom.BackColor = Color.White;
+            }
+        }
+
+        //
+        // Save/Unsave results
+        //
+
+        private void saveResultToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (saveResultToolStripMenuItem.ForeColor == Color.White)
+            {
+                Db.Command($"INSERT INTO TblSavedResults VALUES ('{presentationWindow.tbxResult.Text}')");
+                // also to list?
+                saveResultToolStripMenuItem.ForeColor = Color.Yellow;
+            }
+            else if (saveResultToolStripMenuItem.ForeColor == Color.Yellow)
+            {
+                Db.Command($"DELETE FROM TblSavedResults WHERE Lines = '{presentationWindow.tbxResult.Text}'");
+                saveResultToolStripMenuItem.ForeColor = Color.White;
             }
         }
 
