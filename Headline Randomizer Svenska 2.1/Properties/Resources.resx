@@ -118,8 +118,20 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+  <data name="RelationBanner6" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\RelationBanner7.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Happinessbig" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Happinessbig.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="adjectivesbuttonbig image" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\adjectivesbuttonbig image.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
   <data name="relationbutton lång2" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\relationbutton lång2.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="PlatsBanner3" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\PlatsBanner4.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="husmorbuttonbig" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\husmorbuttonbig.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -130,17 +142,29 @@
   <data name="relationbutton hela vägen" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\relationbutton hela vägen.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="relationarrowleft_small" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\relationarrowleft_small.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
   <data name="3outof5buttonhover image" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\3outof5buttonhover image.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="RelationBanner4" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\RelationBanner5.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="arrowcubeleft3" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\arrowcubeleft3.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="adjectivesbuttonbig image" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\adjectivesbuttonbig image.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="RelationBanner1" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\RelationBanner2.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="relationarrowright_small" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\relationarrowright_small.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="Happinesssmall" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Happinesssmall.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="PlatsBanner1" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\PlatsBanner2.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="relationarrowright" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\relationarrowright.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -148,8 +172,8 @@
   <data name="thinksbutton image" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\thinksbutton image.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="thinksbuttonbig image" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\thinksbuttonbig image.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="relationbutton lång" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\relationbutton lång.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="3outof5button image" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\3outof5button image.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -166,17 +190,23 @@
   <data name="relationbutton lång small" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\relationbutton lång small.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="relationbutton lång" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\relationbutton lång.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
   <data name="relationbuttonbig" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\relationbuttonbig.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="relationbuttonsmall" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\relationbuttonsmall.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="newsbutton image" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\newsbutton image.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="locationbuttonbig" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\locationbuttonbig.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="UppdragBanner1" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\UppdragBanner2.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="UppdragBanner" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\UppdragBanner1.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="RelationBanner5" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\RelationBanner6.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="Nobelbuttonbig image" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Nobelbuttonbig image.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -184,20 +214,26 @@
   <data name="relationbutton lång4" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\relationbutton lång4.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="Nobelbutton image" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\Nobelbutton image.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="thinksbuttonbig image" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\thinksbuttonbig image.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="newsbutton image" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\newsbutton image.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="arrowcubeleft2" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\arrowcubeleft2.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="husmorbuttonsmall" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\husmorbuttonsmall.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="PlatsBanner" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\PlatsBanner1.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="arrowcubeleft1" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\arrowcubeleft1.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="Happinessbig" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\Happinessbig.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="RelationBanner2" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\RelationBanner3.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="RelationBanner3" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\RelationBanner4.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="relationarrowleft" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\relationarrowleft.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -211,6 +247,9 @@
   <data name="adjectivesbutton image" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\adjectivesbutton image.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="husmorbuttonsmall" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\husmorbuttonsmall.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
   <data name="relationbutton lång1" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\relationbutton lång1.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
@@ -220,8 +259,11 @@
   <data name="tiredofbig image" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\tiredofbig image.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="locationbuttonbig" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\locationbuttonbig.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="Nobelbutton image" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Nobelbutton image.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="RelationBanner" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\RelationBanner1.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="Remembersmall image" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Remembersmall image.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -241,13 +283,13 @@
   <data name="protipsmall" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\protipsmall.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="PlatsBanner2" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\PlatsBanner3.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
   <data name="tiredofsmall image" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\tiredofsmall image.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="relationarrowleft_small" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\relationarrowleft_small.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="relationarrowright_small" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\relationarrowright_small.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="backgroundgrid" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\backgroundgrid.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
 </root>

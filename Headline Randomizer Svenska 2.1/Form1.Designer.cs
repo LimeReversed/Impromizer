@@ -43,14 +43,19 @@
             this.btnGenerate7 = new System.Windows.Forms.Button();
             this.btnRensa3 = new System.Windows.Forms.Button();
             this.btnGenerate6 = new System.Windows.Forms.Button();
-            this.tabPage5 = new System.Windows.Forms.TabPage();
-            this.btnRelationLeft = new System.Windows.Forms.Button();
-            this.btnRelationRight = new System.Windows.Forms.Button();
-            this.btnGenerate12 = new System.Windows.Forms.Button();
-            this.btnRensa4 = new System.Windows.Forms.Button();
-            this.btnGenerate10 = new System.Windows.Forms.Button();
-            this.btnGenerate11 = new System.Windows.Forms.Button();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.tabPage8 = new System.Windows.Forms.TabPage();
+            this.label5 = new System.Windows.Forms.Label();
+            this.label4 = new System.Windows.Forms.Label();
+            this.btnClearScene = new System.Windows.Forms.Button();
+            this.lblParticipants = new System.Windows.Forms.Label();
+            this.cbMission = new System.Windows.Forms.ComboBox();
+            this.cbRelation = new System.Windows.Forms.ComboBox();
+            this.cbParticipants = new System.Windows.Forms.ComboBox();
+            this.btnAddParticipant = new System.Windows.Forms.Button();
+            this.btnRemoveParticipant = new System.Windows.Forms.Button();
+            this.btnGenerateMission = new System.Windows.Forms.Button();
+            this.btnGenerateLocation = new System.Windows.Forms.Button();
+            this.btnGenerateRelation = new System.Windows.Forms.Button();
             this.tabPage1 = new System.Windows.Forms.TabPage();
             this.btnGenerate8 = new System.Windows.Forms.Button();
             this.btnClear2 = new System.Windows.Forms.Button();
@@ -75,15 +80,14 @@
             this.cbWords = new System.Windows.Forms.ComboBox();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.backToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            saveResultToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.saveResultToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.forwardToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.settingsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolTip = new System.Windows.Forms.ToolTip(this.components);
             this.customTabControl1.SuspendLayout();
             this.tabPage3.SuspendLayout();
             this.tabPage2.SuspendLayout();
-            this.tabPage5.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
+            this.tabPage8.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.tabPage4.SuspendLayout();
             this.groupBox5.SuspendLayout();
@@ -99,7 +103,7 @@
             // 
             this.customTabControl1.Controls.Add(this.tabPage3);
             this.customTabControl1.Controls.Add(this.tabPage2);
-            this.customTabControl1.Controls.Add(this.tabPage5);
+            this.customTabControl1.Controls.Add(this.tabPage8);
             this.customTabControl1.Controls.Add(this.tabPage1);
             this.customTabControl1.Controls.Add(this.tabPage4);
             this.customTabControl1.DisplayStyle = System.Windows.Forms.TabStyle.Angled;
@@ -144,7 +148,7 @@
             this.tabPage3.ForeColor = System.Drawing.Color.White;
             this.tabPage3.Location = new System.Drawing.Point(4, 36);
             this.tabPage3.Name = "tabPage3";
-            this.tabPage3.Padding = new System.Windows.Forms.Padding(3, 3, 3, 3);
+            this.tabPage3.Padding = new System.Windows.Forms.Padding(3);
             this.tabPage3.Size = new System.Drawing.Size(606, 292);
             this.tabPage3.TabIndex = 0;
             this.tabPage3.Text = "Rubriker";
@@ -153,7 +157,7 @@
             // 
             this.btnGenerate5.BackColor = System.Drawing.SystemColors.Highlight;
             this.btnGenerate5.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("btnGenerate5.BackgroundImage")));
-            this.btnGenerate5.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
+            this.btnGenerate5.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
             this.btnGenerate5.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnGenerate5.FlatAppearance.BorderColor = System.Drawing.Color.White;
             this.btnGenerate5.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
@@ -195,7 +199,7 @@
             // 
             this.btnGenerate4.BackColor = System.Drawing.SystemColors.Highlight;
             this.btnGenerate4.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("btnGenerate4.BackgroundImage")));
-            this.btnGenerate4.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
+            this.btnGenerate4.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
             this.btnGenerate4.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnGenerate4.FlatAppearance.BorderColor = System.Drawing.Color.White;
             this.btnGenerate4.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
@@ -218,7 +222,7 @@
             // 
             this.btnGenerate3.BackColor = System.Drawing.SystemColors.Highlight;
             this.btnGenerate3.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("btnGenerate3.BackgroundImage")));
-            this.btnGenerate3.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
+            this.btnGenerate3.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
             this.btnGenerate3.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnGenerate3.FlatAppearance.BorderColor = System.Drawing.Color.White;
             this.btnGenerate3.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
@@ -241,7 +245,7 @@
             // 
             this.BtnGenerate2.BackColor = System.Drawing.SystemColors.Highlight;
             this.BtnGenerate2.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("BtnGenerate2.BackgroundImage")));
-            this.BtnGenerate2.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
+            this.BtnGenerate2.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
             this.BtnGenerate2.Cursor = System.Windows.Forms.Cursors.Hand;
             this.BtnGenerate2.FlatAppearance.BorderColor = System.Drawing.Color.White;
             this.BtnGenerate2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
@@ -387,153 +391,202 @@
             this.btnGenerate6.MouseDown += new System.Windows.Forms.MouseEventHandler(this.Generate6_MouseDown);
             this.btnGenerate6.MouseUp += new System.Windows.Forms.MouseEventHandler(this.Generate6_MouseUp);
             // 
-            // tabPage5
+            // tabPage8
             // 
-            this.tabPage5.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.tabPage5.Controls.Add(this.btnRelationLeft);
-            this.tabPage5.Controls.Add(this.btnRelationRight);
-            this.tabPage5.Controls.Add(this.btnGenerate12);
-            this.tabPage5.Controls.Add(this.btnRensa4);
-            this.tabPage5.Controls.Add(this.btnGenerate10);
-            this.tabPage5.Controls.Add(this.btnGenerate11);
-            this.tabPage5.Controls.Add(this.pictureBox1);
-            this.tabPage5.Location = new System.Drawing.Point(4, 36);
-            this.tabPage5.Name = "tabPage5";
-            this.tabPage5.Padding = new System.Windows.Forms.Padding(3, 3, 3, 3);
-            this.tabPage5.Size = new System.Drawing.Size(606, 292);
-            this.tabPage5.TabIndex = 4;
-            this.tabPage5.Text = "Scen";
+            this.tabPage8.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.tabPage8.Controls.Add(this.label5);
+            this.tabPage8.Controls.Add(this.label4);
+            this.tabPage8.Controls.Add(this.btnClearScene);
+            this.tabPage8.Controls.Add(this.lblParticipants);
+            this.tabPage8.Controls.Add(this.cbMission);
+            this.tabPage8.Controls.Add(this.cbRelation);
+            this.tabPage8.Controls.Add(this.cbParticipants);
+            this.tabPage8.Controls.Add(this.btnAddParticipant);
+            this.tabPage8.Controls.Add(this.btnRemoveParticipant);
+            this.tabPage8.Controls.Add(this.btnGenerateMission);
+            this.tabPage8.Controls.Add(this.btnGenerateLocation);
+            this.tabPage8.Controls.Add(this.btnGenerateRelation);
+            this.tabPage8.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.tabPage8.Location = new System.Drawing.Point(4, 36);
+            this.tabPage8.Name = "tabPage8";
+            this.tabPage8.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage8.Size = new System.Drawing.Size(606, 292);
+            this.tabPage8.TabIndex = 9;
+            this.tabPage8.Text = "Scen";
             // 
-            // btnRelationLeft
+            // label5
             // 
-            this.btnRelationLeft.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.btnRelationLeft.BackgroundImage = global::Headline_Randomizer.Properties.Resources.relationarrowleft1;
-            this.btnRelationLeft.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnRelationLeft.Enabled = false;
-            this.btnRelationLeft.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnRelationLeft.Location = new System.Drawing.Point(0, 98);
-            this.btnRelationLeft.Name = "btnRelationLeft";
-            this.btnRelationLeft.Size = new System.Drawing.Size(96, 98);
-            this.btnRelationLeft.TabIndex = 25;
-            this.btnRelationLeft.UseVisualStyleBackColor = false;
-            this.btnRelationLeft.Visible = false;
-            this.btnRelationLeft.Click += new System.EventHandler(this.RelationLeft);
-            this.btnRelationLeft.MouseDown += new System.Windows.Forms.MouseEventHandler(this.RelationLeft_MounseDown);
-            this.btnRelationLeft.MouseUp += new System.Windows.Forms.MouseEventHandler(this.RelationLeft_MounseUp);
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(332, 173);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(145, 19);
+            this.label5.TabIndex = 70;
+            this.label5.Text = "Välj typ av uppdrag...";
             // 
-            // btnRelationRight
+            // label4
             // 
-            this.btnRelationRight.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.btnRelationRight.BackgroundImage = global::Headline_Randomizer.Properties.Resources.relationarrowright;
-            this.btnRelationRight.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnRelationRight.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnRelationRight.Location = new System.Drawing.Point(510, 98);
-            this.btnRelationRight.Name = "btnRelationRight";
-            this.btnRelationRight.Size = new System.Drawing.Size(96, 98);
-            this.btnRelationRight.TabIndex = 24;
-            this.btnRelationRight.UseVisualStyleBackColor = false;
-            this.btnRelationRight.Click += new System.EventHandler(this.RelationRight);
-            this.btnRelationRight.MouseDown += new System.Windows.Forms.MouseEventHandler(this.RelationRight_MounseDown);
-            this.btnRelationRight.MouseUp += new System.Windows.Forms.MouseEventHandler(this.RelationRight_MounseUp);
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(332, 119);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(142, 19);
+            this.label4.TabIndex = 69;
+            this.label4.Text = "Välj typ av relation...";
             // 
-            // btnGenerate12
+            // btnClearScene
             // 
-            this.btnGenerate12.BackColor = System.Drawing.SystemColors.WindowFrame;
-            this.btnGenerate12.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("btnGenerate12.BackgroundImage")));
-            this.btnGenerate12.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.btnGenerate12.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnGenerate12.FlatAppearance.BorderColor = System.Drawing.Color.White;
-            this.btnGenerate12.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.btnGenerate12.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnGenerate12.Font = new System.Drawing.Font("Calibri", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnGenerate12.ForeColor = System.Drawing.Color.White;
-            this.btnGenerate12.Location = new System.Drawing.Point(0, 0);
-            this.btnGenerate12.Name = "btnGenerate12";
-            this.btnGenerate12.Padding = new System.Windows.Forms.Padding(0, 0, 0, 10);
-            this.btnGenerate12.Size = new System.Drawing.Size(303, 98);
-            this.btnGenerate12.TabIndex = 23;
-            this.btnGenerate12.TabStop = false;
-            this.btnGenerate12.Text = "&Uppdrag";
-            this.btnGenerate12.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
-            this.btnGenerate12.UseVisualStyleBackColor = false;
-            this.btnGenerate12.Click += new System.EventHandler(this.btnGenerate12_Click);
-            this.btnGenerate12.MouseDown += new System.Windows.Forms.MouseEventHandler(this.btnGenerate12_MouseDown);
-            this.btnGenerate12.MouseUp += new System.Windows.Forms.MouseEventHandler(this.btnGenerate12_MouseUp);
+            this.btnClearScene.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.btnClearScene.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
+            this.btnClearScene.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnClearScene.FlatAppearance.BorderColor = System.Drawing.Color.White;
+            this.btnClearScene.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnClearScene.Font = new System.Drawing.Font("Calibri", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnClearScene.ForeColor = System.Drawing.Color.White;
+            this.btnClearScene.ImageAlign = System.Drawing.ContentAlignment.TopLeft;
+            this.btnClearScene.ImageKey = "(none)";
+            this.btnClearScene.Location = new System.Drawing.Point(336, 241);
+            this.btnClearScene.Name = "btnClearScene";
+            this.btnClearScene.Size = new System.Drawing.Size(239, 37);
+            this.btnClearScene.TabIndex = 66;
+            this.btnClearScene.Text = "Rensa";
+            this.btnClearScene.UseVisualStyleBackColor = false;
+            this.btnClearScene.Click += new System.EventHandler(this.btnClearScene_Click);
             // 
-            // btnRensa4
+            // lblParticipants
             // 
-            this.btnRensa4.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.btnRensa4.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
-            this.btnRensa4.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnRensa4.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnRensa4.Font = new System.Drawing.Font("Calibri", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnRensa4.ForeColor = System.Drawing.Color.White;
-            this.btnRensa4.ImageAlign = System.Drawing.ContentAlignment.TopLeft;
-            this.btnRensa4.ImageKey = "(none)";
-            this.btnRensa4.Location = new System.Drawing.Point(-4, 195);
-            this.btnRensa4.Name = "btnRensa4";
-            this.btnRensa4.Size = new System.Drawing.Size(614, 101);
-            this.btnRensa4.TabIndex = 20;
-            this.btnRensa4.Text = "Rensa";
-            this.btnRensa4.UseVisualStyleBackColor = false;
-            this.btnRensa4.Click += new System.EventHandler(this.btnRensa_Click);
+            this.lblParticipants.AutoSize = true;
+            this.lblParticipants.Location = new System.Drawing.Point(332, 14);
+            this.lblParticipants.Name = "lblParticipants";
+            this.lblParticipants.Size = new System.Drawing.Size(127, 19);
+            this.lblParticipants.TabIndex = 68;
+            this.lblParticipants.Text = "Lägg till deltagare";
             // 
-            // btnGenerate10
+            // cbMission
             // 
-            this.btnGenerate10.BackColor = System.Drawing.SystemColors.WindowFrame;
-            this.btnGenerate10.BackgroundImage = global::Headline_Randomizer.Properties.Resources.locationbuttonbig;
-            this.btnGenerate10.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.btnGenerate10.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnGenerate10.FlatAppearance.BorderColor = System.Drawing.Color.White;
-            this.btnGenerate10.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.btnGenerate10.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnGenerate10.Font = new System.Drawing.Font("Calibri", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnGenerate10.ForeColor = System.Drawing.Color.White;
-            this.btnGenerate10.Location = new System.Drawing.Point(303, 0);
-            this.btnGenerate10.Name = "btnGenerate10";
-            this.btnGenerate10.Padding = new System.Windows.Forms.Padding(0, 0, 0, 10);
-            this.btnGenerate10.Size = new System.Drawing.Size(303, 98);
-            this.btnGenerate10.TabIndex = 21;
-            this.btnGenerate10.TabStop = false;
-            this.btnGenerate10.Text = "&Plats";
-            this.btnGenerate10.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
-            this.btnGenerate10.UseVisualStyleBackColor = false;
-            this.btnGenerate10.Click += new System.EventHandler(this.btnGenerate10_Click);
-            this.btnGenerate10.MouseDown += new System.Windows.Forms.MouseEventHandler(this.btnGenerate10_MouseDown);
-            this.btnGenerate10.MouseUp += new System.Windows.Forms.MouseEventHandler(this.btnGenerate10_MouseUp);
+            this.cbMission.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cbMission.FormattingEnabled = true;
+            this.cbMission.Items.AddRange(new object[] {
+            "Ni ska__ (Slumpat)",
+            "Scenen slutar med att__"});
+            this.cbMission.Location = new System.Drawing.Point(336, 194);
+            this.cbMission.Name = "cbMission";
+            this.cbMission.Size = new System.Drawing.Size(239, 27);
+            this.cbMission.TabIndex = 67;
+            this.cbMission.SelectedIndexChanged += new System.EventHandler(this.cbMission_SelectedIndexChanged);
             // 
-            // btnGenerate11
+            // cbRelation
             // 
-            this.btnGenerate11.BackColor = System.Drawing.SystemColors.WindowFrame;
-            this.btnGenerate11.BackgroundImage = global::Headline_Randomizer.Properties.Resources.relationbutton_lång4;
-            this.btnGenerate11.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
-            this.btnGenerate11.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnGenerate11.FlatAppearance.BorderColor = System.Drawing.Color.White;
-            this.btnGenerate11.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.btnGenerate11.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnGenerate11.Font = new System.Drawing.Font("Calibri", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnGenerate11.ForeColor = System.Drawing.Color.White;
-            this.btnGenerate11.Location = new System.Drawing.Point(92, 98);
-            this.btnGenerate11.Name = "btnGenerate11";
-            this.btnGenerate11.Padding = new System.Windows.Forms.Padding(0, 0, 0, 10);
-            this.btnGenerate11.Size = new System.Drawing.Size(420, 98);
-            this.btnGenerate11.TabIndex = 22;
-            this.btnGenerate11.TabStop = false;
-            this.btnGenerate11.Text = "&Relation\r\n(Alla samma)";
-            this.btnGenerate11.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
-            this.btnGenerate11.UseVisualStyleBackColor = false;
-            this.btnGenerate11.Click += new System.EventHandler(this.btnGenerate11_Click);
-            this.btnGenerate11.MouseDown += new System.Windows.Forms.MouseEventHandler(this.btnGenerate11_MouseDown);
-            this.btnGenerate11.MouseUp += new System.Windows.Forms.MouseEventHandler(this.btnGenerate11_MouseUp);
+            this.cbRelation.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cbRelation.FormattingEnabled = true;
+            this.cbRelation.Items.AddRange(new object[] {
+            "Känslor",
+            "Statusförhållande"});
+            this.cbRelation.Location = new System.Drawing.Point(336, 140);
+            this.cbRelation.Name = "cbRelation";
+            this.cbRelation.Size = new System.Drawing.Size(239, 27);
+            this.cbRelation.TabIndex = 3;
+            this.cbRelation.SelectedIndexChanged += new System.EventHandler(this.cbRelation_SelectedIndexChanged);
             // 
-            // pictureBox1
+            // cbParticipants
             // 
-            this.pictureBox1.BackgroundImage = global::Headline_Randomizer.Properties.Resources.relationbutton_hela_vägen;
-            this.pictureBox1.Location = new System.Drawing.Point(1, 99);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(606, 98);
-            this.pictureBox1.TabIndex = 26;
-            this.pictureBox1.TabStop = false;
+            this.cbParticipants.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cbParticipants.FormattingEnabled = true;
+            this.cbParticipants.Location = new System.Drawing.Point(336, 35);
+            this.cbParticipants.Name = "cbParticipants";
+            this.cbParticipants.Size = new System.Drawing.Size(239, 27);
+            this.cbParticipants.TabIndex = 0;
+            this.cbParticipants.Text = "Skriv in namn...";
+            this.cbParticipants.SelectedIndexChanged += new System.EventHandler(this.cbParticipants_SelectedIndexChanged);
+            // 
+            // btnAddParticipant
+            // 
+            this.btnAddParticipant.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.btnAddParticipant.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnAddParticipant.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnAddParticipant.Location = new System.Drawing.Point(336, 68);
+            this.btnAddParticipant.Name = "btnAddParticipant";
+            this.btnAddParticipant.Size = new System.Drawing.Size(118, 37);
+            this.btnAddParticipant.TabIndex = 1;
+            this.btnAddParticipant.Text = "Lägg till";
+            this.btnAddParticipant.UseVisualStyleBackColor = false;
+            this.btnAddParticipant.Click += new System.EventHandler(this.btnAddParticipant_Click);
+            // 
+            // btnRemoveParticipant
+            // 
+            this.btnRemoveParticipant.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.btnRemoveParticipant.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnRemoveParticipant.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnRemoveParticipant.Location = new System.Drawing.Point(460, 68);
+            this.btnRemoveParticipant.Name = "btnRemoveParticipant";
+            this.btnRemoveParticipant.Size = new System.Drawing.Size(115, 37);
+            this.btnRemoveParticipant.TabIndex = 2;
+            this.btnRemoveParticipant.Text = "Ta bort";
+            this.btnRemoveParticipant.UseVisualStyleBackColor = false;
+            this.btnRemoveParticipant.Click += new System.EventHandler(this.btnRemoveParticipant_Click);
+            // 
+            // btnGenerateMission
+            // 
+            this.btnGenerateMission.BackColor = System.Drawing.SystemColors.WindowFrame;
+            this.btnGenerateMission.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("btnGenerateMission.BackgroundImage")));
+            this.btnGenerateMission.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.btnGenerateMission.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnGenerateMission.FlatAppearance.BorderColor = System.Drawing.Color.White;
+            this.btnGenerateMission.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.btnGenerateMission.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnGenerateMission.Font = new System.Drawing.Font("Calibri", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnGenerateMission.ForeColor = System.Drawing.Color.White;
+            this.btnGenerateMission.Location = new System.Drawing.Point(0, 98);
+            this.btnGenerateMission.Name = "btnGenerateMission";
+            this.btnGenerateMission.Padding = new System.Windows.Forms.Padding(0, 0, 0, 10);
+            this.btnGenerateMission.Size = new System.Drawing.Size(305, 98);
+            this.btnGenerateMission.TabIndex = 65;
+            this.btnGenerateMission.TabStop = false;
+            this.btnGenerateMission.Text = "&Uppdrag";
+            this.btnGenerateMission.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
+            this.btnGenerateMission.UseVisualStyleBackColor = false;
+            this.btnGenerateMission.Click += new System.EventHandler(this.btnGenerateMission_Click);
+            // 
+            // btnGenerateLocation
+            // 
+            this.btnGenerateLocation.BackColor = System.Drawing.SystemColors.WindowFrame;
+            this.btnGenerateLocation.BackgroundImage = global::Headline_Randomizer.Properties.Resources.locationbuttonbig;
+            this.btnGenerateLocation.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.btnGenerateLocation.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnGenerateLocation.FlatAppearance.BorderColor = System.Drawing.Color.White;
+            this.btnGenerateLocation.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.btnGenerateLocation.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnGenerateLocation.Font = new System.Drawing.Font("Calibri", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnGenerateLocation.ForeColor = System.Drawing.Color.White;
+            this.btnGenerateLocation.Location = new System.Drawing.Point(0, 195);
+            this.btnGenerateLocation.Name = "btnGenerateLocation";
+            this.btnGenerateLocation.Padding = new System.Windows.Forms.Padding(0, 0, 0, 10);
+            this.btnGenerateLocation.Size = new System.Drawing.Size(305, 98);
+            this.btnGenerateLocation.TabIndex = 63;
+            this.btnGenerateLocation.TabStop = false;
+            this.btnGenerateLocation.Text = "&Plats";
+            this.btnGenerateLocation.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
+            this.btnGenerateLocation.UseVisualStyleBackColor = false;
+            this.btnGenerateLocation.Click += new System.EventHandler(this.btnGenerateLocation_Click);
+            // 
+            // btnGenerateRelation
+            // 
+            this.btnGenerateRelation.BackColor = System.Drawing.SystemColors.WindowFrame;
+            this.btnGenerateRelation.BackgroundImage = global::Headline_Randomizer.Properties.Resources.relationbutton_lång4;
+            this.btnGenerateRelation.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnGenerateRelation.FlatAppearance.BorderColor = System.Drawing.Color.White;
+            this.btnGenerateRelation.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.btnGenerateRelation.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnGenerateRelation.Font = new System.Drawing.Font("Calibri", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnGenerateRelation.ForeColor = System.Drawing.Color.White;
+            this.btnGenerateRelation.Location = new System.Drawing.Point(0, 0);
+            this.btnGenerateRelation.Name = "btnGenerateRelation";
+            this.btnGenerateRelation.Padding = new System.Windows.Forms.Padding(0, 0, 0, 10);
+            this.btnGenerateRelation.Size = new System.Drawing.Size(305, 98);
+            this.btnGenerateRelation.TabIndex = 64;
+            this.btnGenerateRelation.TabStop = false;
+            this.btnGenerateRelation.Text = "&Relation\r\n";
+            this.btnGenerateRelation.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
+            this.btnGenerateRelation.UseVisualStyleBackColor = false;
+            this.btnGenerateRelation.Click += new System.EventHandler(this.btnGenerateRelation_Click);
             // 
             // tabPage1
             // 
@@ -542,7 +595,7 @@
             this.tabPage1.Controls.Add(this.btnClear2);
             this.tabPage1.Location = new System.Drawing.Point(4, 36);
             this.tabPage1.Name = "tabPage1";
-            this.tabPage1.Padding = new System.Windows.Forms.Padding(3, 3, 3, 3);
+            this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
             this.tabPage1.Size = new System.Drawing.Size(606, 292);
             this.tabPage1.TabIndex = 2;
             this.tabPage1.Text = "Övrigt";
@@ -574,7 +627,8 @@
             // btnClear2
             // 
             this.btnClear2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.btnClear2.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
+            this.btnClear2.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("btnClear2.BackgroundImage")));
+            this.btnClear2.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.btnClear2.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnClear2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnClear2.Font = new System.Drawing.Font("Calibri", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -602,7 +656,7 @@
             this.tabPage4.ForeColor = System.Drawing.Color.White;
             this.tabPage4.Location = new System.Drawing.Point(4, 36);
             this.tabPage4.Name = "tabPage4";
-            this.tabPage4.Padding = new System.Windows.Forms.Padding(3, 3, 3, 3);
+            this.tabPage4.Padding = new System.Windows.Forms.Padding(3);
             this.tabPage4.Size = new System.Drawing.Size(606, 292);
             this.tabPage4.TabIndex = 1;
             this.tabPage4.Text = "Egen mening";
@@ -624,7 +678,7 @@
             // groupBox5
             // 
             this.groupBox5.Controls.Add(this.tbxAdded);
-            this.groupBox5.Font = new System.Drawing.Font("Calibri", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.groupBox5.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.groupBox5.ForeColor = System.Drawing.Color.White;
             this.groupBox5.Location = new System.Drawing.Point(25, 191);
             this.groupBox5.Name = "groupBox5";
@@ -636,9 +690,10 @@
             // tbxAdded
             // 
             this.tbxAdded.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tbxAdded.Location = new System.Drawing.Point(11, 21);
+            this.tbxAdded.Location = new System.Drawing.Point(11, 22);
             this.tbxAdded.Multiline = true;
             this.tbxAdded.Name = "tbxAdded";
+            this.tbxAdded.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
             this.tbxAdded.Size = new System.Drawing.Size(410, 51);
             this.tbxAdded.TabIndex = 3;
             // 
@@ -661,7 +716,7 @@
             // 
             this.groupBox6.Controls.Add(this.btnAddCustom);
             this.groupBox6.Controls.Add(this.tbxCustom);
-            this.groupBox6.Font = new System.Drawing.Font("Calibri", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.groupBox6.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.groupBox6.ForeColor = System.Drawing.Color.White;
             this.groupBox6.Location = new System.Drawing.Point(25, 120);
             this.groupBox6.Name = "groupBox6";
@@ -675,7 +730,7 @@
             this.btnAddCustom.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.btnAddCustom.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnAddCustom.ForeColor = System.Drawing.Color.Gray;
-            this.btnAddCustom.Location = new System.Drawing.Point(453, 22);
+            this.btnAddCustom.Location = new System.Drawing.Point(453, 23);
             this.btnAddCustom.Name = "btnAddCustom";
             this.btnAddCustom.Size = new System.Drawing.Size(96, 27);
             this.btnAddCustom.TabIndex = 5;
@@ -686,7 +741,7 @@
             // tbxCustom
             // 
             this.tbxCustom.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tbxCustom.Location = new System.Drawing.Point(11, 22);
+            this.tbxCustom.Location = new System.Drawing.Point(11, 23);
             this.tbxCustom.Name = "tbxCustom";
             this.tbxCustom.Size = new System.Drawing.Size(421, 27);
             this.tbxCustom.TabIndex = 3;
@@ -699,7 +754,7 @@
             this.groupBox7.Controls.Add(this.nupTo);
             this.groupBox7.Controls.Add(this.label1);
             this.groupBox7.Controls.Add(this.nupFrom);
-            this.groupBox7.Font = new System.Drawing.Font("Calibri", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.groupBox7.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.groupBox7.ForeColor = System.Drawing.Color.White;
             this.groupBox7.Location = new System.Drawing.Point(339, 14);
             this.groupBox7.Name = "groupBox7";
@@ -713,9 +768,9 @@
             this.btnAddNr.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.btnAddNr.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnAddNr.ForeColor = System.Drawing.Color.White;
-            this.btnAddNr.Location = new System.Drawing.Point(136, 24);
+            this.btnAddNr.Location = new System.Drawing.Point(136, 26);
             this.btnAddNr.Name = "btnAddNr";
-            this.btnAddNr.Size = new System.Drawing.Size(96, 62);
+            this.btnAddNr.Size = new System.Drawing.Size(99, 60);
             this.btnAddNr.TabIndex = 4;
             this.btnAddNr.Text = "Lägg till";
             this.btnAddNr.UseVisualStyleBackColor = false;
@@ -725,7 +780,7 @@
             // 
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(9, 25);
+            this.label2.Location = new System.Drawing.Point(9, 26);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(42, 18);
             this.label2.TabIndex = 3;
@@ -764,7 +819,7 @@
             // nupFrom
             // 
             this.nupFrom.Font = new System.Drawing.Font("Calibri", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.nupFrom.Location = new System.Drawing.Point(57, 24);
+            this.nupFrom.Location = new System.Drawing.Point(57, 25);
             this.nupFrom.Maximum = new decimal(new int[] {
             9999,
             0,
@@ -784,7 +839,7 @@
             this.groupBox8.Controls.Add(this.cbForms);
             this.groupBox8.Controls.Add(this.cbWords);
             this.groupBox8.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.groupBox8.Font = new System.Drawing.Font("Calibri", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.groupBox8.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.groupBox8.ForeColor = System.Drawing.Color.White;
             this.groupBox8.Location = new System.Drawing.Point(25, 14);
             this.groupBox8.Name = "groupBox8";
@@ -826,9 +881,9 @@
             this.cbForms.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cbForms.FormattingEnabled = true;
             this.cbForms.ItemHeight = 19;
-            this.cbForms.Location = new System.Drawing.Point(170, 24);
+            this.cbForms.Location = new System.Drawing.Point(133, 25);
             this.cbForms.Name = "cbForms";
-            this.cbForms.Size = new System.Drawing.Size(115, 27);
+            this.cbForms.Size = new System.Drawing.Size(152, 27);
             this.cbForms.TabIndex = 2;
             this.cbForms.SelectedIndexChanged += new System.EventHandler(this.cbForms_SelectedIndexChanged);
             this.cbForms.TextUpdate += new System.EventHandler(this.cbForms_TextUpdate);
@@ -841,13 +896,13 @@
             this.cbWords.FormattingEnabled = true;
             this.cbWords.Items.AddRange(new object[] {
             "Adjektiv",
-            "Substantiv (Något)",
-            "Substantiv (Någon)",
+            "Något",
+            "Någon",
             "Skämtnamn",
             "Verb"});
-            this.cbWords.Location = new System.Drawing.Point(11, 24);
+            this.cbWords.Location = new System.Drawing.Point(11, 25);
             this.cbWords.Name = "cbWords";
-            this.cbWords.Size = new System.Drawing.Size(153, 27);
+            this.cbWords.Size = new System.Drawing.Size(116, 27);
             this.cbWords.TabIndex = 1;
             this.cbWords.Text = "Välj...";
             this.toolTip.SetToolTip(this.cbWords, resources.GetString("cbWords.ToolTip"));
@@ -858,46 +913,47 @@
             // 
             this.menuStrip1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(23)))), ((int)(((byte)(23)))), ((int)(((byte)(23)))));
             this.menuStrip1.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.menuStrip1.Font = new System.Drawing.Font("Segoe UI Symbol", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.menuStrip1.ImageScalingSize = new System.Drawing.Size(24, 24);
             this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.backToolStripMenuItem,
-            saveResultToolStripMenuItem,
+            this.saveResultToolStripMenuItem,
             this.forwardToolStripMenuItem,
             this.settingsToolStripMenuItem});
             this.menuStrip1.LayoutStyle = System.Windows.Forms.ToolStripLayoutStyle.HorizontalStackWithOverflow;
-            this.menuStrip1.Location = new System.Drawing.Point(0, 353);
+            this.menuStrip1.Location = new System.Drawing.Point(0, 351);
             this.menuStrip1.Name = "menuStrip1";
             this.menuStrip1.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.menuStrip1.Size = new System.Drawing.Size(691, 31);
+            this.menuStrip1.Size = new System.Drawing.Size(691, 33);
             this.menuStrip1.TabIndex = 7;
             this.menuStrip1.Text = "menuStrip1";
             // 
             // backToolStripMenuItem
             // 
-            this.backToolStripMenuItem.Font = new System.Drawing.Font("Calibri", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.backToolStripMenuItem.Font = new System.Drawing.Font("Segoe UI Symbol", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.backToolStripMenuItem.ForeColor = System.Drawing.Color.White;
             this.backToolStripMenuItem.Name = "backToolStripMenuItem";
-            this.backToolStripMenuItem.Size = new System.Drawing.Size(55, 27);
-            this.backToolStripMenuItem.Text = "<----";
+            this.backToolStripMenuItem.Size = new System.Drawing.Size(47, 29);
+            this.backToolStripMenuItem.Text = "";
             this.backToolStripMenuItem.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
             this.backToolStripMenuItem.Click += new System.EventHandler(this.backToolStripMenuItem_Click);
             // 
             // saveResultToolStripMenuItem
             // 
-            saveResultToolStripMenuItem.Font = new System.Drawing.Font("Calibri", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            saveResultToolStripMenuItem.ForeColor = System.Drawing.Color.White;
-            saveResultToolStripMenuItem.Name = "saveResultToolStripMenuItem";
-            saveResultToolStripMenuItem.Size = new System.Drawing.Size(35, 27);
-            saveResultToolStripMenuItem.Text = "☆";
-            saveResultToolStripMenuItem.Click += new System.EventHandler(this.saveResultToolStripMenuItem_Click);
+            this.saveResultToolStripMenuItem.Font = new System.Drawing.Font("Segoe UI Symbol", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.saveResultToolStripMenuItem.ForeColor = System.Drawing.Color.White;
+            this.saveResultToolStripMenuItem.Name = "saveResultToolStripMenuItem";
+            this.saveResultToolStripMenuItem.Size = new System.Drawing.Size(42, 29);
+            this.saveResultToolStripMenuItem.Text = "";
+            this.saveResultToolStripMenuItem.Click += new System.EventHandler(this.saveResultToolStripMenuItem_Click);
             // 
             // forwardToolStripMenuItem
             // 
-            this.forwardToolStripMenuItem.Font = new System.Drawing.Font("Calibri", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.forwardToolStripMenuItem.Font = new System.Drawing.Font("Segoe UI Symbol", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.forwardToolStripMenuItem.ForeColor = System.Drawing.Color.White;
             this.forwardToolStripMenuItem.Name = "forwardToolStripMenuItem";
-            this.forwardToolStripMenuItem.Size = new System.Drawing.Size(55, 27);
-            this.forwardToolStripMenuItem.Text = "---->";
+            this.forwardToolStripMenuItem.Size = new System.Drawing.Size(47, 29);
+            this.forwardToolStripMenuItem.Text = "";
             this.forwardToolStripMenuItem.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
             this.forwardToolStripMenuItem.Click += new System.EventHandler(this.forwardToolStripMenuItem_Click);
             // 
@@ -906,7 +962,7 @@
             this.settingsToolStripMenuItem.Font = new System.Drawing.Font("Calibri", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.settingsToolStripMenuItem.ForeColor = System.Drawing.Color.White;
             this.settingsToolStripMenuItem.Name = "settingsToolStripMenuItem";
-            this.settingsToolStripMenuItem.Size = new System.Drawing.Size(84, 27);
+            this.settingsToolStripMenuItem.Size = new System.Drawing.Size(84, 29);
             this.settingsToolStripMenuItem.Text = "Options";
             this.settingsToolStripMenuItem.Click += new System.EventHandler(this.settingsToolStripMenuItem_Click);
             // 
@@ -922,10 +978,12 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("$this.BackgroundImage")));
+            this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
             this.ClientSize = new System.Drawing.Size(691, 384);
             this.Controls.Add(this.customTabControl1);
             this.Controls.Add(this.menuStrip1);
+            this.DoubleBuffered = true;
             this.ForeColor = System.Drawing.Color.White;
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
             this.MainMenuStrip = this.menuStrip1;
@@ -936,8 +994,8 @@
             this.customTabControl1.ResumeLayout(false);
             this.tabPage3.ResumeLayout(false);
             this.tabPage2.ResumeLayout(false);
-            this.tabPage5.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
+            this.tabPage8.ResumeLayout(false);
+            this.tabPage8.PerformLayout();
             this.tabPage1.ResumeLayout(false);
             this.tabPage4.ResumeLayout(false);
             this.groupBox5.ResumeLayout(false);
@@ -991,21 +1049,26 @@
         private System.Windows.Forms.Button btnRensa3;
         private System.Windows.Forms.Button btnGenerate6;
         private System.Windows.Forms.Button btnGenerate9;
-        private System.Windows.Forms.TabPage tabPage5;
-        private System.Windows.Forms.Button btnGenerate12;
-        private System.Windows.Forms.Button btnGenerate11;
-        private System.Windows.Forms.Button btnRensa4;
-        private System.Windows.Forms.Button btnGenerate10;
-        private System.Windows.Forms.Button btnRelationLeft;
-        private System.Windows.Forms.Button btnRelationRight;
-        private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.MenuStrip menuStrip1;
-        public System.Windows.Forms.ToolStripMenuItem backToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem backToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem forwardToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem settingsToolStripMenuItem;
         private System.Windows.Forms.ComboBox cbConnect;
         private System.Windows.Forms.ToolTip toolTip;
-        static public System.Windows.Forms.ToolStripMenuItem saveResultToolStripMenuItem;
+        public System.Windows.Forms.ToolStripMenuItem saveResultToolStripMenuItem;
+        private System.Windows.Forms.TabPage tabPage8;
+        private System.Windows.Forms.Button btnRemoveParticipant;
+        private System.Windows.Forms.Button btnAddParticipant;
+        private System.Windows.Forms.ComboBox cbParticipants;
+        private System.Windows.Forms.Button btnGenerateMission;
+        private System.Windows.Forms.Button btnGenerateLocation;
+        private System.Windows.Forms.Button btnGenerateRelation;
+        private System.Windows.Forms.Button btnClearScene;
+        private System.Windows.Forms.ComboBox cbRelation;
+        private System.Windows.Forms.ComboBox cbMission;
+        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.Label lblParticipants;
     }
 }
 

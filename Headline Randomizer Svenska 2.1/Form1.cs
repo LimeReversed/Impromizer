@@ -5,6 +5,8 @@ using System.Windows.Forms;
 using System.IO;
 using System.Text;
 using System.Data.SqlClient;
+using System.Configuration;
+using Svenska;
 
 // Svenska 
 namespace Headline_Randomizer
@@ -15,15 +17,42 @@ namespace Headline_Randomizer
         PresentationWindow presentationWindow = new PresentationWindow();
         Random r = new Random();
         int position;
+        
 
         public Form1()
         {
             InitializeComponent();
 
+            
+
+            // Load scene settings
+            var config = ConfigurationManager.OpenExeConfiguration(ConfigurationUserLevel.None);
+
+            cbRelation.SelectedIndex = Convert.ToInt32(config.AppSettings.Settings["RelationChoice"].Value);
+            cbMission.SelectedIndex = Convert.ToInt32(config.AppSettings.Settings["MissionChoice"].Value);
+
+            try
+            {
+                for (int i = 0; i < config.AppSettings.Settings.Count; i++)
+                {
+                    cbParticipants.Items.Add(config.AppSettings.Settings[$"Participant {i}"].Value);
+                }
+            }
+            catch
+            {
+
+            }
+
+            RelationChanged();
+            lblParticipants.Text = (cbParticipants.Items.Count < 1 ? "Lägg till delttagare" : $"Lägg till deltagare (Antal: {cbParticipants.Items.Count})");
+
             // Show the second window at a precise location relative to the main window.
             presentationWindow.Location = new Point(Location.X + 8, Location.Y + Size.Height);
+            presentationWindow.otherForm = this; // this classes instance
             presentationWindow.Show();
+
         }
+
 
         // 
         // Click animation eventhandlers
@@ -119,55 +148,55 @@ namespace Headline_Randomizer
             btnGenerate9.BackgroundImage = global::Headline_Randomizer.Properties.Resources.husmorbuttonbig;
         }
 
-        private void btnGenerate10_MouseDown(object sender, MouseEventArgs e)
-        {
-            btnGenerate10.BackgroundImage = global::Headline_Randomizer.Properties.Resources.locationbuttonsmall;
-        }
+        //private void btnGenerate10_MouseDown(object sender, MouseEventArgs e)
+        //{
+        //    btnGenerate10.BackgroundImage = global::Headline_Randomizer.Properties.Resources.locationbuttonsmall;
+        //}
 
-        private void btnGenerate10_MouseUp(object sender, MouseEventArgs e)
-        {
-            btnGenerate10.BackgroundImage = global::Headline_Randomizer.Properties.Resources.locationbuttonbig;
-        }
+        //private void btnGenerate10_MouseUp(object sender, MouseEventArgs e)
+        //{
+        //    btnGenerate10.BackgroundImage = global::Headline_Randomizer.Properties.Resources.locationbuttonbig;
+        //}
 
-        private void btnGenerate11_MouseUp(object sender, MouseEventArgs e)
-        {
-            btnGenerate11.BackgroundImage = global::Headline_Randomizer.Properties.Resources.relationbutton_lång4;
-        }
+        //private void btnGenerate11_MouseUp(object sender, MouseEventArgs e)
+        //{
+        //    btnGenerate11.BackgroundImage = global::Headline_Randomizer.Properties.Resources.relationbutton_lång4;
+        //}
 
-        private void btnGenerate11_MouseDown(object sender, MouseEventArgs e)
-        {
-            btnGenerate11.BackgroundImage = global::Headline_Randomizer.Properties.Resources.relationbutton_lång_small;
-        }
+        //private void btnGenerate11_MouseDown(object sender, MouseEventArgs e)
+        //{
+        //    btnGenerate11.BackgroundImage = global::Headline_Randomizer.Properties.Resources.relationbutton_lång_small;
+        //}
 
-        private void btnGenerate12_MouseDown(object sender, MouseEventArgs e)
-        {
-            btnGenerate12.BackgroundImage = global::Headline_Randomizer.Properties.Resources.protipsmall;
-        }
+        //private void btnGenerate12_MouseDown(object sender, MouseEventArgs e)
+        //{
+        //    btnGenerate12.BackgroundImage = global::Headline_Randomizer.Properties.Resources.protipsmall;
+        //}
 
-        private void btnGenerate12_MouseUp(object sender, MouseEventArgs e)
-        {
-            btnGenerate12.BackgroundImage = global::Headline_Randomizer.Properties.Resources.protipbig;
-        }
+        //private void btnGenerate12_MouseUp(object sender, MouseEventArgs e)
+        //{
+        //    btnGenerate12.BackgroundImage = global::Headline_Randomizer.Properties.Resources.protipbig;
+        //}
 
-        private void RelationRight_MounseDown(object sender, MouseEventArgs e)
-        {
-            btnRelationRight.BackgroundImage = global::Headline_Randomizer.Properties.Resources.relationarrowright_small;
-        }
+        //private void RelationRight_MounseDown(object sender, MouseEventArgs e)
+        //{
+        //    btnRelationRight.BackgroundImage = global::Headline_Randomizer.Properties.Resources.relationarrowright_small;
+        //}
 
-        private void RelationRight_MounseUp(object sender, MouseEventArgs e)
-        {
-            btnRelationRight.BackgroundImage = global::Headline_Randomizer.Properties.Resources.relationarrowright;
-        }
+        //private void RelationRight_MounseUp(object sender, MouseEventArgs e)
+        //{
+        //    btnRelationRight.BackgroundImage = global::Headline_Randomizer.Properties.Resources.relationarrowright;
+        //}
 
-        private void RelationLeft_MounseDown(object sender, MouseEventArgs e)
-        {
-            btnRelationLeft.BackgroundImage = global::Headline_Randomizer.Properties.Resources.relationarrowleft_small;
-        }
+        //private void RelationLeft_MounseDown(object sender, MouseEventArgs e)
+        //{
+        //    btnRelationLeft.BackgroundImage = global::Headline_Randomizer.Properties.Resources.relationarrowleft_small;
+        //}
 
-        private void RelationLeft_MounseUp(object sender, MouseEventArgs e)
-        {
-            btnRelationLeft.BackgroundImage = global::Headline_Randomizer.Properties.Resources.relationarrowleft;
-        }
+        //private void RelationLeft_MounseUp(object sender, MouseEventArgs e)
+        //{
+        //    btnRelationLeft.BackgroundImage = global::Headline_Randomizer.Properties.Resources.relationarrowleft;
+        //}
         #endregion
 
         // 
@@ -182,10 +211,10 @@ namespace Headline_Randomizer
             int nr2 = r.Next(1, 11);
             int nr1 = r.Next(1, (nr2 + 2));
 
-            presentationWindow.tbxResult.Text = $"{nr1} av {nr2} tycker att {Words.someone.Plural(someoneId)} är {Words.adjective.Plural(adjectiveId)}";
+            presentationWindow.tbxResult.Text = $"{nr1} av {nr2} tycker att {Words.noun.Plural(someoneId)} är {Words.adjective.Plural(adjectiveId)}";
 
             // Remove used words
-            Words.someone.Used(someoneId);
+            Words.noun.Used(someoneId);
             Words.adjective.Used(adjectiveId);
 
             EndingRitual(2, presentationWindow.tbxResult, ref position);
@@ -200,17 +229,17 @@ namespace Headline_Randomizer
                 presentationWindow.tbxResult.Text = "";
                 int someoneNr = Words.someone.RandomizeId();
 
-                presentationWindow.tbxResult.AppendText($"{FixText.FirstLetterUpper(Words.someone.Singular(someoneNr))} ");
-                Words.someone.Used(someoneNr);
+                presentationWindow.tbxResult.AppendText($"{FixText.FirstLetterUpper(Words.noun.SingularObest(someoneNr))} ");
+                Words.noun.Used(someoneNr);
 
                 int verbNr = Words.verb.RandomizeId();
                 int somethingNr = Words.something.RandomizeId();
                 int adjectiveNr = Words.adjective.RandomizeId();
 
-                presentationWindow.tbxResult.AppendText($"{Words.verb.Presens(verbNr)} {Words.verb.PostVerbs(verbNr)}{Words.adjective.Singular(adjectiveNr, somethingNr)} {Words.something.Singular(somethingNr)}");
+                presentationWindow.tbxResult.AppendText($"{Words.verb.Presens(verbNr)} {Words.verb.Preposition(verbNr)}{Words.adjective.Automatic(adjectiveNr, somethingNr, true)} {Words.noun.SingularObest(somethingNr)}");
 
                 Words.verb.Used(verbNr);
-                Words.something.Used(somethingNr);
+                Words.noun.Used(somethingNr);
                 Words.adjective.Used(adjectiveNr);
 
                 EndingRitual(2, presentationWindow.tbxResult, ref position);
@@ -220,17 +249,17 @@ namespace Headline_Randomizer
                 presentationWindow.tbxResult.Text = "";
                 int someoneNr = Words.someone.RandomizeId();
 
-                presentationWindow.tbxResult.AppendText($"{FixText.FirstLetterUpper(Words.someone.Singular(someoneNr))} ");
-                Words.someone.Used(someoneNr);
+                presentationWindow.tbxResult.AppendText($"{FixText.FirstLetterUpper(Words.noun.SingularObest(someoneNr))} ");
+                Words.noun.Used(someoneNr);
 
                 int verbNr = Words.verb.RandomizeId();
                 int someoneNr2 = Words.someone.RandomizeId();
                 int adjectiveNr = Words.adjective.RandomizeId();
 
-                presentationWindow.tbxResult.AppendText($"{Words.verb.Presens(verbNr)} {Words.verb.PostVerbs(verbNr)}{Words.adjective.Singular(adjectiveNr, someoneNr2)} {Words.something.Singular(someoneNr2)}");
+                presentationWindow.tbxResult.AppendText($"{Words.verb.Presens(verbNr)} {Words.verb.Preposition(verbNr)}{Words.adjective.Automatic(adjectiveNr, someoneNr2, true)} {Words.noun.SingularObest(someoneNr2)}");
 
                 Words.verb.Used(verbNr);
-                Words.someone.Used(someoneNr2);
+                Words.noun.Used(someoneNr2);
                 Words.adjective.Used(adjectiveNr);
 
                 EndingRitual(2, presentationWindow.tbxResult, ref position);
@@ -242,15 +271,15 @@ namespace Headline_Randomizer
             presentationWindow.tbxResult.Text = "";
             int someoneNr = Words.someone.RandomizeId();
 
-            presentationWindow.tbxResult.AppendText($"{FixText.FirstLetterUpper(Words.someone.Singular(someoneNr))} tror att ");
-            Words.someone.Used(someoneNr);
+            presentationWindow.tbxResult.AppendText($"{FixText.FirstLetterUpper(Words.noun.SingularObest(someoneNr))} tror att ");
+            Words.noun.Used(someoneNr);
 
             int someoneNr2 = Words.someone.RandomizeId();
             int somethingNr = Words.something.RandomizeId();
-            presentationWindow.tbxResult.AppendText($"{Words.someone.Plural(someoneNr2)} är {Words.something.Plural(somethingNr)}");
+            presentationWindow.tbxResult.AppendText($"{Words.noun.Plural(someoneNr2)} är {Words.noun.Plural(somethingNr)}");
 
-            Words.someone.Used(someoneNr2);
-            Words.something.Used(somethingNr);
+            Words.noun.Used(someoneNr2);
+            Words.noun.Used(somethingNr);
 
             EndingRitual(2, presentationWindow.tbxResult, ref position);
         }
@@ -261,18 +290,18 @@ namespace Headline_Randomizer
             int someoneNr = Words.someone.RandomizeId();
             int adjectiveNr = Words.adjective.RandomizeId();
 
-            presentationWindow.tbxResult.AppendText($"{FixText.FirstLetterUpper(Words.adjective.Plural(adjectiveNr))} {Words.someone.Plural(someoneNr)} ");
+            presentationWindow.tbxResult.AppendText($"{FixText.FirstLetterUpper(Words.adjective.Plural(adjectiveNr))} {Words.noun.Plural(someoneNr)} ");
             Words.adjective.Used(adjectiveNr);
-            Words.someone.Used(someoneNr);
+            Words.noun.Used(someoneNr);
 
             int someoneNr2 = Words.someone.RandomizeId();
             int adjectiveNr2 = Words.adjective.RandomizeId();
             int verbNr = Words.verb.RandomizeId();
 
-            presentationWindow.tbxResult.AppendText($"{Words.verb.Presens(verbNr)} {Words.verb.PostVerbs(verbNr)}{Words.adjective.Plural(adjectiveNr2)} {Words.someone.Plural(someoneNr2)}");
+            presentationWindow.tbxResult.AppendText($"{Words.verb.Presens(verbNr)} {Words.verb.Preposition(verbNr)}{Words.adjective.Plural(adjectiveNr2)} {Words.noun.Plural(someoneNr2)}");
 
             Words.adjective.Used(adjectiveNr2);
-            Words.someone.Used(someoneNr2);
+            Words.noun.Used(someoneNr2);
             Words.verb.Used(verbNr);
 
             EndingRitual(2, presentationWindow.tbxResult, ref position);
@@ -286,12 +315,12 @@ namespace Headline_Randomizer
             int verbNr = Words.verb.RandomizeId();
             int somethingNr = Words.something.RandomizeId();
 
-            presentationWindow.tbxResult.AppendText($"{Words.jokeName.Name(jokeNameNr)} vann {Words.nobelPrize.Prize(nobelNr)} för att ha {Words.verb.Perfekt(verbNr)} {Words.verb.PostVerbs(verbNr)}{Words.something.Plural(somethingNr)}");
+            presentationWindow.tbxResult.AppendText($"{Words.jokeName.Name(jokeNameNr)} vann {Words.nobelPrize.Prize(nobelNr)} för att ha {Words.verb.Perfekt(verbNr)} {Words.verb.Preposition(verbNr)}{Words.noun.Plural(somethingNr)}");
 
             Words.jokeName.Used(jokeNameNr);
             Words.nobelPrize.Used(nobelNr);
             Words.verb.Used(verbNr);
-            Words.something.Used(somethingNr);
+            Words.noun.Used(somethingNr);
             EndingRitual(1, presentationWindow.tbxResult, ref position);
         }
 
@@ -312,10 +341,10 @@ namespace Headline_Randomizer
             int verbNr = Words.verb.RandomizeId();
             int someoneNr = Words.someone.RandomizeId();
 
-            presentationWindow.tbxResult.AppendText($"Kom ihåg, {Words.verb.Request(verbNr)} alltid {Words.verb.PostVerbs(verbNr)}{Words.someone.DinEllerDitt(someoneNr, false)} {Words.someone.Plural(someoneNr)}");
+            presentationWindow.tbxResult.AppendText($"Kom ihåg, {Words.verb.Uppmaning(verbNr)} alltid {Words.verb.Preposition(verbNr)}{Words.noun.DinEllerDitt(someoneNr, false)} {Words.noun.Plural(someoneNr)}");
 
             Words.verb.Used(verbNr);
-            Words.someone.Used(someoneNr);
+            Words.noun.Used(someoneNr);
             EndingRitual(2, presentationWindow.tbxResult, ref position);
         }
 
@@ -325,9 +354,9 @@ namespace Headline_Randomizer
             int somethingNr = Words.something.RandomizeId();
             int adjectiveNr = Words.adjective.RandomizeId();
 
-            presentationWindow.tbxResult.AppendText($"Lycka är {Words.adjective.Plural(adjectiveNr, somethingNr)} {Words.something.Plural(somethingNr)}");
+            presentationWindow.tbxResult.AppendText($"Lycka är {Words.adjective.Automatic(adjectiveNr, somethingNr, false)} {Words.something.Plural(somethingNr)}");
 
-            Words.something.Used(somethingNr);
+            Words.noun.Used(somethingNr);
             Words.adjective.Used(adjectiveNr);
             EndingRitual(1, presentationWindow.tbxResult, ref position);
         }
@@ -343,9 +372,9 @@ namespace Headline_Randomizer
                 int adjectiveNr = Words.adjective.RandomizeId();
                 int someoneNr = Words.someone.RandomizeId();
 
-                presentationWindow.tbxResult.AppendText($"Husmorstips, {Words.someone.DinEllerDitt(someoneNr, false)} {Words.someone.Plural(someoneNr)} kan aldrig vara för {Words.adjective.Plural(adjectiveNr, someoneNr)}");
+                presentationWindow.tbxResult.AppendText($"Husmorstips, {Words.noun.DinEllerDitt(someoneNr, false)} {Words.noun.Plural(someoneNr)} kan aldrig vara för {Words.adjective.Automatic(adjectiveNr, someoneNr, false)}");
 
-                Words.someone.Used(someoneNr);
+                Words.noun.Used(someoneNr);
                 Words.adjective.Used(adjectiveNr);
                 EndingRitual(2, presentationWindow.tbxResult, ref position);
             }
@@ -354,9 +383,9 @@ namespace Headline_Randomizer
                 int adjectiveNr = Words.adjective.RandomizeId();
                 int somethingNr = Words.something.RandomizeId();
 
-                presentationWindow.tbxResult.AppendText($"Husmorstips, {Words.something.DinEllerDitt(somethingNr, false)} {Words.something.Plural(somethingNr)} kan aldrig vara för {Words.adjective.Plural(adjectiveNr, somethingNr)}");
+                presentationWindow.tbxResult.AppendText($"Husmorstips, {Words.noun.DinEllerDitt(somethingNr, false)} {Words.noun.Plural(somethingNr)} kan aldrig vara för {Words.adjective.Automatic(adjectiveNr, somethingNr, false)}");
 
-                Words.something.Used(somethingNr);
+                Words.noun.Used(somethingNr);
                 Words.adjective.Used(adjectiveNr);
                 EndingRitual(2, presentationWindow.tbxResult, ref position);
             }
@@ -474,89 +503,6 @@ namespace Headline_Randomizer
             //    }
         }
 
-        private void btnRensa_Click(object sender, EventArgs e)
-        {
-            //    //scene.Clear();
-            //    //sceneitems.Clear();
-            //    presentationWindow.tbxResult.Text = "";
-            //    PNr = 1;
-            //    statusPNr = 1;
-            //    //locationString = "";
-            //    //relationString = "";
-            //    //missionString = "";
-            //    //locationPressed = false;
-            //    //relationPressed = false;
-            //    //missionPressed = false;
-
-        }
-
-        //int nr = 0;
-        private void RelationRight(object sender, EventArgs e)
-        {
-            //    nr++;
-            //    if (nr == 0)
-            //    {
-            //        btnGenerate11.Text = "&Relation\r\n(Alla samma)";
-            //        btnRelationRight.Enabled = true;
-            //        btnRelationLeft.Enabled = false;
-            //        btnRelationRight.Visible = true;
-            //        btnRelationLeft.Visible = false;
-            //    }
-            //    else if (nr == 1)
-            //    {
-            //        btnGenerate11.Text = "&Relation\r\n(Alla olika)";
-            //        btnRelationRight.Enabled = true;
-            //        btnRelationLeft.Enabled = true;
-            //        btnRelationRight.Visible = true;
-            //        btnRelationLeft.Visible = true;
-            //    }
-            //    else if (nr == 2)
-            //    {
-            //        btnGenerate11.Text = "&Relation\r\n(Statusförhållanden)";
-            //        btnRelationRight.Enabled = false;
-            //        btnRelationLeft.Enabled = true;
-            //        btnRelationRight.Visible = false;
-            //        btnRelationLeft.Visible = true;
-            //    }
-            //    else if (nr > 2)
-            //    {
-            //        nr = 2;
-            //    }
-        }
-
-        private void RelationLeft(object sender, EventArgs e)
-        {
-            //    nr--;
-            //    if (nr == 0)
-            //    {
-            //        btnGenerate11.Text = "&Relation\r\n(Alla samma)";
-            //        btnRelationRight.Enabled = true;
-            //        btnRelationLeft.Enabled = false;
-            //        btnRelationRight.Visible = true;
-            //        btnRelationLeft.Visible = false;
-            //    }
-            //    else if (nr == 1)
-            //    {
-            //        btnGenerate11.Text = "&Relation\r\n(Alla olika)";
-            //        btnRelationRight.Enabled = true;
-            //        btnRelationLeft.Enabled = true;
-            //        btnRelationRight.Visible = true;
-            //        btnRelationLeft.Visible = true;
-            //    }
-            //    else if (nr == 2)
-            //    {
-            //        btnGenerate11.Text = "&Relation\r\n(Statusförhållanden)";
-            //        btnRelationRight.Enabled = false;
-            //        btnRelationLeft.Enabled = true;
-            //        btnRelationRight.Visible = false;
-            //        btnRelationLeft.Visible = true;
-            //    }
-            //    else if (nr < 0)
-            //    {
-            //        nr = 0;
-            //    }
-        }
-
 
         // 
         // Tab: Övrigt
@@ -573,9 +519,9 @@ namespace Headline_Randomizer
                 int verbNr = Words.verb.RandomizeId();
                 int someoneNr = Words.someone.RandomizeId();
 
-                presentationWindow.tbxResult.AppendText($"Är du trött på att {Words.verb.BasForm(verbNr)} {Words.verb.PostVerbs(verbNr)}{Words.someone.Plural(someoneNr)}?");
+                presentationWindow.tbxResult.AppendText($"Är du trött på att {Words.verb.Infinitiv(verbNr)} {Words.verb.Preposition(verbNr)}{Words.noun.Plural(someoneNr)}?");
 
-                Words.someone.Used(someoneNr);
+                Words.noun.Used(someoneNr);
                 Words.verb.Used(verbNr);
                 EndingRitual(2, presentationWindow.tbxResult, ref position);
             }
@@ -584,9 +530,9 @@ namespace Headline_Randomizer
                 int verbNr = Words.verb.RandomizeId();
                 int somethingNr = Words.something.RandomizeId();
 
-                presentationWindow.tbxResult.AppendText($"Är du trött på att {Words.verb.BasForm(verbNr)} {Words.verb.PostVerbs(verbNr)}{Words.something.Plural(somethingNr)}?");
+                presentationWindow.tbxResult.AppendText($"Är du trött på att {Words.verb.Infinitiv(verbNr)} {Words.verb.Preposition(verbNr)}{Words.noun.Plural(somethingNr)}?");
 
-                Words.something.Used(somethingNr);
+                Words.noun.Used(somethingNr);
                 Words.verb.Used(verbNr);
                 EndingRitual(2, presentationWindow.tbxResult, ref position);
             }
@@ -618,20 +564,28 @@ namespace Headline_Randomizer
                 cbForms.Items.Add("T-genus");
                 cbForms.Items.Add("Plural");
                 cbForms.Items.Add("Automatisk");
+                cbForms.Items.Add("Preposition");
             }
-            else if (cbWords.Text == "Substantiv (Något)")
+            else if (cbWords.Text == "Något")
             {
                 cbForms.Text = "Välj...";
-                cbForms.Items.Add("Singular");
+                cbForms.Items.Add("Singular obestämd");
+                cbForms.Items.Add("Singular bestämd");
                 cbForms.Items.Add("Plural");
+                cbForms.Items.Add("Preposition");
+                cbForms.Items.Add("Plats");
                 cbForms.Items.Add("En eller Ett");
+                //cbForms.Items.Add("Din eller Ditt");
             }
-            else if (cbWords.Text == "Substantiv (Någon)")
+            else if (cbWords.Text == "Någon")
             {
                 cbForms.Text = "Välj...";
-                cbForms.Items.Add("Singular");
+                cbForms.Items.Add("Singular obestämd");
+                cbForms.Items.Add("Singular bestämd");
                 cbForms.Items.Add("Plural");
+                cbForms.Items.Add("Preposition");
                 cbForms.Items.Add("En eller Ett");
+                //cbForms.Items.Add("Din eller Ditt");
             }
             else if (cbWords.Text == "Skämtnamn")
             {
@@ -641,10 +595,11 @@ namespace Headline_Randomizer
             else if (cbWords.Text == "Verb")
             {
                 cbForms.Text = "Välj...";
-                cbForms.Items.Add("Basform");
-                cbForms.Items.Add("Presens");
+                cbForms.Items.Add("Infinitiv");
+                cbForms.Items.Add("Uppmaning");
                 cbForms.Items.Add("Perfekt");
-                cbForms.Items.Add("Efter verb");
+                cbForms.Items.Add("Presens");
+                cbForms.Items.Add("Preposition");
             }
 
             if (cbWords.Text != "Välj..." && cbForms.Text != "Välj..." && cbConnect.Text != "Välj...")
@@ -655,6 +610,7 @@ namespace Headline_Randomizer
 
         bool nounsAdded = false;
         bool verbsAdded = false;
+        bool adjectivesAdded = false;
 
         // Add different items, depending on the current choices. 
         private void cbForms_SelectedIndexChanged(object sender, EventArgs e)
@@ -666,7 +622,9 @@ namespace Headline_Randomizer
             cbForms.BackColor = Color.White;
             btnAddWord.ForeColor = Color.Gray;
 
-            if (cbForms.Text == "En eller Ett" || (cbWords.Text == "Adjektiv" && cbForms.Text == "Automatisk"))
+            if ((cbWords.Text == "Någon" || cbWords.Text == "Något") 
+                    && (cbForms.Text == "En eller Ett" || cbForms.Text == "Din eller Ditt" || cbForms.Text == "Preposition") 
+                || (cbWords.Text == "Adjektiv" && cbForms.Text == "Automatisk"))
             {
                 cbConnect.Text = "Välj...";
                 cbConnect.Enabled = true;
@@ -677,7 +635,7 @@ namespace Headline_Randomizer
                 cbConnect.Items.Add("Syfta till nästa substantiv");
             }
 
-            else if (cbWords.Text == "Verb" && cbForms.Text == "Efter verb")
+            else if (cbWords.Text == "Verb" && cbForms.Text == "Preposition")
             {
                 cbConnect.Text = "Välj...";
                 cbConnect.Enabled = true;
@@ -688,6 +646,19 @@ namespace Headline_Randomizer
                     cbConnect.Items.Add("Syfta till tidigare verb");
                 }
                 cbConnect.Items.Add("Syfta till nästa verb");
+            }
+
+            else if (cbWords.Text == "Adjektiv" && cbForms.Text == "Preposition")
+            {
+                cbConnect.Text = "Välj...";
+                cbConnect.Enabled = true;
+
+                if (adjectivesAdded == true)
+                {
+
+                    cbConnect.Items.Add("Syfta till tidigare adjektiv");
+                }
+                cbConnect.Items.Add("Syfta till nästa adjektiv");
             }
 
             if (cbWords.Text != "Välj..." && cbForms.Text != "Välj..." && cbConnect.Text != "Välj...")
@@ -734,17 +705,28 @@ namespace Headline_Randomizer
             tbxAdded.Text = "";
             foreach (Custom element in Db.choicesList)
             {
-                tbxAdded.AppendText($"{(Db.choicesList.IndexOf(element) == 0 ? "" : " + ")}{element.WordChoice}");
+                if (element.WordChoice == "Nr" || element.CustomString == true)
+                {
+                    tbxAdded.AppendText($"{(Db.choicesList.IndexOf(element) == 0 ? "" : " + ")}{element.WordChoice}");
+                }
+                else
+                {
+                    tbxAdded.AppendText($"{(Db.choicesList.IndexOf(element) == 0 ? "" : " + ")}{element.WordChoice} ({element.FormChoice})");
+                }
             }
 
             // Keep tabs on whether Nouns and verbs have been added. 
-            if (cbWords.Text == "Substantiv (Någon)" || cbWords.Text == "Substantiv (Något)")
+            if (cbWords.Text == "Någon" || cbWords.Text == "Något")
             {
                 nounsAdded = true;
             }
             else if (cbWords.Text == "Verb")
             {
                 verbsAdded = true;
+            }
+            else if (cbWords.Text == "Adjektiv")
+            {
+                adjectivesAdded = true;
             }
         }
 
@@ -756,7 +738,14 @@ namespace Headline_Randomizer
             tbxAdded.Text = "";
             foreach (Custom element in Db.choicesList)
             {
-                tbxAdded.AppendText($"{(Db.choicesList.IndexOf(element) == 0 ? "" : " + ")}{element.WordChoice}");
+                if (element.WordChoice == "Nr" || element.CustomString == true)
+                {
+                    tbxAdded.AppendText($"{(Db.choicesList.IndexOf(element) == 0 ? "" : " + ")}{element.WordChoice}");
+                }
+                else
+                {
+                    tbxAdded.AppendText($"{(Db.choicesList.IndexOf(element) == 0 ? "" : " + ")}{element.WordChoice} ({element.FormChoice})");
+                }
             }
         }
 
@@ -775,7 +764,14 @@ namespace Headline_Randomizer
             tbxAdded.Text = "";
             foreach (Custom element in Db.choicesList)
             {
-                tbxAdded.AppendText($"{(Db.choicesList.IndexOf(element) == 0 ? "" : " + ")}{element.WordChoice}");
+                if (element.WordChoice == "Nr" || element.CustomString == true)
+                {
+                    tbxAdded.AppendText($"{(Db.choicesList.IndexOf(element) == 0 ? "" : " + ")}{element.WordChoice}");
+                }
+                else
+                {
+                    tbxAdded.AppendText($"{(Db.choicesList.IndexOf(element) == 0 ? "" : " + ")}{element.WordChoice} ({element.FormChoice})");
+                }
             }
         }
 
@@ -801,41 +797,50 @@ namespace Headline_Randomizer
             // Update all relevant objects on the choicelist with RandomId. 
             foreach (Custom element in Db.choicesList)
             {
-                if (element.WordChoice == "Substantiv (Någon)" && (element.FormChoice == "Singular" || element.FormChoice == "Plural"))
+                if (element.WordChoice == "Någon" && (element.FormChoice != "En eller Ett" 
+                    || element.FormChoice != "Din eller Ditt" || element.FormChoice != "Preposition"))
                 {
                     // Add randomId to the Id-variable in the current instance.
                     // Then set that word to used and reload if needed. 
                     element.Id = Words.someone.RandomizeId();
-                    Words.someone.Used(element.Id);
-                    Db.ResetUsed(5);
+                    Words.noun.Used(element.Id);
+                    Words.FreeNeeded(5);
                 }
 
-                else if (element.WordChoice == "Substantiv (Något)" && (element.FormChoice == "Singular" || element.FormChoice == "Plural"))
+                else if (element.WordChoice == "Något" && (element.FormChoice != "En eller Ett" 
+                        && element.FormChoice != "Plats" && element.FormChoice != "Din eller Ditt" && element.FormChoice != "Preposition"))
                 {
                     element.Id = Words.something.RandomizeId();
-                    Words.something.Used(element.Id);
-                    Db.ResetUsed(5);
+                    Words.noun.Used(element.Id);
+                    Words.FreeNeeded(5);
                 }
 
-                else if (element.WordChoice == "Adjektiv")
+                else if (element.WordChoice == "Något" && element.FormChoice == "Plats" && element.FormChoice != "Preposition")
+                {
+                    element.Id = Words.location.RandomizeId();
+                    Words.noun.Used(element.Id);
+                    Words.FreeNeeded(5);
+                }
+
+                else if (element.WordChoice == "Adjektiv" && element.FormChoice != "Preposition")
                 {
                     element.Id = Words.adjective.RandomizeId();
                     Words.adjective.Used(element.Id);
-                    Db.ResetUsed(5);
+                    Words.FreeNeeded(5);
                 }
 
-                else if (element.WordChoice == "Verb" && element.FormChoice != "Efter verb")
+                else if (element.WordChoice == "Verb" && element.FormChoice != "Preposition")
                 {
                     element.Id = Words.verb.RandomizeId();
                     Words.verb.Used(element.Id);
-                    Db.ResetUsed(5);
+                    Words.FreeNeeded(5);
                 }
 
                 else if (element.WordChoice == "Skämtnamn")
                 {
                     element.Id = Words.jokeName.RandomizeId();
                     Words.jokeName.Used(element.Id);
-                    Db.ResetUsed(5);
+                    Words.FreeNeeded(5);
                 }
 
                 else { }
@@ -845,13 +850,13 @@ namespace Headline_Randomizer
             // the below should be connected to.
             foreach (Custom element in Db.choicesList)
             {
-                if (element.WordChoice == "Verb" && element.FormChoice == "Efter verb" && element.ConnectionChoice == "Syfta till nästa verb")
+                if (element.WordChoice == "Verb" && element.FormChoice == "Preposition" && element.ConnectionChoice == "Syfta till nästa verb")
                 {
                     // Go from where the current item is in the choicesList and move up until it 
                     // reaches the next verb. 
                     for (int i = element.PositionNr; i < Db.choicesList.Count; i++)
                     {
-                        if (Db.choicesList[i].WordChoice == "Verb" && Db.choicesList[i].FormChoice != "Efter verb")
+                        if (Db.choicesList[i].WordChoice == "Verb" && Db.choicesList[i].FormChoice != "Preposition")
                         {
                             // Insert the position of this verb into the current instance. 
                             element.ConnectionPosition = i;
@@ -860,12 +865,12 @@ namespace Headline_Randomizer
                     }
                 }
 
-                else if (element.WordChoice == "Verb" && element.FormChoice == "Efter verb" && element.ConnectionChoice == "Syfta till tidigare verb")
+                else if (element.WordChoice == "Verb" && element.FormChoice == "Preposition" && element.ConnectionChoice == "Syfta till tidigare verb")
                 {
                     // Here we go down instead of up. 
                     for (int i = element.PositionNr; i >= 0; i--)
                     {
-                        if (Db.choicesList[i].WordChoice == "Verb" && Db.choicesList[i].FormChoice != "Efter verb")
+                        if (Db.choicesList[i].WordChoice == "Verb" && Db.choicesList[i].FormChoice != "Preposition")
                         {
                             element.ConnectionPosition = i;
                             break;
@@ -874,13 +879,18 @@ namespace Headline_Randomizer
                 }
 
                 else if (element.ConnectionChoice == "Syfta till nästa substantiv" 
-                        && (element.WordChoice == "Substantiv (Något)" || element.WordChoice == "Substantiv (Någon)"  && element.FormChoice == "En eller Ett")
-                        || (element.WordChoice == "Adjektiv" && element.FormChoice == "Automatisk"))
+                            && (element.WordChoice == "Något" || element.WordChoice == "Någon")  
+                                && (element.FormChoice == "En eller Ett" || element.FormChoice == "Din eller Ditt"
+                                || element.FormChoice == "Preposition" || element.FormChoice == "Plats") 
+                            || (element.WordChoice == "Adjektiv" && element.FormChoice == "Automatisk" && element.ConnectionChoice == "Syfta till nästa substantiv")) 
                      {
                         for (int i = element.PositionNr; i < Db.choicesList.Count; i++)
                         {
-                            if ((Db.choicesList[i].WordChoice == "Substantiv (Någon)" || Db.choicesList[i].WordChoice == "Substantiv (Något)") 
-                            && Db.choicesList[i].FormChoice != "En eller Ett")
+                            if (
+                                (Db.choicesList[i].WordChoice == "Någon" || Db.choicesList[i].WordChoice == "Något") 
+                                    && (Db.choicesList[i].FormChoice != "En eller Ett" && Db.choicesList[i].FormChoice != "Preposition"
+                                     && Db.choicesList[i].FormChoice != "Din eller Ditt" && Db.choicesList[i].FormChoice != "Plats") 
+                                     || (Db.choicesList[i].WordChoice == "Något" && Db.choicesList[i].FormChoice == "Plats"))
                             {
                                 element.ConnectionPosition = i;
                                 break;
@@ -889,19 +899,48 @@ namespace Headline_Randomizer
                      }
 
                 else if (element.ConnectionChoice == "Syfta till tidigare substantiv"
-                        && (element.WordChoice == "Substantiv (Något)" || element.WordChoice == "Substantiv (Någon)" && element.FormChoice == "En eller Ett")
-                        || (element.WordChoice == "Adjektiv" && element.FormChoice == "Automatisk"))
-                {
+                            && (element.WordChoice == "Något" || element.WordChoice == "Någon") 
+                                && (element.FormChoice == "En eller Ett" || element.FormChoice == "Din eller Ditt" 
+                                || element.FormChoice == "Preposition" || element.FormChoice == "Plats") 
+                        || (element.WordChoice == "Adjektiv" && element.FormChoice == "Automatisk" && element.ConnectionChoice == "Syfta till tidigare substantiv"))
+                     {
                         for (int i = element.PositionNr; i >= 0; i--)
                         {
-                            if ((Db.choicesList[i].WordChoice == "Substantiv (Någon)" || Db.choicesList[i].WordChoice == "Substantiv (Något)")
-                             && Db.choicesList[i].FormChoice != "En eller Ett")
-                            {
+                            if (
+                                (Db.choicesList[i].WordChoice == "Någon" || Db.choicesList[i].WordChoice == "Något")
+                                    && (Db.choicesList[i].FormChoice != "En eller Ett" && Db.choicesList[i].FormChoice != "Preposition"
+                                     && Db.choicesList[i].FormChoice != "Din eller Ditt" && Db.choicesList[i].FormChoice != "Plats")
+                                     || (Db.choicesList[i].WordChoice == "Något" && Db.choicesList[i].FormChoice == "Plats"))
+                        {
                                 element.ConnectionPosition = i;
                                 break;
                             }
                         }
                      }
+
+                if (element.WordChoice == "Adjektiv" && element.FormChoice == "Preposition" && element.ConnectionChoice == "Syfta till nästa adjektiv")
+                {
+                    for (int i = element.PositionNr; i < Db.choicesList.Count; i++)
+                    {
+                        if (Db.choicesList[i].WordChoice == "Adjektiv" && Db.choicesList[i].FormChoice != "Preposition")
+                        {
+                            element.ConnectionPosition = i;
+                            break;
+                        }
+                    }
+                }
+
+                else if (element.WordChoice == "Adjektiv" && element.FormChoice == "Preposition" && element.ConnectionChoice == "Syfta till tidigare adjektiv")
+                {
+                    for (int i = element.PositionNr; i >= 0; i--)
+                    {
+                        if (Db.choicesList[i].WordChoice == "Adjektiv" && Db.choicesList[i].FormChoice != "Preposition")
+                        {
+                            element.ConnectionPosition = i;
+                            break;
+                        }
+                    }
+                }
 
                 else { }
             }
@@ -915,7 +954,7 @@ namespace Headline_Randomizer
                     if (element.FormChoice == "En eller Ett")
                     {
                         int nr = Db.choicesList[element.ConnectionPosition].Id;
-                        presentationWindow.tbxResult.AppendText($"{Words.someone.EnEllerEtt(nr)} ");
+                        presentationWindow.tbxResult.AppendText($"{Words.noun.EnEllerEtt(nr)} ");
                     }
                 }
                 catch
@@ -929,12 +968,12 @@ namespace Headline_Randomizer
                     {
                         if (element.FormChoice == "N-genus")
                         {
-                        presentationWindow.tbxResult.AppendText($"{Words.adjective.EnForm(element.Id)} ");
+                        presentationWindow.tbxResult.AppendText($"{Words.adjective.NGenus(element.Id)} ");
                         }
 
                         else if (element.FormChoice == "T-genus")
                         {
-                            presentationWindow.tbxResult.AppendText($"{Words.adjective.EttForm(element.Id)} ");
+                            presentationWindow.tbxResult.AppendText($"{Words.adjective.TGenus(element.Id)} ");
                         }
 
                         else if (element.FormChoice == "Plural")
@@ -950,19 +989,28 @@ namespace Headline_Randomizer
                             // that's easier to read. 
                             int nounId = Db.choicesList[element.ConnectionPosition].Id;
 
-
-                            if (Db.choicesList[element.ConnectionPosition].FormChoice == "Singular")
+                            
+                            if (Db.choicesList[element.ConnectionPosition].FormChoice == "Singular obestämd" || Db.choicesList[element.ConnectionPosition].FormChoice == "Singular bestämd")
                             {                     
                                 // Write it out. element.Id is the current adjective ID Nr. 
-                                presentationWindow.tbxResult.AppendText($"{Words.adjective.Singular(element.Id, nounId)} ");
+                                presentationWindow.tbxResult.AppendText($"{Words.adjective.Automatic(element.Id, nounId, true)} ");
                             }
                             else if (Db.choicesList[element.ConnectionPosition].FormChoice == "Plural")
                             {
-                                presentationWindow.tbxResult.AppendText($"{Words.adjective.Plural(element.Id, nounId)} ");
+                                presentationWindow.tbxResult.AppendText($"{Words.adjective.Automatic(element.Id, nounId, false)} ");
                             }
                         }
-                       
-                        Words.adjective.Used(element.Id);
+
+                        else if (element.FormChoice == "Preposition")
+                        {
+                            int adjectiveId = Db.choicesList[element.ConnectionPosition].Id;
+                            presentationWindow.tbxResult.AppendText($"{Words.adjective.Preposition(adjectiveId)}");
+                        }
+                        // Tar bort adjektivet så det inte kan användas sen igen. Det skapar fel Nej det är fortfarande problem
+                        // de andra har ingen used, varför?
+                        // Bara randomize id tar hänsyn till used. 
+
+                        //Words.adjective.Used(element.Id);
                     }
                     catch
                     {
@@ -970,49 +1018,59 @@ namespace Headline_Randomizer
                     }
                 }
 
-                else if (element.WordChoice == "Substantiv (Något)" && element.FormChoice == "Singular")
+                else if ((element.WordChoice == "Något" || element.WordChoice == "Någon") && element.FormChoice == "Singular obestämd")
                 {
-                    presentationWindow.tbxResult.AppendText($"{Words.something.Singular(element.Id)} ");
+                    presentationWindow.tbxResult.AppendText($"{Words.noun.SingularObest(element.Id)} ");
                 }
 
-                else if (element.WordChoice == "Substantiv (Något)" && element.FormChoice == "Plural")
+                else if ((element.WordChoice == "Något" || element.WordChoice == "Någon") && element.FormChoice == "Singular bestämd")
                 {
-                    presentationWindow.tbxResult.AppendText($"{Words.something.Plural(element.Id)} ");
+                    presentationWindow.tbxResult.AppendText($"{Words.noun.SingularBest(element.Id)} ");
                 }
-                    
+
+                else if ((element.WordChoice == "Något" || element.WordChoice == "Någon") && element.FormChoice == "Plural")
+                {
+                    presentationWindow.tbxResult.AppendText($"{Words.noun.Plural(element.Id)} ");
+                }
+
+                else if ((element.WordChoice == "Något" || element.WordChoice == "Någon") && element.FormChoice == "Preposition")
+                {
+                    int nounId = Db.choicesList[element.ConnectionPosition].Id;
+                    presentationWindow.tbxResult.AppendText($"{Words.noun.Preposition(nounId)}");
+                }
+                
+                else if (element.WordChoice == "Något" && element.FormChoice == "Plats")
+                {
+                    presentationWindow.tbxResult.AppendText($"{Words.location.SingularBest(element.Id)}");
+                }
+
                 else if (element.WordChoice == "Skämtnamn")
                 {
                     presentationWindow.tbxResult.AppendText($"{Words.jokeName.Name(element.Id)} ");
                 }
 
-                else if (element.WordChoice == "Substantiv (Någon)" && element.FormChoice == "Singular")
-                {
-                    presentationWindow.tbxResult.AppendText($"{Words.someone.Singular(element.Id)} ");
-                }
-
-                else if (element.WordChoice == "Substantiv (Någon)" && element.FormChoice == "Plural")
-                {
-                    presentationWindow.tbxResult.AppendText($"{Words.someone.Plural(element.Id)} ");
-                }
-
                 else if (element.WordChoice == "Verb")
                 {
-                    if (element.FormChoice == "Basform")
+                    if (element.FormChoice == "Infinitiv")
                     {
-                        presentationWindow.tbxResult.AppendText($"{Words.verb.BasForm(element.Id)} ");
+                        presentationWindow.tbxResult.AppendText($"{Words.verb.Infinitiv(element.Id)} ");
                     }
                     else if (element.FormChoice == "Presens")
                     {
                         presentationWindow.tbxResult.AppendText($"{Words.verb.Presens(element.Id)} ");
                     }
+                    else if (element.FormChoice == "Uppmaning")
+                    {
+                        presentationWindow.tbxResult.AppendText($"{Words.verb.Uppmaning(element.Id)} ");
+                    }
                     else if (element.FormChoice == "Perfekt")
                     {
                         presentationWindow.tbxResult.AppendText($"{Words.verb.Perfekt(element.Id)} ");
                     }
-                    else if (element.FormChoice == "Efter verb")
+                    else if (element.FormChoice == "Preposition")
                     {
                         int verbId = Db.choicesList[element.ConnectionPosition].Id;
-                        presentationWindow.tbxResult.AppendText($"{Words.verb.PostVerbs(verbId)}");
+                        presentationWindow.tbxResult.AppendText($"{Words.verb.Preposition(verbId)}");
                     }
 
                     
@@ -1048,48 +1106,21 @@ namespace Headline_Randomizer
             Db.choicesList.Clear();
             nounsAdded = false;
             verbsAdded = false;
+            adjectivesAdded = false;
             cbForms.Text = "Välj...";
             cbConnect.Enabled = false;
             cbConnect.Text = "";
         }
 
-        ////StringBuilder scene = new StringBuilder();
-        ////string locationString = "";
-        ////string relationString = "";
-        ////string missionString = "";
-        ////bool locationPressed = false;
-        ////bool relationPressed = false;
-        ////bool missionPressed = false;
-        ////List<string> sceneitems = new List<string>();
-
-        ////string WriteOut()
-        ////{
-        ////    scene.Clear();
-
-        ////    if (sceneitems.Count == 1)
-        ////    {
-        ////        scene.Append(sceneitems[0]);
-        ////    }
-        ////    else if (sceneitems.Count == 2)
-        ////    {
-        ////        scene.Append($"{sceneitems[0]} och {sceneitems[1]}");
-        ////    }
-        ////    else if (sceneitems.Count == 3)
-        ////    {
-        ////        scene.Append($"{sceneitems[0]}, {sceneitems[1]} och {sceneitems[2]}");
-        ////    }
-
-        ////    return FixText.FirstLetterUpper(scene.ToString());
-        ////}
-
-
+  
         //
         // Metoder
         //
 
         public void EndingRitual(int loadNr, TextBox tb, ref int position)
         {
-            Db.ResetUsed(loadNr);
+            //tb.Text = tb.Text.Replace("  ", " ");
+            Words.FreeNeeded(loadNr);
             FixText.AdjustSize(tb);
             Db.recentStrings.Add(tb.Text);
             position = Db.recentStrings.Count - 1;
@@ -1112,6 +1143,30 @@ namespace Headline_Randomizer
 
         }
 
+        void RelationChanged()
+        {
+            vs.Clear();
+            relationPressed = false;
+            pressAmount = 0;
+            btnGenerateRelation.Padding = new System.Windows.Forms.Padding(0, 0, 0, 10);
+
+            if (cbParticipants.Items.Count == 0)
+            {
+                btnGenerateRelation.Text = "Relation";
+            }
+
+            else if (cbRelation.SelectedIndex == 0 || (cbRelation.SelectedIndex == 1 && cbParticipants.Items.Count == 1))
+            {
+                btnGenerateRelation.Text = $"Relation \r\n (Visa {cbParticipants.Items[0]})";
+            }
+
+            else if (cbRelation.SelectedIndex == 1 && cbParticipants.Items.Count > 1)
+            {
+                btnGenerateRelation.Padding = new System.Windows.Forms.Padding(0, 0, 0, 0);
+                btnGenerateRelation.Text = $"Relation \r\n (Visa {cbParticipants.Items[0]} \r\n och {cbParticipants.Items[1]})";
+            }
+        }
+
 
         // 
         // Övrigt
@@ -1129,6 +1184,12 @@ namespace Headline_Randomizer
             if (customTabControl1.ActiveIndex == 1)
             {
                 customTabControl1.Size = new Size(614, 233);
+            }
+            else if (customTabControl1.ActiveIndex == 2)
+            {
+                customTabControl1.Size = new Size(614, 332);
+                Form1 form1 = this;
+                form1.AcceptButton = btnAddParticipant;
             }
             else if (customTabControl1.ActiveIndex == 3)
             {
@@ -1208,18 +1269,334 @@ namespace Headline_Randomizer
 
         private void saveResultToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if (saveResultToolStripMenuItem.ForeColor == Color.White)
+            if (saveResultToolStripMenuItem.ForeColor == Color.White && presentationWindow.tbxResult.Text != "")
             {
                 Db.Command($"INSERT INTO TblSavedResults VALUES ('{presentationWindow.tbxResult.Text}')");
                 // also to list?
                 saveResultToolStripMenuItem.ForeColor = Color.Yellow;
             }
-            else if (saveResultToolStripMenuItem.ForeColor == Color.Yellow)
+            else if (saveResultToolStripMenuItem.ForeColor == Color.Yellow && presentationWindow.tbxResult.Text != "")
             {
                 Db.Command($"DELETE FROM TblSavedResults WHERE Lines = '{presentationWindow.tbxResult.Text}'");
                 saveResultToolStripMenuItem.ForeColor = Color.White;
             }
         }
+
+        
+        private void btnAddParticipant_Click(object sender, EventArgs e)
+        {
+            cbParticipants.BackColor = Color.White;
+            cbParticipants.Items.Add(cbParticipants.Text);
+            lblParticipants.Text = (cbParticipants.Items.Count < 1 ? "Lägg till delttagare" : $"Lägg till deltagare (Antal: {cbParticipants.Items.Count})");
+            UpdateConfig();
+            RelationChanged();
+            cbParticipants.Text = "";
+            cbParticipants.Focus();
+        }
+
+        
+        private void btnRemoveParticipant_Click(object sender, EventArgs e)
+        {
+            cbParticipants.Items.Remove(cbParticipants.Text);
+            lblParticipants.Text = (cbParticipants.Items.Count < 1 ? "Lägg till delttagare" : $"Lägg till deltagare (Antal: {cbParticipants.Items.Count})");
+            UpdateConfig();
+            RelationChanged();
+            if (cbParticipants.Items.Count > 0)
+            {
+                cbParticipants.SelectedIndex = 0;
+            }
+            else
+            {
+                cbParticipants.Text = "Skriv in namn...";
+            }
+
+        }
+
+        void UpdateConfig()
+        {
+            var config = ConfigurationManager.OpenExeConfiguration(ConfigurationUserLevel.None);
+
+            for (int i = 0; i < config.AppSettings.Settings.Count; i++)
+            {
+                config.AppSettings.Settings.Remove($"Participant {i}");
+            }
+
+            for (int i = 0; i < cbParticipants.Items.Count; i++)
+            {
+
+                config.AppSettings.Settings.Add($"Participant {i}", $"{cbParticipants.Items[i]}");
+            }
+
+            config.Save();
+        }
+
+        private void btnGenerateLocation_Click(object sender, EventArgs e)
+        {
+            presentationWindow.tbxResult.Text = "";
+            int locationNr = Words.location.RandomizeId();
+            presentationWindow.tbxResult.Text = $"Ni är {Words.location.Preposition(locationNr)} {Words.location.SingularBest(locationNr)}";
+
+            Words.location.Used(locationNr);
+            EndingRitual(3, presentationWindow.tbxResult, ref position);
+        }
+
+        bool relationPressed = false;
+        int pressAmount = 0;
+        List<string> vs = new List<string>();
+
+        private void btnGenerateRelation_Click(object sender, EventArgs e)
+        {
+            btnGenerateRelation.Padding = new System.Windows.Forms.Padding(0, 0, 0, 10);
+
+            switch (cbRelation.SelectedIndex)
+            {
+                case 0:
+
+                    int slant = r.Next(0, 2);
+                    StringBuilder builder = new StringBuilder();
+
+                    if (cbParticipants.Items.Count < 1)
+                    {
+                        cbParticipants.BackColor = Color.Pink;
+                        cbParticipants.Text = "Skriv in deltagare...";
+                    }
+
+                    else if (cbParticipants.Items.Count == 1 && slant == 0)
+                    {
+                        presentationWindow.tbxResult.Text = "";
+
+                        int relationNr = Words.adjective.RandomizeRelation();
+
+                        presentationWindow.tbxResult.Text = $"{cbParticipants.Items[0].ToString()} är {Words.adjective.NGenus(relationNr)}{Words.adjective.Preposition(relationNr)}sig själv";
+
+                        Words.adjective.Used(relationNr);
+                        EndingRitual(3, presentationWindow.tbxResult, ref position);
+                    }
+
+                    else if (cbParticipants.Items.Count == 1 && slant == 1)
+                    {
+                        presentationWindow.tbxResult.Text = "";
+
+                        int relationNr = Words.verb.RandomizeRelation();
+
+                        presentationWindow.tbxResult.Text = $"{cbParticipants.Items[0].ToString()} {Words.verb.Presens(relationNr)}{Words.verb.Preposition(relationNr)}sig själv";
+
+                        Words.verb.Used(relationNr);
+                        EndingRitual(3, presentationWindow.tbxResult, ref position);
+                    }
+
+                    
+                    else if (cbParticipants.Items.Count > 1 && relationPressed && pressAmount < vs.Count)
+                    {
+                        presentationWindow.tbxResult.Text = "";
+                        presentationWindow.tbxResult.Text = vs[pressAmount];
+                        pressAmount++;
+                        EndingRitual(3, presentationWindow.tbxResult, ref position);
+                        btnGenerateRelation.Text = (pressAmount > vs.Count - 1 ? "Relation \r\n (Tryck på rensa)" : $"Relation \r\n (Visa {cbParticipants.Items[pressAmount].ToString()})");
+                    }
+
+                    else if (cbParticipants.Items.Count > 1 && !relationPressed)
+                    {
+                        presentationWindow.tbxResult.Text = "";
+                        for (int i = 0; i < cbParticipants.Items.Count; i++)
+                        {
+                            slant = r.Next(0, 2);
+                            string firstParticipant = cbParticipants.Items[i].ToString();
+                            builder.Append($"{firstParticipant} ");
+                            int k = i;
+                            for (int j = 0; j < cbParticipants.Items.Count - 1; j++)
+                            {
+                                k = (k == cbParticipants.Items.Count - 1 ? k = 0 : k = k + 1);
+
+                                if (slant == 0)
+                                {
+                                    int rNr = Words.adjective.RandomizeRelation();
+                                    builder.Append($"är {Words.adjective.NGenus(rNr)}{Words.adjective.Preposition(rNr)}{cbParticipants.Items[k]}" +
+                                        $"{(j == cbParticipants.Items.Count - 3 ? " och " : ", ")}");
+                                    Words.adjective.Used(rNr);
+                                }
+                                else
+                                {
+                                    int rNr = Words.verb.RandomizeRelation();
+                                    builder.Append($"{Words.verb.Presens(rNr)}{Words.verb.Preposition(rNr)}{cbParticipants.Items[k]}" +
+                                        $"{(j == cbParticipants.Items.Count - 3 ? " och " : ", ")}");
+                                    Words.verb.Used(rNr);
+
+                                }
+                                slant = r.Next(0, 2);
+                                Words.FreeNeeded(2);
+                            }
+                            builder.Remove(builder.Length - 2, 2);
+                            vs.Add(builder.ToString());
+                            presentationWindow.tbxResult.Text = $"{vs[0]}";
+                            builder.Clear();
+                        }
+                        relationPressed = true;
+                        pressAmount++;
+                        EndingRitual(3, presentationWindow.tbxResult, ref position);
+                        btnGenerateRelation.Text = $"Relation \r\n (Visa {cbParticipants.Items[pressAmount]})";
+                    }
+                    else
+                    {
+                    }
+                    
+                    break;
+
+                case 1:
+                    
+                    if (cbParticipants.Items.Count < 1)
+                    {
+                        cbParticipants.BackColor = Color.Pink;
+                        cbParticipants.Text = "Skriv in deltagare...";
+                    }
+
+                    else if (cbParticipants.Items.Count == 1)
+                    {
+                        int statusId = Words.status.RandomizeId();
+
+                        presentationWindow.tbxResult.Text = $"{cbParticipants.Items[0]} är {Words.status.LowStatus(statusId)} och {Words.status.HighStatus(statusId)}";
+
+                        Words.status.Used(statusId);
+
+                        EndingRitual(2, presentationWindow.tbxResult, ref position);
+                    }
+
+                    else if (cbParticipants.Items.Count > 1 && pressAmount < cbParticipants.Items.Count - 1)
+                    {
+                        int statusId = Words.status.RandomizeId();
+
+                        presentationWindow.tbxResult.Text = $"{cbParticipants.Items[pressAmount]} är {Words.status.LowStatus(statusId)} och {cbParticipants.Items[pressAmount + 1]} {Words.status.HighStatus(statusId)}";
+
+                        Words.status.Used(statusId);
+
+                        pressAmount++;
+
+                        if (pressAmount <= cbParticipants.Items.Count - 2)
+                        {
+                            btnGenerateRelation.Padding = new System.Windows.Forms.Padding(0, 0, 0, 0);
+                            btnGenerateRelation.Text = $"Relation \r\n (Visa {cbParticipants.Items[pressAmount]} \r\n och {cbParticipants.Items[pressAmount + 1]})";
+                        }
+                        else
+                        {
+                            btnGenerateRelation.Padding = new System.Windows.Forms.Padding(0, 0, 0, 10);
+                            btnGenerateRelation.Text = $"Relation \r\n (Tryck på rensa)";
+                        }
+
+                        EndingRitual(2, presentationWindow.tbxResult, ref position);
+                    }
+
+                    else
+                    {
+
+                    }
+
+                    break;
+            }
+        }
+
+        private void btnGenerateMission_Click(object sender, EventArgs e)
+        {
+            switch (cbMission.SelectedIndex)
+            {
+                case 0:
+                    
+                     presentationWindow.tbxResult.Text = "";
+                     int verbNr = Words.verb.RandomizeId();
+                     int someoneNr = Words.someone.RandomizeId();
+                     int somethingNr = Words.something.RandomizeId();
+                     int slant = r.Next(0, 2);
+
+                     if (slant == 0)
+                     {
+                        presentationWindow.tbxResult.Text = $"Ni ska {Words.verb.Infinitiv(verbNr)}{Words.verb.Preposition(verbNr)}{Words.noun.EnEllerEtt(someoneNr)} {Words.noun.SingularObest(someoneNr)}";
+
+                        Words.verb.Used(verbNr);
+                        Words.noun.Used(someoneNr);
+                        EndingRitual(3, presentationWindow.tbxResult, ref position);
+                     }
+
+                    else if (slant == 1)
+                    {
+                        presentationWindow.tbxResult.Text = $"Ni ska {Words.verb.Infinitiv(verbNr)}{Words.verb.Preposition(verbNr)}{Words.noun.EnEllerEtt(somethingNr)} {Words.noun.SingularObest(somethingNr)}";
+
+                        Words.verb.Used(verbNr);
+                        Words.noun.Used(somethingNr);
+                        EndingRitual(3, presentationWindow.tbxResult, ref position);
+                    }
+                    break;
+
+                case 1:
+
+                    presentationWindow.tbxResult.Text = "";
+                    verbNr = Words.verb.RandomizeId();
+
+                    if (cbParticipants.Items.Count < 1)
+                    {
+                        MessageBox.Show("Var god lägg till deltagare");
+                    }
+                    else if (cbParticipants.Items.Count == 1)
+                    {
+                        presentationWindow.tbxResult.Text = $"Scenen slutar med att {cbParticipants.Text}{Words.verb.Presens(verbNr)}{Words.verb.Preposition(verbNr)}sig själv";
+                    }
+                    else
+                    {
+                        cbParticipants.SelectedIndex = r.Next(0, cbParticipants.Items.Count);
+                        string name1 = cbParticipants.Text;
+                        string name2 = cbParticipants.Text;
+
+                        while (name1 == name2)
+                        {
+                            cbParticipants.SelectedIndex = r.Next(0, cbParticipants.Items.Count);
+                            name2 = cbParticipants.Text;
+                        }
+
+                        presentationWindow.tbxResult.Text = $"Scenen slutar med att {name1} {Words.verb.Presens(verbNr)}{Words.verb.Preposition(verbNr)}{name2}";
+                    }
+                    
+
+                    Words.verb.Used(verbNr);
+                    EndingRitual(3, presentationWindow.tbxResult, ref position);
+
+                    break;
+
+                case 2:
+                    // Kod för färdigskriven mission. 
+                    break;
+            }
+        }
+
+        private void btnClearScene_Click(object sender, EventArgs e)
+        {
+            presentationWindow.tbxResult.Text = "";
+            RelationChanged();
+        }
+
+        private void cbRelation_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            RelationChanged();
+            var config = ConfigurationManager.OpenExeConfiguration(ConfigurationUserLevel.None);
+            config.AppSettings.Settings["RelationChoice"].Value = cbRelation.SelectedIndex.ToString();
+            config.Save();
+        }
+
+        private void cbMission_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            presentationWindow.tbxResult.Text = "";
+            vs.Clear();
+            var config = ConfigurationManager.OpenExeConfiguration(ConfigurationUserLevel.None);
+            config.AppSettings.Settings["MissionChoice"].Value = cbMission.SelectedIndex.ToString();
+            relationPressed = false;
+            config.Save();
+        }
+
+        private void cbParticipants_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (cbParticipants.Items.Count == 1)
+            {
+                btnGenerateRelation.Text = $"Relation \r\n (Visa {cbParticipants.Items[0]})";
+            }
+        }
+
 
         // 
         // Tillfällig

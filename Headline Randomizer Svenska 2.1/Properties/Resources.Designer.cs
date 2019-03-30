@@ -173,6 +173,16 @@ namespace Headline_Randomizer.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap backgroundgrid {
+            get {
+                object obj = ResourceManager.GetObject("backgroundgrid", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap Happinessbig {
             get {
                 object obj = ResourceManager.GetObject("Happinessbig", resourceCulture);
@@ -273,6 +283,46 @@ namespace Headline_Randomizer.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap PlatsBanner {
+            get {
+                object obj = ResourceManager.GetObject("PlatsBanner", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap PlatsBanner1 {
+            get {
+                object obj = ResourceManager.GetObject("PlatsBanner1", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap PlatsBanner2 {
+            get {
+                object obj = ResourceManager.GetObject("PlatsBanner2", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap PlatsBanner3 {
+            get {
+                object obj = ResourceManager.GetObject("PlatsBanner3", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap protipbig {
             get {
                 object obj = ResourceManager.GetObject("protipbig", resourceCulture);
@@ -336,6 +386,76 @@ namespace Headline_Randomizer.Properties {
         internal static System.Drawing.Bitmap relationarrowright_small {
             get {
                 object obj = ResourceManager.GetObject("relationarrowright_small", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap RelationBanner {
+            get {
+                object obj = ResourceManager.GetObject("RelationBanner", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap RelationBanner1 {
+            get {
+                object obj = ResourceManager.GetObject("RelationBanner1", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap RelationBanner2 {
+            get {
+                object obj = ResourceManager.GetObject("RelationBanner2", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap RelationBanner3 {
+            get {
+                object obj = ResourceManager.GetObject("RelationBanner3", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap RelationBanner4 {
+            get {
+                object obj = ResourceManager.GetObject("RelationBanner4", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap RelationBanner5 {
+            get {
+                object obj = ResourceManager.GetObject("RelationBanner5", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap RelationBanner6 {
+            get {
+                object obj = ResourceManager.GetObject("RelationBanner6", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -496,6 +616,26 @@ namespace Headline_Randomizer.Properties {
         internal static System.Drawing.Bitmap tiredofsmall_image {
             get {
                 object obj = ResourceManager.GetObject("tiredofsmall image", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap UppdragBanner {
+            get {
+                object obj = ResourceManager.GetObject("UppdragBanner", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap UppdragBanner1 {
+            get {
+                object obj = ResourceManager.GetObject("UppdragBanner1", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

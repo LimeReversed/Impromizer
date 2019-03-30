@@ -5,146 +5,187 @@ using System.Windows.Forms;
 using System.IO;
 using System.Text;
 using System.Data.SqlClient;
+using System.Configuration;
 
 
 namespace Headline_Randomizer
 {
     public class Db
     {
-        public Db()
-        {
-        }
-
-       
         static public List<Custom> choicesList = new List<Custom>();
         static public List<string> recentStrings = new List<string>();
+        static public Random r = new Random();
         static public string connectionString = @"Data Source=(LocalDB)\MSSQLLocalDB; AttachDbFilename =E:\Tresorit\Headline Randomizer\Headline Randomizer\Headline Randomizer Svenska 2.1\WordsDatabase.mdf; Integrated Security=True";
-            //@"Data Source=(LocalDB)\MSSQLLocalDB; AttachDbFilename = " + AppDomain.CurrentDomain.BaseDirectory + "WordsDatabase.mdf; Integrated Security=True";
+        static public string backupString = @"Data Source=(LocalDB)\MSSQLLocalDB; AttachDbFilename =E:\Tresorit\Headline Randomizer\Headline Randomizer\Headline Randomizer Svenska 2.1\WordsDatabaseBackup.mdf; Integrated Security=True";
+        //@"Data Source=(LocalDB)\MSSQLLocalDB; AttachDbFilename = " + AppDomain.CurrentDomain.BaseDirectory + "WordsDatabase.mdf; Integrated Security=True";
 
-        static public void ResetDefault(string word)
+        static public void DefaultTable(string table)
         {
+            Db.Command($"TRUNCATE TABLE[{table}];");
+
+            using (SqlConnection connection = new SqlConnection(Db.backupString))
+            {
+                connection.Open();
+                using (SqlCommand command = new SqlCommand($"SELECT * FROM {table}", connection))
+                {
+                    int row = 1;
+                    SqlDataReader reader = command.ExecuteReader();
+                    while (reader.Read())
+                    {
+                        for (int i = 1; i < reader.FieldCount; i++)
+                        {
+                            if (i == 1)
+                            {
+                                Db.Command($"INSERT INTO {table} ([{reader.GetName(i)}]) VALUES ('{reader.GetSqlValue(i)}')");
+                            }
+                            else
+                            {
+                                Db.Command($"UPDATE {table} SET [{reader.GetName(i)}] = '{reader.GetSqlValue(i)}' WHERE Id = {row}");
+                            }
+                            
+                        }
+                        row++;
+                    }
+
+                    reader.Close();
+                    connection.Close();
+                }
+            }
+        } 
+
+        static public void DefaultAll()
+        {
+            DefaultTable("TblAdjectives");
+            DefaultTable("TblJokeNames");
+            DefaultTable("TblMissions");
+            DefaultTable("TblNobelPrizes");
+            DefaultTable("TblNouns");
+            DefaultTable("TblSavedResults"); // Or not?
+            DefaultTable("TblStatus");
+            DefaultTable("TblVerbs");
+
             //!fileRow.EndOf<stream
             //fileForRead.ReadLine()
 
-            if (word == "verbs" || word == "all")
-            {
-                Db.Command("TRUNCATE TABLE[TblVerb];");
+            //if (word == "verbs" || word == "all")
+            //{
+            //    Db.Command("TRUNCATE TABLE[TblVerbs];");
 
-                StreamReader sr = new StreamReader(@"Text\verb basform.txt");
-                StreamReader sr2 = new StreamReader(@"Text\verbs presens.txt");
-                StreamReader sr3 = new StreamReader(@"Text\verbs perfekt.txt");
-                StreamReader sr4 = new StreamReader(@"Text\post verbs.txt");
-                StreamReader sr5 = new StreamReader(@"Text\verb request.txt");
+            //    StreamReader sr = new StreamReader(@"Text\verb basform.txt");
+            //    StreamReader sr2 = new StreamReader(@"Text\verbs presens.txt");
+            //    StreamReader sr3 = new StreamReader(@"Text\verbs perfekt.txt");
+            //    StreamReader sr4 = new StreamReader(@"Text\post verbs.txt");
+            //    StreamReader sr5 = new StreamReader(@"Text\verb request.txt");
 
-                string fileRow;
-                string fileRow2;
-                string fileRow3;
-                string fileRow4;
-                string fileRow5;
+            //    string fileRow;
+            //    string fileRow2;
+            //    string fileRow3;
+            //    string fileRow4;
+            //    string fileRow5;
 
-                while ((fileRow = sr.ReadLine()) != null && ((fileRow2 = sr2.ReadLine()) != null) && ((fileRow3 = sr3.ReadLine()) != null) && ((fileRow4 = sr4.ReadLine()) != null) && ((fileRow5 = sr5.ReadLine()) != null))
-                {
-                    Db.Command($"INSERT INTO TblVerb (BaseForm, Request, Perfekt, Presens, PostVerb, Used) VALUES ('{fileRow}', '{fileRow5}', '{fileRow3}', '{fileRow2}', '{fileRow4}', '0')");
-                }
-                sr.Close();
-                sr2.Close();
-                sr3.Close();
-                sr4.Close();
-                sr5.Close();
-            }
+            //    while ((fileRow = sr.ReadLine()) != null && ((fileRow2 = sr2.ReadLine()) != null) && ((fileRow3 = sr3.ReadLine()) != null) && ((fileRow4 = sr4.ReadLine()) != null) && ((fileRow5 = sr5.ReadLine()) != null))
+            //    {
+            //        Db.Command($"INSERT INTO TblVerbs (Infinitiv, Uppmaning, Perfekt, Presens, Preposition, [Passar relation], Censurkategori, Använt) VALUES ('{fileRow}', '{fileRow5}', '{fileRow3}', '{fileRow2}', '{fileRow4}', '0', 0, 0)");
+            //    }
+            //    sr.Close();
+            //    sr2.Close();
+            //    sr3.Close();
+            //    sr4.Close();
+            //    sr5.Close();
+            //}
 
-            if (word == "nouns" || word == "all")
-            {
-                Db.Command("TRUNCATE TABLE[TblNouns];");
+            //if (word == "nouns" || word == "all")
+            //{
+            //    Db.Command("TRUNCATE TABLE[TblNouns];");
 
-                StreamReader sr = new StreamReader(@"Text\dödasubstantivsing.txt");
-                StreamReader sr2 = new StreamReader(@"Text\dödasubstantivplural.txt");
-                StreamReader sr3 = new StreamReader(@"Text\DSub EnEttDinDitt.txt");
+            //    StreamReader sr = new StreamReader(@"Text\dödasubstantivsing.txt");
+            //    StreamReader sr2 = new StreamReader(@"Text\dödasubstantivplural.txt");
+            //    StreamReader sr3 = new StreamReader(@"Text\DSub EnEttDinDitt.txt");
 
-                string fileRow;
-                string fileRow2;
-                string fileRow3;
+            //    string fileRow;
+            //    string fileRow2;
+            //    string fileRow3;
 
-                while ((fileRow = sr.ReadLine()) != null && ((fileRow2 = sr2.ReadLine()) != null) && ((fileRow3 = sr3.ReadLine()) != null))
-                {
-                    Db.Command($"INSERT INTO TblNouns (Singular, Plural, Animated, Used) VALUES ('{fileRow}', '{fileRow2}', 0, 0)");
-                }
-                sr.Close();
-                sr2.Close();
-                sr3.Close();
-            }
+            //    while ((fileRow = sr.ReadLine()) != null && ((fileRow2 = sr2.ReadLine()) != null) && ((fileRow3 = sr3.ReadLine()) != null))
+            //    {
+            //        Db.Command($"INSERT INTO TblNouns ([Singular obestämd], [Singular bestämd], Plural, Benämner, Censurkategori, Använt) VALUES ('{fileRow}', 0, '{fileRow2}', 0, 0, 0)");
+            //    }
+            //    sr.Close();
+            //    sr2.Close();
+            //    sr3.Close();
+            //}
 
-            if (word == "nouns" || word == "all")
-            {
+            //if (word == "nouns" || word == "all")
+            //{
 
-                StreamReader sr = new StreamReader(@"Text\levandesubstantivsing.txt");
-                StreamReader sr2 = new StreamReader(@"Text\levandesubstantivplural.txt");
-                StreamReader sr3 = new StreamReader(@"Text\LSub EnEttDinDitt.txt");
+            //    StreamReader sr = new StreamReader(@"Text\levandesubstantivsing.txt");
+            //    StreamReader sr2 = new StreamReader(@"Text\levandesubstantivplural.txt");
+            //    StreamReader sr3 = new StreamReader(@"Text\LSub EnEttDinDitt.txt");
 
-                string fileRow;
-                string fileRow2;
-                string fileRow3;
+            //    string fileRow;
+            //    string fileRow2;
+            //    string fileRow3;
 
-                while ((fileRow = sr.ReadLine()) != null && ((fileRow2 = sr2.ReadLine()) != null) && ((fileRow3 = sr3.ReadLine()) != null))
-                {
-                    Db.Command($"INSERT INTO TblNouns (Singular, Plural, Animated, Used) VALUES ('{fileRow}', '{fileRow2}', '1', '0')");
-                }
-                sr.Close();
-                sr2.Close();
-                sr3.Close();
-            }
+            //    while ((fileRow = sr.ReadLine()) != null && ((fileRow2 = sr2.ReadLine()) != null) && ((fileRow3 = sr3.ReadLine()) != null))
+            //    {
+            //        Db.Command($"INSERT INTO TblNouns ([Singular obestämd], [Singular bestämd], Plural, Benämner, Censurkategori, Använt) VALUES ('{fileRow}', 0, '{fileRow2}', 1, 0, 0)");
+            //    }
+            //    sr.Close();
+            //    sr2.Close();
+            //    sr3.Close();
+            //}
 
-            if (word == "adjective" || word == "all")
-            {
-                Db.Command("TRUNCATE TABLE[TblAdjective];");
+            //if (word == "adjective" || word == "all")
+            //{
+            //    Db.Command("TRUNCATE TABLE[TblAdjectives];");
 
-                StreamReader sr = new StreamReader(@"Text\adjektivsingular.txt");
-                StreamReader sr2 = new StreamReader(@"Text\adjektivplural.txt");
-                StreamReader sr3 = new StreamReader(@"Text\adjektivEttForm.txt");
+            //    StreamReader sr = new StreamReader(@"Text\adjektivsingular.txt");
+            //    StreamReader sr2 = new StreamReader(@"Text\adjektivplural.txt");
+            //    StreamReader sr3 = new StreamReader(@"Text\adjektivEttForm.txt");
 
-                string fileRow;
-                string fileRow2;
-                string fileRow3;
+            //    string fileRow;
+            //    string fileRow2;
+            //    string fileRow3;
 
-                while ((fileRow = sr.ReadLine()) != null && ((fileRow2 = sr2.ReadLine()) != null) && ((fileRow3 = sr3.ReadLine()) != null))
-                {
-                    Db.Command($"INSERT INTO TblAdjective (EnForm, EttForm, Plural, Used) VALUES ('{fileRow}', '{fileRow3}', '{fileRow2}', '0')");
-                }
-                sr.Close();
-                sr2.Close();
-                sr3.Close();
+            //    while ((fileRow = sr.ReadLine()) != null && ((fileRow2 = sr2.ReadLine()) != null) && ((fileRow3 = sr3.ReadLine()) != null))
+            //    {
+            //        Db.Command($"INSERT INTO TblAdjectives ([N-genus], [T-genus], Plural, Använt) VALUES ('{fileRow}', '{fileRow3}', '{fileRow2}', '0')");
+            //    }
+            //    sr.Close();
+            //    sr2.Close();
+            //    sr3.Close();
 
-            }
+            //}
 
-            if (word == "jokename" || word == "all")
-            {
-                Db.Command("TRUNCATE TABLE[TblJokeNames];");
+            //if (word == "jokename" || word == "all")
+            //{
+            //    Db.Command("TRUNCATE TABLE[TblJokeNames];");
 
-                StreamReader sr = new StreamReader(@"Text\jokenames2.txt");
+            //    StreamReader sr = new StreamReader(@"Text\jokenames2.txt");
 
-                string fileRow;
+            //    string fileRow;
 
-                while ((fileRow = sr.ReadLine()) != null)
-                {
-                    Db.Command($"INSERT INTO TblJokeNames (Name, Used) VALUES ('{fileRow}', '0')");
-                }
-                sr.Close();
-            }
+            //    while ((fileRow = sr.ReadLine()) != null)
+            //    {
+            //        Db.Command($"INSERT INTO TblJokeNames (Namn, Använt) VALUES ('{fileRow}', '0')");
+            //    }
+            //    sr.Close();
+            //}
 
-            if (word == "nobelprize" || word == "all")
-            {
-                Db.Command("TRUNCATE TABLE[TblNobelPrizes];");
+            //if (word == "nobelprize" || word == "all")
+            //{
+            //    Db.Command("TRUNCATE TABLE[TblNobelPrizes];");
 
-                StreamReader sr = new StreamReader(@"Text\nobelprizes2.txt");
+            //    StreamReader sr = new StreamReader(@"Text\nobelprizes2.txt");
 
-                string fileRow;
+            //    string fileRow;
 
-                while ((fileRow = sr.ReadLine()) != null)
-                {
-                    Db.Command($"INSERT INTO TblNobelPrizes (Prize, Used) VALUES ('{fileRow}', '0')");
-                }
-                sr.Close();
-            }
+            //    while ((fileRow = sr.ReadLine()) != null)
+            //    {
+            //        Db.Command($"INSERT INTO TblNobelPrizes (Pris, Använt) VALUES ('{fileRow}', '0')");
+            //    }
+            //    sr.Close();
+            //}
 
             //if (location.Count <= amount)
             //{
@@ -190,11 +231,11 @@ namespace Headline_Randomizer
             //    sr2.Close();
             //}
 
-        }
+        } // This might be language independent when it takes from a backupdatabase, not text files
 
         static public void Command(string commandstring)
         {
-            
+
             using (SqlConnection connection = new SqlConnection(Db.connectionString))
             {
                 connection.Open();
@@ -206,6 +247,8 @@ namespace Headline_Randomizer
                 connection.Close();
             }
         }
+
+        
 
         static public string GetValue(string query)
         {
@@ -220,7 +263,7 @@ namespace Headline_Randomizer
                     {
                         value = reader.GetSqlValue(0).ToString();
                     }
-                    
+
                     connection.Close();
                     reader.Close();
                     return value;
@@ -229,7 +272,7 @@ namespace Headline_Randomizer
         }
 
         static public string RandomizeValue(string selectStatement, string restOfQuery)
-        {             
+        {
             using (SqlConnection connection = new SqlConnection(Db.connectionString))
             {
                 connection.Open();
@@ -239,11 +282,11 @@ namespace Headline_Randomizer
                     int rowCount = (Int32)command.ExecuteScalar();
 
                     command.CommandText = $"{selectStatement} {restOfQuery}";
-                    Random r = new Random();
+                    
                     string value = "";
                     SqlDataReader reader = command.ExecuteReader();
 
-                    int i = r.Next(0, rowCount);
+                    int i = Db.r.Next(0, rowCount);
                     int j = 0;
 
                     while (reader.Read())
@@ -264,90 +307,35 @@ namespace Headline_Randomizer
             }
         }
 
-        static public void ResetUsed(int antal)
+        
+        // För sv och eng kan jag bara göra en string parameter där det står censurcategori eller censurkategori
+
+            // Skicka till Ord? Mer future proof? Vänta tills jag bestämt hur censuren ska vara. 
+        static public string QueryRestrictions()
         {
-            using (SqlConnection connection = new SqlConnection(Db.connectionString))
+            var config = ConfigurationManager.OpenExeConfiguration(ConfigurationUserLevel.None);
+            StringBuilder builder = new StringBuilder();
+
+            if (config.AppSettings.Settings["AllowRegular"].Value == "1")
             {
-                connection.Open();
-                SqlCommand command = new SqlCommand();
-                command.Connection = connection;
-                int antalRader = 0;
-
-                // Adjective
-                command.CommandText = $"SELECT COUNT(*) FROM TblAdjective WHERE Used = 0";
-                antalRader = (Int32)command.ExecuteScalar();
-
-                if (antalRader < antal)
-                {
-                    string rad1 = GetValue("SELECT TOP 1 Id FROM TblAdjective ORDER BY Id ASC");
-                    string sistaRad = GetValue("SELECT TOP 1 Id FROM TblAdjective ORDER BY Id DESC");
-                    command.CommandText = $"UPDATE TblAdjective SET Used = 0 WHERE Id BETWEEN {rad1} AND {sistaRad}";
-                    command.ExecuteNonQuery();
-                }
-                
-
-                // Someone
-                command.CommandText = $"SELECT COUNT(*) FROM TblNouns WHERE Animated = 1 AND Used = 0";
-                antalRader = (Int32)command.ExecuteScalar();
-
-                if (antalRader < antal)
-                {
-                    string rad1 = GetValue("SELECT TOP 1 Id FROM TblNouns WHERE Animated = 1 ORDER BY Id ASC");
-                    string sistaRad = GetValue("SELECT TOP 1 Id FROM TblNouns WHERE Animated = 1 ORDER BY Id DESC");
-                    command.CommandText = $"UPDATE TblNouns SET Used = 0 WHERE Id BETWEEN {rad1} AND {sistaRad}";
-                    command.ExecuteNonQuery();
-                }
-
-                // Something
-                command.CommandText = $"SELECT COUNT(*) FROM TblNouns WHERE Animated = 0 AND Used = 0";
-                antalRader = (Int32)command.ExecuteScalar();
-
-                if (antalRader < antal)
-                {
-                    string rad1 = GetValue("SELECT TOP 1 Id FROM TblNouns WHERE Animated = 0 ORDER BY Id ASC");
-                    string sistaRad = GetValue("SELECT TOP 1 Id FROM TblNouns WHERE Animated = 0 ORDER BY Id DESC");
-                    command.CommandText = $"UPDATE TblNouns SET Used = 0 WHERE Id BETWEEN {rad1} AND {sistaRad}";
-                    command.ExecuteNonQuery();
-                }
-
-                // Verb
-                command.CommandText = $"SELECT COUNT(*) FROM TblVerb WHERE Used = 0";
-                antalRader = (Int32)command.ExecuteScalar();
-
-                if (antalRader < antal)
-                {
-                    string rad1 = GetValue("SELECT TOP 1 Id FROM TblVerb ORDER BY Id ASC");
-                    string sistaRad = GetValue("SELECT TOP 1 Id FROM TblVerb ORDER BY Id DESC");
-                    command.CommandText = $"UPDATE TblVerb SET Used = 0 WHERE Id BETWEEN {rad1} AND {sistaRad}";
-                    command.ExecuteNonQuery();
-                }
-
-                // Nobel Prize
-                command.CommandText = $"SELECT COUNT(*) FROM TblNobelPrizes WHERE Used = 0";
-                antalRader = (Int32)command.ExecuteScalar();
-
-                if (antalRader < antal)
-                {
-                    string rad1 = GetValue("SELECT TOP 1 Id FROM TblNobelPrizes ORDER BY Id ASC");
-                    string sistaRad = GetValue("SELECT TOP 1 Id FROM TblNobelPrizes ORDER BY Id DESC");
-                    command.CommandText = $"UPDATE TblNobelPrizes SET Used = 0 WHERE Id BETWEEN {rad1} AND {sistaRad}";
-                    command.ExecuteNonQuery();
-                }
-
-                // Joke Names
-                command.CommandText = $"SELECT COUNT(*) FROM TblJokeNames WHERE Used = 0";
-                antalRader = (Int32)command.ExecuteScalar();
-
-                if (antalRader < antal)
-                {
-                    string rad1 = GetValue("SELECT TOP 1 Id FROM TblJokeNames ORDER BY Id ASC");
-                    string sistaRad = GetValue("SELECT TOP 1 Id FROM TblJokeNames ORDER BY Id DESC");
-                    command.CommandText = $"UPDATE TblJokeNames SET Used = 0 WHERE Id BETWEEN {rad1} AND {sistaRad}";
-                    command.ExecuteNonQuery();
-                }
-
-                connection.Close();
+                builder.Append("0, ");
             }
+            if (config.AppSettings.Settings["AllowViolence"].Value == "1")
+            {
+                builder.Append("1, ");
+            }
+            if (config.AppSettings.Settings["AllowSex"].Value == "1")
+            {
+                builder.Append("2, ");
+            }
+            if (config.AppSettings.Settings["AllowOffensive"].Value == "1")
+            {
+                builder.Append("3, ");
+            }
+
+            builder.Remove(builder.Length - 2, 2);
+            string restriction = $"AND [Censurkategori] IN({builder.ToString()})";
+            return restriction;
         }
     }
 

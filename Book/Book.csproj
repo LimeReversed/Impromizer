@@ -32,6 +32,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
+    <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
     <Reference Include="System.IO.Log" />
     <Reference Include="System.Windows.Forms" />
@@ -45,6 +46,7 @@
   <ItemGroup>
     <Compile Include="Custom.cs" />
     <Compile Include="Db.cs" />
+    <Compile Include="Ord.cs" />
     <Compile Include="Words.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

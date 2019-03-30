@@ -6,6 +6,8 @@ namespace Headline_Randomizer
 {
     public partial class PresentationWindow : Form
     {
+        public Form1 otherForm;
+
         public PresentationWindow()
         {
             InitializeComponent();
@@ -13,10 +15,10 @@ namespace Headline_Randomizer
 
         private void tbxResult_TextChanged(object sender, EventArgs e)
         {
-            Form1.saveResultToolStripMenuItem.ForeColor = Color.White;
-            if (Db.GetValue($"SELECT Lines FROM TblSavedResults WHERE Lines = '{tbxResult.Text}'") == tbxResult.Text)
+            otherForm.saveResultToolStripMenuItem.ForeColor = Color.White;
+            if (Db.GetValue($"SELECT Mening FROM TblSavedResults WHERE Mening = '{tbxResult.Text}'") == tbxResult.Text && tbxResult.Text != "")
             {
-                Form1.saveResultToolStripMenuItem.ForeColor = Color.Yellow;
+                otherForm.saveResultToolStripMenuItem.ForeColor = Color.Yellow;
             }
         }
     }

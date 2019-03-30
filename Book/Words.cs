@@ -4,8 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Data.SqlClient;
+using Headline_Randomizer;
 
-namespace Headline_Randomizer
+namespace English
 {
     public abstract class Words
     {
@@ -16,6 +17,9 @@ namespace Headline_Randomizer
         static public Something something = new Something();
         static public JokeNames jokeName = new JokeNames();
         static public NobelPrizes nobelPrize = new NobelPrizes();
+        static public Location location = new Location();
+        static public Relation relation = new Relation();
+        static public Status status = new Status();
 
         // Virtual methods here to be able to reach them through List<Words>
         public virtual string KänslaPlural()
@@ -128,7 +132,17 @@ namespace Headline_Randomizer
             return "";
         }
 
-        public virtual string StatusFörhållande()
+        public virtual string HighStatus(int id)
+        {
+            return "";
+        }
+
+        public virtual string LowStatus(int id)
+        {
+            return "";
+        }
+
+        public virtual string Feeling(int id)
         {
             return "";
         }
@@ -139,6 +153,7 @@ namespace Headline_Randomizer
         }
 
         public virtual void Used(int idNr) { }
+
     }
 
     // Words
@@ -148,7 +163,7 @@ namespace Headline_Randomizer
         public override int RandomizeId()
         {
             //return Db.GetValue($"SELECT TOP 1 * FROM TblVerb WHERE Used = 0 ORDER BY NEWID()");
-            return Convert.ToInt32($"{Db.RandomizeValue("Select Id", "FROM TblVerb WHERE Used = 0")}");
+            return Convert.ToInt32($"{Db.RandomizeValue("Select Id", $"FROM TblVerb WHERE Used = 0 {Db.QueryRestrictions()}")}");
         }
 
         public override void Used(int idNr)
@@ -186,7 +201,7 @@ namespace Headline_Randomizer
             {
                 return $"{Db.GetValue($"SELECT PostVerb FROM TblVerb WHERE Id = {id}")} ";
             }
-            
+
 
         }
 
@@ -266,7 +281,7 @@ namespace Headline_Randomizer
     {
         public override int RandomizeId()
         {
-            return Convert.ToInt32($"{Db.RandomizeValue("Select Id", "FROM TblNouns WHERE Used = 0 AND Animated = 0")}");
+            return Convert.ToInt32($"{Db.RandomizeValue("Select Id", $"FROM TblNouns WHERE Used = 0 AND Animated = 0 {Db.QueryRestrictions()}")}");
         }
     }
 
@@ -275,7 +290,8 @@ namespace Headline_Randomizer
     {
         public override int RandomizeId()
         {
-            return Convert.ToInt32($"{Db.RandomizeValue("SELECT Id", "FROM TblNouns WHERE Used = 0 AND Animated = 1")}");
+            string restrictions = Db.QueryRestrictions();
+            return Convert.ToInt32($"{Db.RandomizeValue("SELECT Id", "FROM TblNouns WHERE Used = 0 AND Animated = 1" + " " + restrictions)}");
         }
 
         //public Someone() : base()
@@ -285,12 +301,12 @@ namespace Headline_Randomizer
 
     }
 
-     // Adjectives
+    // Adjectives
     public class Adjectives : Words
     {
         public override int RandomizeId()
         {
-            return Convert.ToInt32($"{Db.RandomizeValue("Select Id", "FROM TblAdjective WHERE Used = 0")}");
+            return Convert.ToInt32($"{Db.RandomizeValue("Select Id", $"FROM TblAdjective WHERE Used = 0 {Db.QueryRestrictions()}")}");
         }
 
         public override void Used(int idNr)
@@ -299,9 +315,9 @@ namespace Headline_Randomizer
         }
 
         public override string EttForm(int id)
-         {
+        {
             return Db.GetValue($"SELECT EttForm FROM TblAdjective WHERE Id = {id}");
-         }
+        }
 
         public override string EnForm(int id)
         {
@@ -318,12 +334,13 @@ namespace Headline_Randomizer
         //    return descriptive;
         //}
 
+
         // Compares current adjective with the right noun and returns the right adjective
         public override string Singular(int adjectiveId, int nounId)
         {
             string preSub = Db.GetValue($"SELECT [Pre Substantiv] FROM TblNouns WHERE Id = {nounId}");
 
-            if (preSub == @"din/dina"  || preSub == @"din/din")
+            if (preSub == @"din/dina" || preSub == @"din/din")
                 return Db.GetValue($"SELECT EnForm FROM TblAdjective WHERE Id = {adjectiveId}");
             else if (preSub == @"ditt/dina" || preSub == @"ditt/ditt")
             {
@@ -383,7 +400,7 @@ namespace Headline_Randomizer
     {
         public override int RandomizeId()
         {
-            return Convert.ToInt32($"{Db.RandomizeValue("Select Id", "FROM TblJokeNames WHERE Used = 0")}");
+            return Convert.ToInt32($"{Db.RandomizeValue("Select Id", $"FROM TblJokeNames WHERE Used = 0 {Db.QueryRestrictions()}")}");
         }
 
         public override void Used(int idNr)
@@ -398,25 +415,30 @@ namespace Headline_Randomizer
 
     }
 
-    //public class Location : Names
-    //{
-    //    public override int RandomizeId()
-    //    {
-    //        return Convert.ToInt32($"{Db.RandomizeValue("Select Id", "FROM TblLocation WHERE Used = 0")}");
-    //    }
+    public class Location : Names
+    {
+        public override int RandomizeId()
+        {
+            return Convert.ToInt32($"{Db.RandomizeValue("Select Id", $"FROM TblPlats WHERE Used = 0 {Db.QueryRestrictions()}")}");
+        }
 
-    //    public override void Used(int idNr)
-    //    {
-    //        Db.Command($"UPDATE TblLocations SET Used = 1 WHERE Id = {idNr}");
-    //    }
-    //}
+        public override void Used(int idNr)
+        {
+            Db.Command($"UPDATE TblPlats SET Used = 1 WHERE Id = {idNr}");
+        }
+
+        public override string Name(int id)
+        {
+            return Db.GetValue($"SELECT Plats FROM TblPlats WHERE Id = { id }");
+        }
+    }
 
     // Nobel prize
     public class NobelPrizes : Words
     {
         public override int RandomizeId()
         {
-            return Convert.ToInt32($"{Db.RandomizeValue("Select Id", "FROM TblNobelPrizes WHERE Used = 0")}");
+            return Convert.ToInt32($"{Db.RandomizeValue("Select Id", $"FROM TblNobelPrizes WHERE Used = 0")}");
         }
 
         public override void Used(int idNr)
@@ -430,37 +452,46 @@ namespace Headline_Randomizer
         }
     }
 
-    //public class Relation : Words
-    //{
-    //    protected string känslaSingular, känslaPlural, statusförhållande;
+    public class Relation : Words
+    {
+        public override int RandomizeId()
+        {
+            return Convert.ToInt32($"{Db.RandomizeValue("Select Id", $"FROM TblRelation WHERE Used = 0")}");
+        }
 
-    //    public override string KänslaPlural()
-    //    {
-    //        return känslaPlural;
-    //    }
+        public override void Used(int idNr)
+        {
+            Db.Command($"UPDATE TblRelation SET Used = 1 WHERE Id = {idNr}");
+        }
 
-    //    public override string KänslaSingular()
-    //    {
-    //        return känslaSingular;
-    //    }
+        public override string Feeling(int id)
+        {
+            return Db.GetValue($"SELECT Känsla FROM TblRelation WHERE Id = { id }");
+        }
+    }
 
-    //    public override string StatusFörhållande()
-    //    {
-    //        return statusförhållande;
-    //    }
+    public class Status : Words
+    {
+        public override int RandomizeId()
+        {
+            return Convert.ToInt32($"{Db.RandomizeValue("Select Id", $"FROM TblStatus WHERE Used = 0")}");
+        }
 
-    //    public Relation(string statusförhållande) : base()
-    //    {
-    //        this.statusförhållande = statusförhållande;
-    //    }
+        public override void Used(int idNr)
+        {
+            Db.Command($"UPDATE TblStatus SET Used = 1 WHERE Id = {idNr}");
+        }
 
-    //    public Relation(string känslaSingular, string känslaPlural) : base()
-    //    {
-    //        this.känslaSingular = känslaSingular;
-    //        this.känslaPlural = känslaPlural;
-    //    }
+        public string HighStatus(int id)
+        {
+            return Db.GetValue($"SELECT Högstatus FROM TblStatus WHERE Id = { id }");
+        }
 
-    //    Relation() { }
-    //}
+        public string LowStatus(int id)
+        {
+            return Db.GetValue($"SELECT Lågstatus FROM TblStatus WHERE Id = { id }");
+        }
+    }
+
 
 }
