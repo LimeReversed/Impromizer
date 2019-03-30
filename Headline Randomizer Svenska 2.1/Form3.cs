@@ -85,6 +85,8 @@ namespace Headline_Randomizer
         // Needed to stop the current cell from changing while updating the GridView.
         // This because of the current_cell_change event.
         bool updateInProgress = false;
+        List<Mix> mix = new List<Mix>();
+        List<Mix> location = new List<Mix>();
 
         //
         // Methods
@@ -139,6 +141,44 @@ namespace Headline_Randomizer
                     cbUpdateValue.Items.Clear();
                     cbUpdateValue.Text = "Skriv in värde...";
                     break;
+            }
+        }
+
+        public void Reposition()
+        {
+            int x = (gbAddRow.Size.Width - (130 * 5)) / 6;
+            for (int i = 0; i < location.Count; i++)
+            {
+                if (i < 5 && mix[i].Name == "text")
+                {
+                    location[i].TextBox.Location = new Point(x, 45);
+                    x = x + location[i].TextBox.Size.Width + x;
+                }
+
+                else if (i < 5 && mix[i].Name != "text")
+                {
+                    location[i].ComboBox.Location = new Point(x, 45);
+                    x = x + location[i].ComboBox.Size.Width + x;
+                }
+
+                else if (i == 5 && mix[i].Name == "text")
+                {
+                    x = (gbAddRow.Size.Width - (130 * 5)) / 6;
+                    location[i].TextBox.Location = new Point(x, 97);
+                    x = x + location[i].TextBox.Size.Width + x;
+                }
+
+                else if (i == 5 && mix[i].Name != "text")
+                {
+
+                }
+
+                else
+                {
+                    location[i].TextBox.Location = new Point(x, 97);
+                    x = x + location[i].TextBox.Size.Width + x;
+                }
+                
             }
         }
 
@@ -222,18 +262,17 @@ namespace Headline_Randomizer
                 {
                     SqlDataReader reader = command.ExecuteReader();
 
-                    List<Mix> mix = new List<Mix>
-                    {
-                        new Mix("text", lblColumn1, tbxAddColumn1, new Point(20, 45)),
-                        new Mix("text", lblColumn2, tbxAddColumn2, new Point(164, 45)),
-                        new Mix("text", lblColumn3, tbxAddColumn3, new Point(307, 45)),
-                        new Mix("text", lblColumn4, tbxAddColumn4, new Point(451, 45)),
-                        new Mix("text", lblColumn5, tbxAddColumn5, new Point(594, 45)),
-                        new Mix("Benämner", lblTermFor, cbTermFor, new Point(20, 97)),
-                        new Mix("Genus", lblGenus, cbGenus, new Point(164, 97)),
-                        new Mix("Passar relation", lblRelation, cbRelation, new Point(307, 97)),
-                        new Mix("Censurkategori", lblCensur, cbCensur, new Point(451, 97)),
-                    };
+                    mix.Clear();
+                    mix.Add(new Mix("text", lblColumn1, tbxAddColumn1, new Point(20, 45)));
+                    mix.Add(new Mix("text", lblColumn2, tbxAddColumn2, new Point(164, 45)));
+                    mix.Add(new Mix("text", lblColumn3, tbxAddColumn3, new Point(307, 45)));
+                    mix.Add(new Mix("text", lblColumn4, tbxAddColumn4, new Point(451, 45)));
+                    mix.Add(new Mix("text", lblColumn5, tbxAddColumn5, new Point(594, 45)));
+                    mix.Add(new Mix("Benämner", lblTermFor, cbTermFor, new Point(20, 97)));
+                    mix.Add(new Mix("Genus", lblGenus, cbGenus, new Point(164, 97)));
+                    mix.Add(new Mix("Passar relation", lblRelation, cbRelation, new Point(307, 97)));
+                    mix.Add(new Mix("Censurkategori", lblCensur, cbCensur, new Point(451, 97)));
+
 
                     // Hide all
                     foreach (Mix element in mix)
@@ -250,42 +289,200 @@ namespace Headline_Randomizer
                         }
                     }
 
-                    // Show the items specified in the query 
-                    for (int i = 0; i < reader.FieldCount; i++)
+                    mix.Clear();
+
+                    switch (cbTabell.SelectedValue)
                     {
-                        if (reader.GetDataTypeName(i) == "nvarchar" && (reader.GetName(i) != "Benämner" && reader.GetName(i) != "Genus"))
-                        {
-                            mix[i].Label.Show();
-                            mix[i].Label.Text = reader.GetName(i);
-                            mix[i].TextBox.Show();
-                            mix[i].TextBox.Size = reader.GetName(i) == "Mening" || reader.GetName(i) == "Uppdrag" ? new Size(274, 27) : new Size(130, 27);
-                        }
-                        else
-                        {
-                            for (int y = i; y < mix.Count; y++)
+                        case "TblAdjectives":
+                            mix.Clear();
+                            mix.Add(new Mix("text", lblColumn1, tbxAddColumn1, new Point(20, 45)));
+                            mix[0].Label.Text = reader.GetName(0);
+                            mix[0].Label.Location = new Point(20 - 4, 25);
+                            mix.Add(new Mix("text", lblColumn2, tbxAddColumn2, new Point(164, 45)));
+                            mix[1].Label.Text = reader.GetName(1);
+                            mix[1].Label.Location = new Point(164 - 4, 25);
+                            mix.Add(new Mix("text", lblColumn3, tbxAddColumn3, new Point(307, 45)));
+                            mix[2].Label.Text = reader.GetName(2);
+                            mix[2].Label.Location = new Point(307 - 4, 25);
+                            mix.Add(new Mix("text", lblColumn4, tbxAddColumn4, new Point(451, 45)));
+                            mix[3].Label.Text = reader.GetName(3);
+                            mix[3].Label.Location = new Point(451 - 4, 25);
+                            mix.Add(new Mix("Passar relation", lblRelation, cbRelation, new Point(594, 45)));
+                            mix[4].Label.Location = new Point(594 - 4, 25);
+                            mix.Add(new Mix("Censurkategori", lblCensur, cbCensur, new Point(20, 97)));
+                            mix[5].Label.Location = new Point(20 - 4, 77);
+
+                            foreach (Mix element in mix)
                             {
-                                if (reader.GetName(i) == mix[y].Name)
+                                element.Label.Visible = true;
+                                try
                                 {
-                                    if (reader.GetName(i - 1) == "Uppdrag")
-                                    {
-                                        mix[y].ComboBox.Location = mix[i + 1].Location;
-                                        mix[y].Label.Location = mix[i + 1].Label.Location;
-                                        mix[y].Label.Show();
-                                        mix[i].Label.Text = reader.GetName(i);
-                                    }
-                                    else
-                                    {
-                                        mix[i].Label.Show();
-                                        mix[i].Label.Text = reader.GetName(i);
-                                        mix[y].ComboBox.Location = mix[i].Location;
-                                    }
-                                    mix[y].ComboBox.Visible = true;
+                                    element.TextBox.Visible = true;
+                                    
                                 }
-                                else { }
+                                catch { element.ComboBox.Visible = true; }
+                                
                             }
-                            
-                        }
+                            break;
+
+                        case "TblJokeNames":
+                        case "TblMissions":
+                            mix.Clear();
+                            mix.Add(new Mix("text", lblColumn1, tbxAddColumn1, new Point(20, 45)));
+                            mix[0].Label.Text = reader.GetName(0);
+                            mix[0].Label.Location = new Point(20 - 4, 25);
+                            mix.Add(new Mix("Censurkategori", lblCensur, cbCensur, new Point(164, 45)));
+                            mix[1].Label.Location = new Point(164 - 4, 25);
+
+                            foreach (Mix element in mix)
+                            {
+                                element.Label.Visible = true;
+                                try
+                                {
+                                    element.TextBox.Visible = true;
+                                    
+                                }
+                                catch { element.ComboBox.Visible = true; }
+
+                            }
+                            break;
+
+                        case "TblNobelPrizes":
+                        case "TblSavedResults":
+                            mix.Clear();
+                            mix.Add(new Mix("text", lblColumn1, tbxAddColumn1, new Point(20, 45)));
+                            mix[0].Label.Text = reader.GetName(0);
+                            mix[0].Label.Location = new Point(20 - 4, 25);
+                            foreach (Mix element in mix)
+                            {
+                                element.Label.Visible = true;
+                                try
+                                {
+                                    element.TextBox.Visible = true;
+                                    
+                                }
+                                catch { element.ComboBox.Visible = true; }
+
+                            }
+
+                            break;
+
+                        case "TblNouns":
+                            mix.Clear();
+                            mix.Add(new Mix("text", lblColumn1, tbxAddColumn1, new Point(20, 45)));
+                            mix[0].Label.Text = reader.GetName(0);
+                            mix[0].Label.Location = new Point(20 - 4, 25);
+                            mix.Add(new Mix("text", lblColumn2, tbxAddColumn2, new Point(164, 45)));
+                            mix[1].Label.Text = reader.GetName(1);
+                            mix[1].Label.Location = new Point(164 - 4, 25);
+                            mix.Add(new Mix("text", lblColumn3, tbxAddColumn3, new Point(307, 45)));
+                            mix[2].Label.Text = reader.GetName(2);
+                            mix[2].Label.Location = new Point(307 - 4, 25);
+                            mix.Add(new Mix("text", lblColumn4, tbxAddColumn4, new Point(451, 45)));
+                            mix[3].Label.Text = reader.GetName(3);
+                            mix[3].Label.Location = new Point(451 - 4, 25);
+                            mix.Add(new Mix("Benämner", lblTermFor, cbTermFor, new Point(594, 45)));
+                            mix[4].Label.Location = new Point(594 - 4, 25);
+                            mix.Add(new Mix("Genus", lblGenus, cbGenus, new Point(20, 97)));
+                            mix[5].Label.Location = new Point(20 - 4, 77);
+                            mix.Add(new Mix("Censurkategori", lblCensur, cbCensur, new Point(164, 97)));
+                            mix[6].Label.Location = new Point(164 - 4, 77);
+                            foreach (Mix element in mix)
+                            {
+                                element.Label.Visible = true;
+                                try
+                                {
+                                    element.TextBox.Visible = true;
+                                    
+                                }
+                                catch { element.ComboBox.Visible = true; }
+
+                            }
+                            break;
+
+                        case "TblStatus":
+                            mix.Clear();
+                            mix.Add(new Mix("text", lblColumn1, tbxAddColumn1, new Point(20, 45)));
+                            mix[0].Label.Text = reader.GetName(0);
+                            mix[0].Label.Location = new Point(20 - 4, 25);
+                            mix.Add(new Mix("text", lblColumn2, tbxAddColumn2, new Point(164, 45)));
+                            mix[1].Label.Text = reader.GetName(1);
+                            mix[1].Label.Location = new Point(164 - 4, 25);
+                            foreach (Mix element in mix)
+                            {
+                                element.Label.Visible = true;
+                                try
+                                {
+                                    element.TextBox.Visible = true;
+                                    
+                                }
+                                catch { element.ComboBox.Visible = true; }
+
+                            }
+                            break;
+
+                        case "TblVerbs":
+                            mix.Clear();
+                            mix.Add(new Mix("text", lblColumn1, tbxAddColumn1, new Point(20, 45)));
+                            mix[0].Label.Text = reader.GetName(0);
+                            mix[0].Label.Location = new Point(20 - 4, 25);
+                            mix.Add(new Mix("text", lblColumn2, tbxAddColumn2, new Point(164, 45)));
+                            mix[1].Label.Text = reader.GetName(1);
+                            mix[1].Label.Location = new Point(164 - 4, 25);
+                            mix.Add(new Mix("text", lblColumn3, tbxAddColumn3, new Point(307, 45)));
+                            mix[2].Label.Text = reader.GetName(2);
+                            mix[2].Label.Location = new Point(307 - 4, 25);
+                            mix.Add(new Mix("text", lblColumn4, tbxAddColumn4, new Point(451, 45)));
+                            mix[3].Label.Text = reader.GetName(3);
+                            mix[3].Label.Location = new Point(451 - 4, 25);
+                            mix.Add(new Mix("text", lblColumn5, tbxAddColumn5, new Point(594, 45)));
+                            mix[4].Label.Text = reader.GetName(4);
+                            mix.Add(new Mix("Passar relation", lblRelation, cbRelation, new Point(20, 97)));
+                            mix[5].Label.Location = new Point(20 - 4, 77);
+                            mix.Add(new Mix("Censurkategori", lblCensur, cbCensur, new Point(164, 97)));
+                            mix[6].Label.Location = new Point(164 - 4, 77);
+                            foreach (Mix element in mix)
+                            {
+                                element.Label.Visible = true;
+                                try
+                                {
+                                    element.TextBox.Visible = true;
+                                    
+                                }
+                                catch { element.ComboBox.Visible = true; }
+
+                            }
+                            break;
                     }
+
+                    //// Show the items specified in the query 
+                    //for (int i = 0; i < reader.FieldCount; i++)
+                    //{
+                    //    if (reader.GetDataTypeName(i) == "nvarchar" && (reader.GetName(i) != "Benämner" && reader.GetName(i) != "Genus"))
+                    //    {
+                    //        mix[i].Label.Show();
+                    //        mix[i].Label.Text = reader.GetName(i);
+                    //        mix[i].TextBox.Show();
+                    //        location.Add(mix[i]);
+                    //        //mix[i].TextBox.Size = reader.GetName(i) == "Mening" || reader.GetName(i) == "Uppdrag" ? new Size(274, 27) : new Size(130, 27);
+                    //    }
+                    //    else
+                    //    {
+                    //        for (int y = i; y < mix.Count; y++)
+                    //        {
+                    //            if (reader.GetName(i) == mix[y].Name)
+                    //            {
+                    //                mix[i].Label.Show();
+                    //                mix[i].Label.Text = reader.GetName(i);
+                    //                //mix[y].ComboBox.Location = mix[i].Location;
+                    //                mix[y].ComboBox.Visible = true;
+                    //                location.Add(new Mix ($"{mix[y].Name}", mix[i].Label, mix[y].ComboBox, mix[i].Location));
+                    //            }
+                    //            else { }
+                    //        }
+                            
+                    //    }
+                    //}
 
                     reader.Close();
                 }
@@ -532,8 +729,8 @@ namespace Headline_Randomizer
 
         private void cbTabell_SelectionChangeCommitted(object sender, EventArgs e)
         {
-            DbDisplay.CurrentCell = DbDisplay.Rows[0].Cells[1];
             UpdateGridView($"SELECT * FROM {cbTabell.SelectedValue.ToString()}");
+            DbDisplay.CurrentCell = DbDisplay.Rows[0].Cells[1];
             UpdateLables($"{GetQuery()}");
             UpdateUpdateValue();
         }
@@ -561,17 +758,25 @@ namespace Headline_Randomizer
         private void Options_SizeChanged(object sender, EventArgs e)
         {
             int x = (gbAddRow.Size.Width - (130 * 5)) / 6;
-            tbxAddColumn1.Location = new Point(x, 45);
-            lblColumn1.Location = new Point(tbxAddColumn1.Location.X - 4, 25);
-            tbxAddColumn2.Location = new Point(tbxAddColumn1.Location.X + 130 + x, 45);
-            lblColumn2.Location = new Point(tbxAddColumn2.Location.X - 4, 25);
-            tbxAddColumn3.Location = new Point(tbxAddColumn2.Location.X + 130 + x, 45);
-            lblColumn3.Location = new Point(tbxAddColumn3.Location.X - 4, 25);
-            tbxAddColumn4.Location = new Point(tbxAddColumn3.Location.X + 130 + x, 45);
-            lblColumn4.Location = new Point(tbxAddColumn4.Location.X - 4, 25);
-            tbxAddColumn5.Location = new Point(tbxAddColumn4.Location.X + 130 + x, 45);
-            lblColumn5.Location = new Point(tbxAddColumn5.Location.X - 4, 25);
-
+            int j = 0;
+            for (int i = 0; i < mix.Count; i++)
+            {
+                if (i < 5)
+                {
+                    int plus = (x + 130) * i;
+                    mix[i].Location = new Point(x + plus, 45);
+                    mix[i].Label.Location = new Point((x + plus) - 4, 25);
+                }
+                else
+                {
+                    int plus = (x + 130) * j;
+                    mix[i].Location = new Point(x + plus, 97);
+                    mix[i].Label.Location = new Point((x + plus) - 4, 77);
+                    j++;
+                }
+                
+            }
+            
         }
     }
 
@@ -615,7 +820,18 @@ namespace Headline_Randomizer
         {
             get { return location; }
 
-            set { location = value; }
+            set
+            {
+                location = value;
+                if (this.name == "text")
+                {
+                    this.textBox.Location = location;
+                }
+                else
+                {
+                    this.comboBox.Location = location;
+                }
+            }
         }
 
         public Mix(string name, Label label, TextBox textBox, Point location)
@@ -624,6 +840,7 @@ namespace Headline_Randomizer
             this.label = label;
             this.textBox = textBox;
             this.location = location;
+            this.textBox.Location = location;
         }
 
         public Mix(string name, Label label, ComboBox comboBox, Point location)
@@ -632,6 +849,7 @@ namespace Headline_Randomizer
             this.label = label;
             this.comboBox = comboBox;
             this.location = location;
+            this.comboBox.Location = location;
         }
     }
 }
