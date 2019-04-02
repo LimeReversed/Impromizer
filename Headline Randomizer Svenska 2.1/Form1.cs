@@ -1597,6 +1597,20 @@ namespace Headline_Randomizer
             }
         }
 
+        private void lekarToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Help help = new Help();
+            help.tabControl1.SelectedIndex = 0;
+            help.Show();
+        }
+
+        private void hjälpToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Help help = new Help();
+            help.tabControl1.SelectedIndex = 1;
+            help.Show();
+        }
+
 
         // 
         // Tillfällig

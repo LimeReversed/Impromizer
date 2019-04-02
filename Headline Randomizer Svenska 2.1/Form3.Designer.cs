@@ -158,7 +158,7 @@
             this.cbCensur.Items.AddRange(new object[] {
             "0 (Censurera ej)",
             "1 (Sex/droger)"});
-            this.cbCensur.Location = new System.Drawing.Point(451, 97);
+            this.cbCensur.Location = new System.Drawing.Point(455, 97);
             this.cbCensur.Name = "cbCensur";
             this.cbCensur.Size = new System.Drawing.Size(130, 27);
             this.cbCensur.TabIndex = 8;
@@ -172,7 +172,7 @@
             "Plats",
             "Någon & Plats",
             "Någon & Något"});
-            this.cbTermFor.Location = new System.Drawing.Point(21, 97);
+            this.cbTermFor.Location = new System.Drawing.Point(25, 97);
             this.cbTermFor.Name = "cbTermFor";
             this.cbTermFor.Size = new System.Drawing.Size(130, 27);
             this.cbTermFor.TabIndex = 23;
@@ -185,7 +185,7 @@
             "T-genus",
             "N-undantag",
             "T-undantag"});
-            this.cbGenus.Location = new System.Drawing.Point(164, 97);
+            this.cbGenus.Location = new System.Drawing.Point(168, 97);
             this.cbGenus.Name = "cbGenus";
             this.cbGenus.Size = new System.Drawing.Size(130, 27);
             this.cbGenus.TabIndex = 22;
@@ -196,7 +196,7 @@
             this.cbRelation.Items.AddRange(new object[] {
             "True",
             "False"});
-            this.cbRelation.Location = new System.Drawing.Point(307, 97);
+            this.cbRelation.Location = new System.Drawing.Point(311, 97);
             this.cbRelation.Name = "cbRelation";
             this.cbRelation.Size = new System.Drawing.Size(130, 27);
             this.cbRelation.TabIndex = 21;
@@ -204,7 +204,7 @@
             // lblCensur
             // 
             this.lblCensur.AutoSize = true;
-            this.lblCensur.Location = new System.Drawing.Point(448, 77);
+            this.lblCensur.Location = new System.Drawing.Point(452, 77);
             this.lblCensur.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lblCensur.Name = "lblCensur";
             this.lblCensur.Size = new System.Drawing.Size(107, 19);
@@ -214,7 +214,7 @@
             // lblRelation
             // 
             this.lblRelation.AutoSize = true;
-            this.lblRelation.Location = new System.Drawing.Point(304, 77);
+            this.lblRelation.Location = new System.Drawing.Point(308, 77);
             this.lblRelation.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lblRelation.Name = "lblRelation";
             this.lblRelation.Size = new System.Drawing.Size(106, 19);
@@ -224,7 +224,7 @@
             // lblGenus
             // 
             this.lblGenus.AutoSize = true;
-            this.lblGenus.Location = new System.Drawing.Point(161, 77);
+            this.lblGenus.Location = new System.Drawing.Point(165, 77);
             this.lblGenus.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lblGenus.Name = "lblGenus";
             this.lblGenus.Size = new System.Drawing.Size(50, 19);
@@ -234,7 +234,7 @@
             // lblTermFor
             // 
             this.lblTermFor.AutoSize = true;
-            this.lblTermFor.Location = new System.Drawing.Point(17, 77);
+            this.lblTermFor.Location = new System.Drawing.Point(21, 77);
             this.lblTermFor.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lblTermFor.Name = "lblTermFor";
             this.lblTermFor.Size = new System.Drawing.Size(75, 19);
@@ -244,7 +244,7 @@
             // lblColumn5
             // 
             this.lblColumn5.AutoSize = true;
-            this.lblColumn5.Location = new System.Drawing.Point(591, 25);
+            this.lblColumn5.Location = new System.Drawing.Point(595, 25);
             this.lblColumn5.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lblColumn5.Name = "lblColumn5";
             this.lblColumn5.Size = new System.Drawing.Size(69, 19);
@@ -254,7 +254,7 @@
             // tbxAddColumn5
             // 
             this.tbxAddColumn5.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.tbxAddColumn5.Location = new System.Drawing.Point(594, 45);
+            this.tbxAddColumn5.Location = new System.Drawing.Point(598, 45);
             this.tbxAddColumn5.Margin = new System.Windows.Forms.Padding(2);
             this.tbxAddColumn5.Name = "tbxAddColumn5";
             this.tbxAddColumn5.Size = new System.Drawing.Size(130, 27);
@@ -263,7 +263,7 @@
             // lblColumn4
             // 
             this.lblColumn4.AutoSize = true;
-            this.lblColumn4.Location = new System.Drawing.Point(448, 25);
+            this.lblColumn4.Location = new System.Drawing.Point(452, 25);
             this.lblColumn4.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lblColumn4.Name = "lblColumn4";
             this.lblColumn4.Size = new System.Drawing.Size(69, 19);
@@ -274,7 +274,7 @@
             // 
             this.tbxAddColumn4.BackColor = System.Drawing.Color.White;
             this.tbxAddColumn4.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.tbxAddColumn4.Location = new System.Drawing.Point(451, 45);
+            this.tbxAddColumn4.Location = new System.Drawing.Point(455, 45);
             this.tbxAddColumn4.Margin = new System.Windows.Forms.Padding(2);
             this.tbxAddColumn4.Name = "tbxAddColumn4";
             this.tbxAddColumn4.Size = new System.Drawing.Size(130, 27);
@@ -283,7 +283,7 @@
             // lblColumn3
             // 
             this.lblColumn3.AutoSize = true;
-            this.lblColumn3.Location = new System.Drawing.Point(304, 25);
+            this.lblColumn3.Location = new System.Drawing.Point(308, 25);
             this.lblColumn3.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lblColumn3.Name = "lblColumn3";
             this.lblColumn3.Size = new System.Drawing.Size(69, 19);
@@ -293,7 +293,7 @@
             // tbxAddColumn3
             // 
             this.tbxAddColumn3.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.tbxAddColumn3.Location = new System.Drawing.Point(307, 45);
+            this.tbxAddColumn3.Location = new System.Drawing.Point(311, 45);
             this.tbxAddColumn3.Margin = new System.Windows.Forms.Padding(2);
             this.tbxAddColumn3.Name = "tbxAddColumn3";
             this.tbxAddColumn3.Size = new System.Drawing.Size(130, 27);
@@ -302,7 +302,7 @@
             // lblColumn2
             // 
             this.lblColumn2.AutoSize = true;
-            this.lblColumn2.Location = new System.Drawing.Point(161, 25);
+            this.lblColumn2.Location = new System.Drawing.Point(165, 25);
             this.lblColumn2.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lblColumn2.Name = "lblColumn2";
             this.lblColumn2.Size = new System.Drawing.Size(69, 19);
@@ -312,7 +312,7 @@
             // tbxAddColumn2
             // 
             this.tbxAddColumn2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.tbxAddColumn2.Location = new System.Drawing.Point(164, 45);
+            this.tbxAddColumn2.Location = new System.Drawing.Point(168, 45);
             this.tbxAddColumn2.Margin = new System.Windows.Forms.Padding(2);
             this.tbxAddColumn2.Name = "tbxAddColumn2";
             this.tbxAddColumn2.Size = new System.Drawing.Size(130, 27);
@@ -321,7 +321,7 @@
             // lblColumn1
             // 
             this.lblColumn1.AutoSize = true;
-            this.lblColumn1.Location = new System.Drawing.Point(17, 25);
+            this.lblColumn1.Location = new System.Drawing.Point(21, 25);
             this.lblColumn1.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lblColumn1.Name = "lblColumn1";
             this.lblColumn1.Size = new System.Drawing.Size(69, 19);
@@ -334,7 +334,7 @@
             this.btnAddRow.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.btnAddRow.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnAddRow.ForeColor = System.Drawing.Color.White;
-            this.btnAddRow.Location = new System.Drawing.Point(594, 81);
+            this.btnAddRow.Location = new System.Drawing.Point(598, 81);
             this.btnAddRow.Margin = new System.Windows.Forms.Padding(2);
             this.btnAddRow.Name = "btnAddRow";
             this.btnAddRow.Size = new System.Drawing.Size(130, 43);
@@ -346,10 +346,10 @@
             // tbxAddColumn1
             // 
             this.tbxAddColumn1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.tbxAddColumn1.Location = new System.Drawing.Point(20, 45);
+            this.tbxAddColumn1.Location = new System.Drawing.Point(24, 45);
             this.tbxAddColumn1.Margin = new System.Windows.Forms.Padding(2);
             this.tbxAddColumn1.Name = "tbxAddColumn1";
-            this.tbxAddColumn1.Size = new System.Drawing.Size(130, 27);
+            this.tbxAddColumn1.Size = new System.Drawing.Size(131, 27);
             this.tbxAddColumn1.TabIndex = 0;
             // 
             // groupBox3
@@ -413,8 +413,7 @@
             // 
             // groupBox2
             // 
-            this.groupBox2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
+            this.groupBox2.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.groupBox2.Controls.Add(this.cbUpdateValue);
             this.groupBox2.Controls.Add(this.numChangeColumn);
             this.groupBox2.Controls.Add(this.label2);
@@ -433,6 +432,7 @@
             // 
             // cbUpdateValue
             // 
+            this.cbUpdateValue.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.cbUpdateValue.FormattingEnabled = true;
             this.cbUpdateValue.Location = new System.Drawing.Point(125, 23);
             this.cbUpdateValue.Name = "cbUpdateValue";
@@ -443,6 +443,7 @@
             // 
             // numChangeColumn
             // 
+            this.numChangeColumn.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.numChangeColumn.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.numChangeColumn.Location = new System.Drawing.Point(65, 62);
             this.numChangeColumn.Minimum = new decimal(new int[] {
@@ -463,6 +464,7 @@
             // 
             // label2
             // 
+            this.label2.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.label2.AutoSize = true;
             this.label2.Location = new System.Drawing.Point(6, 66);
             this.label2.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
@@ -473,6 +475,7 @@
             // 
             // numChangeRow
             // 
+            this.numChangeRow.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.numChangeRow.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.numChangeRow.Location = new System.Drawing.Point(65, 24);
             this.numChangeRow.Minimum = new decimal(new int[] {
@@ -492,6 +495,7 @@
             // 
             // label1
             // 
+            this.label1.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.label1.AutoSize = true;
             this.label1.Location = new System.Drawing.Point(30, 26);
             this.label1.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
@@ -502,6 +506,7 @@
             // 
             // btnChangeValue
             // 
+            this.btnChangeValue.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.btnChangeValue.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.btnChangeValue.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnChangeValue.ForeColor = System.Drawing.Color.White;
@@ -691,6 +696,7 @@
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.ClientSize = new System.Drawing.Size(821, 599);
             this.Controls.Add(this.tabControl1);
+            this.MinimumSize = new System.Drawing.Size(837, 638);
             this.Name = "Options";
             this.Text = "Options";
             this.SizeChanged += new System.EventHandler(this.Options_SizeChanged);

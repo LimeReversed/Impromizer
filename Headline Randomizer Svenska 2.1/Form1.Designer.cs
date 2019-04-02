@@ -82,7 +82,9 @@
             this.backToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.saveResultToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.forwardToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.lekarToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.settingsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.hjälpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolTip = new System.Windows.Forms.ToolTip(this.components);
             this.customTabControl1.SuspendLayout();
             this.tabPage3.SuspendLayout();
@@ -919,7 +921,9 @@
             this.backToolStripMenuItem,
             this.saveResultToolStripMenuItem,
             this.forwardToolStripMenuItem,
-            this.settingsToolStripMenuItem});
+            this.lekarToolStripMenuItem,
+            this.settingsToolStripMenuItem,
+            this.hjälpToolStripMenuItem});
             this.menuStrip1.LayoutStyle = System.Windows.Forms.ToolStripLayoutStyle.HorizontalStackWithOverflow;
             this.menuStrip1.Location = new System.Drawing.Point(0, 351);
             this.menuStrip1.Name = "menuStrip1";
@@ -957,14 +961,32 @@
             this.forwardToolStripMenuItem.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
             this.forwardToolStripMenuItem.Click += new System.EventHandler(this.forwardToolStripMenuItem_Click);
             // 
+            // lekarToolStripMenuItem
+            // 
+            this.lekarToolStripMenuItem.Font = new System.Drawing.Font("Calibri", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lekarToolStripMenuItem.ForeColor = System.Drawing.Color.White;
+            this.lekarToolStripMenuItem.Name = "lekarToolStripMenuItem";
+            this.lekarToolStripMenuItem.Size = new System.Drawing.Size(64, 29);
+            this.lekarToolStripMenuItem.Text = "Lekar";
+            this.lekarToolStripMenuItem.Click += new System.EventHandler(this.lekarToolStripMenuItem_Click);
+            // 
             // settingsToolStripMenuItem
             // 
-            this.settingsToolStripMenuItem.Font = new System.Drawing.Font("Calibri", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.settingsToolStripMenuItem.Font = new System.Drawing.Font("Calibri", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.settingsToolStripMenuItem.ForeColor = System.Drawing.Color.White;
             this.settingsToolStripMenuItem.Name = "settingsToolStripMenuItem";
-            this.settingsToolStripMenuItem.Size = new System.Drawing.Size(84, 29);
-            this.settingsToolStripMenuItem.Text = "Options";
+            this.settingsToolStripMenuItem.Size = new System.Drawing.Size(118, 29);
+            this.settingsToolStripMenuItem.Text = "Inställningar";
             this.settingsToolStripMenuItem.Click += new System.EventHandler(this.settingsToolStripMenuItem_Click);
+            // 
+            // hjälpToolStripMenuItem
+            // 
+            this.hjälpToolStripMenuItem.Font = new System.Drawing.Font("Calibri", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.hjälpToolStripMenuItem.ForeColor = System.Drawing.Color.White;
+            this.hjälpToolStripMenuItem.Name = "hjälpToolStripMenuItem";
+            this.hjälpToolStripMenuItem.Size = new System.Drawing.Size(62, 29);
+            this.hjälpToolStripMenuItem.Text = "Hjälp";
+            this.hjälpToolStripMenuItem.Click += new System.EventHandler(this.hjälpToolStripMenuItem_Click);
             // 
             // toolTip
             // 
@@ -1069,6 +1091,8 @@
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label lblParticipants;
+        private System.Windows.Forms.ToolStripMenuItem hjälpToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem lekarToolStripMenuItem;
     }
 }
 
