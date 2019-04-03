@@ -85,7 +85,7 @@ namespace Headline_Randomizer
 
             //    while ((fileRow = sr.ReadLine()) != null && ((fileRow2 = sr2.ReadLine()) != null) && ((fileRow3 = sr3.ReadLine()) != null) && ((fileRow4 = sr4.ReadLine()) != null) && ((fileRow5 = sr5.ReadLine()) != null))
             //    {
-            //        Db.Command($"INSERT INTO TblVerbs (Infinitiv, Uppmaning, Perfekt, Presens, Preposition, [Passar relation], Censurkategori, Använt) VALUES ('{fileRow}', '{fileRow5}', '{fileRow3}', '{fileRow2}', '{fileRow4}', '0', 0, 0)");
+            //        Db.Command($"INSERT INTO TblVerbs (Infinitiv, Uppmaning, Perfekt, Presens, Preposition, [Relation], Lämpligt för, Använt) VALUES ('{fileRow}', '{fileRow5}', '{fileRow3}', '{fileRow2}', '{fileRow4}', '0', 0, 0)");
             //    }
             //    sr.Close();
             //    sr2.Close();
@@ -108,7 +108,7 @@ namespace Headline_Randomizer
 
             //    while ((fileRow = sr.ReadLine()) != null && ((fileRow2 = sr2.ReadLine()) != null) && ((fileRow3 = sr3.ReadLine()) != null))
             //    {
-            //        Db.Command($"INSERT INTO TblNouns ([Singular obestämd], [Singular bestämd], Plural, Benämner, Censurkategori, Använt) VALUES ('{fileRow}', 0, '{fileRow2}', 0, 0, 0)");
+            //        Db.Command($"INSERT INTO TblNouns ([Singular obestämd], [Singular bestämd], Plural, Benämner, Lämpligt för, Använt) VALUES ('{fileRow}', 0, '{fileRow2}', 0, 0, 0)");
             //    }
             //    sr.Close();
             //    sr2.Close();
@@ -128,7 +128,7 @@ namespace Headline_Randomizer
 
             //    while ((fileRow = sr.ReadLine()) != null && ((fileRow2 = sr2.ReadLine()) != null) && ((fileRow3 = sr3.ReadLine()) != null))
             //    {
-            //        Db.Command($"INSERT INTO TblNouns ([Singular obestämd], [Singular bestämd], Plural, Benämner, Censurkategori, Använt) VALUES ('{fileRow}', 0, '{fileRow2}', 1, 0, 0)");
+            //        Db.Command($"INSERT INTO TblNouns ([Singular obestämd], [Singular bestämd], Plural, Benämner, Lämpligt för, Använt) VALUES ('{fileRow}', 0, '{fileRow2}', 1, 0, 0)");
             //    }
             //    sr.Close();
             //    sr2.Close();
@@ -308,7 +308,7 @@ namespace Headline_Randomizer
         }
 
         
-        // För sv och eng kan jag bara göra en string parameter där det står censurcategori eller censurkategori
+        // För sv och eng kan jag bara göra en string parameter där det står censurcategori eller Lämpligt för
 
             // Skicka till Ord? Mer future proof? Vänta tills jag bestämt hur censuren ska vara. 
         static public string QueryRestrictions()
@@ -316,25 +316,25 @@ namespace Headline_Randomizer
             var config = ConfigurationManager.OpenExeConfiguration(ConfigurationUserLevel.None);
             StringBuilder builder = new StringBuilder();
 
-            if (config.AppSettings.Settings["AllowRegular"].Value == "1")
+            if (config.AppSettings.Settings["SuitableForChildren"].Value == "1")
             {
-                builder.Append("0, ");
+                builder.Append("'Barn', ");
             }
-            if (config.AppSettings.Settings["AllowViolence"].Value == "1")
+            if (config.AppSettings.Settings["SuitableForAdolescents"].Value == "1")
             {
-                builder.Append("1, ");
+                builder.Append("'Ungdomar', ");
             }
-            if (config.AppSettings.Settings["AllowSex"].Value == "1")
+            if (config.AppSettings.Settings["SuitableForAdults"].Value == "1")
             {
-                builder.Append("2, ");
+                builder.Append("'Vuxna', ");
             }
-            if (config.AppSettings.Settings["AllowOffensive"].Value == "1")
+            if (config.AppSettings.Settings["SuitableForunoffendable"].Value == "1")
             {
-                builder.Append("3, ");
+                builder.Append("'Okränkbara', ");
             }
 
             builder.Remove(builder.Length - 2, 2);
-            string restriction = $"AND [Censurkategori] IN({builder.ToString()})";
+            string restriction = $"AND [Lämpligt för] IN({builder.ToString()})";
             return restriction;
         }
     }

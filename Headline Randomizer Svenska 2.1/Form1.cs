@@ -236,7 +236,7 @@ namespace Headline_Randomizer
                 int somethingNr = Words.something.RandomizeId();
                 int adjectiveNr = Words.adjective.RandomizeId();
 
-                presentationWindow.tbxResult.AppendText($"{Words.verb.Presens(verbNr)} {Words.verb.Preposition(verbNr)}{Words.adjective.Automatic(adjectiveNr, somethingNr, true)} {Words.noun.SingularObest(somethingNr)}");
+                presentationWindow.tbxResult.AppendText($"{Words.verb.Presens(verbNr)}{Words.verb.Preposition(verbNr)}{Words.adjective.Automatic(adjectiveNr, somethingNr, true)} {Words.noun.SingularObest(somethingNr)}");
 
                 Words.verb.Used(verbNr);
                 Words.noun.Used(somethingNr);
@@ -256,7 +256,7 @@ namespace Headline_Randomizer
                 int someoneNr2 = Words.someone.RandomizeId();
                 int adjectiveNr = Words.adjective.RandomizeId();
 
-                presentationWindow.tbxResult.AppendText($"{Words.verb.Presens(verbNr)} {Words.verb.Preposition(verbNr)}{Words.adjective.Automatic(adjectiveNr, someoneNr2, true)} {Words.noun.SingularObest(someoneNr2)}");
+                presentationWindow.tbxResult.AppendText($"{Words.verb.Presens(verbNr)}{Words.verb.Preposition(verbNr)}{Words.adjective.Automatic(adjectiveNr, someoneNr2, true)} {Words.noun.SingularObest(someoneNr2)}");
 
                 Words.verb.Used(verbNr);
                 Words.noun.Used(someoneNr2);
@@ -298,7 +298,7 @@ namespace Headline_Randomizer
             int adjectiveNr2 = Words.adjective.RandomizeId();
             int verbNr = Words.verb.RandomizeId();
 
-            presentationWindow.tbxResult.AppendText($"{Words.verb.Presens(verbNr)} {Words.verb.Preposition(verbNr)}{Words.adjective.Plural(adjectiveNr2)} {Words.noun.Plural(someoneNr2)}");
+            presentationWindow.tbxResult.AppendText($"{Words.verb.Presens(verbNr)}{Words.verb.Preposition(verbNr)}{Words.adjective.Plural(adjectiveNr2)} {Words.noun.Plural(someoneNr2)}");
 
             Words.adjective.Used(adjectiveNr2);
             Words.noun.Used(someoneNr2);
@@ -315,7 +315,7 @@ namespace Headline_Randomizer
             int verbNr = Words.verb.RandomizeId();
             int somethingNr = Words.something.RandomizeId();
 
-            presentationWindow.tbxResult.AppendText($"{Words.jokeName.Name(jokeNameNr)} vann {Words.nobelPrize.Prize(nobelNr)} för att ha {Words.verb.Perfekt(verbNr)} {Words.verb.Preposition(verbNr)}{Words.noun.Plural(somethingNr)}");
+            presentationWindow.tbxResult.AppendText($"{Words.jokeName.Name(jokeNameNr)} vann {Words.nobelPrize.Prize(nobelNr)} för att ha {Words.verb.Perfekt(verbNr)}{Words.verb.Preposition(verbNr)}{Words.noun.Plural(somethingNr)}");
 
             Words.jokeName.Used(jokeNameNr);
             Words.nobelPrize.Used(nobelNr);
@@ -341,7 +341,7 @@ namespace Headline_Randomizer
             int verbNr = Words.verb.RandomizeId();
             int someoneNr = Words.someone.RandomizeId();
 
-            presentationWindow.tbxResult.AppendText($"Kom ihåg, {Words.verb.Uppmaning(verbNr)} alltid {Words.verb.Preposition(verbNr)}{Words.noun.DinEllerDitt(someoneNr, false)} {Words.noun.Plural(someoneNr)}");
+            presentationWindow.tbxResult.AppendText($"Kom ihåg, {Words.verb.Uppmaning(verbNr)} alltid{Words.verb.Preposition(verbNr)}{Words.noun.DinEllerDitt(someoneNr, false)} {Words.noun.Plural(someoneNr)}");
 
             Words.verb.Used(verbNr);
             Words.noun.Used(someoneNr);
@@ -519,7 +519,7 @@ namespace Headline_Randomizer
                 int verbNr = Words.verb.RandomizeId();
                 int someoneNr = Words.someone.RandomizeId();
 
-                presentationWindow.tbxResult.AppendText($"Är du trött på att {Words.verb.Infinitiv(verbNr)} {Words.verb.Preposition(verbNr)}{Words.noun.Plural(someoneNr)}?");
+                presentationWindow.tbxResult.AppendText($"Är du trött på att {Words.verb.Infinitiv(verbNr)}{Words.verb.Preposition(verbNr)}{Words.noun.Plural(someoneNr)}?");
 
                 Words.noun.Used(someoneNr);
                 Words.verb.Used(verbNr);
@@ -530,7 +530,7 @@ namespace Headline_Randomizer
                 int verbNr = Words.verb.RandomizeId();
                 int somethingNr = Words.something.RandomizeId();
 
-                presentationWindow.tbxResult.AppendText($"Är du trött på att {Words.verb.Infinitiv(verbNr)} {Words.verb.Preposition(verbNr)}{Words.noun.Plural(somethingNr)}?");
+                presentationWindow.tbxResult.AppendText($"Är du trött på att {Words.verb.Infinitiv(verbNr)}{Words.verb.Preposition(verbNr)}{Words.noun.Plural(somethingNr)}?");
 
                 Words.noun.Used(somethingNr);
                 Words.verb.Used(verbNr);
@@ -1334,7 +1334,7 @@ namespace Headline_Randomizer
         {
             presentationWindow.tbxResult.Text = "";
             int locationNr = Words.location.RandomizeId();
-            presentationWindow.tbxResult.Text = $"Ni är {Words.location.Preposition(locationNr)} {Words.location.SingularBest(locationNr)}";
+            presentationWindow.tbxResult.Text = $"Ni är{Words.location.Preposition(locationNr)}{Words.location.SingularBest(locationNr)}";
 
             Words.location.Used(locationNr);
             EndingRitual(3, presentationWindow.tbxResult, ref position);

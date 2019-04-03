@@ -32,7 +32,7 @@ namespace Headline_Randomizer
             rtbScenes.Rtf = File.ReadAllText(@"E:\Tresorit\Headline Randomizer\Headline Randomizer\Scener.rtf");
             rtbScenes.RightMargin = pScenes.Size.Width - 65;
 
-            rtbCustom.Rtf = File.ReadAllText(@"E:\Tresorit\Headline Randomizer\Headline Randomizer\EgenMening.rtf");
+            rtbCustom.Rtf = File.ReadAllText(@"E:\Tresorit\Headline Randomizer\Headline Randomizer\Grammatik.rtf");
             rtbCustom.RightMargin = pCustom.Size.Width - 65;
         }
 

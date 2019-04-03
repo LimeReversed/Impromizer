@@ -19,40 +19,40 @@ namespace Headline_Randomizer
             InitializeComponent();
             
             var config = ConfigurationManager.OpenExeConfiguration(ConfigurationUserLevel.None);
-            if (config.AppSettings.Settings["AllowRegular"].Value == "1")
+            if (config.AppSettings.Settings["SuitableForChildren"].Value == "1")
             {
-                cbxRegular.Checked = true;
+                cbxChildren.Checked = true;
             }
             else
             {
-                cbxRegular.Checked = false;
+                cbxChildren.Checked = false;
             }
 
-            if (config.AppSettings.Settings["AllowViolence"].Value == "1")
+            if (config.AppSettings.Settings["SuitableForAdolescents"].Value == "1")
             {
-                cbxViolence.Checked = true;
+                cbxAdolescents.Checked = true;
             }
             else
             {
-                cbxViolence.Checked = false;
+                cbxAdolescents.Checked = false;
             }
 
-            if (config.AppSettings.Settings["AllowSex"].Value == "1")
+            if (config.AppSettings.Settings["SuitableForAdults"].Value == "1")
             {
-                cbxSex.Checked = true;
+                cbxAdults.Checked = true;
             }
             else
             {
-                cbxSex.Checked = false;
+                cbxAdults.Checked = false;
             }
 
-            if (config.AppSettings.Settings["AllowOffensive"].Value == "1")
+            if (config.AppSettings.Settings["SuitableForunoffendable"].Value == "1")
             {
-                cbxOffensive.Checked = true;
+                cbxUnoffendable.Checked = true;
             }
             else
             {
-                cbxOffensive.Checked = false;
+                cbxUnoffendable.Checked = false;
             }
 
             Dictionary<string, string> items = new Dictionary<string, string>();
@@ -97,14 +97,16 @@ namespace Headline_Randomizer
         {
             switch (DbDisplay.Columns[Convert.ToInt32(numChangeColumn.Value)].HeaderText)
             {
-                case "Censurkategori":
+                case "Lämpligt för":
                     cbUpdateValue.Items.Clear();
-                    cbUpdateValue.Items.Add("0");
-                    cbUpdateValue.Items.Add("1");
+                    cbUpdateValue.Items.Add("Barn");
+                    cbUpdateValue.Items.Add("Ungdomar");
+                    cbUpdateValue.Items.Add("Vuxna");
+                    cbUpdateValue.Items.Add("Okränkbara");
                     cbUpdateValue.Text = "Välj värde...";
                     break;
 
-                case "Passar relation":
+                case "Relation":
                     cbUpdateValue.Items.Clear();
                     cbUpdateValue.Items.Add("True");
                     cbUpdateValue.Items.Add("False");
@@ -263,8 +265,8 @@ namespace Headline_Randomizer
                     mix.Add(new Mix("text", lblColumn5, tbxAddColumn5, new Point(594, 45)));
                     mix.Add(new Mix("Benämner", lblTermFor, cbTermFor, new Point(20, 97)));
                     mix.Add(new Mix("Genus", lblGenus, cbGenus, new Point(164, 97)));
-                    mix.Add(new Mix("Passar relation", lblRelation, cbRelation, new Point(307, 97)));
-                    mix.Add(new Mix("Censurkategori", lblCensur, cbCensur, new Point(451, 97)));
+                    mix.Add(new Mix("Relation", lblRelation, cbRelation, new Point(307, 97)));
+                    mix.Add(new Mix("Lämpligt för", lblCensur, cbCensur, new Point(451, 97)));
 
                     //Hide all
                     foreach (Mix element in mix)
@@ -339,25 +341,25 @@ namespace Headline_Randomizer
             switch (cbTabell.SelectedValue.ToString())
             {
                 case "TblAdjectives":
-                    return "SELECT [N-genus], [T-genus], Plural, Preposition, [Passar relation], Censurkategori FROM TblAdjectives";
+                    return "SELECT [N-genus], [T-genus], Plural, Preposition, [Relation], [Lämpligt för] FROM TblAdjectives";
 
                 case "TblNouns":
-                    return "SELECT [Singular obestämd], [Singular bestämd], Plural, Preposition, Benämner, Genus, Censurkategori FROM TblNouns";
+                    return "SELECT [Singular obestämd], [Singular bestämd], Plural, Preposition, Benämner, Genus, [Lämpligt för] FROM TblNouns";
 
                 case "TblVerbs":
-                    return "SELECT Infinitiv, Uppmaning, Perfekt, Presens, Preposition, [Passar relation], Censurkategori FROM TblVerbs";
+                    return "SELECT Infinitiv, Uppmaning, Perfekt, Presens, Preposition, [Relation], [Lämpligt för] FROM TblVerbs";
 
                 case "TblNobelPrizes":
                     return "SELECT Pris FROM TblNobelPrizes";
 
                 case "TblJokeNames":
-                    return "SELECT Namn, Censurkategori FROM TblJokeNames";
+                    return "SELECT Namn, [Lämpligt för] FROM TblJokeNames";
 
                 case "TblSavedResults":
                     return "SELECT Mening FROM TblSavedResults";
 
                 case "TblMissions":
-                    return "SELECT Uppdrag, Censurkategori FROM TblMissions";
+                    return "SELECT Uppdrag, [Lämpligt för] FROM TblMissions";
 
                 case "TblStatus":
                     return "SELECT Högstatus, Lågstatus FROM TblStatus";
@@ -385,7 +387,7 @@ namespace Headline_Randomizer
                 string column = DbDisplay.Columns[Convert.ToInt32(numChangeColumn.Value)].HeaderText;
                 string Id = DbDisplay.Rows[Convert.ToInt32(numChangeRow.Value) - 1].Cells[0].Value.ToString();
 
-                if (column == "Censurkategori")
+                if (column == "Lämpligt för")
                 {
                     if (!short.TryParse(cbUpdateValue.Text, out short result) || result > 2 || result < 0)
                     {
@@ -524,40 +526,40 @@ namespace Headline_Randomizer
         {
             var config = ConfigurationManager.OpenExeConfiguration(ConfigurationUserLevel.None);
 
-            if (cbxRegular.Checked)
+            if (cbxChildren.Checked)
             {
-                config.AppSettings.Settings["AllowRegular"].Value = "1";
+                config.AppSettings.Settings["SuitableForChildren"].Value = "1";
             }
             else
             {
-                config.AppSettings.Settings["AllowRegular"].Value = "0";
+                config.AppSettings.Settings["SuitableForChildren"].Value = "0";
             }
 
-            if (cbxViolence.Checked)
+            if (cbxAdolescents.Checked)
             {
-                config.AppSettings.Settings["AllowViolence"].Value = "1";
+                config.AppSettings.Settings["SuitableForAdolescents"].Value = "1";
             }
             else
             {
-                config.AppSettings.Settings["AllowViolence"].Value = "0";
+                config.AppSettings.Settings["SuitableForAdolescents"].Value = "0";
             }
 
-            if (cbxSex.Checked)
+            if (cbxAdults.Checked)
             {
-                config.AppSettings.Settings["AllowSex"].Value = "1";
+                config.AppSettings.Settings["SuitableForAdults"].Value = "1";
             }
             else
             {
-                config.AppSettings.Settings["AllowSex"].Value = "0";
+                config.AppSettings.Settings["SuitableForAdults"].Value = "0";
             }
 
-            if (cbxOffensive.Checked)
+            if (cbxUnoffendable.Checked)
             {
-                config.AppSettings.Settings["AllowOffensive"].Value = "1";
+                config.AppSettings.Settings["SuitableForunoffendable"].Value = "1";
             }
             else
             {
-                config.AppSettings.Settings["AllowOffensive"].Value = "0";
+                config.AppSettings.Settings["SuitableForunoffendable"].Value = "0";
             }
 
             config.Save();

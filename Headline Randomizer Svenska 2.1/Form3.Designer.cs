@@ -70,10 +70,10 @@
             this.groupBox6 = new System.Windows.Forms.GroupBox();
             this.btnResetDb = new System.Windows.Forms.Button();
             this.groupBox5 = new System.Windows.Forms.GroupBox();
-            this.cbxOffensive = new System.Windows.Forms.CheckBox();
-            this.cbxSex = new System.Windows.Forms.CheckBox();
-            this.cbxViolence = new System.Windows.Forms.CheckBox();
-            this.cbxRegular = new System.Windows.Forms.CheckBox();
+            this.cbxUnoffendable = new System.Windows.Forms.CheckBox();
+            this.cbxAdults = new System.Windows.Forms.CheckBox();
+            this.cbxAdolescents = new System.Windows.Forms.CheckBox();
+            this.cbxChildren = new System.Windows.Forms.CheckBox();
             this.tabControl1.SuspendLayout();
             this.Database.SuspendLayout();
             this.gbAddRow.SuspendLayout();
@@ -100,7 +100,7 @@
             this.tabControl1.Location = new System.Drawing.Point(10, 12);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
-            this.tabControl1.Size = new System.Drawing.Size(800, 579);
+            this.tabControl1.Size = new System.Drawing.Size(941, 579);
             this.tabControl1.TabIndex = 0;
             // 
             // Database
@@ -115,7 +115,7 @@
             this.Database.Location = new System.Drawing.Point(4, 28);
             this.Database.Name = "Database";
             this.Database.Padding = new System.Windows.Forms.Padding(3);
-            this.Database.Size = new System.Drawing.Size(792, 547);
+            this.Database.Size = new System.Drawing.Size(933, 547);
             this.Database.TabIndex = 1;
             this.Database.Text = "Databas";
             // 
@@ -147,7 +147,7 @@
             this.gbAddRow.Margin = new System.Windows.Forms.Padding(2);
             this.gbAddRow.Name = "gbAddRow";
             this.gbAddRow.Padding = new System.Windows.Forms.Padding(2);
-            this.gbAddRow.Size = new System.Drawing.Size(753, 140);
+            this.gbAddRow.Size = new System.Drawing.Size(894, 140);
             this.gbAddRow.TabIndex = 7;
             this.gbAddRow.TabStop = false;
             this.gbAddRow.Text = "Lägg till rad";
@@ -156,9 +156,11 @@
             // 
             this.cbCensur.FormattingEnabled = true;
             this.cbCensur.Items.AddRange(new object[] {
-            "0 (Censurera ej)",
-            "1 (Sex/droger)"});
-            this.cbCensur.Location = new System.Drawing.Point(455, 97);
+            "Barn",
+            "Ungdomar",
+            "Vuxna",
+            "Okränkbara"});
+            this.cbCensur.Location = new System.Drawing.Point(555, 97);
             this.cbCensur.Name = "cbCensur";
             this.cbCensur.Size = new System.Drawing.Size(130, 27);
             this.cbCensur.TabIndex = 8;
@@ -172,7 +174,7 @@
             "Plats",
             "Någon & Plats",
             "Någon & Något"});
-            this.cbTermFor.Location = new System.Drawing.Point(25, 97);
+            this.cbTermFor.Location = new System.Drawing.Point(40, 97);
             this.cbTermFor.Name = "cbTermFor";
             this.cbTermFor.Size = new System.Drawing.Size(130, 27);
             this.cbTermFor.TabIndex = 23;
@@ -185,7 +187,7 @@
             "T-genus",
             "N-undantag",
             "T-undantag"});
-            this.cbGenus.Location = new System.Drawing.Point(168, 97);
+            this.cbGenus.Location = new System.Drawing.Point(213, 97);
             this.cbGenus.Name = "cbGenus";
             this.cbGenus.Size = new System.Drawing.Size(130, 27);
             this.cbGenus.TabIndex = 22;
@@ -196,7 +198,7 @@
             this.cbRelation.Items.AddRange(new object[] {
             "True",
             "False"});
-            this.cbRelation.Location = new System.Drawing.Point(311, 97);
+            this.cbRelation.Location = new System.Drawing.Point(385, 97);
             this.cbRelation.Name = "cbRelation";
             this.cbRelation.Size = new System.Drawing.Size(130, 27);
             this.cbRelation.TabIndex = 21;
@@ -204,27 +206,27 @@
             // lblCensur
             // 
             this.lblCensur.AutoSize = true;
-            this.lblCensur.Location = new System.Drawing.Point(452, 77);
+            this.lblCensur.Location = new System.Drawing.Point(552, 77);
             this.lblCensur.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lblCensur.Name = "lblCensur";
-            this.lblCensur.Size = new System.Drawing.Size(107, 19);
+            this.lblCensur.Size = new System.Drawing.Size(87, 19);
             this.lblCensur.TabIndex = 20;
-            this.lblCensur.Text = "Censurkategori";
+            this.lblCensur.Text = "Lämpligt för";
             // 
             // lblRelation
             // 
             this.lblRelation.AutoSize = true;
-            this.lblRelation.Location = new System.Drawing.Point(308, 77);
+            this.lblRelation.Location = new System.Drawing.Point(382, 77);
             this.lblRelation.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lblRelation.Name = "lblRelation";
-            this.lblRelation.Size = new System.Drawing.Size(106, 19);
+            this.lblRelation.Size = new System.Drawing.Size(63, 19);
             this.lblRelation.TabIndex = 18;
-            this.lblRelation.Text = "Passar relation";
+            this.lblRelation.Text = "Relation";
             // 
             // lblGenus
             // 
             this.lblGenus.AutoSize = true;
-            this.lblGenus.Location = new System.Drawing.Point(165, 77);
+            this.lblGenus.Location = new System.Drawing.Point(210, 77);
             this.lblGenus.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lblGenus.Name = "lblGenus";
             this.lblGenus.Size = new System.Drawing.Size(50, 19);
@@ -234,7 +236,7 @@
             // lblTermFor
             // 
             this.lblTermFor.AutoSize = true;
-            this.lblTermFor.Location = new System.Drawing.Point(21, 77);
+            this.lblTermFor.Location = new System.Drawing.Point(36, 77);
             this.lblTermFor.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lblTermFor.Name = "lblTermFor";
             this.lblTermFor.Size = new System.Drawing.Size(75, 19);
@@ -244,7 +246,7 @@
             // lblColumn5
             // 
             this.lblColumn5.AutoSize = true;
-            this.lblColumn5.Location = new System.Drawing.Point(595, 25);
+            this.lblColumn5.Location = new System.Drawing.Point(719, 25);
             this.lblColumn5.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lblColumn5.Name = "lblColumn5";
             this.lblColumn5.Size = new System.Drawing.Size(69, 19);
@@ -254,7 +256,7 @@
             // tbxAddColumn5
             // 
             this.tbxAddColumn5.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.tbxAddColumn5.Location = new System.Drawing.Point(598, 45);
+            this.tbxAddColumn5.Location = new System.Drawing.Point(722, 45);
             this.tbxAddColumn5.Margin = new System.Windows.Forms.Padding(2);
             this.tbxAddColumn5.Name = "tbxAddColumn5";
             this.tbxAddColumn5.Size = new System.Drawing.Size(130, 27);
@@ -263,7 +265,7 @@
             // lblColumn4
             // 
             this.lblColumn4.AutoSize = true;
-            this.lblColumn4.Location = new System.Drawing.Point(452, 25);
+            this.lblColumn4.Location = new System.Drawing.Point(551, 25);
             this.lblColumn4.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lblColumn4.Name = "lblColumn4";
             this.lblColumn4.Size = new System.Drawing.Size(69, 19);
@@ -274,7 +276,7 @@
             // 
             this.tbxAddColumn4.BackColor = System.Drawing.Color.White;
             this.tbxAddColumn4.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.tbxAddColumn4.Location = new System.Drawing.Point(455, 45);
+            this.tbxAddColumn4.Location = new System.Drawing.Point(554, 45);
             this.tbxAddColumn4.Margin = new System.Windows.Forms.Padding(2);
             this.tbxAddColumn4.Name = "tbxAddColumn4";
             this.tbxAddColumn4.Size = new System.Drawing.Size(130, 27);
@@ -283,7 +285,7 @@
             // lblColumn3
             // 
             this.lblColumn3.AutoSize = true;
-            this.lblColumn3.Location = new System.Drawing.Point(308, 25);
+            this.lblColumn3.Location = new System.Drawing.Point(382, 25);
             this.lblColumn3.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lblColumn3.Name = "lblColumn3";
             this.lblColumn3.Size = new System.Drawing.Size(69, 19);
@@ -293,7 +295,7 @@
             // tbxAddColumn3
             // 
             this.tbxAddColumn3.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.tbxAddColumn3.Location = new System.Drawing.Point(311, 45);
+            this.tbxAddColumn3.Location = new System.Drawing.Point(385, 45);
             this.tbxAddColumn3.Margin = new System.Windows.Forms.Padding(2);
             this.tbxAddColumn3.Name = "tbxAddColumn3";
             this.tbxAddColumn3.Size = new System.Drawing.Size(130, 27);
@@ -302,7 +304,7 @@
             // lblColumn2
             // 
             this.lblColumn2.AutoSize = true;
-            this.lblColumn2.Location = new System.Drawing.Point(165, 25);
+            this.lblColumn2.Location = new System.Drawing.Point(210, 25);
             this.lblColumn2.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lblColumn2.Name = "lblColumn2";
             this.lblColumn2.Size = new System.Drawing.Size(69, 19);
@@ -312,7 +314,7 @@
             // tbxAddColumn2
             // 
             this.tbxAddColumn2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.tbxAddColumn2.Location = new System.Drawing.Point(168, 45);
+            this.tbxAddColumn2.Location = new System.Drawing.Point(213, 45);
             this.tbxAddColumn2.Margin = new System.Windows.Forms.Padding(2);
             this.tbxAddColumn2.Name = "tbxAddColumn2";
             this.tbxAddColumn2.Size = new System.Drawing.Size(130, 27);
@@ -321,7 +323,7 @@
             // lblColumn1
             // 
             this.lblColumn1.AutoSize = true;
-            this.lblColumn1.Location = new System.Drawing.Point(21, 25);
+            this.lblColumn1.Location = new System.Drawing.Point(37, 25);
             this.lblColumn1.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lblColumn1.Name = "lblColumn1";
             this.lblColumn1.Size = new System.Drawing.Size(69, 19);
@@ -334,7 +336,7 @@
             this.btnAddRow.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.btnAddRow.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnAddRow.ForeColor = System.Drawing.Color.White;
-            this.btnAddRow.Location = new System.Drawing.Point(598, 81);
+            this.btnAddRow.Location = new System.Drawing.Point(727, 81);
             this.btnAddRow.Margin = new System.Windows.Forms.Padding(2);
             this.btnAddRow.Name = "btnAddRow";
             this.btnAddRow.Size = new System.Drawing.Size(130, 43);
@@ -346,7 +348,7 @@
             // tbxAddColumn1
             // 
             this.tbxAddColumn1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.tbxAddColumn1.Location = new System.Drawing.Point(24, 45);
+            this.tbxAddColumn1.Location = new System.Drawing.Point(40, 45);
             this.tbxAddColumn1.Margin = new System.Windows.Forms.Padding(2);
             this.tbxAddColumn1.Name = "tbxAddColumn1";
             this.tbxAddColumn1.Size = new System.Drawing.Size(131, 27);
@@ -359,7 +361,7 @@
             this.groupBox3.Controls.Add(this.btnDeleteRow);
             this.groupBox3.Controls.Add(this.label4);
             this.groupBox3.ForeColor = System.Drawing.Color.White;
-            this.groupBox3.Location = new System.Drawing.Point(649, 9);
+            this.groupBox3.Location = new System.Drawing.Point(790, 9);
             this.groupBox3.Margin = new System.Windows.Forms.Padding(2);
             this.groupBox3.Name = "groupBox3";
             this.groupBox3.Padding = new System.Windows.Forms.Padding(2);
@@ -421,7 +423,7 @@
             this.groupBox2.Controls.Add(this.label1);
             this.groupBox2.Controls.Add(this.btnChangeValue);
             this.groupBox2.ForeColor = System.Drawing.Color.White;
-            this.groupBox2.Location = new System.Drawing.Point(285, 9);
+            this.groupBox2.Location = new System.Drawing.Point(355, 9);
             this.groupBox2.Margin = new System.Windows.Forms.Padding(2);
             this.groupBox2.Name = "groupBox2";
             this.groupBox2.Padding = new System.Windows.Forms.Padding(2);
@@ -570,7 +572,7 @@
             this.DbDisplay.Name = "DbDisplay";
             this.DbDisplay.ReadOnly = true;
             this.DbDisplay.RowHeadersWidth = 25;
-            this.DbDisplay.Size = new System.Drawing.Size(800, 289);
+            this.DbDisplay.Size = new System.Drawing.Size(941, 289);
             this.DbDisplay.TabIndex = 0;
             this.DbDisplay.CurrentCellChanged += new System.EventHandler(this.DbDisplay_CurrentCellChanged);
             // 
@@ -585,13 +587,13 @@
             this.Settings.Location = new System.Drawing.Point(4, 28);
             this.Settings.Name = "Settings";
             this.Settings.Padding = new System.Windows.Forms.Padding(3);
-            this.Settings.Size = new System.Drawing.Size(792, 547);
+            this.Settings.Size = new System.Drawing.Size(933, 547);
             this.Settings.TabIndex = 0;
             this.Settings.Text = "Inställningar";
             // 
             // btnCancel
             // 
-            this.btnCancel.Location = new System.Drawing.Point(703, 508);
+            this.btnCancel.Location = new System.Drawing.Point(837, 504);
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.Size = new System.Drawing.Size(75, 27);
             this.btnCancel.TabIndex = 4;
@@ -601,7 +603,7 @@
             // 
             // btnOk
             // 
-            this.btnOk.Location = new System.Drawing.Point(622, 508);
+            this.btnOk.Location = new System.Drawing.Point(756, 504);
             this.btnOk.Name = "btnOk";
             this.btnOk.Size = new System.Drawing.Size(75, 27);
             this.btnOk.TabIndex = 3;
@@ -634,67 +636,67 @@
             // 
             // groupBox5
             // 
-            this.groupBox5.Controls.Add(this.cbxOffensive);
-            this.groupBox5.Controls.Add(this.cbxSex);
-            this.groupBox5.Controls.Add(this.cbxViolence);
-            this.groupBox5.Controls.Add(this.cbxRegular);
+            this.groupBox5.Controls.Add(this.cbxUnoffendable);
+            this.groupBox5.Controls.Add(this.cbxAdults);
+            this.groupBox5.Controls.Add(this.cbxAdolescents);
+            this.groupBox5.Controls.Add(this.cbxChildren);
             this.groupBox5.ForeColor = System.Drawing.Color.White;
             this.groupBox5.Location = new System.Drawing.Point(36, 37);
             this.groupBox5.Name = "groupBox5";
             this.groupBox5.Size = new System.Drawing.Size(213, 148);
             this.groupBox5.TabIndex = 1;
             this.groupBox5.TabStop = false;
-            this.groupBox5.Text = "Boring censurage for pussies";
+            this.groupBox5.Text = "Visa ord som passar...";
             // 
-            // cbxOffensive
+            // cbxUnoffendable
             // 
-            this.cbxOffensive.AutoSize = true;
-            this.cbxOffensive.Location = new System.Drawing.Point(34, 112);
-            this.cbxOffensive.Name = "cbxOffensive";
-            this.cbxOffensive.Size = new System.Drawing.Size(132, 23);
-            this.cbxOffensive.TabIndex = 3;
-            this.cbxOffensive.Text = "Tillåt kränkande";
-            this.cbxOffensive.UseVisualStyleBackColor = true;
+            this.cbxUnoffendable.AutoSize = true;
+            this.cbxUnoffendable.Location = new System.Drawing.Point(34, 112);
+            this.cbxUnoffendable.Name = "cbxUnoffendable";
+            this.cbxUnoffendable.Size = new System.Drawing.Size(103, 23);
+            this.cbxUnoffendable.TabIndex = 3;
+            this.cbxUnoffendable.Text = "Okränkbara";
+            this.cbxUnoffendable.UseVisualStyleBackColor = true;
             // 
-            // cbxSex
+            // cbxAdults
             // 
-            this.cbxSex.AutoSize = true;
-            this.cbxSex.Location = new System.Drawing.Point(34, 85);
-            this.cbxSex.Name = "cbxSex";
-            this.cbxSex.Size = new System.Drawing.Size(87, 23);
-            this.cbxSex.TabIndex = 2;
-            this.cbxSex.Text = "Tillåt sex";
-            this.cbxSex.UseVisualStyleBackColor = true;
+            this.cbxAdults.AutoSize = true;
+            this.cbxAdults.Location = new System.Drawing.Point(34, 85);
+            this.cbxAdults.Name = "cbxAdults";
+            this.cbxAdults.Size = new System.Drawing.Size(68, 23);
+            this.cbxAdults.TabIndex = 2;
+            this.cbxAdults.Text = "Vuxna";
+            this.cbxAdults.UseVisualStyleBackColor = true;
             // 
-            // cbxViolence
+            // cbxAdolescents
             // 
-            this.cbxViolence.AutoSize = true;
-            this.cbxViolence.Location = new System.Drawing.Point(34, 58);
-            this.cbxViolence.Name = "cbxViolence";
-            this.cbxViolence.Size = new System.Drawing.Size(92, 23);
-            this.cbxViolence.TabIndex = 1;
-            this.cbxViolence.Text = "Tillåt våld";
-            this.cbxViolence.UseVisualStyleBackColor = true;
+            this.cbxAdolescents.AutoSize = true;
+            this.cbxAdolescents.Location = new System.Drawing.Point(34, 58);
+            this.cbxAdolescents.Name = "cbxAdolescents";
+            this.cbxAdolescents.Size = new System.Drawing.Size(95, 23);
+            this.cbxAdolescents.TabIndex = 1;
+            this.cbxAdolescents.Text = "Ungdomar";
+            this.cbxAdolescents.UseVisualStyleBackColor = true;
             // 
-            // cbxRegular
+            // cbxChildren
             // 
-            this.cbxRegular.AutoSize = true;
-            this.cbxRegular.Checked = true;
-            this.cbxRegular.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.cbxRegular.Enabled = false;
-            this.cbxRegular.Location = new System.Drawing.Point(34, 31);
-            this.cbxRegular.Name = "cbxRegular";
-            this.cbxRegular.Size = new System.Drawing.Size(112, 23);
-            this.cbxRegular.TabIndex = 0;
-            this.cbxRegular.Text = "Tillåt vanliga";
-            this.cbxRegular.UseVisualStyleBackColor = true;
+            this.cbxChildren.AutoSize = true;
+            this.cbxChildren.Checked = true;
+            this.cbxChildren.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.cbxChildren.Enabled = false;
+            this.cbxChildren.Location = new System.Drawing.Point(34, 31);
+            this.cbxChildren.Name = "cbxChildren";
+            this.cbxChildren.Size = new System.Drawing.Size(58, 23);
+            this.cbxChildren.TabIndex = 0;
+            this.cbxChildren.Text = "Barn";
+            this.cbxChildren.UseVisualStyleBackColor = true;
             // 
             // Options
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.ClientSize = new System.Drawing.Size(821, 599);
+            this.ClientSize = new System.Drawing.Size(962, 599);
             this.Controls.Add(this.tabControl1);
             this.MinimumSize = new System.Drawing.Size(837, 638);
             this.Name = "Options";
@@ -758,10 +760,10 @@
         private System.Windows.Forms.ComboBox cbCensur;
         private System.Windows.Forms.Button btnResetDb;
         private System.Windows.Forms.GroupBox groupBox5;
-        private System.Windows.Forms.CheckBox cbxOffensive;
-        private System.Windows.Forms.CheckBox cbxSex;
-        private System.Windows.Forms.CheckBox cbxViolence;
-        private System.Windows.Forms.CheckBox cbxRegular;
+        private System.Windows.Forms.CheckBox cbxUnoffendable;
+        private System.Windows.Forms.CheckBox cbxAdults;
+        private System.Windows.Forms.CheckBox cbxAdolescents;
+        private System.Windows.Forms.CheckBox cbxChildren;
         private System.Windows.Forms.GroupBox groupBox6;
         private System.Windows.Forms.Button btnCancel;
         private System.Windows.Forms.Button btnOk;

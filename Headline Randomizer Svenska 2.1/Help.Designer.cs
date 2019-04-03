@@ -30,20 +30,20 @@
         {
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
-            this.tabPage2 = new System.Windows.Forms.TabPage();
-            this.tabPage3 = new System.Windows.Forms.TabPage();
-            this.rtbGames = new System.Windows.Forms.RichTextBox();
             this.pGames = new System.Windows.Forms.Panel();
+            this.rtbGames = new System.Windows.Forms.RichTextBox();
+            this.tabPage3 = new System.Windows.Forms.TabPage();
             this.pScenes = new System.Windows.Forms.Panel();
             this.rtbScenes = new System.Windows.Forms.RichTextBox();
+            this.tabPage2 = new System.Windows.Forms.TabPage();
             this.pCustom = new System.Windows.Forms.Panel();
             this.rtbCustom = new System.Windows.Forms.RichTextBox();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
-            this.tabPage2.SuspendLayout();
-            this.tabPage3.SuspendLayout();
             this.pGames.SuspendLayout();
+            this.tabPage3.SuspendLayout();
             this.pScenes.SuspendLayout();
+            this.tabPage2.SuspendLayout();
             this.pCustom.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -74,26 +74,17 @@
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "Lekar";
             // 
-            // tabPage2
+            // pGames
             // 
-            this.tabPage2.Controls.Add(this.pCustom);
-            this.tabPage2.Location = new System.Drawing.Point(4, 28);
-            this.tabPage2.Name = "tabPage2";
-            this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage2.Size = new System.Drawing.Size(361, 418);
-            this.tabPage2.TabIndex = 1;
-            this.tabPage2.Text = "Egen mening";
-            this.tabPage2.UseVisualStyleBackColor = true;
-            // 
-            // tabPage3
-            // 
-            this.tabPage3.Controls.Add(this.pScenes);
-            this.tabPage3.Location = new System.Drawing.Point(4, 28);
-            this.tabPage3.Name = "tabPage3";
-            this.tabPage3.Size = new System.Drawing.Size(361, 418);
-            this.tabPage3.TabIndex = 2;
-            this.tabPage3.Text = "Scener";
-            this.tabPage3.UseVisualStyleBackColor = true;
+            this.pGames.BackColor = System.Drawing.SystemColors.Control;
+            this.pGames.Controls.Add(this.rtbGames);
+            this.pGames.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.pGames.ForeColor = System.Drawing.Color.White;
+            this.pGames.Location = new System.Drawing.Point(0, 0);
+            this.pGames.Name = "pGames";
+            this.pGames.Padding = new System.Windows.Forms.Padding(20, 10, 0, 0);
+            this.pGames.Size = new System.Drawing.Size(361, 505);
+            this.pGames.TabIndex = 1;
             // 
             // rtbGames
             // 
@@ -111,17 +102,15 @@
             this.rtbGames.Text = "";
             this.rtbGames.TextChanged += new System.EventHandler(this.richTextBox1_TextChanged);
             // 
-            // pGames
+            // tabPage3
             // 
-            this.pGames.BackColor = System.Drawing.SystemColors.Control;
-            this.pGames.Controls.Add(this.rtbGames);
-            this.pGames.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.pGames.ForeColor = System.Drawing.Color.White;
-            this.pGames.Location = new System.Drawing.Point(0, 0);
-            this.pGames.Name = "pGames";
-            this.pGames.Padding = new System.Windows.Forms.Padding(20, 10, 0, 0);
-            this.pGames.Size = new System.Drawing.Size(361, 505);
-            this.pGames.TabIndex = 1;
+            this.tabPage3.Controls.Add(this.pScenes);
+            this.tabPage3.Location = new System.Drawing.Point(4, 28);
+            this.tabPage3.Name = "tabPage3";
+            this.tabPage3.Size = new System.Drawing.Size(361, 505);
+            this.tabPage3.TabIndex = 2;
+            this.tabPage3.Text = "Scener";
+            this.tabPage3.UseVisualStyleBackColor = true;
             // 
             // pScenes
             // 
@@ -131,7 +120,7 @@
             this.pScenes.Location = new System.Drawing.Point(0, 0);
             this.pScenes.Name = "pScenes";
             this.pScenes.Padding = new System.Windows.Forms.Padding(20, 10, 0, 0);
-            this.pScenes.Size = new System.Drawing.Size(361, 418);
+            this.pScenes.Size = new System.Drawing.Size(361, 505);
             this.pScenes.TabIndex = 2;
             // 
             // rtbScenes
@@ -143,19 +132,29 @@
             this.rtbScenes.Name = "rtbScenes";
             this.rtbScenes.ReadOnly = true;
             this.rtbScenes.ScrollBars = System.Windows.Forms.RichTextBoxScrollBars.Vertical;
-            this.rtbScenes.Size = new System.Drawing.Size(341, 408);
+            this.rtbScenes.Size = new System.Drawing.Size(341, 495);
             this.rtbScenes.TabIndex = 0;
             this.rtbScenes.Text = "";
+            // 
+            // tabPage2
+            // 
+            this.tabPage2.Controls.Add(this.pCustom);
+            this.tabPage2.Location = new System.Drawing.Point(4, 28);
+            this.tabPage2.Name = "tabPage2";
+            this.tabPage2.Size = new System.Drawing.Size(361, 505);
+            this.tabPage2.TabIndex = 1;
+            this.tabPage2.Text = "Ord";
+            this.tabPage2.UseVisualStyleBackColor = true;
             // 
             // pCustom
             // 
             this.pCustom.BackColor = System.Drawing.SystemColors.Control;
             this.pCustom.Controls.Add(this.rtbCustom);
             this.pCustom.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.pCustom.Location = new System.Drawing.Point(3, 3);
+            this.pCustom.Location = new System.Drawing.Point(0, 0);
             this.pCustom.Name = "pCustom";
             this.pCustom.Padding = new System.Windows.Forms.Padding(20, 10, 0, 0);
-            this.pCustom.Size = new System.Drawing.Size(355, 412);
+            this.pCustom.Size = new System.Drawing.Size(361, 505);
             this.pCustom.TabIndex = 2;
             // 
             // rtbCustom
@@ -167,7 +166,7 @@
             this.rtbCustom.Name = "rtbCustom";
             this.rtbCustom.ReadOnly = true;
             this.rtbCustom.ScrollBars = System.Windows.Forms.RichTextBoxScrollBars.Vertical;
-            this.rtbCustom.Size = new System.Drawing.Size(335, 402);
+            this.rtbCustom.Size = new System.Drawing.Size(341, 495);
             this.rtbCustom.TabIndex = 0;
             this.rtbCustom.Text = "";
             // 
@@ -184,10 +183,10 @@
             this.SizeChanged += new System.EventHandler(this.Help_SizeChanged);
             this.tabControl1.ResumeLayout(false);
             this.tabPage1.ResumeLayout(false);
-            this.tabPage2.ResumeLayout(false);
-            this.tabPage3.ResumeLayout(false);
             this.pGames.ResumeLayout(false);
+            this.tabPage3.ResumeLayout(false);
             this.pScenes.ResumeLayout(false);
+            this.tabPage2.ResumeLayout(false);
             this.pCustom.ResumeLayout(false);
             this.ResumeLayout(false);
 

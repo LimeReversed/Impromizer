@@ -46,14 +46,14 @@ namespace Svenska
                 }
 
                 // Adjektiv relation
-                command.CommandText = $"SELECT COUNT(*) FROM TblAdjectives WHERE {used} = 0 AND [Passar relation] = 'True' {Db.QueryRestrictions()}";
+                command.CommandText = $"SELECT COUNT(*) FROM TblAdjectives WHERE {used} = 0 AND [Relation] = 'True' {Db.QueryRestrictions()}";
                 antalRader = (Int32)command.ExecuteScalar();
 
                 if (antalRader < antal)
                 {
-                    string rad1 = Db.GetValue("SELECT TOP 1 Id FROM TblAdjectives WHERE [Passar relation] = 'True' ORDER BY Id ASC");
-                    string sistaRad = Db.GetValue("SELECT TOP 1 Id FROM TblAdjectives WHERE [Passar relation] = 'True' ORDER BY Id DESC");
-                    command.CommandText = $"UPDATE TblAdjectives SET {used} = 0 WHERE [Passar relation] = 'True' AND Id BETWEEN {rad1} AND {sistaRad}";
+                    string rad1 = Db.GetValue("SELECT TOP 1 Id FROM TblAdjectives WHERE [Relation] = 'True' ORDER BY Id ASC");
+                    string sistaRad = Db.GetValue("SELECT TOP 1 Id FROM TblAdjectives WHERE [Relation] = 'True' ORDER BY Id DESC");
+                    command.CommandText = $"UPDATE TblAdjectives SET {used} = 0 WHERE [Relation] = 'True' AND Id BETWEEN {rad1} AND {sistaRad}";
                     command.ExecuteNonQuery();
                 }
 
@@ -106,14 +106,14 @@ namespace Svenska
                 }
 
                 // Relation Verb
-                command.CommandText = $"SELECT COUNT(*) FROM TblVerbs WHERE [Passar relation] = 'True' AND {used} = 0 {Db.QueryRestrictions()}";
+                command.CommandText = $"SELECT COUNT(*) FROM TblVerbs WHERE [Relation] = 'True' AND {used} = 0 {Db.QueryRestrictions()}";
                 antalRader = (Int32)command.ExecuteScalar();
 
                 if (antalRader < antal)
                 {
-                    string rad1 = Db.GetValue("SELECT TOP 1 Id FROM TblVerbs WHERE [Passar relation] = 'True' ORDER BY Id ASC");
-                    string sistaRad = Db.GetValue("SELECT TOP 1 Id FROM TblVerbs WHERE [Passar relation] = 'True' ORDER BY Id DESC");
-                    command.CommandText = $"UPDATE TblVerbs SET {used} = 0 WHERE [Passar relation] = 'True' AND Id BETWEEN {rad1} AND {sistaRad}";
+                    string rad1 = Db.GetValue("SELECT TOP 1 Id FROM TblVerbs WHERE [Relation] = 'True' ORDER BY Id ASC");
+                    string sistaRad = Db.GetValue("SELECT TOP 1 Id FROM TblVerbs WHERE [Relation] = 'True' ORDER BY Id DESC");
+                    command.CommandText = $"UPDATE TblVerbs SET {used} = 0 WHERE [Relation] = 'True' AND Id BETWEEN {rad1} AND {sistaRad}";
                     command.ExecuteNonQuery();
                 }
 
@@ -214,7 +214,7 @@ namespace Svenska
 
         public int RandomizeRelation()
         {
-            return Convert.ToInt32($"{Db.RandomizeValue("Select Id", $"FROM TblVerbs WHERE Använt = 0 AND [Passar relation] = 'True' {Db.QueryRestrictions()}")}");
+            return Convert.ToInt32($"{Db.RandomizeValue("Select Id", $"FROM TblVerbs WHERE Använt = 0 AND [Relation] = 'True' {Db.QueryRestrictions()}")}");
         }
     }
 
@@ -296,7 +296,7 @@ namespace Svenska
 
         public int RandomizeRelation()
         {
-            return Convert.ToInt32($"{Db.RandomizeValue("Select Id", $"FROM TblAdjectives WHERE Använt = 0 AND [Passar relation] = 'True' {Db.QueryRestrictions()}")}");
+            return Convert.ToInt32($"{Db.RandomizeValue("Select Id", $"FROM TblAdjectives WHERE Använt = 0 AND [Relation] = 'True' {Db.QueryRestrictions()}")}");
         }
     }
 
