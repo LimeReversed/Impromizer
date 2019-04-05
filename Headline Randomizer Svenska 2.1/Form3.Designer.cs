@@ -65,9 +65,9 @@
             this.cbTabell = new System.Windows.Forms.ComboBox();
             this.DbDisplay = new System.Windows.Forms.DataGridView();
             this.Settings = new System.Windows.Forms.TabPage();
-            this.btnCancel = new System.Windows.Forms.Button();
-            this.btnOk = new System.Windows.Forms.Button();
             this.groupBox6 = new System.Windows.Forms.GroupBox();
+            this.btnLoadFromBackup = new System.Windows.Forms.Button();
+            this.btnSaveToBackup = new System.Windows.Forms.Button();
             this.btnResetDb = new System.Windows.Forms.Button();
             this.groupBox5 = new System.Windows.Forms.GroupBox();
             this.cbxUnoffendable = new System.Windows.Forms.CheckBox();
@@ -114,7 +114,7 @@
             this.Database.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Database.Location = new System.Drawing.Point(4, 28);
             this.Database.Name = "Database";
-            this.Database.Padding = new System.Windows.Forms.Padding(3);
+            this.Database.Padding = new System.Windows.Forms.Padding(3, 3, 3, 3);
             this.Database.Size = new System.Drawing.Size(933, 547);
             this.Database.TabIndex = 1;
             this.Database.Text = "Databas";
@@ -144,9 +144,9 @@
             this.gbAddRow.Controls.Add(this.tbxAddColumn1);
             this.gbAddRow.ForeColor = System.Drawing.Color.White;
             this.gbAddRow.Location = new System.Drawing.Point(19, 113);
-            this.gbAddRow.Margin = new System.Windows.Forms.Padding(2);
+            this.gbAddRow.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.gbAddRow.Name = "gbAddRow";
-            this.gbAddRow.Padding = new System.Windows.Forms.Padding(2);
+            this.gbAddRow.Padding = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.gbAddRow.Size = new System.Drawing.Size(894, 140);
             this.gbAddRow.TabIndex = 7;
             this.gbAddRow.TabStop = false;
@@ -257,7 +257,7 @@
             // 
             this.tbxAddColumn5.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.tbxAddColumn5.Location = new System.Drawing.Point(722, 45);
-            this.tbxAddColumn5.Margin = new System.Windows.Forms.Padding(2);
+            this.tbxAddColumn5.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.tbxAddColumn5.Name = "tbxAddColumn5";
             this.tbxAddColumn5.Size = new System.Drawing.Size(130, 27);
             this.tbxAddColumn5.TabIndex = 4;
@@ -277,7 +277,7 @@
             this.tbxAddColumn4.BackColor = System.Drawing.Color.White;
             this.tbxAddColumn4.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.tbxAddColumn4.Location = new System.Drawing.Point(554, 45);
-            this.tbxAddColumn4.Margin = new System.Windows.Forms.Padding(2);
+            this.tbxAddColumn4.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.tbxAddColumn4.Name = "tbxAddColumn4";
             this.tbxAddColumn4.Size = new System.Drawing.Size(130, 27);
             this.tbxAddColumn4.TabIndex = 3;
@@ -296,7 +296,7 @@
             // 
             this.tbxAddColumn3.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.tbxAddColumn3.Location = new System.Drawing.Point(385, 45);
-            this.tbxAddColumn3.Margin = new System.Windows.Forms.Padding(2);
+            this.tbxAddColumn3.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.tbxAddColumn3.Name = "tbxAddColumn3";
             this.tbxAddColumn3.Size = new System.Drawing.Size(130, 27);
             this.tbxAddColumn3.TabIndex = 2;
@@ -315,7 +315,7 @@
             // 
             this.tbxAddColumn2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.tbxAddColumn2.Location = new System.Drawing.Point(213, 45);
-            this.tbxAddColumn2.Margin = new System.Windows.Forms.Padding(2);
+            this.tbxAddColumn2.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.tbxAddColumn2.Name = "tbxAddColumn2";
             this.tbxAddColumn2.Size = new System.Drawing.Size(130, 27);
             this.tbxAddColumn2.TabIndex = 1;
@@ -336,8 +336,8 @@
             this.btnAddRow.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.btnAddRow.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnAddRow.ForeColor = System.Drawing.Color.White;
-            this.btnAddRow.Location = new System.Drawing.Point(727, 81);
-            this.btnAddRow.Margin = new System.Windows.Forms.Padding(2);
+            this.btnAddRow.Location = new System.Drawing.Point(722, 81);
+            this.btnAddRow.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.btnAddRow.Name = "btnAddRow";
             this.btnAddRow.Size = new System.Drawing.Size(130, 43);
             this.btnAddRow.TabIndex = 9;
@@ -349,7 +349,7 @@
             // 
             this.tbxAddColumn1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.tbxAddColumn1.Location = new System.Drawing.Point(40, 45);
-            this.tbxAddColumn1.Margin = new System.Windows.Forms.Padding(2);
+            this.tbxAddColumn1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.tbxAddColumn1.Name = "tbxAddColumn1";
             this.tbxAddColumn1.Size = new System.Drawing.Size(131, 27);
             this.tbxAddColumn1.TabIndex = 0;
@@ -362,9 +362,9 @@
             this.groupBox3.Controls.Add(this.label4);
             this.groupBox3.ForeColor = System.Drawing.Color.White;
             this.groupBox3.Location = new System.Drawing.Point(790, 9);
-            this.groupBox3.Margin = new System.Windows.Forms.Padding(2);
+            this.groupBox3.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.groupBox3.Name = "groupBox3";
-            this.groupBox3.Padding = new System.Windows.Forms.Padding(2);
+            this.groupBox3.Padding = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.groupBox3.Size = new System.Drawing.Size(123, 100);
             this.groupBox3.TabIndex = 3;
             this.groupBox3.TabStop = false;
@@ -395,7 +395,7 @@
             this.btnDeleteRow.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnDeleteRow.ForeColor = System.Drawing.Color.White;
             this.btnDeleteRow.Location = new System.Drawing.Point(20, 62);
-            this.btnDeleteRow.Margin = new System.Windows.Forms.Padding(2);
+            this.btnDeleteRow.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.btnDeleteRow.Name = "btnDeleteRow";
             this.btnDeleteRow.Size = new System.Drawing.Size(84, 27);
             this.btnDeleteRow.TabIndex = 1;
@@ -424,9 +424,9 @@
             this.groupBox2.Controls.Add(this.btnChangeValue);
             this.groupBox2.ForeColor = System.Drawing.Color.White;
             this.groupBox2.Location = new System.Drawing.Point(355, 9);
-            this.groupBox2.Margin = new System.Windows.Forms.Padding(2);
+            this.groupBox2.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Padding = new System.Windows.Forms.Padding(2);
+            this.groupBox2.Padding = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.groupBox2.Size = new System.Drawing.Size(340, 100);
             this.groupBox2.TabIndex = 3;
             this.groupBox2.TabStop = false;
@@ -513,7 +513,7 @@
             this.btnChangeValue.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnChangeValue.ForeColor = System.Drawing.Color.White;
             this.btnChangeValue.Location = new System.Drawing.Point(125, 62);
-            this.btnChangeValue.Margin = new System.Windows.Forms.Padding(2);
+            this.btnChangeValue.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.btnChangeValue.Name = "btnChangeValue";
             this.btnChangeValue.Size = new System.Drawing.Size(205, 27);
             this.btnChangeValue.TabIndex = 3;
@@ -526,9 +526,9 @@
             this.groupBox1.Controls.Add(this.cbTabell);
             this.groupBox1.ForeColor = System.Drawing.Color.White;
             this.groupBox1.Location = new System.Drawing.Point(19, 8);
-            this.groupBox1.Margin = new System.Windows.Forms.Padding(2);
+            this.groupBox1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Padding = new System.Windows.Forms.Padding(2);
+            this.groupBox1.Padding = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.groupBox1.Size = new System.Drawing.Size(239, 101);
             this.groupBox1.TabIndex = 2;
             this.groupBox1.TabStop = false;
@@ -550,7 +550,7 @@
             "Relation",
             "Status"});
             this.cbTabell.Location = new System.Drawing.Point(18, 44);
-            this.cbTabell.Margin = new System.Windows.Forms.Padding(2);
+            this.cbTabell.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.cbTabell.Name = "cbTabell";
             this.cbTabell.Size = new System.Drawing.Size(205, 27);
             this.cbTabell.TabIndex = 1;
@@ -579,58 +579,62 @@
             // Settings
             // 
             this.Settings.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.Settings.Controls.Add(this.btnCancel);
-            this.Settings.Controls.Add(this.btnOk);
             this.Settings.Controls.Add(this.groupBox6);
             this.Settings.Controls.Add(this.groupBox5);
             this.Settings.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Settings.Location = new System.Drawing.Point(4, 28);
             this.Settings.Name = "Settings";
-            this.Settings.Padding = new System.Windows.Forms.Padding(3);
+            this.Settings.Padding = new System.Windows.Forms.Padding(3, 3, 3, 3);
             this.Settings.Size = new System.Drawing.Size(933, 547);
             this.Settings.TabIndex = 0;
             this.Settings.Text = "Inställningar";
             // 
-            // btnCancel
-            // 
-            this.btnCancel.Location = new System.Drawing.Point(837, 504);
-            this.btnCancel.Name = "btnCancel";
-            this.btnCancel.Size = new System.Drawing.Size(75, 27);
-            this.btnCancel.TabIndex = 4;
-            this.btnCancel.Text = "Avbryt";
-            this.btnCancel.UseVisualStyleBackColor = true;
-            this.btnCancel.Click += new System.EventHandler(this.btnCancel_Click);
-            // 
-            // btnOk
-            // 
-            this.btnOk.Location = new System.Drawing.Point(756, 504);
-            this.btnOk.Name = "btnOk";
-            this.btnOk.Size = new System.Drawing.Size(75, 27);
-            this.btnOk.TabIndex = 3;
-            this.btnOk.Text = "OK";
-            this.btnOk.UseVisualStyleBackColor = true;
-            this.btnOk.Click += new System.EventHandler(this.btnOk_Click);
-            // 
             // groupBox6
             // 
+            this.groupBox6.Controls.Add(this.btnLoadFromBackup);
+            this.groupBox6.Controls.Add(this.btnSaveToBackup);
             this.groupBox6.Controls.Add(this.btnResetDb);
             this.groupBox6.ForeColor = System.Drawing.Color.White;
             this.groupBox6.Location = new System.Drawing.Point(291, 37);
             this.groupBox6.Name = "groupBox6";
-            this.groupBox6.Size = new System.Drawing.Size(200, 148);
+            this.groupBox6.Size = new System.Drawing.Size(607, 148);
             this.groupBox6.TabIndex = 2;
             this.groupBox6.TabStop = false;
-            this.groupBox6.Text = "Återställ databas";
+            this.groupBox6.Text = "Spara/Ladda databas";
+            // 
+            // btnLoadFromBackup
+            // 
+            this.btnLoadFromBackup.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.btnLoadFromBackup.Location = new System.Drawing.Point(417, 37);
+            this.btnLoadFromBackup.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btnLoadFromBackup.Name = "btnLoadFromBackup";
+            this.btnLoadFromBackup.Size = new System.Drawing.Size(149, 91);
+            this.btnLoadFromBackup.TabIndex = 2;
+            this.btnLoadFromBackup.Text = "Återställ från säkerhetskopia";
+            this.btnLoadFromBackup.UseVisualStyleBackColor = false;
+            this.btnLoadFromBackup.Click += new System.EventHandler(this.btnLoadFromBackup_Click);
+            // 
+            // btnSaveToBackup
+            // 
+            this.btnSaveToBackup.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.btnSaveToBackup.Location = new System.Drawing.Point(229, 37);
+            this.btnSaveToBackup.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btnSaveToBackup.Name = "btnSaveToBackup";
+            this.btnSaveToBackup.Size = new System.Drawing.Size(149, 91);
+            this.btnSaveToBackup.TabIndex = 1;
+            this.btnSaveToBackup.Text = "Säkerhetkopiera databas";
+            this.btnSaveToBackup.UseVisualStyleBackColor = false;
+            this.btnSaveToBackup.Click += new System.EventHandler(this.btnSaveToBackup_Click);
             // 
             // btnResetDb
             // 
             this.btnResetDb.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.btnResetDb.Location = new System.Drawing.Point(26, 37);
-            this.btnResetDb.Margin = new System.Windows.Forms.Padding(2);
+            this.btnResetDb.Location = new System.Drawing.Point(39, 37);
+            this.btnResetDb.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.btnResetDb.Name = "btnResetDb";
             this.btnResetDb.Size = new System.Drawing.Size(149, 91);
             this.btnResetDb.TabIndex = 0;
-            this.btnResetDb.Text = "Återställ";
+            this.btnResetDb.Text = "Återställ från fabriksinställningar";
             this.btnResetDb.UseVisualStyleBackColor = false;
             this.btnResetDb.Click += new System.EventHandler(this.btnResetDb_Click);
             // 
@@ -657,6 +661,7 @@
             this.cbxUnoffendable.TabIndex = 3;
             this.cbxUnoffendable.Text = "Okränkbara";
             this.cbxUnoffendable.UseVisualStyleBackColor = true;
+            this.cbxUnoffendable.CheckedChanged += new System.EventHandler(this.cbxUnoffendable_CheckedChanged);
             // 
             // cbxAdults
             // 
@@ -667,6 +672,7 @@
             this.cbxAdults.TabIndex = 2;
             this.cbxAdults.Text = "Vuxna";
             this.cbxAdults.UseVisualStyleBackColor = true;
+            this.cbxAdults.CheckedChanged += new System.EventHandler(this.cbxAdults_CheckedChanged);
             // 
             // cbxAdolescents
             // 
@@ -677,6 +683,7 @@
             this.cbxAdolescents.TabIndex = 1;
             this.cbxAdolescents.Text = "Ungdomar";
             this.cbxAdolescents.UseVisualStyleBackColor = true;
+            this.cbxAdolescents.CheckedChanged += new System.EventHandler(this.cbxAdolescents_CheckedChanged);
             // 
             // cbxChildren
             // 
@@ -690,6 +697,7 @@
             this.cbxChildren.TabIndex = 0;
             this.cbxChildren.Text = "Barn";
             this.cbxChildren.UseVisualStyleBackColor = true;
+            this.cbxChildren.CheckedChanged += new System.EventHandler(this.cbxChildren_CheckedChanged);
             // 
             // Options
             // 
@@ -698,7 +706,7 @@
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.ClientSize = new System.Drawing.Size(962, 599);
             this.Controls.Add(this.tabControl1);
-            this.MinimumSize = new System.Drawing.Size(837, 638);
+            this.MinimumSize = new System.Drawing.Size(835, 632);
             this.Name = "Options";
             this.Text = "Options";
             this.SizeChanged += new System.EventHandler(this.Options_SizeChanged);
@@ -765,11 +773,11 @@
         private System.Windows.Forms.CheckBox cbxAdolescents;
         private System.Windows.Forms.CheckBox cbxChildren;
         private System.Windows.Forms.GroupBox groupBox6;
-        private System.Windows.Forms.Button btnCancel;
-        private System.Windows.Forms.Button btnOk;
         private System.Windows.Forms.ComboBox cbTermFor;
         private System.Windows.Forms.ComboBox cbGenus;
         private System.Windows.Forms.ComboBox cbRelation;
         private System.Windows.Forms.ComboBox cbUpdateValue;
+        private System.Windows.Forms.Button btnLoadFromBackup;
+        private System.Windows.Forms.Button btnSaveToBackup;
     }
 }

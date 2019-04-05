@@ -15,34 +15,43 @@ namespace Headline_Randomizer
         static public List<Custom> choicesList = new List<Custom>();
         static public List<string> recentStrings = new List<string>();
         static public Random r = new Random();
-        static public string connectionString = @"Data Source=(LocalDB)\MSSQLLocalDB; AttachDbFilename =E:\Tresorit\Headline Randomizer\Headline Randomizer\Headline Randomizer Svenska 2.1\WordsDatabase.mdf; Integrated Security=True";
-        static public string backupString = @"Data Source=(LocalDB)\MSSQLLocalDB; AttachDbFilename =E:\Tresorit\Headline Randomizer\Headline Randomizer\Headline Randomizer Svenska 2.1\WordsDatabaseBackup.mdf; Integrated Security=True";
+        static public string connectionString = @"Data Source=(LocalDB)\MSSQLLocalDB; AttachDbFilename = E:\Tresorit\Headline Randomizer\Headline Randomizer\Headline Randomizer Svenska 2.1\WordsDatabase.mdf; Integrated Security=True";
+        static public string backupString = @"Data Source=(LocalDB)\MSSQLLocalDB; AttachDbFilename = E:\Tresorit\Headline Randomizer\Headline Randomizer\Headline Randomizer Svenska 2.1\WordsDatabaseBackup.mdf; Integrated Security=True";
+        static public string factoryResetString = @"Data Source=(LocalDB)\MSSQLLocalDB; AttachDbFilename = E:\Tresorit\Headline Randomizer\Headline Randomizer\Headline Randomizer Svenska 2.1\WordsDatabaseFactory.mdf; Integrated Security=True";
         //@"Data Source=(LocalDB)\MSSQLLocalDB; AttachDbFilename = " + AppDomain.CurrentDomain.BaseDirectory + "WordsDatabase.mdf; Integrated Security=True";
 
-        static public void DefaultTable(string table)
+        static public void DefaultTable(string table, string connectionString, string fromString)
         {
-            Db.Command($"TRUNCATE TABLE[{table}];");
+            // Remove all items from the selected table at the string you want to update. 
+            Db.Command($"TRUNCATE TABLE[{table}];", connectionString);
 
-            using (SqlConnection connection = new SqlConnection(Db.backupString))
+            using (SqlConnection connection = new SqlConnection(fromString))
             {
                 connection.Open();
+                // Select all from the table from the database you want o take info from. 
                 using (SqlCommand command = new SqlCommand($"SELECT * FROM {table}", connection))
                 {
                     int row = 1;
                     SqlDataReader reader = command.ExecuteReader();
+
+                    // Goes through all rows
                     while (reader.Read())
                     {
+                        // Goes through all colums of current row. 
                         for (int i = 1; i < reader.FieldCount; i++)
                         {
+                            // if curent row is the first column (After Id), then insert, mening crete new row. 
                             if (i == 1)
                             {
-                                Db.Command($"INSERT INTO {table} ([{reader.GetName(i)}]) VALUES ('{reader.GetSqlValue(i)}')");
+                                Db.Command($"INSERT INTO {table} ([{reader.GetName(i)}]) VALUES ('{reader.GetSqlValue(i)}')", connectionString);
                             }
+
+                            // If a row has already been added you don't want to create a new one for the second column. 
+                            // So you just update the other column in the existing row. 
                             else
                             {
-                                Db.Command($"UPDATE {table} SET [{reader.GetName(i)}] = '{reader.GetSqlValue(i)}' WHERE Id = {row}");
+                                Db.Command($"UPDATE {table} SET [{reader.GetName(i)}] = '{reader.GetSqlValue(i)}' WHERE Id = {row}", connectionString);
                             }
-                            
                         }
                         row++;
                     }
@@ -51,18 +60,42 @@ namespace Headline_Randomizer
                     connection.Close();
                 }
             }
-        } 
+        }
+
+        static public void LoadFromBackup()
+        {
+            DefaultTable("TblAdjectives", Db.connectionString, Db.backupString);
+            DefaultTable("TblJokeNames", Db.connectionString, Db.backupString);
+            DefaultTable("TblMissions", Db.connectionString, Db.backupString);
+            DefaultTable("TblNobelPrizes", Db.connectionString, Db.backupString);
+            DefaultTable("TblNouns", Db.connectionString, Db.backupString);
+            DefaultTable("TblSavedResults", Db.connectionString, Db.backupString); // Or not?
+            DefaultTable("TblStatus", Db.connectionString, Db.backupString);
+            DefaultTable("TblVerbs", Db.connectionString, Db.backupString);
+        }
+
+        static public void SaveToBackup()
+        {
+            DefaultTable("TblAdjectives", Db.backupString, Db.connectionString);
+            DefaultTable("TblJokeNames", Db.backupString, Db.connectionString);
+            DefaultTable("TblMissions", Db.backupString, Db.connectionString);
+            DefaultTable("TblNobelPrizes", Db.backupString, Db.connectionString);
+            DefaultTable("TblNouns", Db.backupString, Db.connectionString);
+            DefaultTable("TblSavedResults", Db.backupString, Db.connectionString); // Or not?
+            DefaultTable("TblStatus", Db.backupString, Db.connectionString);
+            DefaultTable("TblVerbs", Db.backupString, Db.connectionString);
+        }
 
         static public void DefaultAll()
         {
-            DefaultTable("TblAdjectives");
-            DefaultTable("TblJokeNames");
-            DefaultTable("TblMissions");
-            DefaultTable("TblNobelPrizes");
-            DefaultTable("TblNouns");
-            DefaultTable("TblSavedResults"); // Or not?
-            DefaultTable("TblStatus");
-            DefaultTable("TblVerbs");
+            DefaultTable("TblAdjectives", Db.connectionString, Db.factoryResetString);
+            DefaultTable("TblJokeNames", Db.connectionString, Db.factoryResetString);
+            DefaultTable("TblMissions", Db.connectionString, Db.factoryResetString);
+            DefaultTable("TblNobelPrizes", Db.connectionString, Db.factoryResetString);
+            DefaultTable("TblNouns", Db.connectionString, Db.factoryResetString);
+            DefaultTable("TblSavedResults", Db.connectionString, Db.factoryResetString); // Or not?
+            DefaultTable("TblStatus", Db.connectionString, Db.factoryResetString);
+            DefaultTable("TblVerbs", Db.connectionString, Db.factoryResetString);
 
             //!fileRow.EndOf<stream
             //fileForRead.ReadLine()
@@ -233,10 +266,10 @@ namespace Headline_Randomizer
 
         } // This might be language independent when it takes from a backupdatabase, not text files
 
-        static public void Command(string commandstring)
+        static public void Command(string commandstring, string connectionString)
         {
 
-            using (SqlConnection connection = new SqlConnection(Db.connectionString))
+            using (SqlConnection connection = new SqlConnection(connectionString))
             {
                 connection.Open();
                 using (SqlCommand command = new SqlCommand(commandstring, connection))
@@ -277,10 +310,12 @@ namespace Headline_Randomizer
             {
                 connection.Open();
 
+                // Get the amount of rows,
                 using (SqlCommand command = new SqlCommand($"SELECT COUNT(*) {restOfQuery}", connection))
                 {
                     int rowCount = (Int32)command.ExecuteScalar();
 
+                    // Change the query from amount of rows to whatever the parameters say. 
                     command.CommandText = $"{selectStatement} {restOfQuery}";
                     
                     string value = "";
@@ -289,6 +324,8 @@ namespace Headline_Randomizer
                     int i = Db.r.Next(0, rowCount);
                     int j = 0;
 
+                    // Go through all rows until you reach the one with the Id randomized when the i 
+                    // variable was initialized. And then get the Id of that row. 
                     while (reader.Read())
                     {
 
@@ -307,10 +344,7 @@ namespace Headline_Randomizer
             }
         }
 
-        
-        // För sv och eng kan jag bara göra en string parameter där det står censurcategori eller Lämpligt för
-
-            // Skicka till Ord? Mer future proof? Vänta tills jag bestämt hur censuren ska vara. 
+        // Sees to that only allowed words come up. 
         static public string QueryRestrictions()
         {
             var config = ConfigurationManager.OpenExeConfiguration(ConfigurationUserLevel.None);

@@ -168,7 +168,7 @@ namespace English
 
         public override void Used(int idNr)
         {
-            Db.Command($"UPDATE TblVerb SET Used = 1 WHERE Id = {idNr}");
+            Db.Command($"UPDATE TblVerb SET Used = 1 WHERE Id = {idNr}", Db.connectionString);
         }
 
         public override string BasForm(int id)
@@ -272,7 +272,7 @@ namespace English
 
         public override void Used(int idNr)
         {
-            Db.Command($"UPDATE TblNouns SET Used = 1 WHERE Id = {idNr}");
+            Db.Command($"UPDATE TblNouns SET Used = 1 WHERE Id = {idNr}", Db.connectionString);
         }
     }
 
@@ -311,7 +311,7 @@ namespace English
 
         public override void Used(int idNr)
         {
-            Db.Command($"UPDATE TblAdjective SET Used = 1 WHERE Id = {idNr}");
+            Db.Command($"UPDATE TblAdjective SET Used = 1 WHERE Id = {idNr}", Db.connectionString);
         }
 
         public override string EttForm(int id)
@@ -405,7 +405,7 @@ namespace English
 
         public override void Used(int idNr)
         {
-            Db.Command($"UPDATE TblJokeNames SET Used = 1 WHERE Id = {idNr}");
+            Db.Command($"UPDATE TblJokeNames SET Used = 1 WHERE Id = {idNr}", Db.connectionString);
         }
 
         public override string Name(int id)
@@ -424,7 +424,7 @@ namespace English
 
         public override void Used(int idNr)
         {
-            Db.Command($"UPDATE TblPlats SET Used = 1 WHERE Id = {idNr}");
+            Db.Command($"UPDATE TblPlats SET Used = 1 WHERE Id = {idNr}", Db.connectionString);
         }
 
         public override string Name(int id)
@@ -443,7 +443,7 @@ namespace English
 
         public override void Used(int idNr)
         {
-            Db.Command($"UPDATE TblNobelPrizes SET Used = 1 WHERE Id = {idNr}");
+            Db.Command($"UPDATE TblNobelPrizes SET Used = 1 WHERE Id = {idNr}", Db.connectionString);
         }
 
         public override string Prize(int id)
@@ -461,7 +461,7 @@ namespace English
 
         public override void Used(int idNr)
         {
-            Db.Command($"UPDATE TblRelation SET Used = 1 WHERE Id = {idNr}");
+            Db.Command($"UPDATE TblRelation SET Used = 1 WHERE Id = {idNr}", Db.connectionString);
         }
 
         public override string Feeling(int id)
@@ -479,7 +479,7 @@ namespace English
 
         public override void Used(int idNr)
         {
-            Db.Command($"UPDATE TblStatus SET Used = 1 WHERE Id = {idNr}");
+            Db.Command($"UPDATE TblStatus SET Used = 1 WHERE Id = {idNr}", Db.connectionString);
         }
 
         public string HighStatus(int id)

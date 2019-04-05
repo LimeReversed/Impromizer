@@ -4,15 +4,16 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Data.SqlClient;
-using Headline_Randomizer; // hmm I can do this. Sen på de ställena jag behäver här så gör using svenska och när eng skriv using eng. 
+// Since this is a different namespace I need to add Headline_Randomizer here to 
+// connect to things that are there. 
+using Headline_Randomizer;
 
 namespace Svenska
 {
-    // Kan ändra namespace och skriva det över för Db för att få tag i den klassen. Men då måste jag göra samma tillbaka i Form1.
-    // Namespace kan vara svenska Svenska.Ord.adjektiv.Infinite(); create those objects somewhere else?
 
     public abstract class Words
     {
+        // Create a static object for all needed classes. 
         public static Adjektiv adjective = new Adjektiv();
         public static Verb verb = new Verb();
         public static Någon someone = new Någon();
@@ -39,7 +40,9 @@ namespace Svenska
 
                 if (antalRader < antal)
                 {
+                    // Sort Ascending to get the first item. 
                     string rad1 = Db.GetValue("SELECT TOP 1 Id FROM TblAdjectives ORDER BY Id ASC");
+                    // Sort descending to get the last item. 
                     string sistaRad = Db.GetValue("SELECT TOP 1 Id FROM TblAdjectives ORDER BY Id DESC");
                     command.CommandText = $"UPDATE TblAdjectives SET {used} = 0 WHERE Id BETWEEN {rad1} AND {sistaRad}";
                     command.ExecuteNonQuery();
@@ -58,38 +61,38 @@ namespace Svenska
                 }
 
                 // Someone
-                command.CommandText = $"SELECT COUNT(*) FROM TblNouns WHERE Benämner = 'Någon' AND {used} = 0 {Db.QueryRestrictions()}";
+                command.CommandText = $"SELECT COUNT(*) FROM TblNouns WHERE Benämner IN ('Någon', 'Någon & Något') AND {used} = 0 {Db.QueryRestrictions()}";
                 antalRader = (Int32)command.ExecuteScalar();
 
                 if (antalRader < antal)
                 {
-                    string rad1 = Db.GetValue("SELECT TOP 1 Id FROM TblNouns WHERE Benämner = 'Någon' ORDER BY Id ASC");
-                    string sistaRad = Db.GetValue("SELECT TOP 1 Id FROM TblNouns WHERE Benämner = 'Någon' ORDER BY Id DESC");
-                    command.CommandText = $"UPDATE TblNouns SET {used} = 0 WHERE Benämner = 'Någon' AND Id BETWEEN {rad1} AND {sistaRad}";
+                    string rad1 = Db.GetValue("SELECT TOP 1 Id FROM TblNouns WHERE Benämner IN ('Någon', 'Någon & Något') ORDER BY Id ASC");
+                    string sistaRad = Db.GetValue("SELECT TOP 1 Id FROM TblNouns WHERE Benämner IN ('Någon', 'Någon & Något') ORDER BY Id DESC");
+                    command.CommandText = $"UPDATE TblNouns SET {used} = 0 WHERE Benämner IN ('Någon', 'Någon & Något') AND Id BETWEEN {rad1} AND {sistaRad}";
                     command.ExecuteNonQuery();
                 }
 
                 // Something
-                command.CommandText = $"SELECT COUNT(*) FROM TblNouns WHERE Benämner = 'Något' AND {used} = 0 {Db.QueryRestrictions()}";
+                command.CommandText = $"SELECT COUNT(*) FROM TblNouns WHERE Benämner IN ('Något', 'Någon & Något') AND {used} = 0 {Db.QueryRestrictions()}";
                 antalRader = (Int32)command.ExecuteScalar();
 
                 if (antalRader < antal)
                 {
-                    string rad1 = Db.GetValue("SELECT TOP 1 Id FROM TblNouns WHERE Benämner = 'Något' ORDER BY Id ASC");
-                    string sistaRad = Db.GetValue("SELECT TOP 1 Id FROM TblNouns WHERE Benämner = 'Något' ORDER BY Id DESC");
-                    command.CommandText = $"UPDATE TblNouns SET {used} = 0 WHERE Benämner = 'Något' AND Id BETWEEN {rad1} AND {sistaRad}";
+                    string rad1 = Db.GetValue("SELECT TOP 1 Id FROM TblNouns WHERE Benämner IN ('Något', 'Någon & Något') ORDER BY Id ASC");
+                    string sistaRad = Db.GetValue("SELECT TOP 1 Id FROM TblNouns WHERE Benämner IN ('Något', 'Någon & Något') ORDER BY Id DESC");
+                    command.CommandText = $"UPDATE TblNouns SET {used} = 0 WHERE Benämner IN ('Något', 'Någon & Något') AND Id BETWEEN {rad1} AND {sistaRad}";
                     command.ExecuteNonQuery();
                 }
 
                 // Plats
-                command.CommandText = $"SELECT COUNT(*) FROM TblNouns WHERE Benämner = 'Plats' AND {used} = 0 {Db.QueryRestrictions()}";
+                command.CommandText = $"SELECT COUNT(*) FROM TblNouns WHERE Benämner IN ('Plats', 'Någon & Plats') AND {used} = 0 {Db.QueryRestrictions()}";
                 antalRader = (Int32)command.ExecuteScalar();
 
                 if (antalRader < antal)
                 {
-                    string rad1 = Db.GetValue("SELECT TOP 1 Id FROM TblNouns WHERE Benämner = 'Plats' ORDER BY Id ASC");
-                    string sistaRad = Db.GetValue("SELECT TOP 1 Id FROM TblNouns WHERE Benämner = 'Plats' ORDER BY Id DESC");
-                    command.CommandText = $"UPDATE TblNouns SET {used} = 0 WHERE Benämner = 'Plats' AND Id BETWEEN {rad1} AND {sistaRad}";
+                    string rad1 = Db.GetValue("SELECT TOP 1 Id FROM TblNouns WHERE Benämner IN ('Plats', 'Någon & Plats') ORDER BY Id ASC");
+                    string sistaRad = Db.GetValue("SELECT TOP 1 Id FROM TblNouns WHERE Benämner IN ('Plats', 'Någon & Plats') ORDER BY Id DESC");
+                    command.CommandText = $"UPDATE TblNouns SET {used} = 0 WHERE Benämner IN ('Plats', 'Någon & Plats') AND Id BETWEEN {rad1} AND {sistaRad}";
                     command.ExecuteNonQuery();
                 }
 
@@ -167,6 +170,8 @@ namespace Svenska
         }
     }
 
+    // Verb is a part of words and in words the only methods are RandomizeId and Used
+    // Because that's the only thing that they all have in common. 
     public class Verb : Words
     {
         public override int RandomizeId()
@@ -176,12 +181,16 @@ namespace Svenska
 
         public override void Used(int id)
         {
-            Db.Command($"UPDATE TblVerbs SET Använt = 1 WHERE Id = {id}");
+            Db.Command($"UPDATE TblVerbs SET Använt = 1 WHERE Id = {id}", Db.connectionString);
         }
 
         public string Preposition(int id)
         {
             string prep = $"{Db.GetValue($"SELECT Preposition FROM TblVerbs WHERE Id = {id}")}";
+
+            // If it returns "" then just return a space. If however it returns a preposition
+            // then add a space before and after. That way when I insert it in a string
+            // the amount of spaces is correct. I need to not add any spaces in that string though.  
             if (prep == "")
             {
                 return " ";
@@ -227,7 +236,7 @@ namespace Svenska
 
         public override void Used(int id)
         {
-            Db.Command($"UPDATE TblAdjectives SET Använt = 1 WHERE Id = {id}");
+            Db.Command($"UPDATE TblAdjectives SET Använt = 1 WHERE Id = {id}", Db.connectionString);
         }
 
         public string Preposition(int id)
@@ -304,12 +313,12 @@ namespace Svenska
     {
         public override int RandomizeId()
         {
-            return Convert.ToInt32($"{Db.RandomizeValue("Select Id", $"FROM TblNouns WHERE Använt = 0 AND Benämner IN ('Något', 'Någon') {Db.QueryRestrictions()}")}");
+            return Convert.ToInt32($"{Db.RandomizeValue("Select Id", $"FROM TblNouns WHERE Använt = 0 AND Benämner IN ('Något', 'Någon', 'Någon & Något') {Db.QueryRestrictions()}")}");
         }
 
         public override void Used(int id)
         {
-            Db.Command($"UPDATE TblNouns SET Använt = 1 WHERE Id = {id}");
+            Db.Command($"UPDATE TblNouns SET Använt = 1 WHERE Id = {id}", Db.connectionString);
         }
 
         public string Preposition(int id)
@@ -363,8 +372,7 @@ namespace Svenska
     {
         public override int RandomizeId()
         {
-            // Add Någon & Plats också nedan
-            return Convert.ToInt32($"{Db.RandomizeValue("Select Id", $"FROM TblNouns WHERE Använt = 0 AND Benämner = 'Någon' {Db.QueryRestrictions()}")}");
+            return Convert.ToInt32($"{Db.RandomizeValue("Select Id", $"FROM TblNouns WHERE Använt = 0 AND Benämner IN ('Någon', 'Någon & Något') {Db.QueryRestrictions()}")}");
         }
 
     }
@@ -373,7 +381,7 @@ namespace Svenska
     {
         public override int RandomizeId()
         {
-            return Convert.ToInt32($"{Db.RandomizeValue("Select Id", $"FROM TblNouns WHERE Använt = 0 AND Benämner = 'Något' {Db.QueryRestrictions()}")}");
+            return Convert.ToInt32($"{Db.RandomizeValue("Select Id", $"FROM TblNouns WHERE Använt = 0 AND Benämner IN ('Något', 'Någon & Något') {Db.QueryRestrictions()}")}");
         }
     }
 
@@ -381,7 +389,7 @@ namespace Svenska
     {
         public override int RandomizeId()
         {
-            return Convert.ToInt32($"{Db.RandomizeValue("Select Id", $"FROM TblNouns WHERE Använt = 0 AND Benämner = 'Plats' {Db.QueryRestrictions()}")}");
+            return Convert.ToInt32($"{Db.RandomizeValue("Select Id", $"FROM TblNouns WHERE Använt = 0 AND Benämner IN ('Plats', 'Någon & Plats') {Db.QueryRestrictions()}")}");
         }
     }
 
@@ -394,7 +402,7 @@ namespace Svenska
 
         public override void Used(int id)
         {
-            Db.Command($"UPDATE TblNobelPrizes SET Använt = 1 WHERE Id = {id}");
+            Db.Command($"UPDATE TblNobelPrizes SET Använt = 1 WHERE Id = {id}", Db.connectionString);
         }
 
         public string Prize(int id)
@@ -412,7 +420,7 @@ namespace Svenska
 
         public override void Used(int id)
         {
-            Db.Command($"UPDATE TblJokeNames SET Använt = 1 WHERE Id = {id}");
+            Db.Command($"UPDATE TblJokeNames SET Använt = 1 WHERE Id = {id}", Db.connectionString);
         }
 
         public string Name(int id)
@@ -421,7 +429,6 @@ namespace Svenska
         }
     }
 
-    // Have this whole section private then have a separate public class that accesses the section. 
     public class Status : Words
     {
         public override int RandomizeId()
@@ -431,7 +438,7 @@ namespace Svenska
 
         public override void Used(int idNr)
         {
-            Db.Command($"UPDATE TblStatus SET Använt = 1 WHERE Id = {idNr}");
+            Db.Command($"UPDATE TblStatus SET Använt = 1 WHERE Id = {idNr}", Db.connectionString);
         }
 
         public string HighStatus(int id)

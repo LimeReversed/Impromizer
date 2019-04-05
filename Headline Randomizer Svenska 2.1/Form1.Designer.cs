@@ -86,6 +86,8 @@
             this.settingsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.hjälpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolTip = new System.Windows.Forms.ToolTip(this.components);
+            this.btnhide = new System.Windows.Forms.Button();
+            this.btnUndo = new System.Windows.Forms.Button();
             this.customTabControl1.SuspendLayout();
             this.tabPage3.SuspendLayout();
             this.tabPage2.SuspendLayout();
@@ -396,6 +398,7 @@
             // tabPage8
             // 
             this.tabPage8.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.tabPage8.Controls.Add(this.btnhide);
             this.tabPage8.Controls.Add(this.label5);
             this.tabPage8.Controls.Add(this.label4);
             this.tabPage8.Controls.Add(this.btnClearScene);
@@ -441,13 +444,13 @@
             this.btnClearScene.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnClearScene.FlatAppearance.BorderColor = System.Drawing.Color.White;
             this.btnClearScene.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnClearScene.Font = new System.Drawing.Font("Calibri", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnClearScene.Font = new System.Drawing.Font("Calibri", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnClearScene.ForeColor = System.Drawing.Color.White;
             this.btnClearScene.ImageAlign = System.Drawing.ContentAlignment.TopLeft;
             this.btnClearScene.ImageKey = "(none)";
-            this.btnClearScene.Location = new System.Drawing.Point(336, 241);
+            this.btnClearScene.Location = new System.Drawing.Point(460, 241);
             this.btnClearScene.Name = "btnClearScene";
-            this.btnClearScene.Size = new System.Drawing.Size(239, 37);
+            this.btnClearScene.Size = new System.Drawing.Size(115, 37);
             this.btnClearScene.TabIndex = 66;
             this.btnClearScene.Text = "Rensa";
             this.btnClearScene.UseVisualStyleBackColor = false;
@@ -649,6 +652,7 @@
             // 
             this.tabPage4.AutoScroll = true;
             this.tabPage4.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.tabPage4.Controls.Add(this.btnUndo);
             this.tabPage4.Controls.Add(this.btnCustomClear);
             this.tabPage4.Controls.Add(this.groupBox5);
             this.tabPage4.Controls.Add(this.btnGenerate);
@@ -669,11 +673,11 @@
             this.btnCustomClear.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnCustomClear.Font = new System.Drawing.Font("Calibri", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnCustomClear.ForeColor = System.Drawing.Color.White;
-            this.btnCustomClear.Location = new System.Drawing.Point(475, 246);
+            this.btnCustomClear.Location = new System.Drawing.Point(475, 181);
             this.btnCustomClear.Name = "btnCustomClear";
-            this.btnCustomClear.Size = new System.Drawing.Size(105, 27);
+            this.btnCustomClear.Size = new System.Drawing.Size(99, 42);
             this.btnCustomClear.TabIndex = 13;
-            this.btnCustomClear.Text = "Rensa";
+            this.btnCustomClear.Text = "Rensa allt";
             this.btnCustomClear.UseVisualStyleBackColor = true;
             this.btnCustomClear.Click += new System.EventHandler(this.btnCustomClear_Click);
             // 
@@ -684,7 +688,7 @@
             this.groupBox5.ForeColor = System.Drawing.Color.White;
             this.groupBox5.Location = new System.Drawing.Point(25, 191);
             this.groupBox5.Name = "groupBox5";
-            this.groupBox5.Size = new System.Drawing.Size(432, 82);
+            this.groupBox5.Size = new System.Drawing.Size(433, 82);
             this.groupBox5.TabIndex = 12;
             this.groupBox5.TabStop = false;
             this.groupBox5.Text = "Tillagda ord/nummer";
@@ -696,7 +700,7 @@
             this.tbxAdded.Multiline = true;
             this.tbxAdded.Name = "tbxAdded";
             this.tbxAdded.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.tbxAdded.Size = new System.Drawing.Size(410, 51);
+            this.tbxAdded.Size = new System.Drawing.Size(411, 51);
             this.tbxAdded.TabIndex = 3;
             // 
             // btnGenerate
@@ -706,9 +710,9 @@
             this.btnGenerate.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnGenerate.Font = new System.Drawing.Font("Calibri", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnGenerate.ForeColor = System.Drawing.Color.White;
-            this.btnGenerate.Location = new System.Drawing.Point(475, 200);
+            this.btnGenerate.Location = new System.Drawing.Point(475, 231);
             this.btnGenerate.Name = "btnGenerate";
-            this.btnGenerate.Size = new System.Drawing.Size(105, 42);
+            this.btnGenerate.Size = new System.Drawing.Size(99, 42);
             this.btnGenerate.TabIndex = 10;
             this.btnGenerate.Text = "Generera";
             this.btnGenerate.UseVisualStyleBackColor = false;
@@ -722,7 +726,7 @@
             this.groupBox6.ForeColor = System.Drawing.Color.White;
             this.groupBox6.Location = new System.Drawing.Point(25, 120);
             this.groupBox6.Name = "groupBox6";
-            this.groupBox6.Size = new System.Drawing.Size(558, 61);
+            this.groupBox6.Size = new System.Drawing.Size(434, 61);
             this.groupBox6.TabIndex = 11;
             this.groupBox6.TabStop = false;
             this.groupBox6.Text = "Lägg till egna ord";
@@ -732,9 +736,9 @@
             this.btnAddCustom.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.btnAddCustom.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnAddCustom.ForeColor = System.Drawing.Color.Gray;
-            this.btnAddCustom.Location = new System.Drawing.Point(453, 23);
+            this.btnAddCustom.Location = new System.Drawing.Point(326, 22);
             this.btnAddCustom.Name = "btnAddCustom";
-            this.btnAddCustom.Size = new System.Drawing.Size(96, 27);
+            this.btnAddCustom.Size = new System.Drawing.Size(96, 28);
             this.btnAddCustom.TabIndex = 5;
             this.btnAddCustom.Text = "Lägg till";
             this.btnAddCustom.UseVisualStyleBackColor = false;
@@ -745,7 +749,7 @@
             this.tbxCustom.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.tbxCustom.Location = new System.Drawing.Point(11, 23);
             this.tbxCustom.Name = "tbxCustom";
-            this.tbxCustom.Size = new System.Drawing.Size(421, 27);
+            this.tbxCustom.Size = new System.Drawing.Size(309, 27);
             this.tbxCustom.TabIndex = 3;
             this.tbxCustom.TextChanged += new System.EventHandler(this.tbxCustom_TextChanged);
             // 
@@ -900,6 +904,7 @@
             "Adjektiv",
             "Något",
             "Någon",
+            "Plats",
             "Skämtnamn",
             "Verb"});
             this.cbWords.Location = new System.Drawing.Point(11, 25);
@@ -994,6 +999,39 @@
             this.toolTip.AutoPopDelay = 999999999;
             this.toolTip.InitialDelay = 500;
             this.toolTip.ReshowDelay = 100;
+            // 
+            // btnhide
+            // 
+            this.btnhide.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.btnhide.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
+            this.btnhide.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnhide.FlatAppearance.BorderColor = System.Drawing.Color.White;
+            this.btnhide.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnhide.Font = new System.Drawing.Font("Calibri", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnhide.ForeColor = System.Drawing.Color.White;
+            this.btnhide.ImageAlign = System.Drawing.ContentAlignment.TopLeft;
+            this.btnhide.ImageKey = "(none)";
+            this.btnhide.Location = new System.Drawing.Point(336, 241);
+            this.btnhide.Name = "btnhide";
+            this.btnhide.Size = new System.Drawing.Size(115, 37);
+            this.btnhide.TabIndex = 71;
+            this.btnhide.Text = "Dölj text";
+            this.btnhide.UseVisualStyleBackColor = false;
+            this.btnhide.Click += new System.EventHandler(this.Btnhide_Click);
+            // 
+            // btnUndo
+            // 
+            this.btnUndo.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+            this.btnUndo.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnUndo.Font = new System.Drawing.Font("Calibri", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnUndo.ForeColor = System.Drawing.Color.White;
+            this.btnUndo.Location = new System.Drawing.Point(474, 130);
+            this.btnUndo.Name = "btnUndo";
+            this.btnUndo.Size = new System.Drawing.Size(99, 42);
+            this.btnUndo.TabIndex = 14;
+            this.btnUndo.Text = "Ångra tillägg";
+            this.btnUndo.UseVisualStyleBackColor = true;
+            this.btnUndo.Click += new System.EventHandler(this.BtnUndo_Click);
             // 
             // Form1
             // 
@@ -1093,6 +1131,8 @@
         private System.Windows.Forms.Label lblParticipants;
         private System.Windows.Forms.ToolStripMenuItem hjälpToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem lekarToolStripMenuItem;
+        private System.Windows.Forms.Button btnhide;
+        private System.Windows.Forms.Button btnUndo;
     }
 }
 

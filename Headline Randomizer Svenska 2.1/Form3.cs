@@ -18,6 +18,7 @@ namespace Headline_Randomizer
         {
             InitializeComponent();
             
+            // Load settings
             var config = ConfigurationManager.OpenExeConfiguration(ConfigurationUserLevel.None);
             if (config.AppSettings.Settings["SuitableForChildren"].Value == "1")
             {
@@ -54,7 +55,18 @@ namespace Headline_Randomizer
             {
                 cbxUnoffendable.Checked = false;
             }
+            if (config.AppSettings.Settings["LoadFromBackup"].Value == "0")
+            {
+                btnLoadFromBackup.Enabled = false;
+            }
+            else
+            {
+                btnLoadFromBackup.Enabled = true;
+            }
 
+            // Create a key and value for the Tabell combobox. This enables the user
+            // to choose for example "Adjektiv" but the code gets "TblAdjektiv" from that. 
+            // Dictionaty helps with that first paremeter is key the other is value. 
             Dictionary<string, string> items = new Dictionary<string, string>();
 
             items.Add("Adjektiv", "TblAdjectives");
@@ -67,6 +79,9 @@ namespace Headline_Randomizer
             items.Add("Verb", "TblVerbs");
 
             cbTabell.Items.Clear();
+
+            // Connect combobox with the Dictionary "items" and decide whether the display member
+            // or the value member is value or key. 
             cbTabell.DataSource = new BindingSource(items, null);
             cbTabell.DisplayMember = "Key";
             cbTabell.ValueMember = "Value";
@@ -85,6 +100,7 @@ namespace Headline_Randomizer
         // Needed to stop the current cell from changing while updating the GridView.
         // This because of the current_cell_change event.
         bool updateInProgress = false;
+
         List<Mix> mix = new List<Mix>();
         List<Mix> location = new List<Mix>();
 
@@ -144,29 +160,49 @@ namespace Headline_Randomizer
                     cbUpdateValue.Text = "Skriv in värde...";
                     break;
             }
+
         }
 
+        // Spread out the textboxes in "add row" depending on the size of the window. 
         public void Reposition()
         {
+            // Calculate how much room there should be between each textbox. 
+            // The size of the groupbox minus the total amount of space the textboxes take up
+            // devided with the numbers of gaps between them. 
             int x = (gbAddRow.Size.Width - (130 * 5)) / 6;
+
+            // J is needed for the items who are positioned inthe lower row. 
             int j = 0;
+
+            // The textboxes has been added to a list, go through all of them. 
             for (int i = 0; i < location.Count; i++)
             {
+                // If the first item is uppdrag or namn then the second item needs more distance 
+                // since the first item is longer than the others. 
                 if (i == 1 && (location[i - 1].Label.Text == "Uppdrag" || location[i - 1].Label.Text == "Namn"))
                 {
                     int plus = (x*2 + 260);
                     location[i].Location = new Point(x + plus, 45);
                     location[i].Label.Location = new Point((x + plus) - 4, 25);
                 }
+
+                // The first 5 items is at a specific y location. 
                 else if (i < 5)
                 {
+                    // Size of gap plus size of textox times the number of the iteration. 
                     int plus = (x + 130) * i;
+
+                    // This aligns the textboxes side by side with the exact same distance. 
+                    // The first iteration only gives x since i is 0.
+                    // The second iteration takes the distance of the first x, plus the size of the 
+                    // first textbox plus a second x amount and puts the second textbox after that. 
                     location[i].Location = new Point(x + plus, 45);
                     location[i].Label.Location = new Point((x + plus) - 4, 25);
                 }
                 
                 else
                 {
+                    // Times J because we don't want the second row next to the first row. 
                     int plus = (x + 130) * j;
                     location[i].Location = new Point(x + plus, 97);
                     location[i].Label.Location = new Point((x + plus) - 4, 77);
@@ -177,8 +213,7 @@ namespace Headline_Randomizer
             btnAddRow.Location = new Point(x + ((x + 130) * 4), 81);
         }
 
-        public void UpdateGridView(string query) // Move to Db? It's language independent but can I make more sense of having it htere?
-            // Would be more future proof. // Den tiden den sorgen?
+        public void UpdateGridView(string query)
         {
             
             updateInProgress = true;
@@ -235,7 +270,7 @@ namespace Headline_Randomizer
                     DbDisplay.Columns[0].Visible = false;
                     reader.Close();
                 }
-                // Don't forget to cluse the connection. It created problems before. 
+                // Don't forget to close the connection. It created problems before. 
                 connection.Close();
                 updateInProgress = false;
 
@@ -258,6 +293,7 @@ namespace Headline_Randomizer
                     SqlDataReader reader = command.ExecuteReader();
 
                     mix.Clear();
+                    // All the items added to a list. 
                     mix.Add(new Mix("text", lblColumn1, tbxAddColumn1, new Point(20, 45)));
                     mix.Add(new Mix("text", lblColumn2, tbxAddColumn2, new Point(164, 45)));
                     mix.Add(new Mix("text", lblColumn3, tbxAddColumn3, new Point(307, 45)));
@@ -287,6 +323,7 @@ namespace Headline_Randomizer
 
                     for (int i = 0; i < reader.FieldCount; i++)
                     {
+                        // If just a textbox then add to list and give name
                         if (reader.GetDataTypeName(i) == "nvarchar" && (reader.GetName(i) != "Benämner" && reader.GetName(i) != "Genus"
                             && reader.GetName(i) != "Mening" && reader.GetName(i) != "Uppdrag" && reader.GetName(i) != "Namn"))
                         {
@@ -297,6 +334,8 @@ namespace Headline_Randomizer
                             location[i].TextBox.Size = new Size(131, 27);
 
                         }
+
+                        // If textbox is mening, uppdrag or namn, then make it bigger. 
                         else if (reader.GetDataTypeName(i) == "nvarchar" && reader.GetName(i) == "Mening" || reader.GetName(i) == "Uppdrag" || reader.GetName(i) == "Namn")
                         {
                             location.Add(mix[i]);
@@ -305,6 +344,9 @@ namespace Headline_Randomizer
                             location[i].Label.Text = reader.GetName(i);
                             location[i].TextBox.Size = new Size(274, 27);
                         }
+
+                        // If it's a combobox then go through the mixlist and compare with what the current column in the database is. 
+                        // WHen there is a match then add to locaiton list. 
                         else if (reader.GetDataTypeName(i) != "nvarchar" || (reader.GetName(i) == "Benämner" || reader.GetName(i) == "Genus"))
                         {
                             for (int j = 0; j < mix.Count; j++)
@@ -383,26 +425,11 @@ namespace Headline_Randomizer
             else
             {
                 updateInProgress = true;
-                // No -1 on column because ID is hidden so I've constructed tbxcolumn to think the second is the first. 
+
                 string column = DbDisplay.Columns[Convert.ToInt32(numChangeColumn.Value)].HeaderText;
                 string Id = DbDisplay.Rows[Convert.ToInt32(numChangeRow.Value) - 1].Cells[0].Value.ToString();
 
-                if (column == "Lämpligt för")
-                {
-                    if (!short.TryParse(cbUpdateValue.Text, out short result) || result > 2 || result < 0)
-                    {
-                        MessageBox.Show("Censor level kan bara bestå av ett värde från 0 - 2");
-                    }
-                    else
-                    {
-                        Db.Command($"UPDATE {cbTabell.SelectedValue.ToString()} SET [{column}] = '{result}' WHERE Id = '{Id}'");
-                    }
-                }
-                else
-                {
-                    Db.Command($"UPDATE {cbTabell.SelectedValue.ToString()} SET [{column}] = '{cbUpdateValue.Text}' WHERE Id = '{Id}'");
-                }
-
+                Db.Command($"UPDATE {cbTabell.SelectedValue.ToString()} SET [{column}] = '{cbUpdateValue.Text}' WHERE Id = '{Id}'", Db.connectionString);
 
                 updateInProgress = false;
                 UpdateGridView($"SELECT * FROM {cbTabell.SelectedValue.ToString()}");
@@ -424,7 +451,7 @@ namespace Headline_Randomizer
 
             // Get the value of the first column on the specified row, then use it in the query string. 
             string Id = DbDisplay.Rows[Convert.ToInt32(numDeleteRow.Value) - 1].Cells[0].Value.ToString();
-            Db.Command($"DELETE FROM {cbTabell.SelectedValue.ToString()} WHERE Id = '{Id}'");
+            Db.Command($"DELETE FROM {cbTabell.SelectedValue.ToString()} WHERE Id = '{Id}'", Db.connectionString);
             
             updateInProgress = false;
             UpdateGridView($"SELECT * FROM {cbTabell.SelectedValue.ToString()}");
@@ -452,42 +479,42 @@ namespace Headline_Randomizer
                 case "TblAdjectives":
 
                         Db.Command($"INSERT INTO TblAdjectives VALUES ('{tbxAddColumn1.Text}', '{tbxAddColumn2.Text}','{tbxAddColumn3.Text}', " +
-                        $"'{tbxAddColumn4.Text}', '{cbRelation.Text}', '{cbCensur.Text}', 0)");
+                        $"'{tbxAddColumn4.Text}', '{cbRelation.Text}', '{cbCensur.Text}', 0)", Db.connectionString);
                     
                     break;
 
                 case "TblNouns":
 
                         Db.Command($"INSERT INTO TblNouns VALUES ('{tbxAddColumn1.Text}', '{tbxAddColumn2.Text}','{tbxAddColumn3.Text}', " +
-                        $"'{tbxAddColumn4.Text}', '{cbTermFor.Text}', '{cbGenus.Text}','{cbCensur.Text}', 0)");
+                        $"'{tbxAddColumn4.Text}', '{cbTermFor.Text}', '{cbGenus.Text}','{cbCensur.Text}', 0)", Db.connectionString);
                     
                     break;
 
                 case "TblVerbs":
 
                         Db.Command($"INSERT INTO TblVerbs VALUES ('{tbxAddColumn1.Text}', '{tbxAddColumn2.Text}','{tbxAddColumn3.Text}', " +
-                        $"'{tbxAddColumn4.Text}', '{tbxAddColumn5.Text}', {cbRelation.Text},'{cbCensur.Text}', 0)");
+                        $"'{tbxAddColumn4.Text}', '{tbxAddColumn5.Text}', '{cbRelation.Text}','{cbCensur.Text}', 0)", Db.connectionString);
                     
                     break;
 
                 case "TblJokeNames":
-                    Db.Command($"INSERT INTO TblJokeNames VALUES ('{tbxAddColumn1.Text}', '{cbCensur.Text}', 0)");
+                    Db.Command($"INSERT INTO TblJokeNames VALUES ('{tbxAddColumn1.Text}', '{cbCensur.Text}', 0)", Db.connectionString);
                     break;
 
                 case "TblMissions":
-                    Db.Command($"INSERT INTO TblMissions VALUES ('{tbxAddColumn1.Text}', '{cbCensur.Text}', 0)");
+                    Db.Command($"INSERT INTO TblMissions VALUES ('{tbxAddColumn1.Text}', '{cbCensur.Text}', 0)", Db.connectionString);
                     break;
 
                 case "TblNobelPrizes":
-                    Db.Command($"INSERT INTO TblNobelPrizes VALUES ('{tbxAddColumn1.Text}', 0)");
+                    Db.Command($"INSERT INTO TblNobelPrizes VALUES ('{tbxAddColumn1.Text}', 0)", Db.connectionString);
                     break;
 
                 case "TblSavedResults":
-                    Db.Command($"INSERT INTO TblSavedResults VALUES ('{tbxAddColumn1.Text}')");
+                    Db.Command($"INSERT INTO TblSavedResults VALUES ('{tbxAddColumn1.Text}')", Db.connectionString);
                     break;
 
                 case "TblStatus":
-                    Db.Command($"INSERT INTO TblStatus VALUES ('{tbxAddColumn1.Text}', '{tbxAddColumn2.Text}', 0)");
+                    Db.Command($"INSERT INTO TblStatus VALUES ('{tbxAddColumn1.Text}', '{tbxAddColumn2.Text}', 0)", Db.connectionString);
                     break;
             }
             updateInProgress = false;
@@ -519,62 +546,62 @@ namespace Headline_Randomizer
 
         private void btnResetDb_Click(object sender, EventArgs e)
         {
-            Db.DefaultAll();
+            string message = "Vill du återställa databasen till originalinnehållet? Om du klickar ja raderas alla användarens ändringar i databasen.";
+            string title = "Meddelande";
+            MessageBoxButtons buttons = MessageBoxButtons.YesNo;
+            DialogResult result = MessageBox.Show(message, title, buttons);
+            if (result == DialogResult.Yes)
+            {
+                Db.DefaultAll();
+            }
+            else
+            {
+             
+            }
+            
         }
 
-        private void btnOk_Click(object sender, EventArgs e)
+        private void btnSaveToBackup_Click(object sender, EventArgs e)
         {
-            var config = ConfigurationManager.OpenExeConfiguration(ConfigurationUserLevel.None);
-
-            if (cbxChildren.Checked)
+            string message = "Är du säker på att du vill säkerhetskopiera? Om du trycker ja skapas en kopia av hur databasen ser ut nu";
+            string title = "Meddelande";
+            MessageBoxButtons buttons = MessageBoxButtons.YesNo;
+            DialogResult result = MessageBox.Show(message, title, buttons);
+            if (result == DialogResult.Yes)
             {
-                config.AppSettings.Settings["SuitableForChildren"].Value = "1";
+                Db.SaveToBackup();
+                var config = ConfigurationManager.OpenExeConfiguration(ConfigurationUserLevel.None);
+                config.AppSettings.Settings["LoadFromBackup"].Value = "1";
+                config.Save();
+                btnLoadFromBackup.Enabled = true;
             }
             else
             {
-                config.AppSettings.Settings["SuitableForChildren"].Value = "0";
-            }
 
-            if (cbxAdolescents.Checked)
-            {
-                config.AppSettings.Settings["SuitableForAdolescents"].Value = "1";
             }
-            else
-            {
-                config.AppSettings.Settings["SuitableForAdolescents"].Value = "0";
-            }
-
-            if (cbxAdults.Checked)
-            {
-                config.AppSettings.Settings["SuitableForAdults"].Value = "1";
-            }
-            else
-            {
-                config.AppSettings.Settings["SuitableForAdults"].Value = "0";
-            }
-
-            if (cbxUnoffendable.Checked)
-            {
-                config.AppSettings.Settings["SuitableForunoffendable"].Value = "1";
-            }
-            else
-            {
-                config.AppSettings.Settings["SuitableForunoffendable"].Value = "0";
-            }
-
-            config.Save();
-            this.Close();
         }
 
-        private void btnCancel_Click(object sender, EventArgs e)
+        private void btnLoadFromBackup_Click(object sender, EventArgs e)
         {
-            this.Close();
+            string message = "Är du säker på att du vill återställa databasen från din säkerhetskopiering?";
+            string title = "Meddelande";
+            MessageBoxButtons buttons = MessageBoxButtons.YesNo;
+            DialogResult result = MessageBox.Show(message, title, buttons);
+            if (result == DialogResult.Yes)
+            {
+                Db.LoadFromBackup();
+            }
+            else
+            {
+
+            }
+            
         }
 
         private void cbTabell_SelectionChangeCommitted(object sender, EventArgs e)
         {
-            UpdateGridView($"SELECT * FROM {cbTabell.SelectedValue.ToString()}");
             DbDisplay.CurrentCell = DbDisplay.Rows[0].Cells[1];
+            UpdateGridView($"SELECT * FROM {cbTabell.SelectedValue.ToString()}");
             UpdateLables($"{GetQuery()}");
             UpdateUpdateValue();
         }
@@ -591,6 +618,7 @@ namespace Headline_Randomizer
 
         private void cbUpdateValue_TextUpdate(object sender, EventArgs e)
         {
+            // I don't want them to be able to type in a custom value if there are items in the combobox. 
             if (cbUpdateValue.Items.Count > 0)
             {
                 cbUpdateValue.Text = "Välj värde...";
@@ -604,6 +632,68 @@ namespace Headline_Randomizer
             Options options = this;
             Reposition();
         }
+
+        private void cbxChildren_CheckedChanged(object sender, EventArgs e)
+        {
+            var config = ConfigurationManager.OpenExeConfiguration(ConfigurationUserLevel.None);
+
+            if (cbxChildren.Checked)
+            {
+                config.AppSettings.Settings["SuitableForChildren"].Value = "1";
+            }
+            else
+            {
+                config.AppSettings.Settings["SuitableForChildren"].Value = "0";
+            }
+            config.Save();
+        }
+
+        private void cbxAdolescents_CheckedChanged(object sender, EventArgs e)
+        {
+            var config = ConfigurationManager.OpenExeConfiguration(ConfigurationUserLevel.None);
+
+            if (cbxAdolescents.Checked)
+            {
+                config.AppSettings.Settings["SuitableForAdolescents"].Value = "1";
+            }
+            else
+            {
+                config.AppSettings.Settings["SuitableForAdolescents"].Value = "0";
+            }
+            config.Save();
+        }
+
+        private void cbxAdults_CheckedChanged(object sender, EventArgs e)
+        {
+            var config = ConfigurationManager.OpenExeConfiguration(ConfigurationUserLevel.None);
+
+            if (cbxAdults.Checked)
+            {
+                config.AppSettings.Settings["SuitableForAdults"].Value = "1";
+            }
+            else
+            {
+                config.AppSettings.Settings["SuitableForAdults"].Value = "0";
+            }
+            config.Save();
+        }
+
+        private void cbxUnoffendable_CheckedChanged(object sender, EventArgs e)
+        {
+            var config = ConfigurationManager.OpenExeConfiguration(ConfigurationUserLevel.None);
+
+            if (cbxUnoffendable.Checked)
+            {
+                config.AppSettings.Settings["SuitableForunoffendable"].Value = "1";
+            }
+            else
+            {
+                config.AppSettings.Settings["SuitableForunoffendable"].Value = "0";
+            }
+
+            config.Save();
+        }
+
     }
 
     public class Mix
@@ -649,6 +739,11 @@ namespace Headline_Randomizer
             set
             {
                 location = value;
+
+                // When looping through objects it's tedious to have ifstatements to decide
+                // if I can go Combobox.Location or Textbox.Location. If I do what I do here
+                // then I can just go element.Location and this if-statement takes that info and
+                // sets it to the right item. 
                 if (this.name == "text")
                 {
                     this.textBox.Location = location;
@@ -666,6 +761,8 @@ namespace Headline_Randomizer
             this.label = label;
             this.textBox = textBox;
             this.location = location;
+            // Set the location to the textbox. That way I don't have to know whether
+            // it's a textbox or combobox. 
             this.textBox.Location = location;
         }
 
