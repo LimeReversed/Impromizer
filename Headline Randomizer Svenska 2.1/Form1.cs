@@ -736,6 +736,7 @@ namespace Headline_Randomizer
         private void btnRemoveParticipant_Click(object sender, EventArgs e)
         {
             cbParticipants.Items.Remove(cbParticipants.Text);
+            
             lblParticipants.Text = (cbParticipants.Items.Count < 1 ? "Lägg till delttagare" : $"Lägg till deltagare (Antal: {cbParticipants.Items.Count})");
             UpdateConfig();
             RelationChanged();
@@ -1393,17 +1394,24 @@ namespace Headline_Randomizer
 
         private void BtnUndo_Click(object sender, EventArgs e)
         {
-            Db.choicesList.RemoveAt(Db.choicesList.Count - 1);
-            tbxAdded.Text = "";
-            foreach (Custom element in Db.choicesList)
+            if (Db.choicesList.Count < 1)
             {
-                if (element.WordChoice == "Nr" || element.CustomString == true)
+
+            }
+            else
+            {
+                Db.choicesList.RemoveAt(Db.choicesList.Count - 1);
+                tbxAdded.Text = "";
+                foreach (Custom element in Db.choicesList)
                 {
-                    tbxAdded.AppendText($"{(Db.choicesList.IndexOf(element) == 0 ? "" : " + ")}{element.WordChoice}");
-                }
-                else
-                {
-                    tbxAdded.AppendText($"{(Db.choicesList.IndexOf(element) == 0 ? "" : " + ")}{element.WordChoice} ({element.FormChoice})");
+                    if (element.WordChoice == "Nr" || element.CustomString == true)
+                    {
+                        tbxAdded.AppendText($"{(Db.choicesList.IndexOf(element) == 0 ? "" : " + ")}{element.WordChoice}");
+                    }
+                    else
+                    {
+                        tbxAdded.AppendText($"{(Db.choicesList.IndexOf(element) == 0 ? "" : " + ")}{element.WordChoice} ({element.FormChoice})");
+                    }
                 }
             }
         }

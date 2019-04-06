@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Data.SqlClient;
 using System.Configuration;
+using System.IO;
 
 namespace Headline_Randomizer
 {
@@ -278,6 +279,7 @@ namespace Headline_Randomizer
                 numDeleteRow.Maximum = DbDisplay.RowCount;
                 numChangeRow.Maximum = DbDisplay.RowCount;
                 numChangeColumn.Maximum = DbDisplay.ColumnCount;
+                numWriteColumn.Maximum = DbDisplay.ColumnCount;
 
             }
         }
@@ -538,6 +540,7 @@ namespace Headline_Randomizer
                 else
                 {
                     numChangeColumn.Value = DbDisplay.CurrentCell.ColumnIndex;
+                    numWriteColumn.Value = DbDisplay.CurrentCell.ColumnIndex;
                     numChangeRow.Value = DbDisplay.CurrentCell.RowIndex + 1;
                     numDeleteRow.Value = DbDisplay.CurrentCell.RowIndex + 1;
                 }
@@ -694,6 +697,48 @@ namespace Headline_Randomizer
             config.Save();
         }
 
+        private void BtnSaveToTxt_Click(object sender, EventArgs e)
+        {
+            saveFileDialog1.Filter = "Text file (*.txt)|*.txt";
+            saveFileDialog1.ShowDialog();
+            if (saveFileDialog1.FileName == "")
+            {
+
+            }
+            else
+            {
+                StreamWriter writer = new StreamWriter($"{saveFileDialog1.FileName}", false, Encoding.UTF8);
+
+                using (SqlConnection connection = new SqlConnection(Db.connectionString))
+                {
+                    connection.Open();
+                    using (SqlCommand command = new SqlCommand($"SELECT * FROM {cbTabell.SelectedValue}", connection))
+                    {
+                        SqlDataReader reader = command.ExecuteReader();
+
+                        while (reader.Read())
+                        {
+                            writer.WriteLine(reader.GetSqlValue((Int32)numWriteColumn.Value).ToString());
+                        }
+
+                        connection.Close();
+                        reader.Close();
+                        writer.Close();
+
+                    }
+                }
+                MessageBox.Show("Filen sparades");
+            }
+
+                
+      
+
+        }
+
+        private void NumDeleteRow_ValueChanged(object sender, EventArgs e)
+        {
+
+        }
     }
 
     public class Mix

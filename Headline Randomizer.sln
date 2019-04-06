@@ -1,11 +1,9 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 15
-VisualStudioVersion = 15.0.28010.2041
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.28729.10
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Headline Randomizer", "Headline Randomizer\Headline Randomizer.csproj", "{BBF08091-F8C4-4622-87B3-5063546B8DFF}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Headline Randomizer Svenska", "Headline Randomizer Svenska 2\Headline Randomizer Svenska.csproj", "{01CF8460-18F9-485A-BD22-E6E986490E43}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Fix", "Fix\Fix.csproj", "{455A7134-573F-4BA8-B8D5-1749726FA8DC}"
 EndProject
@@ -26,12 +24,6 @@ Global
 		{BBF08091-F8C4-4622-87B3-5063546B8DFF}.New|Any CPU.Build.0 = New|Any CPU
 		{BBF08091-F8C4-4622-87B3-5063546B8DFF}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{BBF08091-F8C4-4622-87B3-5063546B8DFF}.Release|Any CPU.Build.0 = Release|Any CPU
-		{01CF8460-18F9-485A-BD22-E6E986490E43}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{01CF8460-18F9-485A-BD22-E6E986490E43}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{01CF8460-18F9-485A-BD22-E6E986490E43}.New|Any CPU.ActiveCfg = New|Any CPU
-		{01CF8460-18F9-485A-BD22-E6E986490E43}.New|Any CPU.Build.0 = New|Any CPU
-		{01CF8460-18F9-485A-BD22-E6E986490E43}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{01CF8460-18F9-485A-BD22-E6E986490E43}.Release|Any CPU.Build.0 = Release|Any CPU
 		{455A7134-573F-4BA8-B8D5-1749726FA8DC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{455A7134-573F-4BA8-B8D5-1749726FA8DC}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{455A7134-573F-4BA8-B8D5-1749726FA8DC}.New|Any CPU.ActiveCfg = Release|Any CPU
