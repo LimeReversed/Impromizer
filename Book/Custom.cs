@@ -47,6 +47,5 @@ namespace Headline_Randomizer
         public Custom()
         {
         }
-
     }
 }

@@ -36,7 +36,7 @@
             this.btnClear = new System.Windows.Forms.Button();
             this.btnGenerate4 = new System.Windows.Forms.Button();
             this.btnGenerate3 = new System.Windows.Forms.Button();
-            this.BtnGenerate2 = new System.Windows.Forms.Button();
+            this.btnGenerate2 = new System.Windows.Forms.Button();
             this.btnGenerate1 = new System.Windows.Forms.Button();
             this.tabPage2 = new System.Windows.Forms.TabPage();
             this.btnGenerate9 = new System.Windows.Forms.Button();
@@ -44,6 +44,7 @@
             this.btnRensa3 = new System.Windows.Forms.Button();
             this.btnGenerate6 = new System.Windows.Forms.Button();
             this.tabPage8 = new System.Windows.Forms.TabPage();
+            this.btnhide = new System.Windows.Forms.Button();
             this.label5 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.btnClearScene = new System.Windows.Forms.Button();
@@ -60,6 +61,7 @@
             this.btnGenerate8 = new System.Windows.Forms.Button();
             this.btnClear2 = new System.Windows.Forms.Button();
             this.tabPage4 = new System.Windows.Forms.TabPage();
+            this.btnUndo = new System.Windows.Forms.Button();
             this.btnCustomClear = new System.Windows.Forms.Button();
             this.groupBox5 = new System.Windows.Forms.GroupBox();
             this.tbxAdded = new System.Windows.Forms.TextBox();
@@ -86,8 +88,6 @@
             this.settingsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.hjälpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolTip = new System.Windows.Forms.ToolTip(this.components);
-            this.btnhide = new System.Windows.Forms.Button();
-            this.btnUndo = new System.Windows.Forms.Button();
             this.customTabControl1.SuspendLayout();
             this.tabPage3.SuspendLayout();
             this.tabPage2.SuspendLayout();
@@ -146,7 +146,7 @@
             this.tabPage3.Controls.Add(this.btnClear);
             this.tabPage3.Controls.Add(this.btnGenerate4);
             this.tabPage3.Controls.Add(this.btnGenerate3);
-            this.tabPage3.Controls.Add(this.BtnGenerate2);
+            this.tabPage3.Controls.Add(this.btnGenerate2);
             this.tabPage3.Controls.Add(this.btnGenerate1);
             this.tabPage3.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.tabPage3.ForeColor = System.Drawing.Color.White;
@@ -160,7 +160,7 @@
             // btnGenerate5
             // 
             this.btnGenerate5.BackColor = System.Drawing.SystemColors.Highlight;
-            this.btnGenerate5.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("btnGenerate5.BackgroundImage")));
+            this.btnGenerate5.BackgroundImage = global::Headline_Randomizer.Properties.Resources.Nobelpris2;
             this.btnGenerate5.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
             this.btnGenerate5.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnGenerate5.FlatAppearance.BorderColor = System.Drawing.Color.White;
@@ -173,7 +173,7 @@
             this.btnGenerate5.Size = new System.Drawing.Size(303, 98);
             this.btnGenerate5.TabIndex = 11;
             this.btnGenerate5.TabStop = false;
-            this.btnGenerate5.Text = "&Nobel Pris __";
+            this.btnGenerate5.Text = "&__ vann Nobel Priset __";
             this.btnGenerate5.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
             this.btnGenerate5.UseVisualStyleBackColor = false;
             this.btnGenerate5.Click += new System.EventHandler(this.btnGenerate5_Click);
@@ -183,7 +183,8 @@
             // btnClear
             // 
             this.btnClear.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.btnClear.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
+            this.btnClear.BackgroundImage = global::Headline_Randomizer.Properties.Resources.buttongrey3;
+            this.btnClear.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.btnClear.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnClear.FlatAppearance.BorderColor = System.Drawing.Color.White;
             this.btnClear.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
@@ -191,31 +192,33 @@
             this.btnClear.ForeColor = System.Drawing.Color.White;
             this.btnClear.ImageAlign = System.Drawing.ContentAlignment.TopLeft;
             this.btnClear.ImageKey = "(none)";
-            this.btnClear.Location = new System.Drawing.Point(303, 195);
+            this.btnClear.Location = new System.Drawing.Point(303, 194);
             this.btnClear.Name = "btnClear";
-            this.btnClear.Size = new System.Drawing.Size(307, 99);
+            this.btnClear.Size = new System.Drawing.Size(303, 99);
             this.btnClear.TabIndex = 0;
             this.btnClear.Text = "Rensa";
             this.btnClear.UseVisualStyleBackColor = false;
             this.btnClear.Click += new System.EventHandler(this.btnClear_Click);
+            this.btnClear.MouseDown += new System.Windows.Forms.MouseEventHandler(this.BtnClear_MouseDown);
+            this.btnClear.MouseUp += new System.Windows.Forms.MouseEventHandler(this.BtnClear_MouseUp);
             // 
             // btnGenerate4
             // 
             this.btnGenerate4.BackColor = System.Drawing.SystemColors.Highlight;
-            this.btnGenerate4.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("btnGenerate4.BackgroundImage")));
+            this.btnGenerate4.BackgroundImage = global::Headline_Randomizer.Properties.Resources.behövermer1;
             this.btnGenerate4.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
             this.btnGenerate4.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnGenerate4.FlatAppearance.BorderColor = System.Drawing.Color.White;
             this.btnGenerate4.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnGenerate4.Font = new System.Drawing.Font("Calibri", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnGenerate4.ForeColor = System.Drawing.Color.White;
-            this.btnGenerate4.Location = new System.Drawing.Point(303, 98);
+            this.btnGenerate4.Location = new System.Drawing.Point(0, 0);
             this.btnGenerate4.Name = "btnGenerate4";
             this.btnGenerate4.Padding = new System.Windows.Forms.Padding(0, 0, 0, 10);
             this.btnGenerate4.Size = new System.Drawing.Size(303, 98);
             this.btnGenerate4.TabIndex = 10;
             this.btnGenerate4.TabStop = false;
-            this.btnGenerate4.Text = "&2 adjektiv ___";
+            this.btnGenerate4.Text = "&__ behöver mer __";
             this.btnGenerate4.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
             this.btnGenerate4.UseVisualStyleBackColor = false;
             this.btnGenerate4.Click += new System.EventHandler(this.btnGenerate4_Click);
@@ -225,7 +228,7 @@
             // btnGenerate3
             // 
             this.btnGenerate3.BackColor = System.Drawing.SystemColors.Highlight;
-            this.btnGenerate3.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("btnGenerate3.BackgroundImage")));
+            this.btnGenerate3.BackgroundImage = global::Headline_Randomizer.Properties.Resources.tror_att___1;
             this.btnGenerate3.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
             this.btnGenerate3.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnGenerate3.FlatAppearance.BorderColor = System.Drawing.Color.White;
@@ -238,40 +241,40 @@
             this.btnGenerate3.Size = new System.Drawing.Size(303, 98);
             this.btnGenerate3.TabIndex = 9;
             this.btnGenerate3.TabStop = false;
-            this.btnGenerate3.Text = "___ &tror att ___";
+            this.btnGenerate3.Text = "__ &tror att __";
             this.btnGenerate3.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
             this.btnGenerate3.UseVisualStyleBackColor = false;
             this.btnGenerate3.Click += new System.EventHandler(this.btnGenerate3_Click);
             this.btnGenerate3.MouseDown += new System.Windows.Forms.MouseEventHandler(this.btnGenerate3_MouseDown);
             this.btnGenerate3.MouseUp += new System.Windows.Forms.MouseEventHandler(this.btnGenerate3_MouseUp);
             // 
-            // BtnGenerate2
+            // btnGenerate2
             // 
-            this.BtnGenerate2.BackColor = System.Drawing.SystemColors.Highlight;
-            this.BtnGenerate2.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("BtnGenerate2.BackgroundImage")));
-            this.BtnGenerate2.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.BtnGenerate2.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.BtnGenerate2.FlatAppearance.BorderColor = System.Drawing.Color.White;
-            this.BtnGenerate2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.BtnGenerate2.Font = new System.Drawing.Font("Calibri", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.BtnGenerate2.ForeColor = System.Drawing.Color.White;
-            this.BtnGenerate2.Location = new System.Drawing.Point(303, 0);
-            this.BtnGenerate2.Name = "BtnGenerate2";
-            this.BtnGenerate2.Padding = new System.Windows.Forms.Padding(0, 0, 0, 10);
-            this.BtnGenerate2.Size = new System.Drawing.Size(303, 98);
-            this.BtnGenerate2.TabIndex = 8;
-            this.BtnGenerate2.TabStop = false;
-            this.BtnGenerate2.Text = "__substantiv adjektiv";
-            this.BtnGenerate2.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
-            this.BtnGenerate2.UseVisualStyleBackColor = false;
-            this.BtnGenerate2.Click += new System.EventHandler(this.BtnGenerate2_Click);
-            this.BtnGenerate2.MouseDown += new System.Windows.Forms.MouseEventHandler(this.btnGenerate2_MouseDown);
-            this.BtnGenerate2.MouseUp += new System.Windows.Forms.MouseEventHandler(this.btnGenerate2_MouseUp);
+            this.btnGenerate2.BackColor = System.Drawing.SystemColors.Highlight;
+            this.btnGenerate2.BackgroundImage = global::Headline_Randomizer.Properties.Resources.news;
+            this.btnGenerate2.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.btnGenerate2.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnGenerate2.FlatAppearance.BorderColor = System.Drawing.Color.White;
+            this.btnGenerate2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnGenerate2.Font = new System.Drawing.Font("Calibri", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnGenerate2.ForeColor = System.Drawing.Color.White;
+            this.btnGenerate2.Location = new System.Drawing.Point(303, 98);
+            this.btnGenerate2.Name = "btnGenerate2";
+            this.btnGenerate2.Padding = new System.Windows.Forms.Padding(0, 0, 0, 10);
+            this.btnGenerate2.Size = new System.Drawing.Size(303, 98);
+            this.btnGenerate2.TabIndex = 8;
+            this.btnGenerate2.TabStop = false;
+            this.btnGenerate2.Text = "__ __ __ __";
+            this.btnGenerate2.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
+            this.btnGenerate2.UseVisualStyleBackColor = false;
+            this.btnGenerate2.Click += new System.EventHandler(this.BtnGenerate2_Click);
+            this.btnGenerate2.MouseDown += new System.Windows.Forms.MouseEventHandler(this.btnGenerate2_MouseDown);
+            this.btnGenerate2.MouseUp += new System.Windows.Forms.MouseEventHandler(this.btnGenerate2_MouseUp);
             // 
             // btnGenerate1
             // 
             this.btnGenerate1.BackColor = System.Drawing.SystemColors.WindowFrame;
-            this.btnGenerate1.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("btnGenerate1.BackgroundImage")));
+            this.btnGenerate1.BackgroundImage = global::Headline_Randomizer.Properties.Resources._3_av_51;
             this.btnGenerate1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
             this.btnGenerate1.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnGenerate1.FlatAppearance.BorderColor = System.Drawing.Color.White;
@@ -279,7 +282,7 @@
             this.btnGenerate1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnGenerate1.Font = new System.Drawing.Font("Calibri", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnGenerate1.ForeColor = System.Drawing.Color.White;
-            this.btnGenerate1.Location = new System.Drawing.Point(0, 0);
+            this.btnGenerate1.Location = new System.Drawing.Point(303, 0);
             this.btnGenerate1.Name = "btnGenerate1";
             this.btnGenerate1.Padding = new System.Windows.Forms.Padding(0, 0, 0, 10);
             this.btnGenerate1.Size = new System.Drawing.Size(303, 98);
@@ -308,7 +311,7 @@
             // btnGenerate9
             // 
             this.btnGenerate9.BackColor = System.Drawing.SystemColors.WindowFrame;
-            this.btnGenerate9.BackgroundImage = global::Headline_Randomizer.Properties.Resources.husmorbuttonbig;
+            this.btnGenerate9.BackgroundImage = global::Headline_Randomizer.Properties.Resources.Husmorstips4;
             this.btnGenerate9.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.btnGenerate9.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnGenerate9.FlatAppearance.BorderColor = System.Drawing.Color.White;
@@ -332,7 +335,7 @@
             // btnGenerate7
             // 
             this.btnGenerate7.BackColor = System.Drawing.SystemColors.WindowFrame;
-            this.btnGenerate7.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("btnGenerate7.BackgroundImage")));
+            this.btnGenerate7.BackgroundImage = global::Headline_Randomizer.Properties.Resources.Happinessis4;
             this.btnGenerate7.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.btnGenerate7.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnGenerate7.FlatAppearance.BorderColor = System.Drawing.Color.White;
@@ -356,7 +359,8 @@
             // btnRensa3
             // 
             this.btnRensa3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.btnRensa3.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
+            this.btnRensa3.BackgroundImage = global::Headline_Randomizer.Properties.Resources.buttongrey3;
+            this.btnRensa3.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.btnRensa3.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnRensa3.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnRensa3.Font = new System.Drawing.Font("Calibri", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -370,11 +374,13 @@
             this.btnRensa3.Text = "Rensa";
             this.btnRensa3.UseVisualStyleBackColor = false;
             this.btnRensa3.Click += new System.EventHandler(this.btnRensa3_Click);
+            this.btnRensa3.MouseDown += new System.Windows.Forms.MouseEventHandler(this.BtnRensa3_MouseDown);
+            this.btnRensa3.MouseUp += new System.Windows.Forms.MouseEventHandler(this.BtnRensa3_MouseUp);
             // 
             // btnGenerate6
             // 
             this.btnGenerate6.BackColor = System.Drawing.SystemColors.WindowFrame;
-            this.btnGenerate6.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("btnGenerate6.BackgroundImage")));
+            this.btnGenerate6.BackgroundImage = global::Headline_Randomizer.Properties.Resources.Rememberred;
             this.btnGenerate6.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.btnGenerate6.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnGenerate6.FlatAppearance.BorderColor = System.Drawing.Color.White;
@@ -418,6 +424,25 @@
             this.tabPage8.Size = new System.Drawing.Size(606, 292);
             this.tabPage8.TabIndex = 9;
             this.tabPage8.Text = "Scen";
+            // 
+            // btnhide
+            // 
+            this.btnhide.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.btnhide.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
+            this.btnhide.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnhide.FlatAppearance.BorderColor = System.Drawing.Color.White;
+            this.btnhide.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnhide.Font = new System.Drawing.Font("Calibri", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnhide.ForeColor = System.Drawing.Color.White;
+            this.btnhide.ImageAlign = System.Drawing.ContentAlignment.TopLeft;
+            this.btnhide.ImageKey = "(none)";
+            this.btnhide.Location = new System.Drawing.Point(336, 241);
+            this.btnhide.Name = "btnhide";
+            this.btnhide.Size = new System.Drawing.Size(115, 37);
+            this.btnhide.TabIndex = 71;
+            this.btnhide.Text = "Dölj text";
+            this.btnhide.UseVisualStyleBackColor = false;
+            this.btnhide.Click += new System.EventHandler(this.Btnhide_Click);
             // 
             // label5
             // 
@@ -531,7 +556,7 @@
             // btnGenerateMission
             // 
             this.btnGenerateMission.BackColor = System.Drawing.SystemColors.WindowFrame;
-            this.btnGenerateMission.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("btnGenerateMission.BackgroundImage")));
+            this.btnGenerateMission.BackgroundImage = global::Headline_Randomizer.Properties.Resources.mission;
             this.btnGenerateMission.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.btnGenerateMission.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnGenerateMission.FlatAppearance.BorderColor = System.Drawing.Color.White;
@@ -549,11 +574,13 @@
             this.btnGenerateMission.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
             this.btnGenerateMission.UseVisualStyleBackColor = false;
             this.btnGenerateMission.Click += new System.EventHandler(this.btnGenerateMission_Click);
+            this.btnGenerateMission.MouseDown += new System.Windows.Forms.MouseEventHandler(this.BtnGenerateMission_MouseDown);
+            this.btnGenerateMission.MouseUp += new System.Windows.Forms.MouseEventHandler(this.BtnGenerateMission_MouseUp);
             // 
             // btnGenerateLocation
             // 
             this.btnGenerateLocation.BackColor = System.Drawing.SystemColors.WindowFrame;
-            this.btnGenerateLocation.BackgroundImage = global::Headline_Randomizer.Properties.Resources.locationbuttonbig;
+            this.btnGenerateLocation.BackgroundImage = global::Headline_Randomizer.Properties.Resources.plats1;
             this.btnGenerateLocation.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.btnGenerateLocation.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnGenerateLocation.FlatAppearance.BorderColor = System.Drawing.Color.White;
@@ -571,11 +598,13 @@
             this.btnGenerateLocation.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
             this.btnGenerateLocation.UseVisualStyleBackColor = false;
             this.btnGenerateLocation.Click += new System.EventHandler(this.btnGenerateLocation_Click);
+            this.btnGenerateLocation.MouseDown += new System.Windows.Forms.MouseEventHandler(this.BtnGenerateLocation_MouseDown);
+            this.btnGenerateLocation.MouseUp += new System.Windows.Forms.MouseEventHandler(this.BtnGenerateLocation_MouseUp);
             // 
             // btnGenerateRelation
             // 
             this.btnGenerateRelation.BackColor = System.Drawing.SystemColors.WindowFrame;
-            this.btnGenerateRelation.BackgroundImage = global::Headline_Randomizer.Properties.Resources.relationbutton_lång4;
+            this.btnGenerateRelation.BackgroundImage = global::Headline_Randomizer.Properties.Resources.hearts;
             this.btnGenerateRelation.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnGenerateRelation.FlatAppearance.BorderColor = System.Drawing.Color.White;
             this.btnGenerateRelation.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
@@ -592,6 +621,8 @@
             this.btnGenerateRelation.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
             this.btnGenerateRelation.UseVisualStyleBackColor = false;
             this.btnGenerateRelation.Click += new System.EventHandler(this.btnGenerateRelation_Click);
+            this.btnGenerateRelation.MouseDown += new System.Windows.Forms.MouseEventHandler(this.BtnGenerateRelation_MouseDown);
+            this.btnGenerateRelation.MouseUp += new System.Windows.Forms.MouseEventHandler(this.BtnGenerateRelation_MouseUp);
             // 
             // tabPage1
             // 
@@ -608,7 +639,7 @@
             // btnGenerate8
             // 
             this.btnGenerate8.BackColor = System.Drawing.SystemColors.WindowFrame;
-            this.btnGenerate8.BackgroundImage = global::Headline_Randomizer.Properties.Resources.tiredofbig_image;
+            this.btnGenerate8.BackgroundImage = global::Headline_Randomizer.Properties.Resources.promotion;
             this.btnGenerate8.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.btnGenerate8.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnGenerate8.FlatAppearance.BorderColor = System.Drawing.Color.White;
@@ -632,7 +663,7 @@
             // btnClear2
             // 
             this.btnClear2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.btnClear2.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("btnClear2.BackgroundImage")));
+            this.btnClear2.BackgroundImage = global::Headline_Randomizer.Properties.Resources.buttongrey3;
             this.btnClear2.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.btnClear2.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnClear2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
@@ -647,6 +678,8 @@
             this.btnClear2.Text = "Rensa";
             this.btnClear2.UseVisualStyleBackColor = false;
             this.btnClear2.Click += new System.EventHandler(this.btnClear2_Click);
+            this.btnClear2.MouseDown += new System.Windows.Forms.MouseEventHandler(this.BtnClear2_MouseDown);
+            this.btnClear2.MouseUp += new System.Windows.Forms.MouseEventHandler(this.BtnClear2_MouseUp);
             // 
             // tabPage4
             // 
@@ -667,13 +700,27 @@
             this.tabPage4.TabIndex = 1;
             this.tabPage4.Text = "Egen mening";
             // 
+            // btnUndo
+            // 
+            this.btnUndo.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+            this.btnUndo.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnUndo.Font = new System.Drawing.Font("Calibri", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnUndo.ForeColor = System.Drawing.Color.White;
+            this.btnUndo.Location = new System.Drawing.Point(474, 130);
+            this.btnUndo.Name = "btnUndo";
+            this.btnUndo.Size = new System.Drawing.Size(99, 42);
+            this.btnUndo.TabIndex = 14;
+            this.btnUndo.Text = "Ångra tillägg";
+            this.btnUndo.UseVisualStyleBackColor = true;
+            this.btnUndo.Click += new System.EventHandler(this.BtnUndo_Click);
+            // 
             // btnCustomClear
             // 
             this.btnCustomClear.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
             this.btnCustomClear.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnCustomClear.Font = new System.Drawing.Font("Calibri", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnCustomClear.ForeColor = System.Drawing.Color.White;
-            this.btnCustomClear.Location = new System.Drawing.Point(475, 181);
+            this.btnCustomClear.Location = new System.Drawing.Point(475, 180);
             this.btnCustomClear.Name = "btnCustomClear";
             this.btnCustomClear.Size = new System.Drawing.Size(99, 42);
             this.btnCustomClear.TabIndex = 13;
@@ -706,16 +753,17 @@
             // btnGenerate
             // 
             this.btnGenerate.BackColor = System.Drawing.SystemColors.HotTrack;
+            this.btnGenerate.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
             this.btnGenerate.FlatAppearance.BorderColor = System.Drawing.Color.White;
             this.btnGenerate.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnGenerate.Font = new System.Drawing.Font("Calibri", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnGenerate.ForeColor = System.Drawing.Color.White;
-            this.btnGenerate.Location = new System.Drawing.Point(475, 231);
+            this.btnGenerate.Location = new System.Drawing.Point(475, 230);
             this.btnGenerate.Name = "btnGenerate";
             this.btnGenerate.Size = new System.Drawing.Size(99, 42);
             this.btnGenerate.TabIndex = 10;
             this.btnGenerate.Text = "Generera";
-            this.btnGenerate.UseVisualStyleBackColor = false;
+            this.btnGenerate.UseVisualStyleBackColor = true;
             this.btnGenerate.Click += new System.EventHandler(this.btnGenerate_Click);
             // 
             // groupBox6
@@ -1000,39 +1048,6 @@
             this.toolTip.InitialDelay = 500;
             this.toolTip.ReshowDelay = 100;
             // 
-            // btnhide
-            // 
-            this.btnhide.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.btnhide.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
-            this.btnhide.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnhide.FlatAppearance.BorderColor = System.Drawing.Color.White;
-            this.btnhide.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnhide.Font = new System.Drawing.Font("Calibri", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnhide.ForeColor = System.Drawing.Color.White;
-            this.btnhide.ImageAlign = System.Drawing.ContentAlignment.TopLeft;
-            this.btnhide.ImageKey = "(none)";
-            this.btnhide.Location = new System.Drawing.Point(336, 241);
-            this.btnhide.Name = "btnhide";
-            this.btnhide.Size = new System.Drawing.Size(115, 37);
-            this.btnhide.TabIndex = 71;
-            this.btnhide.Text = "Dölj text";
-            this.btnhide.UseVisualStyleBackColor = false;
-            this.btnhide.Click += new System.EventHandler(this.Btnhide_Click);
-            // 
-            // btnUndo
-            // 
-            this.btnUndo.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
-            this.btnUndo.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnUndo.Font = new System.Drawing.Font("Calibri", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnUndo.ForeColor = System.Drawing.Color.White;
-            this.btnUndo.Location = new System.Drawing.Point(474, 130);
-            this.btnUndo.Name = "btnUndo";
-            this.btnUndo.Size = new System.Drawing.Size(99, 42);
-            this.btnUndo.TabIndex = 14;
-            this.btnUndo.Text = "Ångra tillägg";
-            this.btnUndo.UseVisualStyleBackColor = true;
-            this.btnUndo.Click += new System.EventHandler(this.BtnUndo_Click);
-            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -1082,7 +1097,7 @@
         private System.Windows.Forms.Button btnGenerate5;
         private System.Windows.Forms.Button btnGenerate4;
         private System.Windows.Forms.Button btnGenerate3;
-        private System.Windows.Forms.Button BtnGenerate2;
+        private System.Windows.Forms.Button btnGenerate2;
         private System.Windows.Forms.Button btnGenerate1;
         private System.Windows.Forms.GroupBox groupBox5;
         private System.Windows.Forms.TextBox tbxAdded;

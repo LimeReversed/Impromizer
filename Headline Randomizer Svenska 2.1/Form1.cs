@@ -54,6 +54,7 @@ namespace Headline_Randomizer
 
             presentationWindow.Show();
 
+            Words.FreeNeeded(1000);
         }
 
 
@@ -63,143 +64,154 @@ namespace Headline_Randomizer
         #region
         private void btnGenerate1_MouseDown(object sender, MouseEventArgs e)
         {
-            btnGenerate1.BackgroundImage = Properties.Resources._3outof5button_image;
+            btnGenerate1.Font = new Font("Calibri", 14F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
         }
 
         private void btnGenerate1_MouseUp(object sender, MouseEventArgs e)
         {
-            btnGenerate1.BackgroundImage = Properties.Resources._3outof5buttonhover_image;
+            btnGenerate1.Font = new Font("Calibri", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
         }
 
         private void btnGenerate2_MouseDown(object sender, MouseEventArgs e)
         {
-            BtnGenerate2.BackgroundImage = Properties.Resources.newsbutton_image;
+            btnGenerate2.Font = new Font("Calibri", 14F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
         }
 
         private void btnGenerate2_MouseUp(object sender, MouseEventArgs e)
         {
-            BtnGenerate2.BackgroundImage = Properties.Resources.newsbuttonbig_image;
+            btnGenerate2.Font = new Font("Calibri", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
         }
 
         private void btnGenerate3_MouseDown(object sender, MouseEventArgs e)
         {
-            btnGenerate3.BackgroundImage = global::Headline_Randomizer.Properties.Resources.thinksbutton_image;
+            btnGenerate3.Font = new Font("Calibri", 14F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
         }
 
         private void btnGenerate3_MouseUp(object sender, MouseEventArgs e)
         {
-            btnGenerate3.BackgroundImage = global::Headline_Randomizer.Properties.Resources.thinksbuttonbig_image;
+            btnGenerate3.Font = new Font("Calibri", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
         }
 
         private void btnGenerate4_MouseDown(object sender, MouseEventArgs e)
         {
-            btnGenerate4.BackgroundImage = global::Headline_Randomizer.Properties.Resources.adjectivesbutton_image;
+            btnGenerate4.Font = new Font("Calibri", 14F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
         }
 
         private void btnGenerate4_MouseUp(object sender, MouseEventArgs e)
         {
-            btnGenerate4.BackgroundImage = global::Headline_Randomizer.Properties.Resources.adjectivesbuttonbig_image;
+            btnGenerate4.Font = new Font("Calibri", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
         }
 
         private void btnGenerate5_MouseDown(object sender, MouseEventArgs e)
         {
-            btnGenerate5.BackgroundImage = global::Headline_Randomizer.Properties.Resources.Nobelbutton_image;
+            btnGenerate5.Font = new Font("Calibri", 14F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
         }
 
         private void btnGenerate5_MouseUp(object sender, MouseEventArgs e)
         {
-            btnGenerate5.BackgroundImage = global::Headline_Randomizer.Properties.Resources.Nobelbuttonbig_image;
+            btnGenerate5.Font = new Font("Calibri", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
         }
 
         private void Generate6_MouseDown(object sender, MouseEventArgs e)
         {
-            btnGenerate6.BackgroundImage = global::Headline_Randomizer.Properties.Resources.Remembersmall_image;
+            btnGenerate6.Font = new Font("Calibri", 14F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
         }
 
         private void Generate6_MouseUp(object sender, MouseEventArgs e)
         {
-            btnGenerate6.BackgroundImage = global::Headline_Randomizer.Properties.Resources.Rememberbig_image;
+            btnGenerate6.Font = new Font("Calibri", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
         }
 
         private void Generate7_MouseDown(object sender, MouseEventArgs e)
         {
-            btnGenerate7.BackgroundImage = global::Headline_Randomizer.Properties.Resources.Happinesssmall;
+            btnGenerate7.Font = new Font("Calibri", 14F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
         }
 
         private void Generate7_MouseUp(object sender, MouseEventArgs e)
         {
-            btnGenerate7.BackgroundImage = global::Headline_Randomizer.Properties.Resources.Happinessbig;
+            btnGenerate7.Font = new Font("Calibri", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
         }
 
         private void Generate8_MouseDown(object sender, MouseEventArgs e)
         {
-            btnGenerate8.BackgroundImage = global::Headline_Randomizer.Properties.Resources.tiredofsmall_image;
+            btnGenerate8.Font = new Font("Calibri", 14F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
         }
 
         private void Generate8_MouseUp(object sender, MouseEventArgs e)
         {
-            btnGenerate8.BackgroundImage = global::Headline_Randomizer.Properties.Resources.tiredofbig_image;
+            btnGenerate8.Font = new Font("Calibri", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
         }
 
         private void Generate9_MouseDown(object sender, MouseEventArgs e)
         {
-            btnGenerate9.BackgroundImage = global::Headline_Randomizer.Properties.Resources.husmorbuttonsmall;
+            btnGenerate9.Font = new Font("Calibri", 14F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
         }
 
         private void Generate9_MouseUp(object sender, MouseEventArgs e)
         {
-            btnGenerate9.BackgroundImage = global::Headline_Randomizer.Properties.Resources.husmorbuttonbig;
+            btnGenerate9.Font = new Font("Calibri", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
         }
 
-        //private void btnGenerate10_MouseDown(object sender, MouseEventArgs e)
-        //{
-        //    btnGenerate10.BackgroundImage = global::Headline_Randomizer.Properties.Resources.locationbuttonsmall;
-        //}
+        private void BtnGenerateRelation_MouseDown(object sender, MouseEventArgs e)
+        {
+            btnGenerateRelation.Font = new Font("Calibri", 14F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+        }
 
-        //private void btnGenerate10_MouseUp(object sender, MouseEventArgs e)
-        //{
-        //    btnGenerate10.BackgroundImage = global::Headline_Randomizer.Properties.Resources.locationbuttonbig;
-        //}
+        private void BtnGenerateRelation_MouseUp(object sender, MouseEventArgs e)
+        {
+            btnGenerateRelation.Font = new Font("Calibri", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+        }
 
-        //private void btnGenerate11_MouseUp(object sender, MouseEventArgs e)
-        //{
-        //    btnGenerate11.BackgroundImage = global::Headline_Randomizer.Properties.Resources.relationbutton_lång4;
-        //}
+        private void BtnGenerateMission_MouseDown(object sender, MouseEventArgs e)
+        {
+            btnGenerateMission.Font = new Font("Calibri", 14F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+        }
 
-        //private void btnGenerate11_MouseDown(object sender, MouseEventArgs e)
-        //{
-        //    btnGenerate11.BackgroundImage = global::Headline_Randomizer.Properties.Resources.relationbutton_lång_small;
-        //}
+        private void BtnGenerateMission_MouseUp(object sender, MouseEventArgs e)
+        {
+            btnGenerateMission.Font = new Font("Calibri", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+        }
 
-        //private void btnGenerate12_MouseDown(object sender, MouseEventArgs e)
-        //{
-        //    btnGenerate12.BackgroundImage = global::Headline_Randomizer.Properties.Resources.protipsmall;
-        //}
+        private void BtnGenerateLocation_MouseDown(object sender, MouseEventArgs e)
+        {
+            btnGenerateLocation.Font = new Font("Calibri", 14F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+        }
 
-        //private void btnGenerate12_MouseUp(object sender, MouseEventArgs e)
-        //{
-        //    btnGenerate12.BackgroundImage = global::Headline_Randomizer.Properties.Resources.protipbig;
-        //}
+        private void BtnGenerateLocation_MouseUp(object sender, MouseEventArgs e)
+        {
+            btnGenerateLocation.Font = new Font("Calibri", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+        }
 
-        //private void RelationRight_MounseDown(object sender, MouseEventArgs e)
-        //{
-        //    btnRelationRight.BackgroundImage = global::Headline_Randomizer.Properties.Resources.relationarrowright_small;
-        //}
+        private void BtnClear_MouseDown(object sender, MouseEventArgs e)
+        {
+            btnClear.Font = new Font("Calibri", 14F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+        }
 
-        //private void RelationRight_MounseUp(object sender, MouseEventArgs e)
-        //{
-        //    btnRelationRight.BackgroundImage = global::Headline_Randomizer.Properties.Resources.relationarrowright;
-        //}
+        private void BtnClear_MouseUp(object sender, MouseEventArgs e)
+        {
+            btnClear.Font = new Font("Calibri", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+        }
 
-        //private void RelationLeft_MounseDown(object sender, MouseEventArgs e)
-        //{
-        //    btnRelationLeft.BackgroundImage = global::Headline_Randomizer.Properties.Resources.relationarrowleft_small;
-        //}
+        private void BtnRensa3_MouseDown(object sender, MouseEventArgs e)
+        {
+            btnRensa3.Font = new Font("Calibri", 14F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+        }
 
-        //private void RelationLeft_MounseUp(object sender, MouseEventArgs e)
-        //{
-        //    btnRelationLeft.BackgroundImage = global::Headline_Randomizer.Properties.Resources.relationarrowleft;
-        //}
+        private void BtnRensa3_MouseUp(object sender, MouseEventArgs e)
+        {
+            btnRensa3.Font = new Font("Calibri", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+        }
+
+        private void BtnClear2_MouseUp(object sender, MouseEventArgs e)
+        {
+            btnClear2.Font = new Font("Calibri", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+        }
+
+        private void BtnClear2_MouseDown(object sender, MouseEventArgs e)
+        {
+            btnClear2.Font = new Font("Calibri", 14F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+        }
+
         #endregion
 
         // 
@@ -212,7 +224,7 @@ namespace Headline_Randomizer
             int someoneId = Words.someone.RandomizeId();
             int adjectiveId = Words.adjective.RandomizeId();
             int nr2 = r.Next(1, 11);
-            int nr1 = r.Next(1, (nr2 + 2));
+            int nr1 = r.Next(1, (nr2 + 1));
 
             presentationWindow.tbxResult.Text = $"{nr1} av {nr2} tycker att {Words.noun.Plural(someoneId)} är {Words.adjective.Plural(adjectiveId)}";
 
@@ -291,21 +303,11 @@ namespace Headline_Randomizer
         {
             presentationWindow.tbxResult.Text = "";
             int someoneNr = Words.someone.RandomizeId();
-            int adjectiveNr = Words.adjective.RandomizeId();
+            int somethingNr = Words.something.RandomizeId();
 
-            presentationWindow.tbxResult.AppendText($"{FixText.FirstLetterUpper(Words.adjective.Plural(adjectiveNr))} {Words.noun.Plural(someoneNr)} ");
-            Words.adjective.Used(adjectiveNr);
+            presentationWindow.tbxResult.AppendText($"{FixText.FirstLetterUpper(Words.noun.Plural(someoneNr))} behöver mer {Words.noun.Plural(somethingNr)}");
+            Words.noun.Used(somethingNr);
             Words.noun.Used(someoneNr);
-
-            int someoneNr2 = Words.someone.RandomizeId();
-            int adjectiveNr2 = Words.adjective.RandomizeId();
-            int verbNr = Words.verb.RandomizeId();
-
-            presentationWindow.tbxResult.AppendText($"{Words.verb.Presens(verbNr)}{Words.verb.Preposition(verbNr)}{Words.adjective.Plural(adjectiveNr2)} {Words.noun.Plural(someoneNr2)}");
-
-            Words.adjective.Used(adjectiveNr2);
-            Words.noun.Used(someoneNr2);
-            Words.verb.Used(verbNr);
 
             EndingRitual(2, presentationWindow.tbxResult, ref position);
         }
@@ -449,7 +451,8 @@ namespace Headline_Randomizer
                         presentationWindow.tbxResult.Text = $"{cbParticipants.Items[0].ToString()} är {Words.adjective.NGenus(relationNr)}{Words.adjective.Preposition(relationNr)}sig själv";
 
                         Words.adjective.Used(relationNr);
-                        EndingRitual(3, presentationWindow.tbxResult, ref position);
+                        Words.FreeNeededRelations(1);
+                        EndingRitual(1, presentationWindow.tbxResult, ref position);
                     }
 
                     // Slant 1 because I also want to incorporate the verbs that show an emotion. 
@@ -462,7 +465,8 @@ namespace Headline_Randomizer
                         presentationWindow.tbxResult.Text = $"{cbParticipants.Items[0].ToString()} {Words.verb.Presens(relationNr)}{Words.verb.Preposition(relationNr)}sig själv";
 
                         Words.verb.Used(relationNr);
-                        EndingRitual(3, presentationWindow.tbxResult, ref position);
+                        Words.FreeNeededRelations(1);
+                        EndingRitual(1, presentationWindow.tbxResult, ref position);
                     }
 
                     // If relationbutton has been pressed then show the relationships of the next person in
@@ -522,7 +526,7 @@ namespace Headline_Randomizer
 
                                 }
                                 slant = r.Next(0, 2);
-                                Words.FreeNeeded(2);
+                                Words.FreeNeededRelations(2);
                             }
                             builder.Remove(builder.Length - 2, 2);
                             relationList.Add(builder.ToString());
@@ -531,7 +535,7 @@ namespace Headline_Randomizer
                         }
                         relationPressed = true;
                         pressAmount++;
-                        EndingRitual(3, presentationWindow.tbxResult, ref position);
+                        EndingRitual(2, presentationWindow.tbxResult, ref position);
                         btnGenerateRelation.Text = $"Relation \r\n (Visa {cbParticipants.Items[pressAmount]})";
                     }
                     else
@@ -557,6 +561,7 @@ namespace Headline_Randomizer
 
                         Words.status.Used(statusId);
 
+                        Words.FreeNeededRelations(1);
                         EndingRitual(2, presentationWindow.tbxResult, ref position);
                     }
 
@@ -582,7 +587,7 @@ namespace Headline_Randomizer
                             btnGenerateRelation.Padding = new System.Windows.Forms.Padding(0, 0, 0, 10);
                             btnGenerateRelation.Text = $"Relation \r\n (Tryck på rensa)";
                         }
-
+                        Words.FreeNeededRelations(2);
                         EndingRitual(2, presentationWindow.tbxResult, ref position);
                     }
 
@@ -990,7 +995,7 @@ namespace Headline_Randomizer
             tbxAdded.Text = "";
             foreach (Custom element in Db.choicesList)
             {
-                if (element.WordChoice == "Nr" || element.CustomString == true)
+                if (element.WordChoice == "Nr" || element.WordChoice == "Skämtnamn" || element.CustomString == true)
                 {
                     tbxAdded.AppendText($"{(Db.choicesList.IndexOf(element) == 0 ? "" : " + ")}{element.WordChoice}");
                 }
@@ -1023,7 +1028,7 @@ namespace Headline_Randomizer
             tbxAdded.Text = "";
             foreach (Custom element in Db.choicesList)
             {
-                if (element.WordChoice == "Nr" || element.CustomString == true)
+                if (element.WordChoice == "Nr" || element.WordChoice == "Skämtnamn" || element.CustomString == true)
                 {
                     tbxAdded.AppendText($"{(Db.choicesList.IndexOf(element) == 0 ? "" : " + ")}{element.WordChoice}");
                 }
@@ -1049,7 +1054,7 @@ namespace Headline_Randomizer
             tbxAdded.Text = "";
             foreach (Custom element in Db.choicesList)
             {
-                if (element.WordChoice == "Nr" || element.CustomString == true)
+                if (element.WordChoice == "Nr" || element.WordChoice == "Skämtnamn" || element.CustomString == true)
                 {
                     tbxAdded.AppendText($"{(Db.choicesList.IndexOf(element) == 0 ? "" : " + ")}{element.WordChoice}");
                 }
@@ -1089,7 +1094,7 @@ namespace Headline_Randomizer
                     // Then set that word to used and reload if needed. 
                     element.Id = Words.someone.RandomizeId();
                     Words.noun.Used(element.Id);
-                    Words.FreeNeeded(5);
+                    Words.FreeNeeded(1);
                 }
 
                 else if (element.WordChoice == "Något" && (element.FormChoice != "En eller Ett" 
@@ -1097,7 +1102,7 @@ namespace Headline_Randomizer
                 {
                     element.Id = Words.something.RandomizeId();
                     Words.noun.Used(element.Id);
-                    Words.FreeNeeded(5);
+                    Words.FreeNeeded(1);
                 }
 
                 else if (element.WordChoice == "Plats" && (element.FormChoice != "En eller Ett"
@@ -1105,28 +1110,28 @@ namespace Headline_Randomizer
                 {
                     element.Id = Words.location.RandomizeId();
                     Words.noun.Used(element.Id);
-                    Words.FreeNeeded(5);
+                    Words.FreeNeeded(1);
                 }
 
                 else if (element.WordChoice == "Adjektiv" && element.FormChoice != "Preposition")
                 {
                     element.Id = Words.adjective.RandomizeId();
                     Words.adjective.Used(element.Id);
-                    Words.FreeNeeded(5);
+                    Words.FreeNeeded(1);
                 }
 
                 else if (element.WordChoice == "Verb" && element.FormChoice != "Preposition")
                 {
                     element.Id = Words.verb.RandomizeId();
                     Words.verb.Used(element.Id);
-                    Words.FreeNeeded(5);
+                    Words.FreeNeeded(1);
                 }
 
                 else if (element.WordChoice == "Skämtnamn")
                 {
                     element.Id = Words.jokeName.RandomizeId();
                     Words.jokeName.Used(element.Id);
-                    Words.FreeNeeded(5);
+                    Words.FreeNeeded(1);
                 }
 
                 else { }
@@ -1375,7 +1380,7 @@ namespace Headline_Randomizer
             // Sometimes there's an extra space. This removes that. 
             toUpper = toUpper.Replace("  ", " ");
             presentationWindow.tbxResult.Text = toUpper;
-            EndingRitual(5, presentationWindow.tbxResult, ref position);
+            EndingRitual(1, presentationWindow.tbxResult, ref position);
         }
 
         private void btnCustomClear_Click(object sender, EventArgs e)
@@ -1404,7 +1409,7 @@ namespace Headline_Randomizer
                 tbxAdded.Text = "";
                 foreach (Custom element in Db.choicesList)
                 {
-                    if (element.WordChoice == "Nr" || element.CustomString == true)
+                    if (element.WordChoice == "Nr" || element.WordChoice == "Skämtnamn" || element.CustomString == true)
                     {
                         tbxAdded.AppendText($"{(Db.choicesList.IndexOf(element) == 0 ? "" : " + ")}{element.WordChoice}");
                     }
@@ -1482,10 +1487,11 @@ namespace Headline_Randomizer
         public void EndingRitual(int loadNr, TextBox tb, ref int position)
         {
             //tb.Text = tb.Text.Replace("  ", " ");
-            Words.FreeNeeded(loadNr);
             FixText.AdjustSize(tb);
             Db.recentStrings.Add(tb.Text);
             position = Db.recentStrings.Count - 1;
+            Words.FreeNeeded(loadNr);
+            
         }
 
 
@@ -1559,6 +1565,8 @@ namespace Headline_Randomizer
         {
             presentationWindow.tbxResult.Text = "";
         }
+
+        
 
 
         // 

@@ -24,6 +24,44 @@ namespace Svenska
         public static SkämtNamn jokeName = new SkämtNamn();
         public static Status status = new Status();
 
+        public static void FreeNeededRelations(int antal)
+        {
+            string used = "Använt";
+            using (SqlConnection connection = new SqlConnection(Db.connectionString))
+            {
+                connection.Open();
+                SqlCommand command = new SqlCommand();
+                command.Connection = connection;
+                int antalRader = 0;
+
+                // Adjektiv relation
+                command.CommandText = $"SELECT COUNT(*) FROM TblAdjectives WHERE {used} = 0 AND [Relation] = 'True' {Db.QueryRestrictions()}";
+                antalRader = (Int32)command.ExecuteScalar();
+
+                if (antalRader < antal)
+                {
+                    string rad1 = Db.GetValue("SELECT TOP 1 Id FROM TblAdjectives WHERE [Relation] = 'True' ORDER BY Id ASC");
+                    string sistaRad = Db.GetValue("SELECT TOP 1 Id FROM TblAdjectives WHERE [Relation] = 'True' ORDER BY Id DESC");
+                    command.CommandText = $"UPDATE TblAdjectives SET {used} = 0 WHERE [Relation] = 'True' AND Id BETWEEN {rad1} AND {sistaRad}";
+                    command.ExecuteNonQuery();
+                }
+
+                // Relation Verb
+                command.CommandText = $"SELECT COUNT(*) FROM TblVerbs WHERE [Relation] = 'True' AND {used} = 0 {Db.QueryRestrictions()}";
+                antalRader = (Int32)command.ExecuteScalar();
+
+                if (antalRader < antal)
+                {
+                    string rad1 = Db.GetValue("SELECT TOP 1 Id FROM TblVerbs WHERE [Relation] = 'True' ORDER BY Id ASC");
+                    string sistaRad = Db.GetValue("SELECT TOP 1 Id FROM TblVerbs WHERE [Relation] = 'True' ORDER BY Id DESC");
+                    command.CommandText = $"UPDATE TblVerbs SET {used} = 0 WHERE [Relation] = 'True' AND Id BETWEEN {rad1} AND {sistaRad}";
+                    command.ExecuteNonQuery();
+                }
+
+                connection.Close();
+            }
+        }
+
         public static void FreeNeeded(int antal)
         {
             string used = "Använt";
@@ -45,18 +83,6 @@ namespace Svenska
                     // Sort descending to get the last item. 
                     string sistaRad = Db.GetValue("SELECT TOP 1 Id FROM TblAdjectives ORDER BY Id DESC");
                     command.CommandText = $"UPDATE TblAdjectives SET {used} = 0 WHERE Id BETWEEN {rad1} AND {sistaRad}";
-                    command.ExecuteNonQuery();
-                }
-
-                // Adjektiv relation
-                command.CommandText = $"SELECT COUNT(*) FROM TblAdjectives WHERE {used} = 0 AND [Relation] = 'True' {Db.QueryRestrictions()}";
-                antalRader = (Int32)command.ExecuteScalar();
-
-                if (antalRader < antal)
-                {
-                    string rad1 = Db.GetValue("SELECT TOP 1 Id FROM TblAdjectives WHERE [Relation] = 'True' ORDER BY Id ASC");
-                    string sistaRad = Db.GetValue("SELECT TOP 1 Id FROM TblAdjectives WHERE [Relation] = 'True' ORDER BY Id DESC");
-                    command.CommandText = $"UPDATE TblAdjectives SET {used} = 0 WHERE [Relation] = 'True' AND Id BETWEEN {rad1} AND {sistaRad}";
                     command.ExecuteNonQuery();
                 }
 
@@ -108,17 +134,6 @@ namespace Svenska
                     command.ExecuteNonQuery();
                 }
 
-                // Relation Verb
-                command.CommandText = $"SELECT COUNT(*) FROM TblVerbs WHERE [Relation] = 'True' AND {used} = 0 {Db.QueryRestrictions()}";
-                antalRader = (Int32)command.ExecuteScalar();
-
-                if (antalRader < antal)
-                {
-                    string rad1 = Db.GetValue("SELECT TOP 1 Id FROM TblVerbs WHERE [Relation] = 'True' ORDER BY Id ASC");
-                    string sistaRad = Db.GetValue("SELECT TOP 1 Id FROM TblVerbs WHERE [Relation] = 'True' ORDER BY Id DESC");
-                    command.CommandText = $"UPDATE TblVerbs SET {used} = 0 WHERE [Relation] = 'True' AND Id BETWEEN {rad1} AND {sistaRad}";
-                    command.ExecuteNonQuery();
-                }
 
                 // Nobel Prize
                 command.CommandText = $"SELECT COUNT(*) FROM TblNobelPrizes WHERE {used} = 0";

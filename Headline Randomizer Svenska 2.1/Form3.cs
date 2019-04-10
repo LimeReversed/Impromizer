@@ -92,6 +92,10 @@ namespace Headline_Randomizer
             UpdateLables($"{GetQuery()}");
             UpdateUpdateValue();
 
+            cbTermFor.SelectedIndex = 0;
+            cbGenus.SelectedIndex = 0;
+            cbRelation.SelectedIndex = 1;
+            cbCensur.SelectedIndex = 0;
         }
 
         //
@@ -449,78 +453,174 @@ namespace Headline_Randomizer
 
         private void btnDeleteRow_Click(object sender, EventArgs e)
         {
-            updateInProgress = true;
-
-            // Get the value of the first column on the specified row, then use it in the query string. 
-            string Id = DbDisplay.Rows[Convert.ToInt32(numDeleteRow.Value) - 1].Cells[0].Value.ToString();
-            Db.Command($"DELETE FROM {cbTabell.SelectedValue.ToString()} WHERE Id = '{Id}'", Db.connectionString);
+            // Check number of rows. If there are too few then refuse and inform.
             
-            updateInProgress = false;
-            UpdateGridView($"SELECT * FROM {cbTabell.SelectedValue.ToString()}");
+            // Kolla att dbdiplay lämpligt för är barn och räkna bara barn i query för det är bara då jag vill att den ska reagera annars kan den ta bort. 
 
-            // If the number of total rows is less than the number of the specified row, then don't
-            // select the row after (because there are none left)
-            if (DbDisplay.Rows.Count < Convert.ToInt32(numChangeRow.Value))
+            if (cbTabell.SelectedValue == "TblAdjectives" 
+                && DbDisplay.Rows[(Int32)numDeleteRow.Value - 1].Cells[5].Value.ToString() == "False" 
+                && DbDisplay.Rows[(Int32)numDeleteRow.Value - 1].Cells[6].Value.ToString() == "Barn"
+                && Convert.ToInt32(Db.GetValue("SELECT COUNT(*) FROM TblAdjectives WHERE Relation = 0 AND [Lämpligt för] = 'Barn'")) < 6)
             {
-                DbDisplay.CurrentCell = DbDisplay.Rows[Convert.ToInt32(numChangeRow.Value) - 2].Cells[Convert.ToInt32(numChangeColumn.Value) - 1];
+                MessageBox.Show("Ordet raderades inte.\n Det måste finnas minst 5 adjektiv lämpliga för barn.");
             }
-            // If there are rows left, then move to the next row. 
+
+            else if (cbTabell.SelectedValue == "TblAdjectives"
+                    && DbDisplay.Rows[(Int32)numDeleteRow.Value - 1].Cells[6].Value.ToString() == "Barn"
+                    && DbDisplay.Rows[(Int32)numDeleteRow.Value - 1].Cells[5].Value.ToString() == "True"
+                    && Convert.ToInt32(Db.GetValue("SELECT COUNT(*) FROM TblAdjectives WHERE Relation = 1 AND [Lämpligt för] = 'Barn'")) < 6)
+
+                 {
+                    MessageBox.Show("Ordet raderades inte.\n Det måste finnas minst 5 relationsadjektiv lämpliga för barn.");
+                 }
+
+            else if (cbTabell.SelectedValue == "TblVerbs" 
+                && DbDisplay.Rows[(Int32)numDeleteRow.Value - 1].Cells[6].Value.ToString() == "False" 
+                && DbDisplay.Rows[(Int32)numDeleteRow.Value - 1].Cells[7].Value.ToString() == "Barn"
+                && Convert.ToInt32(Db.GetValue("SELECT COUNT(*) FROM TblVerbs WHERE Relation = 0 AND [Lämpligt för] = 'Barn'")) < 6)
+            {
+                MessageBox.Show("Ordet raderades inte.\n Det måste finnas minst 5 verb lämpliga för barn.");
+            }
+            else if (cbTabell.SelectedValue == "TblVerbs" 
+                && DbDisplay.Rows[(Int32)numDeleteRow.Value - 1].Cells[6].Value.ToString() == "True" 
+                && DbDisplay.Rows[(Int32)numDeleteRow.Value - 1].Cells[7].Value.ToString() == "Barn"
+                && Convert.ToInt32(Db.GetValue("SELECT COUNT(*) FROM TblVerbs WHERE Relation = 1 AND [Lämpligt för] = 'Barn'")) < 6)
+            {
+                MessageBox.Show("Ordet raderades inte.\n Det måste finnas minst 5 relationsverb lämpliga för barn.");
+            }
+
+            else if (cbTabell.SelectedValue == "TblJokeNames" && Convert.ToInt32(Db.GetValue("SELECT COUNT(*) FROM TblJokeNames WHERE [Lämpligt för] = 'Barn'")) < 6 && DbDisplay.Rows[(Int32)numDeleteRow.Value - 1].Cells[2].Value.ToString() == "Barn")
+            {
+                MessageBox.Show("Namnet raderades inte.\n Det måste finnas minst 5 skämtnamn lämpliga för barn.");
+            }
+            else if (cbTabell.SelectedValue == "TblMissions" && Convert.ToInt32(Db.GetValue("SELECT COUNT(*) FROM TblMissions")) < 6)
+            {
+                MessageBox.Show("Uppdraget raderades inte.\n Det måste finnas minst 5 uppdrag.");
+            }
+            else if (cbTabell.SelectedValue == "TblNobelPrizes" && Convert.ToInt32(Db.GetValue("SELECT COUNT(*) FROM TblNobelPrizes")) < 6)
+            {
+                MessageBox.Show("Priset raderades inte.\n Det måste finnas minst 5 pris.");
+            }
+
+            else if (cbTabell.SelectedValue == "TblNouns" 
+                && (DbDisplay.Rows[(Int32)numDeleteRow.Value - 1].Cells[5].Value.ToString() == "Något" || DbDisplay.Rows[(Int32)numDeleteRow.Value - 1].Cells[5].Value.ToString() == "Någon & Något")
+                && DbDisplay.Rows[(Int32)numDeleteRow.Value - 1].Cells[7].Value.ToString() == "Barn" 
+                && Convert.ToInt32(Db.GetValue("SELECT COUNT(*) FROM TblNouns WHERE Benämner IN ('Något', 'Någon & Något') AND [Lämpligt för] = 'Barn'")) < 6)
+            {
+                MessageBox.Show("Ordet raderades inte.\n Det måste finnas minst 5 substantiv som benämner 'Någon' och som är lämpliga för barn.");
+            }
+            else if (cbTabell.SelectedValue == "TblNouns" 
+                && (DbDisplay.Rows[(Int32)numDeleteRow.Value - 1].Cells[5].Value.ToString() == "Någon" || DbDisplay.Rows[(Int32)numDeleteRow.Value - 1].Cells[5].Value.ToString() == "Någon & Något")
+                && DbDisplay.Rows[(Int32)numDeleteRow.Value - 1].Cells[7].Value.ToString() == "Barn" 
+                && Convert.ToInt32(Db.GetValue("SELECT COUNT(*) FROM TblNouns WHERE Benämner IN ('Någon', 'Någon & Något') AND [Lämpligt för] = 'Barn'")) < 6)
+            {
+                MessageBox.Show("Ordet raderades inte.\n Det måste finnas minst 5 substantiv som benämner 'Något' och som är lämpliga för barn.");
+            }
+            else if (cbTabell.SelectedValue == "TblNouns" 
+                && (DbDisplay.Rows[(Int32)numDeleteRow.Value - 1].Cells[5].Value.ToString() == "Plats" || DbDisplay.Rows[(Int32)numDeleteRow.Value - 1].Cells[5].Value.ToString() == "Någon & Plats")
+                && DbDisplay.Rows[(Int32)numDeleteRow.Value - 1].Cells[7].Value.ToString() == "Barn" 
+                && Convert.ToInt32(Db.GetValue("SELECT COUNT(*) FROM TblNouns WHERE Benämner IN ('Plats', 'Någon & Plats') AND [Lämpligt för] = 'Barn'")) < 6)
+            {
+                MessageBox.Show("Ordet raderades inte.\n Det måste finnas minst 5 substantiv som benämner 'Plats' och som är lämpliga för barn.");
+            }
+
+            else if (cbTabell.SelectedValue == "TblStatus" && Convert.ToInt32(Db.GetValue("SELECT COUNT(*) FROM TblStatus")) < 6)
+            {
+                MessageBox.Show("Ordet raderades inte.\n Det måste finnas minst 5 statusrelationer.");
+            }
             else
             {
-                DbDisplay.CurrentCell = DbDisplay.Rows[Convert.ToInt32(numChangeRow.Value) - 1].Cells[Convert.ToInt32(numChangeColumn.Value) - 1];
+                updateInProgress = true;
+
+                // Get the value of the first column on the specified row, then use it in the query string. 
+                string Id = DbDisplay.Rows[Convert.ToInt32(numDeleteRow.Value) - 1].Cells[0].Value.ToString();
+                Db.Command($"DELETE FROM {cbTabell.SelectedValue.ToString()} WHERE Id = '{Id}'", Db.connectionString);
+
+                updateInProgress = false;
+                UpdateGridView($"SELECT * FROM {cbTabell.SelectedValue.ToString()}");
+
+                // If the number of total rows is less than the number of the specified row, then don't
+                // select the row after (because there are none left)
+                if (DbDisplay.Rows.Count < Convert.ToInt32(numChangeRow.Value))
+                {
+                    DbDisplay.CurrentCell = DbDisplay.Rows[Convert.ToInt32(numChangeRow.Value) - 2].Cells[Convert.ToInt32(numChangeColumn.Value)];
+                }
+                // If there are rows left, then move to the next row. 
+                else
+                {
+                    DbDisplay.CurrentCell = DbDisplay.Rows[Convert.ToInt32(numChangeRow.Value) - 1].Cells[Convert.ToInt32(numChangeColumn.Value)];
+                }
+
+                if (Convert.ToInt32(Db.GetValue("SELECT COUNT(*) FROM TblStatus")) < 6)
+                {
+
+                }
             }
-            
         }
 
         private void btnAddRow_Click(object sender, EventArgs e)
         {
-            updateInProgress = true;
-
-            switch (cbTabell.SelectedValue)
+            if (Convert.ToInt32(Db.GetValue($"SELECT COUNT(*) FROM {cbTabell.SelectedValue}")) > 999)
             {
-                case "TblAdjectives":
+                MessageBox.Show("Det går inte att lägga till fler ord i den här tabellen");
+            }
+            else
+            {
+                updateInProgress = true;
+
+                switch (cbTabell.SelectedValue)
+                {
+                    case "TblAdjectives":
 
                         Db.Command($"INSERT INTO TblAdjectives VALUES ('{tbxAddColumn1.Text}', '{tbxAddColumn2.Text}','{tbxAddColumn3.Text}', " +
                         $"'{tbxAddColumn4.Text}', '{cbRelation.Text}', '{cbCensur.Text}', 0)", Db.connectionString);
-                    
-                    break;
 
-                case "TblNouns":
+                        break;
 
-                        Db.Command($"INSERT INTO TblNouns VALUES ('{tbxAddColumn1.Text}', '{tbxAddColumn2.Text}','{tbxAddColumn3.Text}', " +
-                        $"'{tbxAddColumn4.Text}', '{cbTermFor.Text}', '{cbGenus.Text}','{cbCensur.Text}', 0)", Db.connectionString);
-                    
-                    break;
+                    case "TblNouns":
 
-                case "TblVerbs":
+                        if (cbGenus.Text == "")
+                        {
+
+                        }
+                        else
+                        {
+                            Db.Command($"INSERT INTO TblNouns VALUES ('{tbxAddColumn1.Text}', '{tbxAddColumn2.Text}','{tbxAddColumn3.Text}', " +
+                            $"'{tbxAddColumn4.Text}', '{cbTermFor.Text}', '{cbGenus.Text}','{cbCensur.Text}', 0)", Db.connectionString);
+                        }
+                        
+                        break;
+
+                    case "TblVerbs":
 
                         Db.Command($"INSERT INTO TblVerbs VALUES ('{tbxAddColumn1.Text}', '{tbxAddColumn2.Text}','{tbxAddColumn3.Text}', " +
                         $"'{tbxAddColumn4.Text}', '{tbxAddColumn5.Text}', '{cbRelation.Text}','{cbCensur.Text}', 0)", Db.connectionString);
-                    
-                    break;
 
-                case "TblJokeNames":
-                    Db.Command($"INSERT INTO TblJokeNames VALUES ('{tbxAddColumn1.Text}', '{cbCensur.Text}', 0)", Db.connectionString);
-                    break;
+                        break;
 
-                case "TblMissions":
-                    Db.Command($"INSERT INTO TblMissions VALUES ('{tbxAddColumn1.Text}', '{cbCensur.Text}', 0)", Db.connectionString);
-                    break;
+                    case "TblJokeNames":
+                        Db.Command($"INSERT INTO TblJokeNames VALUES ('{tbxAddColumn1.Text}', '{cbCensur.Text}', 0)", Db.connectionString);
+                        break;
 
-                case "TblNobelPrizes":
-                    Db.Command($"INSERT INTO TblNobelPrizes VALUES ('{tbxAddColumn1.Text}', 0)", Db.connectionString);
-                    break;
+                    case "TblMissions":
+                        Db.Command($"INSERT INTO TblMissions VALUES ('{tbxAddColumn1.Text}', '{cbCensur.Text}', 0)", Db.connectionString);
+                        break;
 
-                case "TblSavedResults":
-                    Db.Command($"INSERT INTO TblSavedResults VALUES ('{tbxAddColumn1.Text}')", Db.connectionString);
-                    break;
+                    case "TblNobelPrizes":
+                        Db.Command($"INSERT INTO TblNobelPrizes VALUES ('{tbxAddColumn1.Text}', 0)", Db.connectionString);
+                        break;
 
-                case "TblStatus":
-                    Db.Command($"INSERT INTO TblStatus VALUES ('{tbxAddColumn1.Text}', '{tbxAddColumn2.Text}', 0)", Db.connectionString);
-                    break;
+                    case "TblSavedResults":
+                        Db.Command($"INSERT INTO TblSavedResults VALUES ('{tbxAddColumn1.Text}')", Db.connectionString);
+                        break;
+
+                    case "TblStatus":
+                        Db.Command($"INSERT INTO TblStatus VALUES ('{tbxAddColumn1.Text}', '{tbxAddColumn2.Text}', 0)", Db.connectionString);
+                        break;
+                }
+                updateInProgress = false;
+                UpdateGridView($"SELECT * FROM {cbTabell.SelectedValue.ToString()}");
             }
-            updateInProgress = false;
-            UpdateGridView($"SELECT * FROM {cbTabell.SelectedValue.ToString()}");
         }
 
         // Get information about row and column index and put it in the textboxes for changing value and deleting row. 

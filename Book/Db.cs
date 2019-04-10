@@ -15,9 +15,9 @@ namespace Headline_Randomizer
         static public List<Custom> choicesList = new List<Custom>();
         static public List<string> recentStrings = new List<string>();
         static public Random r = new Random();
-        static public string connectionString = @"Data Source=(LocalDB)\MSSQLLocalDB; AttachDbFilename = C:\Emil\Tresorit\Headline Randomizer\Headline Randomizer\Headline Randomizer Svenska 2.1\WordsDatabase.mdf; Integrated Security=True";
-        static public string backupString = @"Data Source=(LocalDB)\MSSQLLocalDB; AttachDbFilename = C:\Emil\Tresorit\Headline Randomizer\Headline Randomizer\Headline Randomizer Svenska 2.1\WordsDatabaseBackup.mdf; Integrated Security=True";
-        static public string factoryResetString = @"Data Source=(LocalDB)\MSSQLLocalDB; AttachDbFilename = C:\Emil\Tresorit\Headline Randomizer\Headline Randomizer\Headline Randomizer Svenska 2.1\WordsDatabaseFactory.mdf; Integrated Security=True";
+        static public string connectionString = @"Data Source=(LocalDB)\MSSQLLocalDB; AttachDbFilename = E:\Tresorit\Headline Randomizer\Headline Randomizer\Headline Randomizer Svenska 2.1\WordsDatabase.mdf; Integrated Security=True";
+        static public string backupString = @"Data Source=(LocalDB)\MSSQLLocalDB; AttachDbFilename = E:\Tresorit\Headline Randomizer\Headline Randomizer\Headline Randomizer Svenska 2.1\WordsDatabaseBackup.mdf; Integrated Security=True";
+        static public string factoryResetString = @"Data Source=(LocalDB)\MSSQLLocalDB; AttachDbFilename = E:\Tresorit\Headline Randomizer\Headline Randomizer\Headline Randomizer Svenska 2.1\WordsDatabaseFactory.mdf; Integrated Security=True";
         //@"Data Source=(LocalDB)\MSSQLLocalDB; AttachDbFilename = " + AppDomain.CurrentDomain.BaseDirectory + "WordsDatabase.mdf; Integrated Security=True";
 
         static public void DefaultTable(string table, string connectionString, string fromString)
