@@ -46,7 +46,6 @@
             this.tbxResult.Size = new System.Drawing.Size(671, 105);
             this.tbxResult.TabIndex = 3;
             this.tbxResult.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.tbxResult.TextChanged += new System.EventHandler(this.tbxResult_TextChanged);
             // 
             // PresentationWindow
             // 

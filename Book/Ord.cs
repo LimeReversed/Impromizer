@@ -23,6 +23,7 @@ namespace Svenska
         public static NobelPris nobelPrize = new NobelPris();
         public static SkämtNamn jokeName = new SkämtNamn();
         public static Status status = new Status();
+        public static Uppdrag uppdrag = new Uppdrag();
 
         public static void FreeNeededRelations(int antal)
         {
@@ -170,6 +171,19 @@ namespace Svenska
                     command.CommandText = $"UPDATE TblStatus SET {used} = 0 WHERE Id BETWEEN {rad1} AND {sistaRad}";
                     command.ExecuteNonQuery();
                 }
+
+                // Missions
+                command.CommandText = $"SELECT COUNT(*) FROM TblMissions WHERE {used} = 0 {Db.QueryRestrictions()}";
+                antalRader = (Int32)command.ExecuteScalar();
+
+                if (antalRader < antal)
+                {
+                    string rad1 = Db.GetValue("SELECT TOP 1 Id FROM TblMissions ORDER BY Id ASC");
+                    string sistaRad = Db.GetValue("SELECT TOP 1 Id FROM TblMissions ORDER BY Id DESC");
+                    command.CommandText = $"UPDATE TblMissions SET {used} = 0 WHERE Id BETWEEN {rad1} AND {sistaRad}";
+                    command.ExecuteNonQuery();
+                }
+
                 connection.Close();
             }
         }
@@ -464,6 +478,24 @@ namespace Svenska
         public string LowStatus(int id)
         {
             return Db.GetValue($"SELECT Lågstatus FROM TblStatus WHERE Id = { id }");
+        }
+    }
+
+    public class Uppdrag : Words
+    {
+        public override int RandomizeId()
+        {
+            return Convert.ToInt32($"{Db.RandomizeValue("Select Id", $"FROM TblMissions WHERE Använt = 0 {Db.QueryRestrictions()}")}");
+        }
+
+        public override void Used(int id)
+        {
+            Db.Command($"UPDATE TblMissions SET Använt = 1 WHERE Id = {id}", Db.connectionString);
+        }
+
+        public string Beskrivning(int id)
+        {
+            return $"{Db.GetValue($"SELECT [Uppdrag] FROM TblMissions WHERE Id = {id}")}";
         }
     }
 }

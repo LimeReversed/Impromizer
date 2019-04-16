@@ -27,30 +27,35 @@ namespace Headline_Randomizer
         {
             //richTextBox1.Rtf = @"{\rtf1\ Hello \b Lime\b0\";
             // Show what's in the focument at this path.
-            rtbGames.Rtf = File.ReadAllText(@"E:\Tresorit\Headline Randomizer\Headline Randomizer\Lekar.rtf");
+            rtbGames.Rtf = File.ReadAllText($"{AppDomain.CurrentDomain.BaseDirectory}Text\\Lekar.rtf");
             rtbGames.RightMargin = pGames.Size.Width - 65;
 
-            rtbScenes.Rtf = File.ReadAllText(@"E:\Tresorit\Headline Randomizer\Headline Randomizer\Scener.rtf");
-            rtbScenes.RightMargin = pScenes.Size.Width - 65;
+            //rtbScenes.Rtf = File.ReadAllText($"{AppDomain.CurrentDomain.BaseDirectory}Text\\Scener.rtf");
+            //rtbScenes.RightMargin = pScenes.Size.Width - 65;
 
-            rtbCustom.Rtf = File.ReadAllText(@"E:\Tresorit\Headline Randomizer\Headline Randomizer\Grammatik.rtf");
-            rtbCustom.RightMargin = pCustom.Size.Width - 65;
+            //rtbCustom.Rtf = File.ReadAllText($"{AppDomain.CurrentDomain.BaseDirectory}Text\\Grammatik.rtf");
+            //rtbCustom.RightMargin = pCustom.Size.Width - 65;
+
+            rtbAbout.Rtf = File.ReadAllText($"{AppDomain.CurrentDomain.BaseDirectory}Text\\Omappen.rtf");
+            rtbAbout.RightMargin = pAbout.Size.Width - 65;
         }
 
         private void Help_SizeChanged(object sender, EventArgs e)
         {
-            // Make the marigin follow the size of the window. 
+            // Make the marigin follow the size of the window.
             rtbGames.RightMargin = pGames.Size.Width - 65;
-            rtbScenes.RightMargin = pScenes.Size.Width - 65;
-            rtbCustom.RightMargin = pCustom.Size.Width - 65;
+            //rtbScenes.RightMargin = pScenes.Size.Width - 65;
+            //rtbCustom.RightMargin = pCustom.Size.Width - 65;
+            rtbAbout.RightMargin = pAbout.Size.Width - 65;
 
         }
 
         private void tabControl1_SelectedIndexChanged(object sender, EventArgs e)
         {
             rtbGames.RightMargin = pGames.Size.Width - 65;
-            rtbScenes.RightMargin = pScenes.Size.Width - 65;
-            rtbCustom.RightMargin = pCustom.Size.Width - 65;
+            //rtbScenes.RightMargin = pScenes.Size.Width - 65;
+            //rtbCustom.RightMargin = pCustom.Size.Width - 65;
+            rtbAbout.RightMargin = pAbout.Size.Width - 65;
         }
     }
 }
