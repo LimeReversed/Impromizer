@@ -47,9 +47,14 @@
             this.lekarToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.hjälpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolTip = new System.Windows.Forms.ToolTip(this.components);
+            this.toolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripMenuItem2 = new System.Windows.Forms.ToolStripMenuItem();
+            this.lekarToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
+            this.omToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.customTabControl1.SuspendLayout();
             this.tabPage3.SuspendLayout();
             this.tabPage1.SuspendLayout();
+            this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
             // customTabControl1
@@ -304,11 +309,16 @@
             this.menuStrip1.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.menuStrip1.Font = new System.Drawing.Font("Segoe UI Symbol", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.menuStrip1.ImageScalingSize = new System.Drawing.Size(24, 24);
+            this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.toolStripMenuItem1,
+            this.toolStripMenuItem2,
+            this.lekarToolStripMenuItem1,
+            this.omToolStripMenuItem});
             this.menuStrip1.LayoutStyle = System.Windows.Forms.ToolStripLayoutStyle.HorizontalStackWithOverflow;
-            this.menuStrip1.Location = new System.Drawing.Point(0, 360);
+            this.menuStrip1.Location = new System.Drawing.Point(0, 351);
             this.menuStrip1.Name = "menuStrip1";
             this.menuStrip1.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.menuStrip1.Size = new System.Drawing.Size(691, 24);
+            this.menuStrip1.Size = new System.Drawing.Size(691, 33);
             this.menuStrip1.TabIndex = 7;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -357,6 +367,42 @@
             this.toolTip.InitialDelay = 500;
             this.toolTip.ReshowDelay = 100;
             // 
+            // toolStripMenuItem1
+            // 
+            this.toolStripMenuItem1.Font = new System.Drawing.Font("Segoe UI Symbol", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.toolStripMenuItem1.ForeColor = System.Drawing.Color.White;
+            this.toolStripMenuItem1.Name = "toolStripMenuItem1";
+            this.toolStripMenuItem1.Size = new System.Drawing.Size(47, 29);
+            this.toolStripMenuItem1.Text = "";
+            this.toolStripMenuItem1.Click += new System.EventHandler(this.backToolStripMenuItem_Click);
+            // 
+            // toolStripMenuItem2
+            // 
+            this.toolStripMenuItem2.Font = new System.Drawing.Font("Segoe UI Symbol", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.toolStripMenuItem2.ForeColor = System.Drawing.Color.White;
+            this.toolStripMenuItem2.Name = "toolStripMenuItem2";
+            this.toolStripMenuItem2.Size = new System.Drawing.Size(47, 29);
+            this.toolStripMenuItem2.Text = "";
+            this.toolStripMenuItem2.Click += new System.EventHandler(this.forwardToolStripMenuItem_Click);
+            // 
+            // lekarToolStripMenuItem1
+            // 
+            this.lekarToolStripMenuItem1.Font = new System.Drawing.Font("Calibri", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lekarToolStripMenuItem1.ForeColor = System.Drawing.Color.White;
+            this.lekarToolStripMenuItem1.Name = "lekarToolStripMenuItem1";
+            this.lekarToolStripMenuItem1.Size = new System.Drawing.Size(64, 29);
+            this.lekarToolStripMenuItem1.Text = "Lekar";
+            this.lekarToolStripMenuItem1.Click += new System.EventHandler(this.lekarToolStripMenuItem_Click);
+            // 
+            // omToolStripMenuItem
+            // 
+            this.omToolStripMenuItem.Font = new System.Drawing.Font("Calibri", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.omToolStripMenuItem.ForeColor = System.Drawing.Color.White;
+            this.omToolStripMenuItem.Name = "omToolStripMenuItem";
+            this.omToolStripMenuItem.Size = new System.Drawing.Size(50, 29);
+            this.omToolStripMenuItem.Text = "Om";
+            this.omToolStripMenuItem.Click += new System.EventHandler(this.hjälpToolStripMenuItem_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -379,6 +425,8 @@
             this.customTabControl1.ResumeLayout(false);
             this.tabPage3.ResumeLayout(false);
             this.tabPage1.ResumeLayout(false);
+            this.menuStrip1.ResumeLayout(false);
+            this.menuStrip1.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -402,6 +450,10 @@
         private System.Windows.Forms.TabPage tabPage1;
         private System.Windows.Forms.Button btnClear2;
         private System.Windows.Forms.Button btnGenerate8;
+        private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem1;
+        private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem2;
+        private System.Windows.Forms.ToolStripMenuItem lekarToolStripMenuItem1;
+        private System.Windows.Forms.ToolStripMenuItem omToolStripMenuItem;
     }
 }
 
