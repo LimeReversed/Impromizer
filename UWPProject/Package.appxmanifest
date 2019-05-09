@@ -4,15 +4,16 @@
   xmlns="http://schemas.microsoft.com/appx/manifest/foundation/windows10"
   xmlns:uap="http://schemas.microsoft.com/appx/manifest/uap/windows10"
   xmlns:rescap="http://schemas.microsoft.com/appx/manifest/foundation/windows10/restrictedcapabilities"
-  IgnorableNamespaces="uap rescap">
+  xmlns:uap3="http://schemas.microsoft.com/appx/manifest/uap/windows10/3"
+  IgnorableNamespaces="uap rescap uap3">
 
   <Identity
-    Name="cd5ee308-1ca0-4c37-9ae6-4c3ca417ae3e"
-    Publisher="CN=Lime"
-    Version="2.1.0.0" />
+    Name="3385Limethefruit.ImpromizerFree"
+    Publisher="CN=0423C562-EE89-474B-9333-8B1ADF4BA8BB"
+    Version="2.2.10.0" />
 
   <Properties>
-    <DisplayName>Improv Randomizer</DisplayName>
+    <DisplayName>Impromizer (Free)</DisplayName>
     <PublisherDisplayName>Lime the fruit</PublisherDisplayName>
     <Logo>Images\StoreLogo.png</Logo>
   </Properties>
@@ -35,8 +36,13 @@
         BackgroundColor="transparent"
         Square150x150Logo="Images\Square150x150Logo.png"
         Square44x44Logo="Images\Square44x44Logo.png"
-        Description="Skapa spännande och roliga scenarion genom att slumpa fram meningar.">
-        <uap:DefaultTile Wide310x150Logo="Images\Wide310x150Logo.png"  Square71x71Logo="Images\SmallTile.png" Square310x310Logo="Images\LargeTile.png"/>
+        Description="Create fun sentences by randomizing words.">
+        <uap:DefaultTile Wide310x150Logo="Images\Wide310x150Logo.png"  Square71x71Logo="Images\SmallTile.png" Square310x310Logo="Images\LargeTile.png" ShortName="YesAnd">
+          <uap:ShowNameOnTiles>
+            <uap:ShowOn Tile="wide310x150Logo"/>
+            <uap:ShowOn Tile="square310x310Logo"/>
+          </uap:ShowNameOnTiles>
+        </uap:DefaultTile >
         <uap:SplashScreen Image="Images\SplashScreen.png" />
       </uap:VisualElements>
     </Application>

@@ -4,8 +4,10 @@ using System.Drawing;
 using System.Windows.Forms;
 using System.IO;
 using System.Text;
-using System.Data.SqlClient;
+//using System.Data.SqlClient;
 using System.Configuration;
+using System.Data.SQLite;
+
 
 
 namespace Headline_Randomizer
@@ -15,7 +17,12 @@ namespace Headline_Randomizer
         static public List<Custom> choicesList = new List<Custom>();
         static public List<string> recentStrings = new List<string>();
         static public Random r = new Random();
-        static public string connectionString = @"Data Source=(LocalDB)\MSSQLLocalDB; AttachDbFilename = " + AppDomain.CurrentDomain.BaseDirectory + "WordsDatabase.mdf; Integrated Security=True";
+        // If I want to be able to write to the database I need to have it a folder that allowed writing to files. The root directory, which will be put in Program Files
+        // does not allow this. So I had to copy the database to a documents folder when the app is initializing and and here now I need to have the connection string
+        // point to that documents folder.
+
+        static public string connectionString;
+        //static public string connectionString = $"Data Source= {Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments)}\\Impromizer\\{Db.GetDatabaseName()}";
         static public string backupString = @"Data Source=(LocalDB)\MSSQLLocalDB; AttachDbFilename = " + AppDomain.CurrentDomain.BaseDirectory + "WordsDatabaseBackup.mdf; Integrated Security=True";
         static public string factoryResetString = @"Data Source=(LocalDB)\MSSQLLocalDB; AttachDbFilename = " + AppDomain.CurrentDomain.BaseDirectory + "WordsDatabaseFactory.mdf; Integrated Security=True";
 
@@ -24,14 +31,14 @@ namespace Headline_Randomizer
             // Remove all items from the selected table at the string you want to update. 
             Db.Command($"TRUNCATE TABLE[{table}];", connectionString);
 
-            using (SqlConnection connection = new SqlConnection(fromString))
+            using (SQLiteConnection connection = new SQLiteConnection(fromString))
             {
                 connection.Open();
                 // Select all from the table from the database you want o take info from. 
-                using (SqlCommand command = new SqlCommand($"SELECT * FROM {table}", connection))
+                using (SQLiteCommand command = new SQLiteCommand($"SELECT * FROM {table}", connection))
                 {
                     int row = 1;
-                    SqlDataReader reader = command.ExecuteReader();
+                    SQLiteDataReader reader = command.ExecuteReader();
 
                     // Goes through all rows
                     while (reader.Read())
@@ -42,14 +49,14 @@ namespace Headline_Randomizer
                             // if curent row is the first column (After Id), then insert, mening crete new row. 
                             if (i == 1)
                             {
-                                Db.Command($"INSERT INTO {table} ([{reader.GetName(i)}]) VALUES ('{reader.GetSqlValue(i)}')", connectionString);
+                                Db.Command($"INSERT INTO {table} ([{reader.GetName(i)}]) VALUES ('{reader.GetValue(i)}')", connectionString);
                             }
 
                             // If a row has already been added you don't want to create a new one for the second column. 
                             // So you just update the other column in the existing row. 
                             else
                             {
-                                Db.Command($"UPDATE {table} SET [{reader.GetName(i)}] = '{reader.GetSqlValue(i)}' WHERE Id = {row}", connectionString);
+                                Db.Command($"UPDATE {table} SET [{reader.GetName(i)}] = '{reader.GetValue(i)}' WHERE Id = {row}", connectionString);
                             }
                         }
                         row++;
@@ -95,183 +102,15 @@ namespace Headline_Randomizer
             DefaultTable("TblSavedResults", Db.connectionString, Db.factoryResetString); // Or not?
             DefaultTable("TblStatus", Db.connectionString, Db.factoryResetString);
             DefaultTable("TblVerbs", Db.connectionString, Db.factoryResetString);
-
-            //!fileRow.EndOf<stream
-            //fileForRead.ReadLine()
-
-            //if (word == "verbs" || word == "all")
-            //{
-            //    Db.Command("TRUNCATE TABLE[TblVerbs];");
-
-            //    StreamReader sr = new StreamReader(@"Text\verb basform.txt");
-            //    StreamReader sr2 = new StreamReader(@"Text\verbs presens.txt");
-            //    StreamReader sr3 = new StreamReader(@"Text\verbs perfekt.txt");
-            //    StreamReader sr4 = new StreamReader(@"Text\post verbs.txt");
-            //    StreamReader sr5 = new StreamReader(@"Text\verb request.txt");
-
-            //    string fileRow;
-            //    string fileRow2;
-            //    string fileRow3;
-            //    string fileRow4;
-            //    string fileRow5;
-
-            //    while ((fileRow = sr.ReadLine()) != null && ((fileRow2 = sr2.ReadLine()) != null) && ((fileRow3 = sr3.ReadLine()) != null) && ((fileRow4 = sr4.ReadLine()) != null) && ((fileRow5 = sr5.ReadLine()) != null))
-            //    {
-            //        Db.Command($"INSERT INTO TblVerbs (Infinitiv, Uppmaning, Perfekt, Presens, Preposition, [Relation], Lämpligt för, Använt) VALUES ('{fileRow}', '{fileRow5}', '{fileRow3}', '{fileRow2}', '{fileRow4}', '0', 0, 0)");
-            //    }
-            //    sr.Close();
-            //    sr2.Close();
-            //    sr3.Close();
-            //    sr4.Close();
-            //    sr5.Close();
-            //}
-
-            //if (word == "nouns" || word == "all")
-            //{
-            //    Db.Command("TRUNCATE TABLE[TblNouns];");
-
-            //    StreamReader sr = new StreamReader(@"Text\dödasubstantivsing.txt");
-            //    StreamReader sr2 = new StreamReader(@"Text\dödasubstantivplural.txt");
-            //    StreamReader sr3 = new StreamReader(@"Text\DSub EnEttDinDitt.txt");
-
-            //    string fileRow;
-            //    string fileRow2;
-            //    string fileRow3;
-
-            //    while ((fileRow = sr.ReadLine()) != null && ((fileRow2 = sr2.ReadLine()) != null) && ((fileRow3 = sr3.ReadLine()) != null))
-            //    {
-            //        Db.Command($"INSERT INTO TblNouns ([Singular obestämd], [Singular bestämd], Plural, Benämner, Lämpligt för, Använt) VALUES ('{fileRow}', 0, '{fileRow2}', 0, 0, 0)");
-            //    }
-            //    sr.Close();
-            //    sr2.Close();
-            //    sr3.Close();
-            //}
-
-            //if (word == "nouns" || word == "all")
-            //{
-
-            //    StreamReader sr = new StreamReader(@"Text\levandesubstantivsing.txt");
-            //    StreamReader sr2 = new StreamReader(@"Text\levandesubstantivplural.txt");
-            //    StreamReader sr3 = new StreamReader(@"Text\LSub EnEttDinDitt.txt");
-
-            //    string fileRow;
-            //    string fileRow2;
-            //    string fileRow3;
-
-            //    while ((fileRow = sr.ReadLine()) != null && ((fileRow2 = sr2.ReadLine()) != null) && ((fileRow3 = sr3.ReadLine()) != null))
-            //    {
-            //        Db.Command($"INSERT INTO TblNouns ([Singular obestämd], [Singular bestämd], Plural, Benämner, Lämpligt för, Använt) VALUES ('{fileRow}', 0, '{fileRow2}', 1, 0, 0)");
-            //    }
-            //    sr.Close();
-            //    sr2.Close();
-            //    sr3.Close();
-            //}
-
-            //if (word == "adjective" || word == "all")
-            //{
-            //    Db.Command("TRUNCATE TABLE[TblAdjectives];");
-
-            //    StreamReader sr = new StreamReader(@"Text\adjektivsingular.txt");
-            //    StreamReader sr2 = new StreamReader(@"Text\adjektivplural.txt");
-            //    StreamReader sr3 = new StreamReader(@"Text\adjektivEttForm.txt");
-
-            //    string fileRow;
-            //    string fileRow2;
-            //    string fileRow3;
-
-            //    while ((fileRow = sr.ReadLine()) != null && ((fileRow2 = sr2.ReadLine()) != null) && ((fileRow3 = sr3.ReadLine()) != null))
-            //    {
-            //        Db.Command($"INSERT INTO TblAdjectives ([N-genus], [T-genus], Plural, Använt) VALUES ('{fileRow}', '{fileRow3}', '{fileRow2}', '0')");
-            //    }
-            //    sr.Close();
-            //    sr2.Close();
-            //    sr3.Close();
-
-            //}
-
-            //if (word == "jokename" || word == "all")
-            //{
-            //    Db.Command("TRUNCATE TABLE[TblJokeNames];");
-
-            //    StreamReader sr = new StreamReader(@"Text\jokenames2.txt");
-
-            //    string fileRow;
-
-            //    while ((fileRow = sr.ReadLine()) != null)
-            //    {
-            //        Db.Command($"INSERT INTO TblJokeNames (Namn, Använt) VALUES ('{fileRow}', '0')");
-            //    }
-            //    sr.Close();
-            //}
-
-            //if (word == "nobelprize" || word == "all")
-            //{
-            //    Db.Command("TRUNCATE TABLE[TblNobelPrizes];");
-
-            //    StreamReader sr = new StreamReader(@"Text\nobelprizes2.txt");
-
-            //    string fileRow;
-
-            //    while ((fileRow = sr.ReadLine()) != null)
-            //    {
-            //        Db.Command($"INSERT INTO TblNobelPrizes (Pris, Använt) VALUES ('{fileRow}', '0')");
-            //    }
-            //    sr.Close();
-            //}
-
-            //if (location.Count <= amount)
-            //{
-            //    StreamReader sr = new StreamReader(@"Text\location.txt");
-
-            //    string fileRow;
-
-            //    while ((fileRow = sr.ReadLine()) != null)
-            //    {
-            //        Location vread = new Location(fileRow);
-            //        location.Add(vread);
-            //    }
-            //    sr.Close();
-            //}
-
-            //if (statusförhållande.Count <= amount)
-            //{
-            //    StreamReader sr1 = new StreamReader(@"Text\relation statusförhållande.txt");
-
-            //    string fileRow1;
-
-            //    while ((fileRow1 = sr1.ReadLine()) != null)
-            //    {
-            //        Relation vread = new Relation(fileRow1);
-            //        statusförhållande.Add(vread);
-            //    }
-            //    sr1.Close();
-            //}
-
-            //if (relationKänsla.Count <= amount)
-            //{
-            //    StreamReader sr1 = new StreamReader(@"Text\relation känsla olika.txt");
-            //    StreamReader sr2 = new StreamReader(@"Text\relation känsla samma.txt");
-
-            //    string fileRow1, fileRow2;
-
-            //    while ((fileRow1 = sr1.ReadLine()) != null && (fileRow2 = sr2.ReadLine()) != null)
-            //    {
-            //        Relation vread = new Relation(fileRow1, fileRow2);
-            //        relationKänsla.Add(vread);
-            //    }
-            //    sr1.Close();
-            //    sr2.Close();
-            //}
-
         } // This might be language independent when it takes from a backupdatabase, not text files
 
         static public void Command(string commandstring, string connectionString)
         {
 
-            using (SqlConnection connection = new SqlConnection(connectionString))
+            using (SQLiteConnection connection = new SQLiteConnection(connectionString))
             {
                 connection.Open();
-                using (SqlCommand command = new SqlCommand(commandstring, connection))
+                using (SQLiteCommand command = new SQLiteCommand(commandstring, connection))
                 {
                     command.ExecuteNonQuery();
 
@@ -284,20 +123,20 @@ namespace Headline_Randomizer
 
         static public string GetValue(string query)
         {
-            using (SqlConnection connection = new SqlConnection(Db.connectionString))
+            using (SQLiteConnection connection = new SQLiteConnection(Db.connectionString))
             {
                 connection.Open();
-                using (SqlCommand command = new SqlCommand(query, connection))
+                using (SQLiteCommand command = new SQLiteCommand(query, connection))
                 {
                     string value = "";
-                    SqlDataReader reader = command.ExecuteReader();
+                    SQLiteDataReader reader = command.ExecuteReader();
                     while (reader.Read())
                     {
-                        value = reader.GetSqlValue(0).ToString();
+                        value = reader.GetValue(0).ToString();
                     }
 
-                    connection.Close();
                     reader.Close();
+                    connection.Close();
                     return value;
                 }
             }
@@ -305,71 +144,47 @@ namespace Headline_Randomizer
 
         static public string RandomizeValue(string selectStatement, string restOfQuery)
         {
-            using (SqlConnection connection = new SqlConnection(Db.connectionString))
+            using (SQLiteConnection connection = new SQLiteConnection(Db.connectionString))
             {
                 connection.Open();
 
                 // Get the amount of rows,
-                using (SqlCommand command = new SqlCommand($"SELECT COUNT(*) {restOfQuery}", connection))
+                using (SQLiteCommand command = new SQLiteCommand($"SELECT COUNT(*) {restOfQuery}", connection))
                 {
-                    int rowCount = (Int32)command.ExecuteScalar();
+                    int rowCount = Convert.ToInt32(command.ExecuteScalar());
 
                     // Change the query from amount of rows to whatever the parameters say. 
                     command.CommandText = $"{selectStatement} {restOfQuery}";
                     
                     string value = "";
-                    SqlDataReader reader = command.ExecuteReader();
+                    SQLiteDataReader reader = command.ExecuteReader();
 
                     int i = Db.r.Next(0, rowCount);
                     int j = 0;
 
                     // Go through all rows until you reach the one with the Id randomized when the i 
-                    // variable was initialized. And then get the Id of that row. 
+                    // variable was initialized. And then get the Id of that row.
                     while (reader.Read())
                     {
-
                         if (j == i)
                         {
-                            return value = reader.GetSqlValue(0).ToString();
+                            value = reader.GetValue(0).ToString();
+                            reader.Close();
+                            connection.Close();
+                            return value;
                         }
                         else { j++; }
                     }
 
-                    connection.Close();
                     reader.Close();
-                    return "";
+                    connection.Close();
+                    return value;
 
                 }
             }
         }
 
-        // Sees to that only allowed words come up. 
-        static public string QueryRestrictions()
-        {
-            var config = ConfigurationManager.OpenExeConfiguration(ConfigurationUserLevel.None);
-            StringBuilder builder = new StringBuilder();
-
-            if (config.AppSettings.Settings["SuitableForChildren"].Value == "1")
-            {
-                builder.Append("'Barn', ");
-            }
-            if (config.AppSettings.Settings["SuitableForAdolescents"].Value == "1")
-            {
-                builder.Append("'Ungdomar', ");
-            }
-            if (config.AppSettings.Settings["SuitableForAdults"].Value == "1")
-            {
-                builder.Append("'Vuxna', ");
-            }
-            if (config.AppSettings.Settings["SuitableForunoffendable"].Value == "1")
-            {
-                builder.Append("'Okränkbara', ");
-            }
-
-            builder.Remove(builder.Length - 2, 2);
-            string restriction = $"AND [Lämpligt för] IN({builder.ToString()})";
-            return restriction;
-        }
+        
     }
 
 }

@@ -3,148 +3,214 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using System.Data.SqlClient;
+using System.Data.SQLite;
 using Headline_Randomizer;
 
 namespace English
 {
     public abstract class Words
     {
-        // Creating static object of the word classes to be called when using their mwthods
-        static public Adjectives adjective = new Adjectives();
-        static public Verbs verb = new Verbs();
-        static public Someone someone = new Someone();
-        static public Something something = new Something();
-        static public JokeNames jokeName = new JokeNames();
-        static public NobelPrizes nobelPrize = new NobelPrizes();
-        static public Location location = new Location();
-        static public Relation relation = new Relation();
-        static public Status status = new Status();
+        // Create a static object for all needed classes. 
+        public static Adjectives adjective = new Adjectives();
+        public static Verbs verb = new Verbs();
+        public static Someone someone = new Someone();
+        public static Something something = new Something();
+        public static Nouns noun = new Nouns();
+        //public static Plats location = new Plats();
+        public static NobelPrizes nobelPrize = new NobelPrizes();
+        public static JokeNames jokeName = new JokeNames();
+        //public static Status status = new Status();
+        //public static Uppdrag uppdrag = new Uppdrag();
 
-        // Virtual methods here to be able to reach them through List<Words>
-        public virtual string KänslaPlural()
+        //public static void FreeNeededRelations(int antal)
+        //{
+        //    string used = "Used";
+        //    using (SQLiteConnection connection = new SQLiteConnection(Db.connectionString))
+        //    {
+        //        connection.Open();
+        //        SQLiteCommand command = new SQLiteCommand();
+        //        command.Connection = connection;
+        //        int antalRader = 0;
+
+        //        // Adjektiv relation
+        //        command.CommandText = $"SELECT COUNT(*) FROM TblAdjectives WHERE {used} = 0 AND [Relation] = 'True' {QueryRestrictions()}";
+        //        antalRader = (Int32)command.ExecuteScalar();
+
+        //        if (antalRader < antal)
+        //        {
+        //            string rad1 = Db.GetValue("SELECT TOP 1 Id FROM TblAdjectives WHERE [Relation] = 'True' ORDER BY Id ASC");
+        //            string sistaRad = Db.GetValue("SELECT TOP 1 Id FROM TblAdjectives WHERE [Relation] = 'True' ORDER BY Id DESC");
+        //            command.CommandText = $"UPDATE TblAdjectives SET {used} = 0 WHERE [Relation] = 'True' AND Id BETWEEN {rad1} AND {sistaRad}";
+        //            command.ExecuteNonQuery();
+        //        }
+
+        //        // Relation Verb
+        //        command.CommandText = $"SELECT COUNT(*) FROM TblVerbs WHERE [Relation] = 'True' AND {used} = 0 {QueryRestrictions()}";
+        //        antalRader = (Int32)command.ExecuteScalar();
+
+        //        if (antalRader < antal)
+        //        {
+        //            string rad1 = Db.GetValue("SELECT TOP 1 Id FROM TblVerbs WHERE [Relation] = 'True' ORDER BY Id ASC");
+        //            string sistaRad = Db.GetValue("SELECT TOP 1 Id FROM TblVerbs WHERE [Relation] = 'True' ORDER BY Id DESC");
+        //            command.CommandText = $"UPDATE TblVerbs SET {used} = 0 WHERE [Relation] = 'True' AND Id BETWEEN {rad1} AND {sistaRad}";
+        //            command.ExecuteNonQuery();
+        //        }
+
+        //        connection.Close();
+        //    }
+        //}
+
+        // Sees to that only allowed words come up. 
+        static public string QueryRestrictions()
         {
-            return "";
+            string restriction = $"AND [Suitable for] IN('Children', 'Adolescents', 'Adults')";
+            return restriction;
         }
 
-        public virtual string KänslaSingular()
+        public static void FreeNeeded(int antal)
         {
-            return "";
-        }
+            try
+            {
+                int flag = 0;
 
-        public virtual string BasForm(int id)
-        {
-            return "";
-        }
+                string used = "Used";
+                using (SQLiteConnection connection = new SQLiteConnection(Db.connectionString))
+                {
+                    connection.Open();
+                    SQLiteCommand command = new SQLiteCommand();
+                    command.Connection = connection;
+                    int antalRader = 0;
+                    flag = 1;
 
-        public virtual string Presens(int id)
-        {
-            return "";
-        }
+                    // Adjective
+                    command.CommandText = $"SELECT COUNT(*) FROM TblAdjectives WHERE {used} = 0 {QueryRestrictions()}";
+                    antalRader = Convert.ToInt32(command.ExecuteScalar());
 
-        public virtual string Perfekt(int id)
-        {
-            return "";
-        }
+                    if (antalRader < antal)
+                    {
+                        // Sort Ascending to get the first item. 
+                        string rad1 = Db.GetValue("SELECT Id FROM TblAdjectives ORDER BY Id ASC LIMIT 1");
+                        // Sort descending to get the last item. 
+                        string sistaRad = Db.GetValue("SELECT Id FROM TblAdjectives ORDER BY Id DESC LIMIT 1");
+                        command.CommandText = $"UPDATE TblAdjectives SET {used} = 0 WHERE Id BETWEEN {rad1} AND {sistaRad}";
+                        command.ExecuteNonQuery();
+                    }
 
-        public virtual string SForm()
-        {
-            return "";
-        }
+                    flag = 2;
 
-        public virtual string IngForm()
-        {
-            return "";
-        }
+                    // Someone
+                    command.CommandText = $"SELECT COUNT(*) FROM TblNouns WHERE [Term for] IN ('Someone', 'Someone/Something') AND {used} = 0 {QueryRestrictions()}";
+                    antalRader = Convert.ToInt32(command.ExecuteScalar());
 
-        public virtual string Singular(int adjectiveId, int nounId)
-        {
-            return "";
-        }
+                    if (antalRader < antal)
+                    {
+                        string rad1 = Db.GetValue("SELECT Id FROM TblNouns WHERE [Term for] IN ('Someone', 'Someone/Something') ORDER BY Id ASC LIMIT 1");
+                        string sistaRad = Db.GetValue("SELECT Id FROM TblNouns WHERE [Term for] IN ('Someone', 'Someone/Something') ORDER BY Id DESC LIMIT 1");
+                        command.CommandText = $"UPDATE TblNouns SET {used} = 0 WHERE [Term for] IN ('Someone', 'Someone/Something') AND Id BETWEEN {rad1} AND {sistaRad}";
+                        command.ExecuteNonQuery();
+                    }
 
-        public virtual string Plural(int adjectiveId, int nounId)
-        {
-            return "";
-        }
+                    flag = 3;
+                    // Something
+                    command.CommandText = $"SELECT COUNT(*) FROM TblNouns WHERE [Term for] IN ('Someone', 'Someone/Something') AND {used} = 0 {QueryRestrictions()}";
+                    antalRader = Convert.ToInt32(command.ExecuteScalar());
 
-        public virtual string Plural(int id)
-        {
-            return "";
-        }
+                    if (antalRader < antal)
+                    {
+                        string rad1 = Db.GetValue("SELECT Id FROM TblNouns WHERE [Term for] IN ('Someone', 'Someone/Something') ORDER BY Id ASC LIMIT 1");
+                        string sistaRad = Db.GetValue("SELECT Id FROM TblNouns WHERE [Term for] IN ('Someone', 'Someone/Something') ORDER BY Id DESC LIMIT 1");
+                        command.CommandText = $"UPDATE TblNouns SET {used} = 0 WHERE [Term for] IN ('Someone', 'Someone/Something') AND Id BETWEEN {rad1} AND {sistaRad}";
+                        command.ExecuteNonQuery();
+                    }
 
-        public virtual string Singular(int id)
-        {
-            return "";
-        }
+                    flag = 4;
+                    // Plats
+                    //command.CommandText = $"SELECT COUNT(*) FROM TblNouns WHERE Benämner IN ('Plats', 'Någon & Plats') AND {used} = 0 {QueryRestrictions()}";
+                    //antalRader = Convert.ToInt32(command.ExecuteScalar());
 
-        public virtual string Name(int id)
-        {
-            return "";
-        }
+                    //if (antalRader < antal)
+                    //{
+                    //    string rad1 = Db.GetValue("SELECT TOP 1 Id FROM TblNouns WHERE Benämner IN ('Plats', 'Någon & Plats') ORDER BY Id ASC");
+                    //    string sistaRad = Db.GetValue("SELECT TOP 1 Id FROM TblNouns WHERE Benämner IN ('Plats', 'Någon & Plats') ORDER BY Id DESC");
+                    //    command.CommandText = $"UPDATE TblNouns SET {used} = 0 WHERE Benämner IN ('Plats', 'Någon & Plats') AND Id BETWEEN {rad1} AND {sistaRad}";
+                    //    command.ExecuteNonQuery();
+                    //}
 
-        public virtual string Prize(int id)
-        {
-            return "";
-        }
+                    flag = 5;
+                    // Verb
+                    command.CommandText = $"SELECT COUNT(*) FROM TblVerbs WHERE {used} = 0 {QueryRestrictions()}";
+                    antalRader = Convert.ToInt32(command.ExecuteScalar());
 
-        public virtual string PostVerbs(int id)
-        {
-            return "";
-        }
+                    if (antalRader < antal)
+                    {
+                        string rad1 = Db.GetValue("SELECT Id FROM TblVerbs ORDER BY Id ASC LIMIT 1");
+                        string sistaRad = Db.GetValue("SELECT Id FROM TblVerbs ORDER BY Id DESC LIMIT 1");
+                        command.CommandText = $"UPDATE TblVerbs SET {used} = 0 WHERE Id BETWEEN {rad1} AND {sistaRad}";
+                        command.ExecuteNonQuery();
+                    }
 
-        public virtual string Request(int id)
-        {
-            return "";
-        }
+                    flag = 6;
+                    // Nobel Prize
+                    command.CommandText = $"SELECT COUNT(*) FROM TblNobelPrizes WHERE {used} = 0";
+                    antalRader = Convert.ToInt32(command.ExecuteScalar());
 
-        public virtual string AOrAn()
-        {
-            return "";
-        }
+                    if (antalRader < antal)
+                    {
+                        string rad1 = Db.GetValue("SELECT Id FROM TblNobelPrizes ORDER BY Id ASC LIMIT 1");
+                        string sistaRad = Db.GetValue("SELECT Id FROM TblNobelPrizes ORDER BY Id DESC LIMIT 1");
+                        command.CommandText = $"UPDATE TblNobelPrizes SET {used} = 0 WHERE Id BETWEEN {rad1} AND {sistaRad}";
+                        command.ExecuteNonQuery();
+                    }
 
-        public virtual string EnEllerEtt(int id)
-        {
-            return "";
-        }
+                    flag = 7;
+                    // Joke Names
+                    command.CommandText = $"SELECT COUNT(*) FROM TblJokeNames WHERE {used} = 0 {QueryRestrictions()}";
+                    antalRader = Convert.ToInt32(command.ExecuteScalar());
 
-        public virtual string DinEllerDitt(int id, bool singular)
-        {
-            return "";
-        }
+                    if (antalRader < antal)
+                    {
+                        string rad1 = Db.GetValue("SELECT Id FROM TblJokeNames ORDER BY Id ASC LIMIT 1");
+                        string sistaRad = Db.GetValue("SELECT Id FROM TblJokeNames ORDER BY Id DESC LIMIT 1");
+                        command.CommandText = $"UPDATE TblJokeNames SET {used} = 0 WHERE Id BETWEEN {rad1} AND {sistaRad}";
+                        command.ExecuteNonQuery();
+                    }
 
-        public virtual string EttForm(int id)
-        {
-            return "";
-        }
+                    flag = 8;
+                    // Status
+                    //command.CommandText = $"SELECT COUNT(*) FROM TblStatus WHERE {used} = 0";
+                    //antalRader = Convert.ToInt32(command.ExecuteScalar());
 
-        public virtual string EnForm(int id)
-        {
-            return "";
-        }
+                    //if (antalRader < antal)
+                    //{
+                    //    string rad1 = Db.GetValue("SELECT TOP 1 Id FROM TblStatus ORDER BY Id ASC");
+                    //    string sistaRad = Db.GetValue("SELECT TOP 1 Id FROM TblStatus ORDER BY Id DESC");
+                    //    command.CommandText = $"UPDATE TblStatus SET {used} = 0 WHERE Id BETWEEN {rad1} AND {sistaRad}";
+                    //    command.ExecuteNonQuery();
+                    //}
 
-        public virtual string Descriptive()
-        {
-            return "";
-        }
+                    flag = 9;
+                    // Missions
+                    //command.CommandText = $"SELECT COUNT(*) FROM TblMissions WHERE {used} = 0 {QueryRestrictions()}";
+                    //antalRader = Convert.ToInt32(command.ExecuteScalar());
 
-        public virtual string Känsla()
-        {
-            return "";
-        }
+                    //if (antalRader < antal)
+                    //{
+                    //    string rad1 = Db.GetValue("SELECT TOP 1 Id FROM TblMissions ORDER BY Id ASC");
+                    //    string sistaRad = Db.GetValue("SELECT TOP 1 Id FROM TblMissions ORDER BY Id DESC");
+                    //    command.CommandText = $"UPDATE TblMissions SET {used} = 0 WHERE Id BETWEEN {rad1} AND {sistaRad}";
+                    //    command.ExecuteNonQuery();
+                    //}
 
-        public virtual string HighStatus(int id)
-        {
-            return "";
-        }
-
-        public virtual string LowStatus(int id)
-        {
-            return "";
-        }
-
-        public virtual string Feeling(int id)
-        {
-            return "";
+                    connection.Close();
+                }
+            }
+            catch (Exception Ex)
+            {
+                System.Windows.Forms.MessageBox.Show("error: " + Ex.ToString());
+                System.Windows.Forms.MessageBox.Show("error: " + Ex.InnerException);
+                System.Windows.Forms.MessageBox.Show("error: " + Ex.Source);
+                System.Windows.Forms.MessageBox.Show("error: " + Ex.Message);
+            }
         }
 
         public virtual int RandomizeId()
@@ -152,288 +218,202 @@ namespace English
             return 404;
         }
 
-        public virtual void Used(int idNr) { }
+        public virtual void Used(int id)
+        {
 
+        }
     }
 
-    // Words
-    // Verbs
+    // Verb is a part of words and in words the only methods are RandomizeId and Used
+    // Because that's the only thing that they all have in common. 
     public class Verbs : Words
     {
         public override int RandomizeId()
         {
-            //return Db.GetValue($"SELECT TOP 1 * FROM TblVerb WHERE Used = 0 ORDER BY NEWID()");
-            return Convert.ToInt32($"{Db.RandomizeValue("Select Id", $"FROM TblVerb WHERE Used = 0 {Db.QueryRestrictions()}")}");
+            return Convert.ToInt32($"{Db.RandomizeValue("Select Id", $"FROM TblVerbs WHERE Used = 0 {QueryRestrictions()}")}");
         }
 
-        public override void Used(int idNr)
+        public override void Used(int id)
         {
-            Db.Command($"UPDATE TblVerb SET Used = 1 WHERE Id = {idNr}", Db.connectionString);
+            Db.Command($"UPDATE TblVerbs SET Used = 1 WHERE Id = {id}", Db.connectionString);
         }
 
-        public override string BasForm(int id)
+        public string Preposition(int id)
         {
-            return Db.GetValue($"SELECT BaseForm FROM TblVerb WHERE Id = {id}");
-        }
+            string prep = $"{Db.GetValue($"SELECT Preposition FROM TblVerbs WHERE Id = {id}")}";
 
-        public override string Presens(int id)
-        {
-            return Db.GetValue($"SELECT Presens FROM TblVerb WHERE Id = {id}");
-        }
-
-        public override string Perfekt(int id)
-        {
-            return Db.GetValue($"SELECT Perfekt FROM TblVerb WHERE Id = {id}");
-        }
-
-        public override string Request(int id)
-        {
-            return Db.GetValue($"SELECT Request FROM TblVerb WHERE Id = {id}");
-        }
-
-        public override string PostVerbs(int id)
-        {
-            if (Db.GetValue($"SELECT PostVerb FROM TblVerb WHERE Id = {id}") == "")
+            // If it returns "" then just return a space. If however it returns a preposition
+            // then add a space before and after. That way when I insert it in a string
+            // the amount of spaces is correct. I need to not add any spaces in that string though.  
+            if (prep == "")
             {
-                return "";
+                return " ";
             }
             else
             {
-                return $"{Db.GetValue($"SELECT PostVerb FROM TblVerb WHERE Id = {id}")} ";
-            }
-
-
-        }
-
-        //public override string SForm()
-        //{
-        //    return sForm;
-        //}
-
-        //public override string IngForm()
-        //{
-        //    return ingForm;
-        //}
-
-        //// Swedish Constructor
-        //public Verbs(string basForm, string presens, string perfekt, string postVerbs, string request) : base()
-        //{
-        //    this.basForm = basForm;
-        //    this.presens = presens;
-        //    this.perfekt = perfekt;
-        //    this.postVerbs = postVerbs;
-        //    this.request = request;
-        //}
-
-        //// English Constructor
-        //public Verbs(string basForm, string sForm, string ingForm) : base()
-        //{
-        //    this.basForm = basForm;
-        //    this.sForm = sForm;
-        //    this.ingForm = ingForm;
-        //}
-
-        public Verbs()
-        {
-
-        }
-    }
-
-    // Nouns
-    public abstract class Nouns : Words
-    {
-        public override string DinEllerDitt(int id, bool singular)
-        {
-            if (singular)
-            {
-                return Db.GetValue($"SELECT [din/ditt] FROM TblPreSubstantiv WHERE Id IN (SELECT [Pre Substantiv] FROM TblNouns WHERE Id = {id})");
-            }
-            else
-            {
-                return Db.GetValue($"SELECT [din/ditt plural] FROM TblPreSubstantiv WHERE Id IN (SELECT [Pre Substantiv] FROM TblNouns WHERE Id = {id})");
+                return $" {prep} ";
             }
         }
 
-        public override string EnEllerEtt(int id)
+        public string BaseForm(int id)
         {
-            // Koppla Primary key Id med foreign key Pre Substantiv
-            return Db.GetValue($"SELECT [en/ett] FROM TblPreSubstantiv WHERE Id IN (SELECT [Pre Substantiv] FROM TblNouns WHERE Id = {id})");
+            return Db.GetValue($"SELECT Base FROM TblVerbs WHERE Id = {id}");
         }
 
-        public override string Plural(int id)
+        public string IngForm(int id)
         {
-            return Db.GetValue($"SELECT Plural FROM TblNouns WHERE Id = {id}");
+            return Db.GetValue($"SELECT [-ing] FROM TblVerbs WHERE Id = {id}");
         }
 
-        public override string Singular(int id)
+        public string SForm(int id)
         {
-            return Db.GetValue($"SELECT Singular FROM TblNouns WHERE Id = {id}");
+            return Db.GetValue($"SELECT [-s] FROM TblVerbs WHERE Id = {id}");
         }
 
-        public override void Used(int idNr)
+        public int RandomizeRelation()
         {
-            Db.Command($"UPDATE TblNouns SET Used = 1 WHERE Id = {idNr}", Db.connectionString);
-        }
-    }
-
-    // Noun - Something
-    public class Something : Nouns
-    {
-        public override int RandomizeId()
-        {
-            return Convert.ToInt32($"{Db.RandomizeValue("Select Id", $"FROM TblNouns WHERE Used = 0 AND Animated = 0 {Db.QueryRestrictions()}")}");
+            return Convert.ToInt32($"{Db.RandomizeValue("Select Id", $"FROM TblVerbs WHERE Used = 0 AND [Relation] = 'True' {QueryRestrictions()}")}");
         }
     }
 
-    // Noun - Someone
-    public class Someone : Nouns
-    {
-        public override int RandomizeId()
-        {
-            string restrictions = Db.QueryRestrictions();
-            return Convert.ToInt32($"{Db.RandomizeValue("SELECT Id", "FROM TblNouns WHERE Used = 0 AND Animated = 1" + " " + restrictions)}");
-        }
-
-        //public Someone() : base()
-        //{
-
-        //}
-
-    }
-
-    // Adjectives
     public class Adjectives : Words
     {
         public override int RandomizeId()
         {
-            return Convert.ToInt32($"{Db.RandomizeValue("Select Id", $"FROM TblAdjective WHERE Used = 0 {Db.QueryRestrictions()}")}");
+            return Convert.ToInt32($"{Db.RandomizeValue("Select Id", $"FROM TblAdjectives WHERE Used = 0 {QueryRestrictions()}")}");
         }
 
-        public override void Used(int idNr)
+        public override void Used(int id)
         {
-            Db.Command($"UPDATE TblAdjective SET Used = 1 WHERE Id = {idNr}", Db.connectionString);
+            Db.Command($"UPDATE TblAdjectives SET Used = 1 WHERE Id = {id}", Db.connectionString);
         }
 
-        public override string EttForm(int id)
+        public string Preposition(int id)
         {
-            return Db.GetValue($"SELECT EttForm FROM TblAdjective WHERE Id = {id}");
+            string prep = $"{Db.GetValue($"SELECT Preposition FROM TblAdjectives WHERE Id = {id}")}";
+            if (prep == "")
+            {
+                return " ";
+            }
+            else
+            {
+                return $" {prep} ";
+            }
         }
 
-        public override string EnForm(int id)
+        public string Descriptive(int id)
         {
-            return Db.GetValue($"SELECT EnForm FROM TblAdjective WHERE Id = {id}");
+            return $"{Db.GetValue($"SELECT Descriptive FROM TblAdjectives WHERE Id = {id}")}";
         }
 
-        public override string Plural(int id)
-        {
-            return Db.GetValue($"SELECT Plural FROM TblAdjective WHERE Id = {id}");
-        }
-
-        //public override string Descriptive()
+        //public string Automatic(int adjectiveId, int nounId, bool singular)
         //{
-        //    return descriptive;
+        //    if (singular)
+        //    {
+        //        string genus = Db.GetValue($"SELECT Genus FROM TblNouns WHERE Id = {nounId}");
+
+        //        if (genus == @"N-genus" || genus == @"N-undantag")
+        //            return Db.GetValue($"SELECT [N-genus] FROM TblAdjectives WHERE Id = {adjectiveId}");
+        //        else if (genus == @"T-genus" || genus == @"T-undantag")
+        //        {
+        //            return Db.GetValue($"SELECT [T-genus] FROM TblAdjectives WHERE Id = {adjectiveId}");
+        //        }
+        //        else { return ""; }
+        //    }
+
+        //    else
+        //    {
+        //        string genus = Db.GetValue($"SELECT Genus FROM TblNouns WHERE Id = {nounId}");
+
+        //        if (genus == @"N-genus" || genus == @"T-genus")
+        //            return Db.GetValue($"SELECT Plural FROM TblAdjectives WHERE Id = {adjectiveId}");
+
+        //        else if (genus == @"T-undantag")
+        //        {
+        //            return Db.GetValue($"SELECT [T-genus] FROM TblAdjectives WHERE Id = {adjectiveId}");
+        //        }
+
+        //        else if (genus == @"N-undantag")
+        //        {
+        //            return Db.GetValue($"SELECT [N-genus] FROM TblAdjectives WHERE Id = {adjectiveId}");
+        //        }
+
+        //        else { return ""; }
+        //    }
         //}
 
-
-        // Compares current adjective with the right noun and returns the right adjective
-        public override string Singular(int adjectiveId, int nounId)
-        {
-            string preSub = Db.GetValue($"SELECT [Pre Substantiv] FROM TblNouns WHERE Id = {nounId}");
-
-            if (preSub == @"din/dina" || preSub == @"din/din")
-                return Db.GetValue($"SELECT EnForm FROM TblAdjective WHERE Id = {adjectiveId}");
-            else if (preSub == @"ditt/dina" || preSub == @"ditt/ditt")
-            {
-                return Db.GetValue($"SELECT EttForm FROM TblAdjective WHERE Id = {adjectiveId}");
-            }
-            else { return ""; }
-        }
-
-        public override string Plural(int adjectiveId, int nounId)
-        {
-
-            string preSub = Db.GetValue($"SELECT [Pre Substantiv] FROM TblNouns WHERE Id = {nounId}");
-
-            if (preSub == @"din/dina" || preSub == @"ditt/dina")
-                return Db.GetValue($"SELECT Plural FROM TblAdjective WHERE Id = {adjectiveId}");
-
-            else if (preSub == @"ditt/ditt")
-            {
-                return Db.GetValue($"SELECT EttForm FROM TblAdjective WHERE Id = {adjectiveId}");
-            }
-
-            else if (preSub == @"din/din")
-            {
-                return Db.GetValue($"SELECT EnForm FROM TblAdjective WHERE Id = {adjectiveId}");
-            }
-
-            else { return ""; }
-        }
-
-        //// Swedish Constructor
-        //public Adjectives(string enForm, string plural, string ettForm) : base()
+        //public int RandomizeRelation()
         //{
-        //    this.enForm = enForm;
-        //    this.plural = plural;
-        //    this.ettForm = ettForm;
+        //    return Convert.ToInt32($"{Db.RandomizeValue("Select Id", $"FROM TblAdjectives WHERE Used = 0 AND [Relation] = 'True' {QueryRestrictions()}")}");
         //}
-
-        ////English constructor
-        //public Adjectives(string descriptive) : base()
-        //{
-        //    this.descriptive = descriptive;
-        //}
-
-        public Adjectives()
-        {
-
-        }
     }
 
-    // Names
-    public abstract class Names : Words
-    {
-    }
-
-    // Joke Names
-    public class JokeNames : Names
+    public class Nouns : Words
     {
         public override int RandomizeId()
         {
-            return Convert.ToInt32($"{Db.RandomizeValue("Select Id", $"FROM TblJokeNames WHERE Used = 0 {Db.QueryRestrictions()}")}");
+            return Convert.ToInt32($"{Db.RandomizeValue("Select Id", $"FROM TblNouns WHERE Used = 0 AND [Term for] IN ('Something', 'Someone', 'Someone/Something') {QueryRestrictions()}")}");
         }
 
-        public override void Used(int idNr)
+        public override void Used(int id)
         {
-            Db.Command($"UPDATE TblJokeNames SET Used = 1 WHERE Id = {idNr}", Db.connectionString);
+            Db.Command($"UPDATE TblNouns SET Used = 1 WHERE Id = {id}", Db.connectionString);
         }
 
-        public override string Name(int id)
+        public string Preposition(int id)
         {
-            return Db.GetValue($"SELECT Name FROM TblJokeNames WHERE Id = { id }");
+            string prep = $"{Db.GetValue($"SELECT Preposition FROM TblNouns WHERE Id = {id}")}";
+            if (prep == "")
+            {
+                return " ";
+            }
+            else
+            {
+                return $" {prep} ";
+            }
         }
 
+        public string AOrAn(int id)
+        {
+            return Db.GetValue($"SELECT [A/An] FROM TblNouns WHERE Id = {id})");
+        }
+
+        public string Singular(int id)
+        {
+            return $"{Db.GetValue($"SELECT [Singular] FROM TblNouns WHERE Id = {id}")}";
+        }
+
+        public string Plural(int id)
+        {
+            return $"{Db.GetValue($"SELECT Plural FROM TblNouns WHERE Id = {id}")}";
+        }
     }
 
-    public class Location : Names
+    public class Someone : Nouns
     {
         public override int RandomizeId()
         {
-            return Convert.ToInt32($"{Db.RandomizeValue("Select Id", $"FROM TblPlats WHERE Used = 0 {Db.QueryRestrictions()}")}");
+            return Convert.ToInt32($"{Db.RandomizeValue("Select Id", $"FROM TblNouns WHERE Used = 0 AND [Term for] IN ('Someone', 'Someone/Something') {QueryRestrictions()}")}");
         }
 
-        public override void Used(int idNr)
-        {
-            Db.Command($"UPDATE TblPlats SET Used = 1 WHERE Id = {idNr}", Db.connectionString);
-        }
+    }
 
-        public override string Name(int id)
+    public class Something : Nouns
+    {
+        public override int RandomizeId()
         {
-            return Db.GetValue($"SELECT Plats FROM TblPlats WHERE Id = { id }");
+            return Convert.ToInt32($"{Db.RandomizeValue("Select Id", $"FROM TblNouns WHERE Used = 0 AND [Term for] IN ('Someone', 'Someone/Something') {QueryRestrictions()}")}");
         }
     }
 
-    // Nobel prize
+    //public class Plats : Nouns
+    //{
+    //    public override int RandomizeId()
+    //    {
+    //        return Convert.ToInt32($"{Db.RandomizeValue("Select Id", $"FROM TblNouns WHERE Used = 0 AND Benämner IN ('Plats', 'Någon & Plats') {QueryRestrictions()}")}");
+    //    }
+    //}
+
     public class NobelPrizes : Words
     {
         public override int RandomizeId()
@@ -441,57 +421,75 @@ namespace English
             return Convert.ToInt32($"{Db.RandomizeValue("Select Id", $"FROM TblNobelPrizes WHERE Used = 0")}");
         }
 
-        public override void Used(int idNr)
+        public override void Used(int id)
         {
-            Db.Command($"UPDATE TblNobelPrizes SET Used = 1 WHERE Id = {idNr}", Db.connectionString);
+            Db.Command($"UPDATE TblNobelPrizes SET Used = 1 WHERE Id = {id}", Db.connectionString);
         }
 
-        public override string Prize(int id)
+        public string Prize(int id)
         {
-            return Db.GetValue($"SELECT Prize FROM TblNobelPrizes WHERE Id = { id }");
+            return $"{Db.GetValue($"SELECT Prize FROM TblNobelPrizes WHERE Id = {id}")}";
         }
     }
 
-    public class Relation : Words
+    public class JokeNames : Words
     {
         public override int RandomizeId()
         {
-            return Convert.ToInt32($"{Db.RandomizeValue("Select Id", $"FROM TblRelation WHERE Used = 0")}");
+            return Convert.ToInt32($"{Db.RandomizeValue("Select Id", $"FROM TblJokeNames WHERE Used = 0 {QueryRestrictions()}")}");
         }
 
-        public override void Used(int idNr)
+        public override void Used(int id)
         {
-            Db.Command($"UPDATE TblRelation SET Used = 1 WHERE Id = {idNr}", Db.connectionString);
+            Db.Command($"UPDATE TblJokeNames SET Used = 1 WHERE Id = {id}", Db.connectionString);
         }
 
-        public override string Feeling(int id)
+        public string Name(int id)
         {
-            return Db.GetValue($"SELECT Känsla FROM TblRelation WHERE Id = { id }");
+            return $"{Db.GetValue($"SELECT Name FROM TblJokeNames WHERE Id = {id}")}";
         }
     }
 
-    public class Status : Words
-    {
-        public override int RandomizeId()
-        {
-            return Convert.ToInt32($"{Db.RandomizeValue("Select Id", $"FROM TblStatus WHERE Used = 0")}");
-        }
+    //public class Status : Words
+    //{
+    //    public override int RandomizeId()
+    //    {
+    //        return Convert.ToInt32($"{Db.RandomizeValue("Select Id", $"FROM TblStatus WHERE Used = 0")}");
+    //    }
 
-        public override void Used(int idNr)
-        {
-            Db.Command($"UPDATE TblStatus SET Used = 1 WHERE Id = {idNr}", Db.connectionString);
-        }
+    //    public override void Used(int idNr)
+    //    {
+    //        Db.Command($"UPDATE TblStatus SET Used = 1 WHERE Id = {idNr}", Db.connectionString);
+    //    }
 
-        public string HighStatus(int id)
-        {
-            return Db.GetValue($"SELECT Högstatus FROM TblStatus WHERE Id = { id }");
-        }
+    //    public string HighStatus(int id)
+    //    {
+    //        return Db.GetValue($"SELECT Högstatus FROM TblStatus WHERE Id = { id }");
+    //    }
 
-        public string LowStatus(int id)
-        {
-            return Db.GetValue($"SELECT Lågstatus FROM TblStatus WHERE Id = { id }");
-        }
-    }
+    //    public string LowStatus(int id)
+    //    {
+    //        return Db.GetValue($"SELECT Lågstatus FROM TblStatus WHERE Id = { id }");
+    //    }
+    //}
+
+    //public class Missions : Words
+    //{
+    //    public override int RandomizeId()
+    //    {
+    //        return Convert.ToInt32($"{Db.RandomizeValue("Select Id", $"FROM TblMissions WHERE Used = 0 {QueryRestrictions()}")}");
+    //    }
+
+    //    public override void Used(int id)
+    //    {
+    //        Db.Command($"UPDATE TblMissions SET Used = 1 WHERE Id = {id}", Db.connectionString);
+    //    }
+
+    //    public string Beskrivning(int id)
+    //    {
+    //        return $"{Db.GetValue($"SELECT [Uppdrag] FROM TblMissions WHERE Id = {id}")}";
+    //    }
+    //}
 
 
 }
