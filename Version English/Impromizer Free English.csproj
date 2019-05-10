@@ -87,11 +87,11 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Form1.cs">
+    <Compile Include="English %28Free%29.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Form1.Designer.cs">
-      <DependentUpon>Form1.cs</DependentUpon>
+    <Compile Include="English %28Free%29.Designer.cs">
+      <DependentUpon>English %28Free%29.cs</DependentUpon>
     </Compile>
     <Compile Include="Form2.cs">
       <SubType>Form</SubType>
@@ -99,22 +99,22 @@
     <Compile Include="Form2.Designer.cs">
       <DependentUpon>Form2.cs</DependentUpon>
     </Compile>
-    <Compile Include="Help.cs">
+    <Compile Include="Help Eng.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Help.Designer.cs">
-      <DependentUpon>Help.cs</DependentUpon>
+    <Compile Include="Help Eng.Designer.cs">
+      <DependentUpon>Help Eng.cs</DependentUpon>
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <EmbeddedResource Include="Form1.resx">
-      <DependentUpon>Form1.cs</DependentUpon>
+    <EmbeddedResource Include="English %28Free%29.resx">
+      <DependentUpon>English %28Free%29.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Form2.resx">
       <DependentUpon>Form2.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Help.resx">
-      <DependentUpon>Help.cs</DependentUpon>
+    <EmbeddedResource Include="Help Eng.resx">
+      <DependentUpon>Help Eng.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -181,9 +181,9 @@
       <Project>{f96683cf-cd08-4814-81be-d88930297a4f}</Project>
       <Name>Book</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Fix\Fix.csproj">
+    <ProjectReference Include="..\Fix\Other.csproj">
       <Project>{455a7134-573f-4ba8-b8d5-1749726fa8dc}</Project>
-      <Name>Fix</Name>
+      <Name>Other</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup />

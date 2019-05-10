@@ -19,7 +19,7 @@
             }
             base.Dispose(disposing);
         }
-
+        
         #region Windows Form Designer generated code
 
         /// <summary>
@@ -28,6 +28,8 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
             this.customTabControl1 = new System.Windows.Forms.CustomTabControl();
             this.tabPage3 = new System.Windows.Forms.TabPage();
             this.btnGenerate5 = new System.Windows.Forms.Button();
@@ -36,24 +38,29 @@
             this.btnGenerate3 = new System.Windows.Forms.Button();
             this.btnGenerate2 = new System.Windows.Forms.Button();
             this.btnGenerate1 = new System.Windows.Forms.Button();
-            this.tabPage2 = new System.Windows.Forms.TabPage();
-            this.btnGenerate9 = new System.Windows.Forms.Button();
-            this.btnClear3 = new System.Windows.Forms.Button();
+            this.tabPage1 = new System.Windows.Forms.TabPage();
+            this.btnClear2 = new System.Windows.Forms.Button();
+            this.btnGenerate8 = new System.Windows.Forms.Button();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.toolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem2 = new System.Windows.Forms.ToolStripMenuItem();
             this.lekarToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.omToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.backToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.forwardToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.lekarToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.hjälpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolTip = new System.Windows.Forms.ToolTip(this.components);
             this.customTabControl1.SuspendLayout();
             this.tabPage3.SuspendLayout();
-            this.tabPage2.SuspendLayout();
+            this.tabPage1.SuspendLayout();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
             // customTabControl1
             // 
             this.customTabControl1.Controls.Add(this.tabPage3);
-            this.customTabControl1.Controls.Add(this.tabPage2);
+            this.customTabControl1.Controls.Add(this.tabPage1);
             this.customTabControl1.DisplayStyle = System.Windows.Forms.TabStyle.Angled;
             // 
             // 
@@ -76,7 +83,7 @@
             this.customTabControl1.Font = new System.Drawing.Font("Calibri", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.customTabControl1.HotTrack = true;
             this.customTabControl1.ItemSize = new System.Drawing.Size(111, 31);
-            this.customTabControl1.Location = new System.Drawing.Point(38, 12);
+            this.customTabControl1.Location = new System.Drawing.Point(38, 11);
             this.customTabControl1.Name = "customTabControl1";
             this.customTabControl1.SelectedIndex = 0;
             this.customTabControl1.Size = new System.Drawing.Size(614, 332);
@@ -99,14 +106,15 @@
             this.tabPage3.Padding = new System.Windows.Forms.Padding(3);
             this.tabPage3.Size = new System.Drawing.Size(606, 292);
             this.tabPage3.TabIndex = 0;
-            this.tabPage3.Text = "Headlines";
+            this.tabPage3.Text = "Nyheter";
             // 
             // btnGenerate5
             // 
             this.btnGenerate5.BackColor = System.Drawing.SystemColors.Highlight;
             this.btnGenerate5.BackgroundImage = global::Headline_Randomizer.Properties.Resources.Nobelpris;
-            this.btnGenerate5.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
+            this.btnGenerate5.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
             this.btnGenerate5.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnGenerate5.FlatAppearance.BorderColor = System.Drawing.Color.White;
             this.btnGenerate5.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnGenerate5.Font = new System.Drawing.Font("Calibri", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnGenerate5.ForeColor = System.Drawing.Color.White;
@@ -116,7 +124,7 @@
             this.btnGenerate5.Size = new System.Drawing.Size(305, 99);
             this.btnGenerate5.TabIndex = 11;
             this.btnGenerate5.TabStop = false;
-            this.btnGenerate5.Text = "&__ won Nobel prize__";
+            this.btnGenerate5.Text = "&__ vann Nobel Priset __";
             this.btnGenerate5.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
             this.btnGenerate5.UseVisualStyleBackColor = false;
             this.btnGenerate5.Click += new System.EventHandler(this.btnGenerate5_Click);
@@ -127,8 +135,9 @@
             // 
             this.btnClear.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.btnClear.BackgroundImage = global::Headline_Randomizer.Properties.Resources.buttongrey3;
-            this.btnClear.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.btnClear.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.btnClear.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnClear.FlatAppearance.BorderColor = System.Drawing.Color.White;
             this.btnClear.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnClear.Font = new System.Drawing.Font("Calibri", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnClear.ForeColor = System.Drawing.Color.White;
@@ -138,7 +147,7 @@
             this.btnClear.Name = "btnClear";
             this.btnClear.Size = new System.Drawing.Size(304, 99);
             this.btnClear.TabIndex = 0;
-            this.btnClear.Text = "Clear";
+            this.btnClear.Text = "Rensa";
             this.btnClear.UseVisualStyleBackColor = false;
             this.btnClear.Click += new System.EventHandler(this.btnClear_Click);
             this.btnClear.MouseDown += new System.Windows.Forms.MouseEventHandler(this.BtnClear_MouseDown);
@@ -147,9 +156,10 @@
             // btnGenerate4
             // 
             this.btnGenerate4.BackColor = System.Drawing.SystemColors.Highlight;
-            this.btnGenerate4.BackgroundImage = global::Headline_Randomizer.Properties.Resources.behövermer;
-            this.btnGenerate4.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
+            this.btnGenerate4.BackgroundImage = global::Headline_Randomizer.Properties.Resources.behövermer3;
+            this.btnGenerate4.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
             this.btnGenerate4.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnGenerate4.FlatAppearance.BorderColor = System.Drawing.Color.White;
             this.btnGenerate4.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnGenerate4.Font = new System.Drawing.Font("Calibri", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnGenerate4.ForeColor = System.Drawing.Color.White;
@@ -159,7 +169,7 @@
             this.btnGenerate4.Size = new System.Drawing.Size(305, 99);
             this.btnGenerate4.TabIndex = 10;
             this.btnGenerate4.TabStop = false;
-            this.btnGenerate4.Text = "&Politicians demand__";
+            this.btnGenerate4.Text = "&Partier kräver__";
             this.btnGenerate4.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
             this.btnGenerate4.UseVisualStyleBackColor = false;
             this.btnGenerate4.Click += new System.EventHandler(this.btnGenerate4_Click);
@@ -170,8 +180,9 @@
             // 
             this.btnGenerate3.BackColor = System.Drawing.SystemColors.Highlight;
             this.btnGenerate3.BackgroundImage = global::Headline_Randomizer.Properties.Resources.tror_att___;
-            this.btnGenerate3.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
+            this.btnGenerate3.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
             this.btnGenerate3.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnGenerate3.FlatAppearance.BorderColor = System.Drawing.Color.White;
             this.btnGenerate3.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnGenerate3.Font = new System.Drawing.Font("Calibri", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnGenerate3.ForeColor = System.Drawing.Color.White;
@@ -181,7 +192,7 @@
             this.btnGenerate3.Size = new System.Drawing.Size(305, 98);
             this.btnGenerate3.TabIndex = 9;
             this.btnGenerate3.TabStop = false;
-            this.btnGenerate3.Text = "&Scientists agree __";
+            this.btnGenerate3.Text = "&Forskare överens __";
             this.btnGenerate3.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
             this.btnGenerate3.UseVisualStyleBackColor = false;
             this.btnGenerate3.Click += new System.EventHandler(this.btnGenerate3_Click);
@@ -191,9 +202,10 @@
             // btnGenerate2
             // 
             this.btnGenerate2.BackColor = System.Drawing.SystemColors.Highlight;
-            this.btnGenerate2.BackgroundImage = global::Headline_Randomizer.Properties.Resources.Substantiv_verb;
-            this.btnGenerate2.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
+            this.btnGenerate2.BackgroundImage = global::Headline_Randomizer.Properties.Resources.adjectivesbuttonbevel1;
+            this.btnGenerate2.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
             this.btnGenerate2.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnGenerate2.FlatAppearance.BorderColor = System.Drawing.Color.White;
             this.btnGenerate2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnGenerate2.Font = new System.Drawing.Font("Calibri", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnGenerate2.ForeColor = System.Drawing.Color.White;
@@ -203,7 +215,7 @@
             this.btnGenerate2.Size = new System.Drawing.Size(304, 98);
             this.btnGenerate2.TabIndex = 8;
             this.btnGenerate2.TabStop = false;
-            this.btnGenerate2.Text = "&Someone verb__";
+            this.btnGenerate2.Text = "Någon verb __";
             this.btnGenerate2.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
             this.btnGenerate2.UseVisualStyleBackColor = false;
             this.btnGenerate2.Click += new System.EventHandler(this.BtnGenerate2_Click);
@@ -213,7 +225,7 @@
             // btnGenerate1
             // 
             this.btnGenerate1.BackColor = System.Drawing.SystemColors.WindowFrame;
-            this.btnGenerate1.BackgroundImage = global::Headline_Randomizer.Properties.Resources._3_av_5;
+            this.btnGenerate1.BackgroundImage = global::Headline_Randomizer.Properties.Resources._3_av_52;
             this.btnGenerate1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
             this.btnGenerate1.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnGenerate1.FlatAppearance.BorderColor = System.Drawing.Color.White;
@@ -227,68 +239,69 @@
             this.btnGenerate1.Size = new System.Drawing.Size(304, 99);
             this.btnGenerate1.TabIndex = 12;
             this.btnGenerate1.TabStop = false;
-            this.btnGenerate1.Text = "3 &out of 5";
+            this.btnGenerate1.Text = "3 &av 5";
             this.btnGenerate1.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
             this.btnGenerate1.UseVisualStyleBackColor = false;
             this.btnGenerate1.Click += new System.EventHandler(this.btnGenerate1_Click);
             this.btnGenerate1.MouseDown += new System.Windows.Forms.MouseEventHandler(this.btnGenerate1_MouseDown);
             this.btnGenerate1.MouseUp += new System.Windows.Forms.MouseEventHandler(this.btnGenerate1_MouseUp);
             // 
-            // tabPage2
+            // tabPage1
             // 
-            this.tabPage2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.tabPage2.Controls.Add(this.btnGenerate9);
-            this.tabPage2.Controls.Add(this.btnClear3);
-            this.tabPage2.Location = new System.Drawing.Point(4, 36);
-            this.tabPage2.Name = "tabPage2";
-            this.tabPage2.Size = new System.Drawing.Size(606, 292);
-            this.tabPage2.TabIndex = 3;
-            this.tabPage2.Text = "Other";
+            this.tabPage1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.tabPage1.Controls.Add(this.btnClear2);
+            this.tabPage1.Controls.Add(this.btnGenerate8);
+            this.tabPage1.Location = new System.Drawing.Point(4, 36);
+            this.tabPage1.Name = "tabPage1";
+            this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage1.Size = new System.Drawing.Size(606, 292);
+            this.tabPage1.TabIndex = 1;
+            this.tabPage1.Text = "Övrigt";
             // 
-            // btnGenerate9
+            // btnClear2
             // 
-            this.btnGenerate9.BackColor = System.Drawing.SystemColors.WindowFrame;
-            this.btnGenerate9.BackgroundImage = global::Headline_Randomizer.Properties.Resources.promotion;
-            this.btnGenerate9.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.btnGenerate9.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnGenerate9.FlatAppearance.BorderColor = System.Drawing.Color.White;
-            this.btnGenerate9.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.btnGenerate9.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnGenerate9.Font = new System.Drawing.Font("Calibri", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnGenerate9.ForeColor = System.Drawing.Color.White;
-            this.btnGenerate9.Location = new System.Drawing.Point(-1, -1);
-            this.btnGenerate9.Name = "btnGenerate9";
-            this.btnGenerate9.Padding = new System.Windows.Forms.Padding(0, 0, 0, 10);
-            this.btnGenerate9.Size = new System.Drawing.Size(305, 99);
-            this.btnGenerate9.TabIndex = 18;
-            this.btnGenerate9.TabStop = false;
-            this.btnGenerate9.Text = "&Are you tired of__";
-            this.btnGenerate9.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
-            this.btnGenerate9.UseVisualStyleBackColor = false;
-            this.btnGenerate9.Click += new System.EventHandler(this.btnGenerate9_Click);
-            this.btnGenerate9.MouseDown += new System.Windows.Forms.MouseEventHandler(this.btnGenerate9_MouseDown);
-            this.btnGenerate9.MouseUp += new System.Windows.Forms.MouseEventHandler(this.btnGenerate9_MouseUp);
+            this.btnClear2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.btnClear2.BackgroundImage = global::Headline_Randomizer.Properties.Resources.buttongrey3;
+            this.btnClear2.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.btnClear2.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnClear2.FlatAppearance.BorderColor = System.Drawing.Color.White;
+            this.btnClear2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnClear2.Font = new System.Drawing.Font("Calibri", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnClear2.ForeColor = System.Drawing.Color.White;
+            this.btnClear2.ImageAlign = System.Drawing.ContentAlignment.TopLeft;
+            this.btnClear2.ImageKey = "(none)";
+            this.btnClear2.Location = new System.Drawing.Point(303, -1);
+            this.btnClear2.Name = "btnClear2";
+            this.btnClear2.Size = new System.Drawing.Size(304, 99);
+            this.btnClear2.TabIndex = 9;
+            this.btnClear2.Text = "Rensa";
+            this.btnClear2.UseVisualStyleBackColor = false;
+            this.btnClear2.Click += new System.EventHandler(this.btnClear2_Click);
+            this.btnClear2.MouseDown += new System.Windows.Forms.MouseEventHandler(this.BtnClear2_MouseDown);
+            this.btnClear2.MouseUp += new System.Windows.Forms.MouseEventHandler(this.BtnClear2_MouseUp);
             // 
-            // btnClear3
+            // btnGenerate8
             // 
-            this.btnClear3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.btnClear3.BackgroundImage = global::Headline_Randomizer.Properties.Resources.buttongrey3;
-            this.btnClear3.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.btnClear3.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnClear3.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnClear3.Font = new System.Drawing.Font("Calibri", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnClear3.ForeColor = System.Drawing.Color.White;
-            this.btnClear3.ImageAlign = System.Drawing.ContentAlignment.TopLeft;
-            this.btnClear3.ImageKey = "(none)";
-            this.btnClear3.Location = new System.Drawing.Point(303, -1);
-            this.btnClear3.Name = "btnClear3";
-            this.btnClear3.Size = new System.Drawing.Size(304, 99);
-            this.btnClear3.TabIndex = 17;
-            this.btnClear3.Text = "Clear";
-            this.btnClear3.UseVisualStyleBackColor = false;
-            this.btnClear3.Click += new System.EventHandler(this.btnClear3_Click);
-            this.btnClear3.MouseDown += new System.Windows.Forms.MouseEventHandler(this.BtnClear3_MouseDown);
-            this.btnClear3.MouseUp += new System.Windows.Forms.MouseEventHandler(this.BtnClear3_MouseUp);
+            this.btnGenerate8.BackColor = System.Drawing.SystemColors.Highlight;
+            this.btnGenerate8.BackgroundImage = global::Headline_Randomizer.Properties.Resources.promotion;
+            this.btnGenerate8.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.btnGenerate8.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnGenerate8.FlatAppearance.BorderColor = System.Drawing.Color.White;
+            this.btnGenerate8.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnGenerate8.Font = new System.Drawing.Font("Calibri", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnGenerate8.ForeColor = System.Drawing.Color.White;
+            this.btnGenerate8.Location = new System.Drawing.Point(-1, -1);
+            this.btnGenerate8.Name = "btnGenerate8";
+            this.btnGenerate8.Padding = new System.Windows.Forms.Padding(0, 0, 0, 10);
+            this.btnGenerate8.Size = new System.Drawing.Size(305, 98);
+            this.btnGenerate8.TabIndex = 10;
+            this.btnGenerate8.TabStop = false;
+            this.btnGenerate8.Text = "Är du trött på __";
+            this.btnGenerate8.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
+            this.btnGenerate8.UseVisualStyleBackColor = false;
+            this.btnGenerate8.Click += new System.EventHandler(this.btnGenerate8_Click);
+            this.btnGenerate8.MouseDown += new System.Windows.Forms.MouseEventHandler(this.BtnGenerate8_MouseDown);
+            this.btnGenerate8.MouseUp += new System.Windows.Forms.MouseEventHandler(this.BtnGenerate8_MouseUp);
             // 
             // menuStrip1
             // 
@@ -302,11 +315,11 @@
             this.lekarToolStripMenuItem1,
             this.omToolStripMenuItem});
             this.menuStrip1.LayoutStyle = System.Windows.Forms.ToolStripLayoutStyle.HorizontalStackWithOverflow;
-            this.menuStrip1.Location = new System.Drawing.Point(0, 360);
+            this.menuStrip1.Location = new System.Drawing.Point(0, 351);
             this.menuStrip1.Name = "menuStrip1";
             this.menuStrip1.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.menuStrip1.Size = new System.Drawing.Size(691, 33);
-            this.menuStrip1.TabIndex = 8;
+            this.menuStrip1.TabIndex = 7;
             this.menuStrip1.Text = "menuStrip1";
             // 
             // toolStripMenuItem1
@@ -332,8 +345,8 @@
             this.lekarToolStripMenuItem1.Font = new System.Drawing.Font("Calibri", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lekarToolStripMenuItem1.ForeColor = System.Drawing.Color.White;
             this.lekarToolStripMenuItem1.Name = "lekarToolStripMenuItem1";
-            this.lekarToolStripMenuItem1.Size = new System.Drawing.Size(75, 29);
-            this.lekarToolStripMenuItem1.Text = "Games";
+            this.lekarToolStripMenuItem1.Size = new System.Drawing.Size(64, 29);
+            this.lekarToolStripMenuItem1.Text = "Lekar";
             this.lekarToolStripMenuItem1.Click += new System.EventHandler(this.lekarToolStripMenuItem_Click);
             // 
             // omToolStripMenuItem
@@ -341,30 +354,80 @@
             this.omToolStripMenuItem.Font = new System.Drawing.Font("Calibri", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.omToolStripMenuItem.ForeColor = System.Drawing.Color.White;
             this.omToolStripMenuItem.Name = "omToolStripMenuItem";
-            this.omToolStripMenuItem.Size = new System.Drawing.Size(69, 29);
-            this.omToolStripMenuItem.Text = "About";
+            this.omToolStripMenuItem.Size = new System.Drawing.Size(50, 29);
+            this.omToolStripMenuItem.Text = "Om";
             this.omToolStripMenuItem.Click += new System.EventHandler(this.hjälpToolStripMenuItem_Click);
+            // 
+            // backToolStripMenuItem
+            // 
+            this.backToolStripMenuItem.Font = new System.Drawing.Font("Segoe UI Symbol", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.backToolStripMenuItem.ForeColor = System.Drawing.Color.White;
+            this.backToolStripMenuItem.Name = "backToolStripMenuItem";
+            this.backToolStripMenuItem.Size = new System.Drawing.Size(47, 29);
+            this.backToolStripMenuItem.Text = "";
+            this.backToolStripMenuItem.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
+            this.backToolStripMenuItem.Click += new System.EventHandler(this.backToolStripMenuItem_Click);
+            // 
+            // forwardToolStripMenuItem
+            // 
+            this.forwardToolStripMenuItem.Font = new System.Drawing.Font("Segoe UI Symbol", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.forwardToolStripMenuItem.ForeColor = System.Drawing.Color.White;
+            this.forwardToolStripMenuItem.Name = "forwardToolStripMenuItem";
+            this.forwardToolStripMenuItem.Size = new System.Drawing.Size(47, 29);
+            this.forwardToolStripMenuItem.Text = "";
+            this.forwardToolStripMenuItem.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
+            this.forwardToolStripMenuItem.Click += new System.EventHandler(this.forwardToolStripMenuItem_Click);
+            // 
+            // lekarToolStripMenuItem
+            // 
+            this.lekarToolStripMenuItem.Font = new System.Drawing.Font("Calibri", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lekarToolStripMenuItem.ForeColor = System.Drawing.Color.White;
+            this.lekarToolStripMenuItem.Name = "lekarToolStripMenuItem";
+            this.lekarToolStripMenuItem.Size = new System.Drawing.Size(64, 29);
+            this.lekarToolStripMenuItem.Text = "Lekar";
+            this.lekarToolStripMenuItem.Click += new System.EventHandler(this.lekarToolStripMenuItem_Click);
+            // 
+            // hjälpToolStripMenuItem
+            // 
+            this.hjälpToolStripMenuItem.Font = new System.Drawing.Font("Calibri", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.hjälpToolStripMenuItem.ForeColor = System.Drawing.Color.White;
+            this.hjälpToolStripMenuItem.Name = "hjälpToolStripMenuItem";
+            this.hjälpToolStripMenuItem.Size = new System.Drawing.Size(54, 29);
+            this.hjälpToolStripMenuItem.Text = "Info";
+            this.hjälpToolStripMenuItem.Click += new System.EventHandler(this.hjälpToolStripMenuItem_Click);
+            // 
+            // toolTip
+            // 
+            this.toolTip.AutomaticDelay = 0;
+            this.toolTip.AutoPopDelay = 999999999;
+            this.toolTip.InitialDelay = 500;
+            this.toolTip.ReshowDelay = 100;
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.BackgroundImage = global::Headline_Randomizer.Properties.Resources.Untitled_1;
-            this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.ClientSize = new System.Drawing.Size(691, 393);
-            this.Controls.Add(this.menuStrip1);
+            this.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("$this.BackgroundImage")));
+            this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.ClientSize = new System.Drawing.Size(691, 384);
             this.Controls.Add(this.customTabControl1);
+            this.Controls.Add(this.menuStrip1);
             this.DoubleBuffered = true;
             this.ForeColor = System.Drawing.Color.White;
-            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.MainMenuStrip = this.menuStrip1;
+            this.MaximizeBox = false;
             this.Name = "Form1";
-            this.StartPosition = System.Windows.Forms.FormStartPosition.Manual;
-            this.Text = "Headline Randomizer";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
+            this.Text = "Impromizer (Free)";
+            this.TopMost = true;
+            this.Load += new System.EventHandler(this.Form1_Load);
             this.Move += new System.EventHandler(this.MoveWindow1);
             this.customTabControl1.ResumeLayout(false);
             this.tabPage3.ResumeLayout(false);
-            this.tabPage2.ResumeLayout(false);
+            this.tabPage1.ResumeLayout(false);
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
             this.ResumeLayout(false);
@@ -381,10 +444,15 @@
         private System.Windows.Forms.Button btnGenerate3;
         private System.Windows.Forms.Button btnGenerate2;
         private System.Windows.Forms.Button btnGenerate1;
-        private System.Windows.Forms.TabPage tabPage2;
-        private System.Windows.Forms.Button btnGenerate9;
-        private System.Windows.Forms.Button btnClear3;
         private System.Windows.Forms.MenuStrip menuStrip1;
+        private System.Windows.Forms.ToolStripMenuItem backToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem forwardToolStripMenuItem;
+        private System.Windows.Forms.ToolTip toolTip;
+        private System.Windows.Forms.ToolStripMenuItem hjälpToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem lekarToolStripMenuItem;
+        private System.Windows.Forms.TabPage tabPage1;
+        private System.Windows.Forms.Button btnClear2;
+        private System.Windows.Forms.Button btnGenerate8;
         private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem1;
         private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem2;
         private System.Windows.Forms.ToolStripMenuItem lekarToolStripMenuItem1;

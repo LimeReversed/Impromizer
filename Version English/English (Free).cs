@@ -23,7 +23,7 @@ namespace Headline_Randomizer
         {
             InitializeComponent();
 
-            // Cheopy the new Databasefile. If the folder already exists, then only copy file. If it doesn't then create the folder too.  
+            // Copy the new Databasefile. If the folder already exists, then only copy file. If it doesn't then create the folder too.  
             string path = $"{Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments)}\\Impromizer";
             if (!Directory.Exists($"{path}"))
             {
@@ -35,7 +35,7 @@ namespace Headline_Randomizer
                     && !File.Exists($"{path}\\WordsDatabaseEnglish.db3"))
             {
                 // Sometimes the app gives me an error when an old database log is there after I copied a new database to that folder. The soution is to delete the log. 
-                File.Delete($"{path}\\WordsDatabaseEnglish_log.ldf");
+                File.Delete($"{path}\\WordsDatabase_log.ldf");
                 System.IO.File.Copy($"{AppDomain.CurrentDomain.BaseDirectory}\\WordsDatabaseEnglish.db3",
                                     $"{path}\\WordsDatabaseEnglish.db3", true);
             }
@@ -211,8 +211,7 @@ namespace Headline_Randomizer
             int verbNr = Words.verb.RandomizeId();
             List<string> politiker = new List<string>
             {
-                "Democrat", "Liberal", "Conservative", "Republican", "The King",
-                "The Queen"
+                "Democrat", "The liberal party", "The conservative party", "Republican", "New party", "The labour Party", "The green party"
             };
             Random r = new Random();
             int politikerNr = r.Next(0, politiker.Count);

@@ -27,7 +27,7 @@ namespace Headline_Randomizer
         {
             //richTextBox1.Rtf = @"{\rtf1\ Hello \b Lime\b0\";
             // Show what's in the focument at this path.
-            rtbGames.Rtf = File.ReadAllText($"{AppDomain.CurrentDomain.BaseDirectory}TextSwe\\Lekar.rtf");
+            rtbGames.Rtf = File.ReadAllText($"{AppDomain.CurrentDomain.BaseDirectory}TextEng\\Games.rtf");
             rtbGames.RightMargin = pGames.Size.Width - 65;
 
             //rtbScenes.Rtf = File.ReadAllText($"{AppDomain.CurrentDomain.BaseDirectory}Text\\Scener.rtf");
@@ -36,17 +36,24 @@ namespace Headline_Randomizer
             //rtbCustom.Rtf = File.ReadAllText($"{AppDomain.CurrentDomain.BaseDirectory}Text\\Grammatik.rtf");
             //rtbCustom.RightMargin = pCustom.Size.Width - 65;
 
-            rtbAbout.Rtf = File.ReadAllText($"{AppDomain.CurrentDomain.BaseDirectory}TextSwe\\Omappen.rtf");
+            rtbAbout.Rtf = File.ReadAllText($"{AppDomain.CurrentDomain.BaseDirectory}TextEng\\About.rtf");
             rtbAbout.RightMargin = pAbout.Size.Width - 65;
         }
 
         private void Help_SizeChanged(object sender, EventArgs e)
         {
-            // Make the marigin follow the size of the window.
-            rtbGames.RightMargin = pGames.Size.Width - 65;
-            //rtbScenes.RightMargin = pScenes.Size.Width - 65;
-            //rtbCustom.RightMargin = pCustom.Size.Width - 65;
-            rtbAbout.RightMargin = pAbout.Size.Width - 65;
+            if (pAbout.Size.Width < 66 || pGames.Size.Width < 66)
+            {
+
+            }
+            else
+            {
+                // Make the marigin follow the size of the window.
+                rtbGames.RightMargin = pGames.Size.Width - 65;
+                //rtbScenes.RightMargin = pScenes.Size.Width - 65;
+                //rtbCustom.RightMargin = pCustom.Size.Width - 65;
+                rtbAbout.RightMargin = pAbout.Size.Width - 65;
+            }
 
         }
 

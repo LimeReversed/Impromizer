@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(LanguageChoice));
             this.btnEnglish = new System.Windows.Forms.Button();
             this.btnSvenska = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
@@ -82,8 +83,13 @@
             this.Controls.Add(this.label1);
             this.Controls.Add(this.btnSvenska);
             this.Controls.Add(this.btnEnglish);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.MaximizeBox = false;
+            this.MinimizeBox = false;
             this.Name = "LanguageChoice";
-            this.Text = "LanguageChoice";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
+            this.Text = "Impromizer Language Selection";
             this.ResumeLayout(false);
             this.PerformLayout();
 

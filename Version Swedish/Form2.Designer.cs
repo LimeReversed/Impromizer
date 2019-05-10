@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(PresentationWindow));
             this.tbxResult = new System.Windows.Forms.TextBox();
             this.SuspendLayout();
             // 
@@ -57,9 +58,11 @@
             this.Controls.Add(this.tbxResult);
             this.ForeColor = System.Drawing.SystemColors.ControlLightLight;
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "PresentationWindow";
             this.StartPosition = System.Windows.Forms.FormStartPosition.Manual;
             this.Text = "Presentation Window";
+            this.TopMost = true;
             this.ResumeLayout(false);
             this.PerformLayout();
 

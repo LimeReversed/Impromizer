@@ -428,7 +428,7 @@ namespace Svenska
     {
         public override int RandomizeId()
         {
-            return Convert.ToInt32($"{Db.RandomizeValue("Select Id", $"FROM TblNouns WHERE Använt = 0 AND Benämner IN ('Någon', 'Någon & Något') {QueryRestrictions()}")}");
+            return Convert.ToInt32($"{Db.RandomizeValue("Select Id", $"FROM TblNouns WHERE Använt = 0 AND Benämner IN ('Någon', 'Någon & Något', 'Någon & Plats') {QueryRestrictions()}")}");
         }
 
     }

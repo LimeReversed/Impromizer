@@ -42,11 +42,18 @@ namespace Headline_Randomizer
 
         private void Help_SizeChanged(object sender, EventArgs e)
         {
-            // Make the marigin follow the size of the window.
-            rtbGames.RightMargin = pGames.Size.Width - 65;
-            //rtbScenes.RightMargin = pScenes.Size.Width - 65;
-            //rtbCustom.RightMargin = pCustom.Size.Width - 65;
-            rtbAbout.RightMargin = pAbout.Size.Width - 65;
+            if (pAbout.Size.Width < 66 || pGames.Size.Width < 66)
+            {
+
+            }
+            else
+            {
+                // Make the marigin follow the size of the window.
+                rtbGames.RightMargin = pGames.Size.Width - 65;
+                //rtbScenes.RightMargin = pScenes.Size.Width - 65;
+                //rtbCustom.RightMargin = pCustom.Size.Width - 65;
+                rtbAbout.RightMargin = pAbout.Size.Width - 65;
+            }
 
         }
 

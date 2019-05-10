@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Help));
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage4 = new System.Windows.Forms.TabPage();
             this.pAbout = new System.Windows.Forms.Panel();
@@ -35,6 +36,7 @@
             this.tabPage1 = new System.Windows.Forms.TabPage();
             this.pGames = new System.Windows.Forms.Panel();
             this.rtbGames = new System.Windows.Forms.RichTextBox();
+            this.tabPage2 = new System.Windows.Forms.TabPage();
             this.tabControl1.SuspendLayout();
             this.tabPage4.SuspendLayout();
             this.pAbout.SuspendLayout();
@@ -49,6 +51,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.tabControl1.Controls.Add(this.tabPage4);
             this.tabControl1.Controls.Add(this.tabPage1);
+            this.tabControl1.Controls.Add(this.tabPage2);
             this.tabControl1.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.tabControl1.Location = new System.Drawing.Point(0, 0);
             this.tabControl1.Name = "tabControl1";
@@ -66,7 +69,7 @@
             this.tabPage4.Padding = new System.Windows.Forms.Padding(3);
             this.tabPage4.Size = new System.Drawing.Size(361, 505);
             this.tabPage4.TabIndex = 3;
-            this.tabPage4.Text = "Om appen";
+            this.tabPage4.Text = "About";
             this.tabPage4.UseVisualStyleBackColor = true;
             // 
             // pAbout
@@ -104,7 +107,7 @@
             this.tabPage1.Name = "tabPage1";
             this.tabPage1.Size = new System.Drawing.Size(361, 505);
             this.tabPage1.TabIndex = 0;
-            this.tabPage1.Text = "Lekar";
+            this.tabPage1.Text = "Games";
             // 
             // pGames
             // 
@@ -134,6 +137,16 @@
             this.rtbGames.Text = "";
             this.rtbGames.TextChanged += new System.EventHandler(this.richTextBox1_TextChanged);
             // 
+            // tabPage2
+            // 
+            this.tabPage2.Location = new System.Drawing.Point(4, 28);
+            this.tabPage2.Name = "tabPage2";
+            this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage2.Size = new System.Drawing.Size(361, 505);
+            this.tabPage2.TabIndex = 4;
+            this.tabPage2.Text = "Right";
+            this.tabPage2.UseVisualStyleBackColor = true;
+            // 
             // Help
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -141,8 +154,12 @@
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.ClientSize = new System.Drawing.Size(369, 537);
             this.Controls.Add(this.tabControl1);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.MinimumSize = new System.Drawing.Size(300, 39);
             this.Name = "Help";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Help";
+            this.TopMost = true;
             this.Load += new System.EventHandler(this.Help_Load);
             this.SizeChanged += new System.EventHandler(this.Help_SizeChanged);
             this.tabControl1.ResumeLayout(false);
@@ -162,5 +179,6 @@
         private System.Windows.Forms.TabPage tabPage4;
         private System.Windows.Forms.Panel pAbout;
         private System.Windows.Forms.RichTextBox rtbAbout;
+        private System.Windows.Forms.TabPage tabPage2;
     }
 }

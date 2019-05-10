@@ -36,7 +36,7 @@ namespace Headline_Randomizer
             else if (Directory.Exists($"{path}")
                     && !File.Exists($"{path}\\WordsDatabaseSwedish.db3"))
             {
-                File.Delete($"{path}\\WordsDatabaseSwedish_log.ldf");
+                File.Delete($"{path}\\WordsDatabase_log.ldf");
                 System.IO.File.Copy($"{AppDomain.CurrentDomain.BaseDirectory}\\WordsDatabaseSwedish.db3",
                                     $"{path}\\WordsDatabaseSwedish.db3", true);
             }
