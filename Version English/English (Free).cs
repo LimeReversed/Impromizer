@@ -9,6 +9,8 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.IO;
 using English;
+using System.Diagnostics;
+using Common;
 
 namespace Headline_Randomizer
 {
@@ -22,32 +24,6 @@ namespace Headline_Randomizer
         public Form1()
         {
             InitializeComponent();
-
-            // Copy the new Databasefile. If the folder already exists, then only copy file. If it doesn't then create the folder too.  
-            string path = $"{Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments)}\\Impromizer";
-            if (!Directory.Exists($"{path}"))
-            {
-                Directory.CreateDirectory($"{path}");
-                System.IO.File.Copy($"{AppDomain.CurrentDomain.BaseDirectory}\\WordsDatabaseEnglish.db3",
-                                    $"{path}\\WordsDatabaseEnglish.db3", true);
-            }
-            else if (Directory.Exists($"{path}")
-                    && !File.Exists($"{path}\\WordsDatabaseEnglish.db3"))
-            {
-                // Sometimes the app gives me an error when an old database log is there after I copied a new database to that folder. The soution is to delete the log. 
-                File.Delete($"{path}\\WordsDatabase_log.ldf");
-                System.IO.File.Copy($"{AppDomain.CurrentDomain.BaseDirectory}\\WordsDatabaseEnglish.db3",
-                                    $"{path}\\WordsDatabaseEnglish.db3", true);
-            }
-            else if (Directory.Exists($"{path}")
-                    && File.Exists($"{path}\\WordsDatabaseEnglish.db3"))
-            {
-
-            }
-            else
-            {
-                MessageBox.Show($"Databasen could not be copied and might not work correctly. Try reinstalling.");
-            }
 
             // Show the second window at a precise location relative to the main window.
             presentationWindow.Location = new Point(Location.X + 8, Location.Y + Size.Height);
@@ -348,16 +324,13 @@ namespace Headline_Randomizer
 
         private void lekarToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            Help help = new Help();
-            help.tabControl1.SelectedIndex = 1;
-            help.Show();
+                Help help = new Help(1, "English");
+     
         }
 
         private void hjälpToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            Help help = new Help();
-            help.tabControl1.SelectedIndex = 0;
-            help.Show();
+                Help help = new Help(0, "English");
         }
 
         private void backToolStripMenuItem_Click(object sender, EventArgs e)
@@ -400,6 +373,26 @@ namespace Headline_Randomizer
             sw.WriteLine(text2);
 
             sw.Close();
+        }
+
+        private void LanguageToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            LanguageSelect.Reset();
+
+#if DEBUG
+            if (Debugger.IsAttached)
+            {
+                string pathdbg = $"{AppDomain.CurrentDomain.BaseDirectory}";
+                string newPathdbg = Path.GetFullPath(Path.Combine(pathdbg, @"..\..\..\"));
+                Process.Start($"{newPathdbg}LanguageChoice\\bin\\Debug\\LanguageChoice.exe");
+                Environment.Exit(0);
+            }
+#endif
+
+            string path = $"{AppDomain.CurrentDomain.BaseDirectory}";
+            string newPath = Path.GetFullPath(Path.Combine(path, @"..\"));
+            Process.Start($"{newPath}LanguageChoice (Free)\\LanguageChoice.exe");
+            Application.Exit();
         }
     }
 }

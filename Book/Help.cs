@@ -1,68 +1,75 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.IO;
+using System.Diagnostics;
 
 namespace Headline_Randomizer
 {
+    
     public partial class Help : Form
     {
         public Help()
         {
-            InitializeComponent();
+                InitializeComponent();
+                this.Show();
+                
         }
 
-        private void richTextBox1_TextChanged(object sender, EventArgs e)
+        public Help(int selectedindex, string language)
         {
-
-        }
-
-        private void Help_Load(object sender, EventArgs e)
-        {
-            //richTextBox1.Rtf = @"{\rtf1\ Hello \b Lime\b0\";
-            // Show what's in the focument at this path.
-            rtbGames.Rtf = File.ReadAllText($"{AppDomain.CurrentDomain.BaseDirectory}TextEng\\Games.rtf");
-            rtbGames.RightMargin = pGames.Size.Width - 65;
-
-            //rtbScenes.Rtf = File.ReadAllText($"{AppDomain.CurrentDomain.BaseDirectory}Text\\Scener.rtf");
-            //rtbScenes.RightMargin = pScenes.Size.Width - 65;
-
-            //rtbCustom.Rtf = File.ReadAllText($"{AppDomain.CurrentDomain.BaseDirectory}Text\\Grammatik.rtf");
-            //rtbCustom.RightMargin = pCustom.Size.Width - 65;
-
-            rtbAbout.Rtf = File.ReadAllText($"{AppDomain.CurrentDomain.BaseDirectory}TextEng\\About.rtf");
-            rtbAbout.RightMargin = pAbout.Size.Width - 65;
-        }
-
-        private void Help_SizeChanged(object sender, EventArgs e)
-        {
-            if (pAbout.Size.Width < 66 || pGames.Size.Width < 66)
+            if (!Common.helpOpen)
             {
+                InitializeComponent();
+                this.Show();
+                Common.helpOpen = true;
+                tabsInfo.SelectedIndex = selectedindex;
 
+                if (language == "Swedish")
+                {
+                    tabsInfo.TabPages[0].Text = "Om";
+                    tabsInfo.TabPages[1].Text = "Lekar";
+                    InsertText(rtbAbout, "TextSwe\\Omappen.rtf");
+                    InsertText(rtbGames, "TextSwe\\Lekar.rtf");
+            
+                    //rtbScenes.Rtf = File.ReadAllText($"{AppDomain.CurrentDomain.BaseDirectory}Text\\Scener.rtf");
+                    //rtbCustom.Rtf = File.ReadAllText($"{AppDomain.CurrentDomain.BaseDirectory}Text\\Grammatik.rtf");
+                }
+                else
+                {
+                    tabsInfo.TabPages[0].Text = "About";
+                    tabsInfo.TabPages[1].Text = "Games";
+                    InsertText(rtbAbout, "TextEng\\About.rtf");
+                    InsertText(rtbGames, "TextEng\\Games.rtf");
+
+                    //rtbScenes.Rtf = File.ReadAllText($"{AppDomain.CurrentDomain.BaseDirectory}Text\\Scener.rtf");
+                    //rtbCustom.Rtf = File.ReadAllText($"{AppDomain.CurrentDomain.BaseDirectory}Text\\Grammatik.rtf");
+                }
+            }
+            else { }
+        }
+
+        private void Help_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            Common.helpOpen = false;
+        }
+
+        void InsertText(RichTextBox tbx, string file)
+        {
+
+            if (Debugger.IsAttached)
+            {
+                tbx.Rtf = File.ReadAllText($"{Path.GetFullPath("..\\..\\..\\Shared items\\")}{file}");
             }
             else
             {
-                // Make the marigin follow the size of the window.
-                rtbGames.RightMargin = pGames.Size.Width - 65;
-                //rtbScenes.RightMargin = pScenes.Size.Width - 65;
-                //rtbCustom.RightMargin = pCustom.Size.Width - 65;
-                rtbAbout.RightMargin = pAbout.Size.Width - 65;
+                tbx.Rtf = File.ReadAllText($"{Path.GetFullPath("..\\Shared items\\")}{file}");
             }
-
-        }
-
-        private void tabControl1_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            rtbGames.RightMargin = pGames.Size.Width - 65;
-            //rtbScenes.RightMargin = pScenes.Size.Width - 65;
-            //rtbCustom.RightMargin = pCustom.Size.Width - 65;
-            rtbAbout.RightMargin = pAbout.Size.Width - 65;
+            
+            tbx.SelectAll();
+            tbx.SelectionIndent += 20;
+            tbx.SelectionRightIndent += 20;
+            tbx.SelectionLength = 0;
+            tbx.DeselectAll();
         }
     }
 }

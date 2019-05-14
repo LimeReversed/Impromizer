@@ -10,7 +10,7 @@
   <Identity
     Name="3385Limethefruit.ImpromizerFree"
     Publisher="CN=0423C562-EE89-474B-9333-8B1ADF4BA8BB"
-    Version="2.2.20.0" />
+    Version="2.2.34.0" />
 
   <Properties>
     <DisplayName>Impromizer (Free)</DisplayName>

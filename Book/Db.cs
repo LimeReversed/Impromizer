@@ -4,7 +4,6 @@ using System.Drawing;
 using System.Windows.Forms;
 using System.IO;
 using System.Text;
-//using System.Data.SqlClient;
 using System.Configuration;
 using System.Data.SQLite;
 
@@ -17,7 +16,6 @@ namespace Headline_Randomizer
         static public List<Custom> choicesList = new List<Custom>();
         static public List<string> recentStrings = new List<string>();
         static public Random r = new Random();
-        //static public Help help = new Help();
         // If I want to be able to write to the database I need to have it a folder that allowed writing to files. The root directory, which will be put in Program Files
         // does not allow this. So I had to copy the database to a documents folder when the app is initializing and and here now I need to have the connection string
         // point to that documents folder.

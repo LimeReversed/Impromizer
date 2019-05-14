@@ -29,60 +29,39 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Help));
-            this.tabControl1 = new System.Windows.Forms.TabControl();
+            this.tabsInfo = new System.Windows.Forms.TabControl();
             this.tabPage4 = new System.Windows.Forms.TabPage();
-            this.pAbout = new System.Windows.Forms.Panel();
             this.rtbAbout = new System.Windows.Forms.RichTextBox();
             this.tabPage1 = new System.Windows.Forms.TabPage();
-            this.pGames = new System.Windows.Forms.Panel();
             this.rtbGames = new System.Windows.Forms.RichTextBox();
-            this.tabPage2 = new System.Windows.Forms.TabPage();
-            this.tabControl1.SuspendLayout();
+            this.tabsInfo.SuspendLayout();
             this.tabPage4.SuspendLayout();
-            this.pAbout.SuspendLayout();
             this.tabPage1.SuspendLayout();
-            this.pGames.SuspendLayout();
             this.SuspendLayout();
             // 
-            // tabControl1
+            // tabsInfo
             // 
-            this.tabControl1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.tabControl1.Controls.Add(this.tabPage4);
-            this.tabControl1.Controls.Add(this.tabPage1);
-            this.tabControl1.Controls.Add(this.tabPage2);
-            this.tabControl1.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tabControl1.Location = new System.Drawing.Point(0, 0);
-            this.tabControl1.Name = "tabControl1";
-            this.tabControl1.Padding = new System.Drawing.Point(0, 0);
-            this.tabControl1.SelectedIndex = 0;
-            this.tabControl1.Size = new System.Drawing.Size(369, 537);
-            this.tabControl1.TabIndex = 0;
-            this.tabControl1.SelectedIndexChanged += new System.EventHandler(this.tabControl1_SelectedIndexChanged);
+            this.tabsInfo.Controls.Add(this.tabPage4);
+            this.tabsInfo.Controls.Add(this.tabPage1);
+            this.tabsInfo.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tabsInfo.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.tabsInfo.Location = new System.Drawing.Point(0, 0);
+            this.tabsInfo.Name = "tabsInfo";
+            this.tabsInfo.Padding = new System.Drawing.Point(0, 0);
+            this.tabsInfo.SelectedIndex = 0;
+            this.tabsInfo.Size = new System.Drawing.Size(369, 537);
+            this.tabsInfo.TabIndex = 0;
             // 
             // tabPage4
             // 
-            this.tabPage4.Controls.Add(this.pAbout);
+            this.tabPage4.Controls.Add(this.rtbAbout);
             this.tabPage4.Location = new System.Drawing.Point(4, 28);
             this.tabPage4.Name = "tabPage4";
-            this.tabPage4.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage4.Padding = new System.Windows.Forms.Padding(3, 3, 3, 3);
             this.tabPage4.Size = new System.Drawing.Size(361, 505);
             this.tabPage4.TabIndex = 3;
             this.tabPage4.Text = "About";
             this.tabPage4.UseVisualStyleBackColor = true;
-            // 
-            // pAbout
-            // 
-            this.pAbout.BackColor = System.Drawing.SystemColors.Control;
-            this.pAbout.Controls.Add(this.rtbAbout);
-            this.pAbout.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.pAbout.ForeColor = System.Drawing.Color.White;
-            this.pAbout.Location = new System.Drawing.Point(3, 3);
-            this.pAbout.Name = "pAbout";
-            this.pAbout.Padding = new System.Windows.Forms.Padding(20, 10, 0, 0);
-            this.pAbout.Size = new System.Drawing.Size(355, 499);
-            this.pAbout.TabIndex = 2;
             // 
             // rtbAbout
             // 
@@ -90,36 +69,25 @@
             this.rtbAbout.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.rtbAbout.Dock = System.Windows.Forms.DockStyle.Fill;
             this.rtbAbout.ForeColor = System.Drawing.Color.White;
-            this.rtbAbout.Location = new System.Drawing.Point(20, 10);
+            this.rtbAbout.Location = new System.Drawing.Point(3, 3);
             this.rtbAbout.Margin = new System.Windows.Forms.Padding(0);
             this.rtbAbout.Name = "rtbAbout";
             this.rtbAbout.ReadOnly = true;
             this.rtbAbout.ScrollBars = System.Windows.Forms.RichTextBoxScrollBars.Vertical;
-            this.rtbAbout.Size = new System.Drawing.Size(335, 489);
-            this.rtbAbout.TabIndex = 0;
+            this.rtbAbout.Size = new System.Drawing.Size(355, 499);
+            this.rtbAbout.TabIndex = 1;
+            this.rtbAbout.TabStop = false;
             this.rtbAbout.Text = "";
             // 
             // tabPage1
             // 
             this.tabPage1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.tabPage1.Controls.Add(this.pGames);
+            this.tabPage1.Controls.Add(this.rtbGames);
             this.tabPage1.Location = new System.Drawing.Point(4, 28);
             this.tabPage1.Name = "tabPage1";
             this.tabPage1.Size = new System.Drawing.Size(361, 505);
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "Games";
-            // 
-            // pGames
-            // 
-            this.pGames.BackColor = System.Drawing.SystemColors.Control;
-            this.pGames.Controls.Add(this.rtbGames);
-            this.pGames.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.pGames.ForeColor = System.Drawing.Color.White;
-            this.pGames.Location = new System.Drawing.Point(0, 0);
-            this.pGames.Name = "pGames";
-            this.pGames.Padding = new System.Windows.Forms.Padding(20, 10, 0, 0);
-            this.pGames.Size = new System.Drawing.Size(361, 505);
-            this.pGames.TabIndex = 1;
             // 
             // rtbGames
             // 
@@ -127,25 +95,15 @@
             this.rtbGames.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.rtbGames.Dock = System.Windows.Forms.DockStyle.Fill;
             this.rtbGames.ForeColor = System.Drawing.Color.White;
-            this.rtbGames.Location = new System.Drawing.Point(20, 10);
-            this.rtbGames.Margin = new System.Windows.Forms.Padding(0);
+            this.rtbGames.Location = new System.Drawing.Point(0, 0);
+            this.rtbGames.Margin = new System.Windows.Forms.Padding(0, 0, 20, 0);
             this.rtbGames.Name = "rtbGames";
             this.rtbGames.ReadOnly = true;
             this.rtbGames.ScrollBars = System.Windows.Forms.RichTextBoxScrollBars.Vertical;
-            this.rtbGames.Size = new System.Drawing.Size(341, 495);
-            this.rtbGames.TabIndex = 0;
+            this.rtbGames.Size = new System.Drawing.Size(361, 505);
+            this.rtbGames.TabIndex = 1;
+            this.rtbGames.TabStop = false;
             this.rtbGames.Text = "";
-            this.rtbGames.TextChanged += new System.EventHandler(this.richTextBox1_TextChanged);
-            // 
-            // tabPage2
-            // 
-            this.tabPage2.Location = new System.Drawing.Point(4, 28);
-            this.tabPage2.Name = "tabPage2";
-            this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage2.Size = new System.Drawing.Size(361, 505);
-            this.tabPage2.TabIndex = 4;
-            this.tabPage2.Text = "Right";
-            this.tabPage2.UseVisualStyleBackColor = true;
             // 
             // Help
             // 
@@ -153,32 +111,26 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.ClientSize = new System.Drawing.Size(369, 537);
-            this.Controls.Add(this.tabControl1);
+            this.Controls.Add(this.tabsInfo);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-            this.MinimumSize = new System.Drawing.Size(300, 39);
+            this.MinimumSize = new System.Drawing.Size(298, 50);
             this.Name = "Help";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "Help";
+            this.Text = "Info";
             this.TopMost = true;
-            this.Load += new System.EventHandler(this.Help_Load);
-            this.SizeChanged += new System.EventHandler(this.Help_SizeChanged);
-            this.tabControl1.ResumeLayout(false);
+            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.Help_FormClosed);
+            this.tabsInfo.ResumeLayout(false);
             this.tabPage4.ResumeLayout(false);
-            this.pAbout.ResumeLayout(false);
             this.tabPage1.ResumeLayout(false);
-            this.pGames.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
 
         #endregion
         private System.Windows.Forms.TabPage tabPage1;
-        private System.Windows.Forms.RichTextBox rtbGames;
-        public System.Windows.Forms.TabControl tabControl1;
-        private System.Windows.Forms.Panel pGames;
+        public System.Windows.Forms.TabControl tabsInfo;
         private System.Windows.Forms.TabPage tabPage4;
-        private System.Windows.Forms.Panel pAbout;
         private System.Windows.Forms.RichTextBox rtbAbout;
-        private System.Windows.Forms.TabPage tabPage2;
+        private System.Windows.Forms.RichTextBox rtbGames;
     }
 }

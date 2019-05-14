@@ -10,23 +10,23 @@ using System.Windows.Forms;
 using System.Configuration;
 using System.Diagnostics;
 using System.IO;
+using Common;
 
-namespace LanguageChoice
+namespace Headline_Randomizer
 {
     public partial class LanguageChoice : Form
     {
+        
+
         public LanguageChoice()
         {
             InitializeComponent();
-
-            
         }
 
         private void BtnEnglish_Click(object sender, EventArgs e)
         {
             //var config = ConfigurationManager.OpenExeConfiguration(ConfigurationUserLevel.None);
-            Properties.Settings.Default.Language = "English";
-            Properties.Settings.Default.Save();
+            LanguageSelect.SaveLanguageSelection("English");
 
             // Copy database
             string path = $"{Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments)}\\Impromizer";
@@ -39,22 +39,19 @@ namespace LanguageChoice
             else if (Directory.Exists($"{path}")
                     && !File.Exists($"{path}\\WordsDatabaseEnglish.db3"))
             {
-                // Sometimes the app gives me an error when an old database log is there after I copied a new database to that folder. The soution is to delete the log. 
-                File.Delete($"{path}\\WordsDatabaseEnglish_log.ldf");
                 System.IO.File.Copy($"{AppDomain.CurrentDomain.BaseDirectory}\\WordsDatabaseEnglish.db3",
                                     $"{path}\\WordsDatabaseEnglish.db3", true);
             }
             else if (Directory.Exists($"{path}")
                     && File.Exists($"{path}\\WordsDatabaseEnglish.db3"))
             {
-                File.Delete($"{path}\\WordsDatabase_log.ldf");
                 File.Delete($"{path}\\WordsDatabaseEnglish.db3");
                 System.IO.File.Copy($"{AppDomain.CurrentDomain.BaseDirectory}\\WordsDatabaseEnglish.db3",
                                     $"{path}\\WordsDatabaseEnglish.db3", true);
             }
             else
             {
-                MessageBox.Show($"Databasen could not be copied and might not work correctly. Try reinstalling.");
+                MessageBox.Show($"The database could not be copied and might not work correctly. Try reinstalling.");
             }
 
             // Start the English version
@@ -66,8 +63,7 @@ namespace LanguageChoice
 
         private void btnSvenska_Click(object sender, EventArgs e)
         {
-            Properties.Settings.Default.Language = "Swedish";
-            Properties.Settings.Default.Save();
+            LanguageSelect.SaveLanguageSelection("Swedish");
 
             string path = $"{Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments)}\\Impromizer";
             if (!Directory.Exists($"{path}"))
@@ -80,14 +76,12 @@ namespace LanguageChoice
             else if (Directory.Exists($"{path}")
                     && !File.Exists($"{path}\\WordsDatabaseSwedish.db3"))
             {
-                File.Delete($"{path}\\WordsDatabaseSwedish_log.ldf");
                 System.IO.File.Copy($"{AppDomain.CurrentDomain.BaseDirectory}\\WordsDatabaseSwedish.db3",
                                     $"{path}\\WordsDatabaseSwedish.db3", true);
             }
             else if (Directory.Exists($"{path}")
                     && File.Exists($"{path}\\WordsDatabaseSwedish.db3"))
             {
-                File.Delete($"{path}\\WordsDatabase_log.ldf");
                 File.Delete($"{path}\\WordsDatabaseSwedish.db3");
                 System.IO.File.Copy($"{AppDomain.CurrentDomain.BaseDirectory}\\WordsDatabaseSwedish.db3",
                                     $"{path}\\WordsDatabaseSwedish.db3", true);
@@ -99,8 +93,12 @@ namespace LanguageChoice
 
             string path2 = $"{AppDomain.CurrentDomain.BaseDirectory}";
             string newPath = Path.GetFullPath(Path.Combine(path2, @"..\"));
-            Process.Start($"{newPath}Impromizer Free Swedish\\Headline Randomizer Svenska 2.1 Free.exe");
+            Process.Start($"{newPath}Impromizer Free Swedish\\Impromizer Free Swedish.exe");
             this.Close();
+        }
+
+        private void LanguageChoice_FormClosed(object sender, FormClosedEventArgs e)
+        {
         }
     }
 }

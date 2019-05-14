@@ -3,11 +3,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using System.Configuration;
-using System.Diagnostics;
 using System.IO;
+using System.Diagnostics;
+using Common;
 
-namespace LanguageChoice
+namespace Headline_Randomizer
 {
     static class Program
     {
@@ -17,23 +17,29 @@ namespace LanguageChoice
         [STAThread]
         static void Main()
         {
-            if (Properties.Settings.Default.Language == "English")
+            switch (LanguageSelect.GetLanguageSelection())
             {
-                string path = $"{AppDomain.CurrentDomain.BaseDirectory}";
-                string newPath = Path.GetFullPath(Path.Combine(path, @"..\"));
-                Process.Start($"{newPath}Impromizer Free English\\Impromizer Free English.exe");
-            }
-            else if (Properties.Settings.Default.Language == "Swedish")
-            {
-                string path = $"{AppDomain.CurrentDomain.BaseDirectory}";
-                string newPath = Path.GetFullPath(Path.Combine(path, @"..\"));
-                Process.Start($"{newPath}Impromizer Free Swedish\\Headline Randomizer Svenska 2.1 Free.exe");
-            }
-            else
-            {
-                Application.EnableVisualStyles();
-                Application.SetCompatibleTextRenderingDefault(false);
-                Application.Run(new LanguageChoice());
+                case "English":
+                    {
+                        string path = $"{AppDomain.CurrentDomain.BaseDirectory}";
+                        string newPath = Path.GetFullPath(Path.Combine(path, @"..\"));
+                        Process.Start($"{newPath}Impromizer Free English\\Impromizer Free English.exe");
+                        break;
+                    }
+
+                case "Swedish":
+                    {
+                        string path = $"{AppDomain.CurrentDomain.BaseDirectory}";
+                        string newPath = Path.GetFullPath(Path.Combine(path, @"..\"));
+                        Process.Start($"{newPath}Impromizer Free Swedish\\Impromizer Free Swedish.exe");
+                        break;
+                    }
+
+                default:
+                    Application.EnableVisualStyles();
+                    Application.SetCompatibleTextRenderingDefault(false);
+                    Application.Run(new LanguageChoice());
+                    break;
             }
         }
     }

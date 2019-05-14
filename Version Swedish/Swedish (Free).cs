@@ -4,11 +4,13 @@ using System.Drawing;
 using System.Windows.Forms;
 using System.IO;
 using System.Text;
-//using System.Data.SqlClient;
+using System.Diagnostics;
 using System.Configuration;
 // Adding Svenska tells this form that "Words" refers to the Ord class.
 // This way I can also have a Engelska class without having to change too much
 using Svenska;
+using Common;
+
 
 // Svenska 
 namespace Headline_Randomizer
@@ -25,31 +27,6 @@ namespace Headline_Randomizer
         {
             InitializeComponent();
 
-            string path = $"{Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments)}\\Impromizer";
-            if (!Directory.Exists($"{path}"))
-            {
-
-                Directory.CreateDirectory($"{path}");
-                System.IO.File.Copy($"{AppDomain.CurrentDomain.BaseDirectory}\\WordsDatabaseSwedish.db3",
-                                    $"{path}\\WordsDatabaseSwedish.db3", true);
-            }
-            else if (Directory.Exists($"{path}")
-                    && !File.Exists($"{path}\\WordsDatabaseSwedish.db3"))
-            {
-                File.Delete($"{path}\\WordsDatabase_log.ldf");
-                System.IO.File.Copy($"{AppDomain.CurrentDomain.BaseDirectory}\\WordsDatabaseSwedish.db3",
-                                    $"{path}\\WordsDatabaseSwedish.db3", true);
-            }
-            else if (Directory.Exists($"{path}")
-                    && File.Exists($"{path}\\WordsDatabaseSwedish.db3"))
-            {
-
-            }
-            else
-            {
-                MessageBox.Show($"Databasen kunde inte kopieras. Programmet kanske inte fungerar korrekt.");
-            }
-
             // Show the second window at a precise location relative to the main window.
             presentationWindow.Location = new Point(Location.X + 8, Location.Y + Size.Height);
 
@@ -58,6 +35,8 @@ namespace Headline_Randomizer
             Db.connectionString = $"Data Source= {Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments)}\\Impromizer\\WordsDatabaseSwedish.db3";
 
             Words.FreeNeeded(1000);
+
+            presentationWindow.tbxResult.Text = $"{Path.GetFullPath("..\\..\\")}";
         }
 
         
@@ -389,16 +368,12 @@ namespace Headline_Randomizer
 
         private void lekarToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            Help help = new Help();
-            help.tabControl1.SelectedIndex = 1;
-            help.Show();
+            Help help = new Help(1, "Swedish");
         }
 
         private void hjälpToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            Help help = new Help();
-            help.tabControl1.SelectedIndex = 0;
-            help.Show();
+            Help help = new Help(0, "Swedish");
         }
 
         // White means that the sentence isn't already on the list and if so add to database. 
@@ -448,7 +423,27 @@ namespace Headline_Randomizer
         {
         }
 
+        private void SpråkToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            LanguageSelect.Reset();
+
+#if DEBUG
+            if (Debugger.IsAttached)
+            {
+                string pathdbg = $"{AppDomain.CurrentDomain.BaseDirectory}";
+                string newPathdbg = Path.GetFullPath(Path.Combine(pathdbg, @"..\..\..\"));
+                Process.Start($"{newPathdbg}LanguageChoice\\bin\\Debug\\LanguageChoice.exe");
+                Environment.Exit(0);
+            }
+        #endif
         
+            string path = $"{AppDomain.CurrentDomain.BaseDirectory}";
+            string newPath = Path.GetFullPath(Path.Combine(path, @"..\"));
+            Process.Start($"{newPath}LanguageChoice (Free)\\LanguageChoice.exe");
+            Application.Exit();
+        }
+
+
 
         // 
         // Tillfällig

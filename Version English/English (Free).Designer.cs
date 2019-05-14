@@ -45,6 +45,7 @@
             this.toolStripMenuItem2 = new System.Windows.Forms.ToolStripMenuItem();
             this.lekarToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.omToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.languageToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.customTabControl1.SuspendLayout();
             this.tabPage3.SuspendLayout();
             this.tabPage2.SuspendLayout();
@@ -301,7 +302,8 @@
             this.toolStripMenuItem1,
             this.toolStripMenuItem2,
             this.lekarToolStripMenuItem1,
-            this.omToolStripMenuItem});
+            this.omToolStripMenuItem,
+            this.languageToolStripMenuItem});
             this.menuStrip1.LayoutStyle = System.Windows.Forms.ToolStripLayoutStyle.HorizontalStackWithOverflow;
             this.menuStrip1.Location = new System.Drawing.Point(0, 360);
             this.menuStrip1.Name = "menuStrip1";
@@ -345,6 +347,15 @@
             this.omToolStripMenuItem.Size = new System.Drawing.Size(69, 29);
             this.omToolStripMenuItem.Text = "About";
             this.omToolStripMenuItem.Click += new System.EventHandler(this.hjälpToolStripMenuItem_Click);
+            // 
+            // languageToolStripMenuItem
+            // 
+            this.languageToolStripMenuItem.Font = new System.Drawing.Font("Calibri", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.languageToolStripMenuItem.ForeColor = System.Drawing.Color.White;
+            this.languageToolStripMenuItem.Name = "languageToolStripMenuItem";
+            this.languageToolStripMenuItem.Size = new System.Drawing.Size(95, 29);
+            this.languageToolStripMenuItem.Text = "Language";
+            this.languageToolStripMenuItem.Click += new System.EventHandler(this.LanguageToolStripMenuItem_Click);
             // 
             // Form1
             // 
@@ -393,6 +404,7 @@
         private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem2;
         private System.Windows.Forms.ToolStripMenuItem lekarToolStripMenuItem1;
         private System.Windows.Forms.ToolStripMenuItem omToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem languageToolStripMenuItem;
     }
 }
 

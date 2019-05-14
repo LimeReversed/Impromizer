@@ -93,28 +93,10 @@
     <Compile Include="English %28Free%29.Designer.cs">
       <DependentUpon>English %28Free%29.cs</DependentUpon>
     </Compile>
-    <Compile Include="Form2.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Form2.Designer.cs">
-      <DependentUpon>Form2.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Help Eng.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Help Eng.Designer.cs">
-      <DependentUpon>Help Eng.cs</DependentUpon>
-    </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="English %28Free%29.resx">
       <DependentUpon>English %28Free%29.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Form2.resx">
-      <DependentUpon>Form2.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Help Eng.resx">
-      <DependentUpon>Help Eng.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -143,17 +125,6 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
-    <None Include="TextEng\About.rtf">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Include="TextEng\Games.rtf">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Include="TextEng\Grammar.rtf" />
-    <None Include="TextEng\Scenes.rtf" />
-    <None Include="WordsDatabaseEnglish.db3">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
@@ -177,13 +148,13 @@
     </Content>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Book\Book.csproj">
+    <ProjectReference Include="..\Book\Common.csproj">
       <Project>{f96683cf-cd08-4814-81be-d88930297a4f}</Project>
-      <Name>Book</Name>
+      <Name>Common</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Fix\Other.csproj">
-      <Project>{455a7134-573f-4ba8-b8d5-1749726fa8dc}</Project>
-      <Name>Other</Name>
+    <ProjectReference Include="..\LanguageChoice\LanguageChoice %28Free%29.csproj">
+      <Project>{0e46ba62-0537-4c5b-a338-3baf7d37a276}</Project>
+      <Name>LanguageChoice %28Free%29</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup />

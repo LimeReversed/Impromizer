@@ -46,6 +46,7 @@
             this.toolStripMenuItem2 = new System.Windows.Forms.ToolStripMenuItem();
             this.lekarToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.omToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.språkToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.backToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.forwardToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.lekarToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -313,7 +314,8 @@
             this.toolStripMenuItem1,
             this.toolStripMenuItem2,
             this.lekarToolStripMenuItem1,
-            this.omToolStripMenuItem});
+            this.omToolStripMenuItem,
+            this.språkToolStripMenuItem});
             this.menuStrip1.LayoutStyle = System.Windows.Forms.ToolStripLayoutStyle.HorizontalStackWithOverflow;
             this.menuStrip1.Location = new System.Drawing.Point(0, 351);
             this.menuStrip1.Name = "menuStrip1";
@@ -357,6 +359,15 @@
             this.omToolStripMenuItem.Size = new System.Drawing.Size(50, 29);
             this.omToolStripMenuItem.Text = "Om";
             this.omToolStripMenuItem.Click += new System.EventHandler(this.hjälpToolStripMenuItem_Click);
+            // 
+            // språkToolStripMenuItem
+            // 
+            this.språkToolStripMenuItem.Font = new System.Drawing.Font("Calibri", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.språkToolStripMenuItem.ForeColor = System.Drawing.Color.White;
+            this.språkToolStripMenuItem.Name = "språkToolStripMenuItem";
+            this.språkToolStripMenuItem.Size = new System.Drawing.Size(66, 29);
+            this.språkToolStripMenuItem.Text = "Språk";
+            this.språkToolStripMenuItem.Click += new System.EventHandler(this.SpråkToolStripMenuItem_Click);
             // 
             // backToolStripMenuItem
             // 
@@ -457,6 +468,7 @@
         private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem2;
         private System.Windows.Forms.ToolStripMenuItem lekarToolStripMenuItem1;
         private System.Windows.Forms.ToolStripMenuItem omToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem språkToolStripMenuItem;
     }
 }
 

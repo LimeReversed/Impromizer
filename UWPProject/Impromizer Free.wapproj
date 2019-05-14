@@ -55,13 +55,13 @@
     <TargetPlatformMinVersion>10.0.14393.0</TargetPlatformMinVersion>
     <DefaultLanguage>en-US</DefaultLanguage>
     <PackageCertificateKeyFile>UWPProject_StoreKey.pfx</PackageCertificateKeyFile>
-    <EntryPointProjectUniqueName>..\LanguageChoice\LanguageChoice.csproj</EntryPointProjectUniqueName>
     <PackageCertificateThumbprint>DB9FF8AE33ABD5CAF643FAEEFE8A15CC6FA9D8A5</PackageCertificateThumbprint>
     <GenerateAppInstallerFile>False</GenerateAppInstallerFile>
     <AppxAutoIncrementPackageRevision>True</AppxAutoIncrementPackageRevision>
     <AppxBundlePlatforms>x86</AppxBundlePlatforms>
     <AppInstallerUpdateFrequency>1</AppInstallerUpdateFrequency>
     <AppInstallerCheckForUpdateFrequency>OnApplicationRun</AppInstallerCheckForUpdateFrequency>
+    <EntryPointProjectUniqueName>..\LanguageChoice\LanguageChoice (Free).csproj</EntryPointProjectUniqueName>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
     <DefaultLanguage>en</DefaultLanguage>
@@ -159,9 +159,7 @@
     <None Include="Package.StoreAssociation.xml" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\LanguageChoice\LanguageChoice.csproj">
-      <TrustLevel>Full</TrustLevel>
-    </ProjectReference>
+    <ProjectReference Include="..\LanguageChoice\LanguageChoice (Free).csproj" />
     <ProjectReference Include="..\Version English\Impromizer Free English.csproj" />
     <ProjectReference Include="..\Version Swedish\Impromizer Free Swedish.csproj" />
   </ItemGroup>
