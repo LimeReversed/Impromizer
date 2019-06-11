@@ -27,13 +27,44 @@ namespace Svenska
 
         public Random r = new Random();
 
-        public static string[,] queryBits = UpdateQueryBits();
-
-        static public string[,] UpdateQueryBits()
+        public static string[,] idQueries = UpdateIdQueries();
+        public static string[,] resetQueries = UpdateResetQueries();
+        
+        public static string SuitableFor()
         {
-            string suitableFor = $"[Lämpligt för] IN ('Barn', 'Ungdomar', 'Vuxna')";
+            return $"[Lämpligt för] IN ('Barn', 'Ungdomar', 'Vuxna')";
+        }
 
-            string[,] queryBits =
+        static public string[,] UpdateResetQueries()
+        {
+            string suitableFor = SuitableFor();
+
+            string[,] resetQueries =
+            {
+                {"TblAdjectives", $"{suitableFor} AND Passar = 'Någon (Strikt)'"},
+                {"TblAdjectives", $"{suitableFor} AND Passar = 'Någon & Något'"},
+                {"TblAdjectives", $"{suitableFor} AND Passar IN ('Relation (Strikt)', 'Relation')"},
+                {"TblAdjectives", $"{suitableFor} AND Passar = 'Relation & Något'"},
+                {"TblJokeNames", $"{suitableFor}"},
+                {"TblMissions", $"{suitableFor}"},
+                {"TblNobelPrizes", $"{suitableFor}"},
+                {"TblNouns", $"{suitableFor} AND [Benämner] IN ('Någon', 'Någon & Plats')"},
+                {"TblNouns", $"{suitableFor} AND [Benämner] = 'Något'"},
+                {"TblStatus", $"{suitableFor}"},
+                {"TblVerbs", $"{suitableFor} AND Passar IN ('Någon (Strikt)', 'Någon')"},
+                {"TblVerbs", $"{suitableFor} AND Passar = 'Något'"},
+                {"TblVerbs", $"{suitableFor} AND Passar = 'Någon & Något'"},
+                {"TblVerbs", $"{suitableFor} AND Passar IN ('Relation (Strikt)', 'Relation')"},
+            };
+
+            return resetQueries;
+        }
+
+        static public string[,] UpdateIdQueries()
+        {
+            string suitableFor = SuitableFor();
+
+            string[,] idQueries =
             {
                 // 0 = Adjectives that fits Something
                 { "TblAdjectives", $"{suitableFor} AND NOT Passar IN ('Någon (Strikt)', 'Relation (Strikt)')"},
@@ -54,59 +85,25 @@ namespace Svenska
                 // 8
                 { "TblStatus", $"{suitableFor}"},
                 // 9 = Verbs that fits Something
-                { "TblVerbs", $"{suitableFor} AND NOT Passar = 'Någon (Strikt)'"},
+                { "TblVerbs", $"{suitableFor} AND NOT Passar IN ('Någon (Strikt)', 'Relation (Strikt)')"},
                 // 10 = Verbs that fit Someone
-                { "TblVerbs", $"{suitableFor}"}
+                { "TblVerbs", $"{suitableFor}"},
+                // 11 = Verb Relations
+                { "TblVerbs", $"{suitableFor} AND Passar IN ('Relation', 'Relation (Strikt)')"},
+                // 12 = Adjective Relations
+                { "TblAdjectives", $"{suitableFor} AND Passar IN ('Relation', 'Relation (Strikt)', 'Relation & Något')"}
             };
 
-            return queryBits;
+            return idQueries;
         }
 
         static public void FreeNeeded(int limit)
         {
-            for (int i = 0;  i < queryBits.Length / 2; i++)
+            for (int i = 0;  i < resetQueries.Length / 2; i++)
             {
-                Db.SetMultiple(queryBits[i, 0], queryBits[i, 1], "Använt = 0", limit);
+                Db.SetMultiple(resetQueries[i, 0], resetQueries[i, 1], "Använt = 0", limit);
             }
         }
-
-        //public static void FreeNeededRelations(int antal)
-        //{
-        //    string used = "Använt";
-        //    using (SQLiteConnection connection = new SQLiteConnection(Db.connectionString))
-        //    {
-        //        connection.Open();
-        //        SQLiteCommand command = new SQLiteCommand();
-        //        command.Connection = connection;
-        //        int antalRader = 0;
-
-        //        // Adjektiv relation
-        //        command.CommandText = $"SELECT COUNT(*) FROM TblAdjectives WHERE {used} = 0 AND [Relation] = 'True' {QueryRestrictions()("AND")}";
-        //        antalRader = (Int32)command.ExecuteScalar();
-
-        //        if (antalRader < antal)
-        //        {
-        //            string rad1 = Db.GetValue("SELECT TOP 1 Id FROM TblAdjectives WHERE [Relation] = 'True' ORDER BY Id ASC");
-        //            string sistaRad = Db.GetValue("SELECT TOP 1 Id FROM TblAdjectives WHERE [Relation] = 'True' ORDER BY Id DESC");
-        //            command.CommandText = $"UPDATE TblAdjectives SET {used} = 0 WHERE [Relation] = 'True' AND Id BETWEEN {rad1} AND {sistaRad}";
-        //            command.ExecuteNonQuery();
-        //        }
-
-        //        // Relation Verb
-        //        command.CommandText = $"SELECT COUNT(*) FROM TblVerbs WHERE [Relation] = 'True' AND {used} = 0 {QueryRestrictions()("AND")}";
-        //        antalRader = (Int32)command.ExecuteScalar();
-
-        //        if (antalRader < antal)
-        //        {
-        //            string rad1 = Db.GetValue("SELECT TOP 1 Id FROM TblVerbs WHERE [Relation] = 'True' ORDER BY Id ASC");
-        //            string sistaRad = Db.GetValue("SELECT TOP 1 Id FROM TblVerbs WHERE [Relation] = 'True' ORDER BY Id DESC");
-        //            command.CommandText = $"UPDATE TblVerbs SET {used} = 0 WHERE [Relation] = 'True' AND Id BETWEEN {rad1} AND {sistaRad}";
-        //            command.ExecuteNonQuery();
-        //        }
-
-        //        connection.Close();
-        //    }
-        //}
 
         public virtual int RandomizeId()
         {
@@ -130,30 +127,40 @@ namespace Svenska
     {
         public override int RandomizeId()
         {
-            return Convert.ToInt32($"{Db.RandomizeValue($"Select Id", $"FROM TblVerbs WHERE {queryBits[10, 1]} AND Använt = 0")}");
+            return Convert.ToInt32($"{Db.RandomizeValue($"Select Id", $"FROM TblVerbs WHERE {idQueries[10, 1]} AND Använt = 0")}");
         }
 
         public override int RandomizeId(int nounId)
         {
-            string benämner = Db.GetValue($"SELECT Benämner FROM TblNouns WHERE Id = {nounId}");
+            string benämner;
+
+            if (nounId == 0)
+            {
+                benämner = "Någon";
+            }
+            else
+            {
+                benämner = Db.GetValue($"SELECT Benämner FROM TblNouns WHERE Id = {nounId}");
+            }
+
             int result = 0;
 
             if (benämner == "Någon" || benämner == "Någon & Plats" || benämner == "Någon & Något")
             {
-                result = Convert.ToInt32($"{Db.RandomizeValue("Select Id", $"FROM TblVerbs WHERE {queryBits[10, 1]} AND Använt = 0")}");
+                result = Convert.ToInt32($"{Db.RandomizeValue("Select Id", $"FROM TblVerbs WHERE {idQueries[10, 1]} AND Använt = 0")}");
             }
             else if (benämner == "Något" || benämner == "Någon & Något")
             {
-                result = Convert.ToInt32($"{Db.RandomizeValue("Select Id", $"FROM TblVerbs WHERE {queryBits[9, 1]} AND Använt = 0")}");
+                result = Convert.ToInt32($"{Db.RandomizeValue("Select Id", $"FROM TblVerbs WHERE {idQueries[9, 1]} AND Använt = 0")}");
             }
 
             return result;
         }
 
-        //public int RandomizeRelation()
-        //{
-        //    return Convert.ToInt32($"{Db.RandomizeValue("Select Id", $"FROM TblVerbs WHERE Använt = 0 AND [Relation] = 'True' {QueryRestrictions()("AND")}")}");
-        //}
+        public int RandomizeRelation()
+        {
+            return Convert.ToInt32($"{Db.RandomizeValue("Select Id", $"FROM TblVerbs WHERE {idQueries[11,1]} AND Använt = 0")}");
+        }
 
         public override void Used(int id)
         {
@@ -202,30 +209,40 @@ namespace Svenska
     {
         public override int RandomizeId()
         {
-            return Convert.ToInt32($"{Db.RandomizeValue("Select Id", $"FROM TblAdjectives WHERE {queryBits[1,1]} AND Använt = 0")}");
+            return Convert.ToInt32($"{Db.RandomizeValue("Select Id", $"FROM TblAdjectives WHERE {idQueries[1,1]} AND Använt = 0")}");
         }
 
         public override int RandomizeId(int nounId)
         {
-            string benämner = Db.GetValue($"SELECT Benämner FROM TblNouns WHERE Id = {nounId}");
+            string benämner;
+
+            if (nounId == 0)
+            {
+                benämner = "Någon";
+            }
+            else
+            {
+                benämner = Db.GetValue($"SELECT Benämner FROM TblNouns WHERE Id = {nounId}");
+            }
+
             int result = 0;
 
             if (benämner == "Någon" || benämner == "Någon & Plats" || benämner == "Någon & Något")
             {
-                result = Convert.ToInt32($"{Db.RandomizeValue("Select Id", $"FROM TblAdjectives WHERE {queryBits[1, 1]} AND Använt = 0")}");
+                result = Convert.ToInt32($"{Db.RandomizeValue("Select Id", $"FROM TblAdjectives WHERE {idQueries[1, 1]} AND Använt = 0")}");
             }
             else if (benämner == "Något" || benämner == "Någon & Något")
             {
-                result = Convert.ToInt32($"{Db.RandomizeValue("Select Id", $"FROM TblAdjectives WHERE {queryBits[0, 1]} AND Använt = 0")}");
+                result = Convert.ToInt32($"{Db.RandomizeValue("Select Id", $"FROM TblAdjectives WHERE {idQueries[0, 1]} AND Använt = 0")}");
             }
 
             return result;
         }
 
-        //public int RandomizeRelation()
-        //{
-        //    return Convert.ToInt32($"{Db.RandomizeValue("Select Id", $"FROM TblAdjectives WHERE Använt = 0 AND [Relation] = 'True' {QueryRestrictions()("AND")}")}");
-        //}
+        public int RandomizeRelation()
+        {
+            return Convert.ToInt32($"{Db.RandomizeValue("Select Id", $"FROM TblAdjectives WHERE {idQueries[12, 1]} AND Använt = 0")}");
+        }
 
         public override void Used(int id)
         {
@@ -326,18 +343,18 @@ namespace Svenska
         public string EnEllerEtt(int id)
         {
             //Koppla Primary key Id med foreign key Genus
-            return Db.GetValue($"SELECT [en/ett] FROM TblGenus WHERE Id IN (SELECT [Genus] FROM TblNouns WHERE Id = {id})");
+            return Db.GetValue($"SELECT [En/Ett] FROM TblGenus WHERE Id IN (SELECT [Genus] FROM TblNouns WHERE Id = {id})");
         }
 
         public string DinEllerDitt(int id, bool singular)
         {
             if (singular)
             {
-                return Db.GetValue($"SELECT [din/ditt] FROM TblGenus WHERE Id IN (SELECT [Genus] FROM TblNouns WHERE Id = {id})");
+                return Db.GetValue($"SELECT [Din/Ditt] FROM TblGenus WHERE Id IN (SELECT Genus FROM TblNouns WHERE Id = {id})");
             }
             else
             {
-                return Db.GetValue($"SELECT [din/ditt plural] FROM TblGenus WHERE Id IN (SELECT [Genus] FROM TblNouns WHERE Id = {id})");
+                return Db.GetValue($"SELECT [Din/Ditt Plural] FROM TblGenus WHERE Id IN (SELECT Genus FROM TblNouns WHERE Id = {id})");
             }
         }
 
@@ -361,7 +378,7 @@ namespace Svenska
     {
         public override int RandomizeId()
         {
-            return Convert.ToInt32($"{Db.RandomizeValue("Select Id", $"FROM TblNouns WHERE {queryBits[5,1]} AND Använt = 0")}");
+            return Convert.ToInt32($"{Db.RandomizeValue("Select Id", $"FROM TblNouns WHERE {idQueries[5,1]} AND Använt = 0")}");
         }
 
     }
@@ -370,7 +387,7 @@ namespace Svenska
     {
         public override int RandomizeId()
         {
-            return Convert.ToInt32($"{Db.RandomizeValue("Select Id", $"FROM TblNouns WHERE {queryBits[6, 1]} AND Använt = 0")}");
+            return Convert.ToInt32($"{Db.RandomizeValue("Select Id", $"FROM TblNouns WHERE {idQueries[6, 1]} AND Använt = 0")}");
         }
     }
 
@@ -378,7 +395,7 @@ namespace Svenska
     {
         public override int RandomizeId()
         {
-            return Convert.ToInt32($"{Db.RandomizeValue("Select Id", $"FROM TblNouns WHERE {queryBits[7, 1]} AND Använt = 0")}");
+            return Convert.ToInt32($"{Db.RandomizeValue("Select Id", $"FROM TblNouns WHERE {idQueries[7, 1]} AND Använt = 0")}");
         }
     }
 
@@ -386,7 +403,7 @@ namespace Svenska
     {
         public override int RandomizeId()
         {
-            return Convert.ToInt32($"{Db.RandomizeValue("Select Id", $"FROM TblNobelPrizes WHERE {queryBits[4,1]} AND Använt = 0")}");
+            return Convert.ToInt32($"{Db.RandomizeValue("Select Id", $"FROM TblNobelPrizes WHERE {idQueries[4,1]} AND Använt = 0")}");
         }
 
         public override void Used(int id)
@@ -404,7 +421,7 @@ namespace Svenska
     {
         public override int RandomizeId()
         {
-            return Convert.ToInt32($"{Db.RandomizeValue("Select Id", $"FROM TblJokeNames WHERE {queryBits[2,1]} AND Använt = 0")}");
+            return Convert.ToInt32($"{Db.RandomizeValue("Select Id", $"FROM TblJokeNames WHERE {idQueries[2,1]} AND Använt = 0")}");
         }
 
         public override void Used(int id)
@@ -422,7 +439,7 @@ namespace Svenska
     {
         public override int RandomizeId()
         {
-            return Convert.ToInt32($"{Db.RandomizeValue("Select Id", $"FROM TblStatus WHERE {queryBits[8,1]} AND Använt = 0")}");
+            return Convert.ToInt32($"{Db.RandomizeValue("Select Id", $"FROM TblStatus WHERE {idQueries[8,1]} AND Använt = 0")}");
         }
 
         public override void Used(int idNr)
@@ -445,7 +462,7 @@ namespace Svenska
     {
         public override int RandomizeId()
         {
-            return Convert.ToInt32($"{Db.RandomizeValue("Select Id", $"FROM TblMissions WHERE {queryBits[3,1]} AND Använt = 0")}");
+            return Convert.ToInt32($"{Db.RandomizeValue("Select Id", $"FROM TblMissions WHERE {idQueries[3,1]} AND Använt = 0")}");
         }
 
         public override void Used(int id)

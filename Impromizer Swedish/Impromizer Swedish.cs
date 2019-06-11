@@ -121,6 +121,56 @@ namespace Headline_Randomizer
             btnClear2.Font = new Font("Calibri", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
         }
 
+        private void BtnGenerate7_MouseUp(object sender, MouseEventArgs e)
+        {
+            btnGenerate7.Font = new Font("Calibri", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+        }
+
+        private void BtnGenerate9_MouseDown(object sender, MouseEventArgs e)
+        {
+            btnGenerate9.Font = new Font("Calibri", 14F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+        }
+
+        private void BtnGenerate9_MouseUp(object sender, MouseEventArgs e)
+        {
+            btnGenerate9.Font = new Font("Calibri", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+        }
+
+        private void BtnGenerate7_MouseDown(object sender, MouseEventArgs e)
+        {
+            btnGenerate7.Font = new Font("Calibri", 14F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+        }
+
+        private void BtnGenerate10_MouseUp(object sender, MouseEventArgs e)
+        {
+            btnGenerate10.Font = new Font("Calibri", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+        }
+
+        private void BtnGenerate10_MouseDown(object sender, MouseEventArgs e)
+        {
+            btnGenerate10.Font = new Font("Calibri", 14F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+        }
+
+        private void BtnGenerate11_MouseDown(object sender, MouseEventArgs e)
+        {
+            btnGenerate11.Font = new Font("Calibri", 14F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+        }
+
+        private void BtnGenerate11_MouseUp(object sender, MouseEventArgs e)
+        {
+            btnGenerate11.Font = new Font("Calibri", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+        }
+
+        private void BtnClear3_MouseDown(object sender, MouseEventArgs e)
+        {
+            btnClear3.Font = new Font("Calibri", 14F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+        }
+
+        private void BtnClear3_MouseUp(object sender, MouseEventArgs e)
+        {
+            btnClear3.Font = new Font("Calibri", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+        }
+
         #endregion
 
         // 
@@ -193,10 +243,6 @@ namespace Headline_Randomizer
         private void btnGenerate3_Click(object sender, EventArgs e)
         {
             presentationWindow.tbxResult.Text = "";
-            //int someoneNr = Words.someone.RandomizeId();
-
-            //presentationWindow.tbxResult.AppendText($"{Common.FirstLetterUpper(Words.noun.SingularObest(someoneNr))} tror att ");
-            //Words.noun.Used(someoneNr);
 
             int someoneNr2 = Words.someone.RandomizeId();
             int somethingNr = Words.something.RandomizeId();
@@ -255,17 +301,167 @@ namespace Headline_Randomizer
         // Tab: Visdom
         //
 
+        private void BtnGenerate11_Click(object sender, EventArgs e)
+        {
+            presentationWindow.tbxResult.Text = "";
+            int slant = r.Next(1, 2);
+            int verbNr;
+
+            switch (slant)
+            {
+                case 0:
+                    //int someoneNr = Words.someone.RandomizeId();
+                    //verbNr = Words.verb.RandomizeId(someoneNr);
+
+                    //presentationWindow.tbxResult.AppendText($"Du skall {Words.verb.Infinitiv(verbNr)}{Words.verb.Preposition(verbNr)}dina {Words.someone.Plural(someoneNr)}");
+
+                    //Words.verb.Used(verbNr);
+                    //Words.noun.Used(someoneNr);
+                    //EndingRitual(2, presentationWindow.tbxResult, ref position);
+                    break;
+
+                case 1:
+                case 2:
+                    verbNr = Words.verb.RandomizeId(0);
+
+                    presentationWindow.tbxResult.Text = $"Du skall {Words.verb.Infinitiv(verbNr)}{Words.verb.Preposition(verbNr)}dem ";
+                    Words.verb.Used(verbNr);
+                    int slant2 = r.Next(0, 2);
+
+                    if (slant2 == 0)
+                    {
+                        int relationNr = Words.verb.RandomizeRelation();
+                        presentationWindow.tbxResult.AppendText($"du {Words.verb.Presens(relationNr)}{Words.verb.Preposition(relationNr)}");
+                        Words.verb.Used(relationNr);
+                    }
+                    else
+                    {
+                        int relationNr = Words.adjective.RandomizeRelation();
+                        presentationWindow.tbxResult.AppendText(Words.adjective.Preposition(relationNr) == " " ? $"som är {Words.adjective.Plural(relationNr)}" : $"du är {Words.adjective.NGenus(relationNr)}{Words.adjective.Preposition(relationNr)}");
+                        Words.adjective.Used(relationNr);
+                    }
+                    break;
+
+            }
+            EndingRitual(2, presentationWindow.tbxResult, ref position);
+        }
+
+        private void BtnGenerate10_Click(object sender, EventArgs e)
+        {
+            presentationWindow.tbxResult.Text = "";
+            int slant = r.Next(0, 2);
+
+            List<string> with = new List<string>
+            {
+                "Tillåt dig själv att", "Unna dig att", "Ge dig själv möjligheten att", "Förbered dig på att"
+            };
+
+            List<string> without = new List<string>
+            {
+                "Våga", "Ta chansen att", "Var modig nog att", "Var stark nog att", "Ha självförtroende nog att"
+            };
+
+            switch (slant)
+            {
+                case 0:
+                    int verbNr = Words.verb.RandomizeId(0);
+                    presentationWindow.tbxResult.Text = $"{without[r.Next(0, without.Count)]} {Words.verb.Infinitiv(verbNr)}{Words.verb.Preposition(verbNr)}dig själv";
+                    Words.verb.Used(verbNr);
+                    break;
+
+                case 1:
+                    int slant2 = r.Next(0, 2);
+                    int adjectiveNr = Words.adjective.RandomizeId(0);
+                    string preposition = Words.adjective.Preposition(adjectiveNr);
+
+                    if (preposition == " ")
+                    {
+                        presentationWindow.tbxResult.Text = $"{with[r.Next(0, with.Count)]} vara {Words.adjective.NGenus(adjectiveNr)}";
+                    }
+                    else
+                    {
+                        presentationWindow.tbxResult.Text = $"{without[r.Next(0, without.Count)]} vara {Words.adjective.NGenus(adjectiveNr)}{Words.adjective.Preposition(adjectiveNr)}dig själv";
+                    }
+                    Words.adjective.Used(adjectiveNr);
+                    break;
+            }
+
+            EndingRitual(2, presentationWindow.tbxResult, ref position);
+        }
+
+        private void BtnGenerate7_Click(object sender, EventArgs e)
+        {
+            presentationWindow.tbxResult.Text = "";
+
+            int someoneNr = Words.someone.RandomizeId();
+            int slant = r.Next(0, 2);
+
+            //presentationWindow.tbxResult.AppendText($"To succeed you need to be a {Words.adjective.Descriptive(adjectiveNr)} {Words.someone.Singular(someoneNr)}");
+
+            switch (slant)
+            {
+                case 0:
+                    int aNr = Words.adjective.RandomizeRelation();
+
+                    if (Words.adjective.Preposition(aNr) == " ")
+                    {
+                        presentationWindow.tbxResult.Text = $"Allt du behöver för lycka är {Words.someone.EnEllerEtt(someoneNr)} {Words.someone.SingularObest(someoneNr)} som är {Words.adjective.Automatic(aNr, someoneNr, true)}";
+                    }
+                    else
+                    {
+                        presentationWindow.tbxResult.Text = $"Nyckeln till lycka är att vara {Words.adjective.NGenus(aNr)}{Words.adjective.Preposition(aNr)}{Words.someone.Plural(someoneNr)}";
+
+                    }
+                    Words.adjective.Used(aNr);
+                    break;
+
+                case 1:
+
+                    int verbNr = Words.verb.RandomizeRelation();
+
+
+                    // The path to happiness is
+                    presentationWindow.tbxResult.Text = $"Gör dig själv lycklig genom att {Words.verb.Infinitiv(verbNr)}{Words.verb.Preposition(verbNr)}{Words.someone.Plural(someoneNr)}";
+
+                    Words.verb.Used(verbNr);
+                    break;
+            }
+
+            Words.someone.Used(someoneNr);
+            EndingRitual(2, presentationWindow.tbxResult, ref position);
+        }
+
+        private void BtnGenerate8_Click(object sender, EventArgs e)
+        {
+            presentationWindow.tbxResult.Text = "";
+
+            int nounNr = Words.noun.RandomizeId();
+            int adjectiveNr = Words.adjective.RandomizeId(nounNr);
+
+
+            presentationWindow.tbxResult.AppendText($"{Common.FirstLetterUpper(Words.noun.DinEllerDitt(nounNr, false))} {Words.noun.Plural(nounNr)} kan aldrig vara för {Words.adjective.Automatic(adjectiveNr, nounNr, false)}");
+
+            Words.noun.Used(nounNr);
+            Words.adjective.Used(adjectiveNr);
+            EndingRitual(2, presentationWindow.tbxResult, ref position);
+        }
+
+        private void btnClear2_Click(object sender, EventArgs e)
+        {
+            presentationWindow.tbxResult.Text = "";
+        }
+
         // 
         // Tab: Scen
         //
 
         // Save settings
-      
+
         // 
         // Tab: Övrigt
         //
 
-        private void btnGenerate8_Click(object sender, EventArgs e)
+        private void btnGenerate9_Click(object sender, EventArgs e)
         {
             presentationWindow.tbxResult.Text = "";
 
@@ -275,7 +471,7 @@ namespace Headline_Randomizer
             {
                 int someoneNr = Words.someone.RandomizeId();
                 int verbNr = Words.verb.RandomizeId(someoneNr);
-                
+
                 presentationWindow.tbxResult.AppendText($"Är du trött på att {Words.verb.Infinitiv(verbNr)}{Words.verb.Preposition(verbNr)}{Words.noun.Plural(someoneNr)}?");
 
                 Words.noun.Used(someoneNr);
@@ -286,7 +482,7 @@ namespace Headline_Randomizer
             {
                 int somethingNr = Words.something.RandomizeId();
                 int verbNr = Words.verb.RandomizeId(somethingNr);
-                
+
                 presentationWindow.tbxResult.AppendText($"Är du trött på att {Words.verb.Infinitiv(verbNr)}{Words.verb.Preposition(verbNr)}{Words.noun.Plural(somethingNr)}?");
 
                 Words.noun.Used(somethingNr);
@@ -295,7 +491,7 @@ namespace Headline_Randomizer
             }
         }
 
-        private void btnClear2_Click(object sender, EventArgs e)
+        private void BtnClear3_Click(object sender, EventArgs e)
         {
             presentationWindow.tbxResult.Text = "";
         }
@@ -305,7 +501,7 @@ namespace Headline_Randomizer
         // Tab: Egen mening
         //
 
-        
+
         // 
         // Övrigt
         //
@@ -320,7 +516,7 @@ namespace Headline_Randomizer
         // CHange size of the box debending on the current tab. 
         private void Tabchanged(object sender, EventArgs e)
         {
-            if (customTabControl1.ActiveIndex == 1)
+            if (customTabControl1.ActiveIndex == 2)
             {
                 customTabControl1.Size = new Size(614, 135);
             }
@@ -350,6 +546,7 @@ namespace Headline_Randomizer
 
         public void EndingRitual(int loadNr, TextBox tb, ref int position)
         {
+            Common.ToFile(presentationWindow.tbxResult.Text);
             Common.AdjustSize(tb);
             Db.recentStrings.Add(tb.Text);
             position = Db.recentStrings.Count - 1;

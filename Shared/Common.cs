@@ -1,6 +1,8 @@
 ﻿using System.Drawing;
 using System.Linq;
 using System.Windows.Forms;
+using System.IO;
+using System;
 
 namespace Headline_Randomizer
 {
@@ -83,6 +85,13 @@ namespace Headline_Randomizer
                 tb.Font = new System.Drawing.Font("Adobe Fan Heiti Std", GetFontSize(tb, tb.Text, 3, 1f, 100f), System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
                 tb.Location = new System.Drawing.Point(10, 25);
             }
+        }
+
+        static public void ToFile(string text)
+        {
+            StreamWriter writer = new StreamWriter($"{Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments)}\\Impromizer\\LatestResult.txt");
+            writer.Write(text);
+            writer.Close();
         }
     }
 }

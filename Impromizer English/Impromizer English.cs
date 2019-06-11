@@ -116,6 +116,55 @@ namespace Headline_Randomizer
             btnGenerate9.Font = new Font("Calibri", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
         }
 
+        private void BtnGenerate11_MouseDown(object sender, MouseEventArgs e)
+        {
+            btnGenerate11.Font = new Font("Calibri", 14F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+        }
+
+        private void BtnGenerate11_MouseUp(object sender, MouseEventArgs e)
+        {
+            btnGenerate11.Font = new Font("Calibri", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+        }
+
+        private void BtnGenerate10_MouseDown(object sender, MouseEventArgs e)
+        {
+            btnGenerate10.Font = new Font("Calibri", 14F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+        }
+
+        private void BtnGenerate10_MouseUp(object sender, MouseEventArgs e)
+        {
+            btnGenerate10.Font = new Font("Calibri", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+        }
+
+        private void BtnGenerate8_MouseDown(object sender, MouseEventArgs e)
+        {
+            btnGenerate8.Font = new Font("Calibri", 14F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+        }
+
+        private void BtnGenerate8_MouseUp(object sender, MouseEventArgs e)
+        {
+            btnGenerate8.Font = new Font("Calibri", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+        }
+
+        private void BtnGenerate7_MouseUp(object sender, MouseEventArgs e)
+        {
+            btnGenerate7.Font = new Font("Calibri", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+        }
+
+        private void BtnGenerate7_MouseDown(object sender, MouseEventArgs e)
+        {
+            btnGenerate7.Font = new Font("Calibri", 14F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+        }
+
+        private void btnClear2_MouseDown(object sender, MouseEventArgs e)
+        {
+            btnClear2.Font = new Font("Calibri", 14F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+        }
+
+        private void btnClear2_MouseUp(object sender, MouseEventArgs e)
+        {
+            btnClear2.Font = new Font("Calibri", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+        }
         #endregion
 
         private void MoveWindow1(object sender, EventArgs e)
@@ -213,100 +262,95 @@ namespace Headline_Randomizer
             Words.nobelPrize.Used(nobelNr);
             Words.verb.Used(verbNr);
             Words.noun.Used(somethingNr);
-            EndingRitual(1, presentationWindow.tbxResult, ref position);
+            EndingRitual(2, presentationWindow.tbxResult, ref position);
         }
 
-        //private void btnGenerate6_Click(object sender, EventArgs e)
-        //{
-        //    presentationWindow.tbxResult.Text = "";
-
-        //    int verbNr = r.Next(0, list.verb.Count);
-        //    int someoneNr = r.Next(0, list.someone.Count);
-
-        //    presentationWindow.tbxResult.AppendText($"Remember, always {list.verb[verbNr].BasForm()} your {list.someone[someoneNr].Plural()}");
-
-        //    list.verb.RemoveAt(verbNr);
-        //    list.someone.RemoveAt(someoneNr);
-        //    Lists.SaveToFile(presentationWindow.tbxResult.Text);
-        //    list.LoadNeeded(1);
-        //    Common.AdjustSize(presentationWindow.tbxResult);
-        //}
-
-        //private void btnGenerate7_Click(object sender, EventArgs e)
-        //{
-        //    presentationWindow.tbxResult.Text = "";
-        //    int somethingNr = r.Next(0, list.something.Count);
-        //    int adjectiveNr = r.Next(0, list.adjective.Count);
-
-        //    presentationWindow.tbxResult.AppendText($"Happiness is {list.adjective[adjectiveNr].Descriptive()} {list.something[somethingNr].Plural()}");
-
-        //    list.something.RemoveAt(somethingNr);
-        //    list.adjective.RemoveAt(adjectiveNr);
-        //    Lists.SaveToFile(presentationWindow.tbxResult.Text);
-        //    list.LoadNeeded(1);
-        //    Common.AdjustSize(presentationWindow.tbxResult);
-        //}
-
-        //private void btnGenerate8_Click(object sender, EventArgs e)
-        //{
-        //    presentationWindow.tbxResult.Text = "";
-
-        //    int slant = r.Next(0, 2);
-
-        //    if (slant == 0)
-        //    {
-        //        int adjectiveNr = r.Next(0, list.adjective.Count);
-        //        int someoneNr = r.Next(0, list.someone.Count);
-
-        //        presentationWindow.tbxResult.AppendText($"Protip, your {list.someone[someoneNr].Plural()} can never be too {list.adjective[adjectiveNr].Descriptive()}");
-
-        //        list.someone.RemoveAt(someoneNr);
-        //        list.adjective.RemoveAt(adjectiveNr);
-        //        Lists.SaveToFile(presentationWindow.tbxResult.Text);
-        //        list.LoadNeeded(1);
-        //        Common.AdjustSize(presentationWindow.tbxResult);
-        //    }
-        //    else if (slant == 1)
-        //    {
-        //        int adjectiveNr = r.Next(0, list.adjective.Count);
-        //        int somethingNr = r.Next(0, list.something.Count);
-
-        //        presentationWindow.tbxResult.AppendText($"Protip, your {list.something[somethingNr].Plural()} can never be too {list.adjective[adjectiveNr].Descriptive()}");
-
-        //        list.something.RemoveAt(somethingNr);
-        //        list.adjective.RemoveAt(adjectiveNr);
-        //        Lists.SaveToFile(presentationWindow.tbxResult.Text);
-        //        list.LoadNeeded(1);
-        //        Common.AdjustSize(presentationWindow.tbxResult);
-        //    }
-            
-        //}
-
-        public void EndingRitual(int loadNr, TextBox tb, ref int position)
-        {
-            //tb.Text = tb.Text.Replace("  ", " ");
-            Common.AdjustSize(tb);
-            Db.recentStrings.Add(tb.Text);
-            position = Db.recentStrings.Count - 1;
-            Words.FreeNeeded(loadNr);
-        }
-
-        private void btnClear2_Click(object sender, EventArgs e)
+        private void btnGenerate6_Click(object sender, EventArgs e)
         {
             presentationWindow.tbxResult.Text = "";
+            int slant = r.Next(0, 2);
+            int someoneNr = Words.someone.RandomizeId();
+
+            
+
+            List<string> start = new List<string> {"All you need to be happy is"};
+            presentationWindow.tbxResult.Text = $"{start[r.Next(0, start.Count)]}";
+
+            switch (slant)
+            {
+                case 0:
+                    int verbNr = Words.verb.RandomizeRelation();
+
+                    presentationWindow.tbxResult.AppendText($"{Words.noun.AOrAn(someoneNr)}{Words.noun.Singular(someoneNr)} that you {Words.verb.BaseForm(verbNr)}{Words.verb.Preposition(verbNr)}");
+                    Words.verb.Used(verbNr);
+                    break;
+
+                case 1:
+                    int aNr = Words.adjective.RandomizeRelation();
+
+                    presentationWindow.tbxResult.AppendText($"{Words.noun.AOrAn(someoneNr)}{Words.someone.Singular(someoneNr)} {(Words.adjective.Preposition(aNr) == " " ? "who is" : "you are")} {Words.adjective.Descriptive(aNr)}{Words.adjective.Preposition(aNr)}");
+                    Words.adjective.Used(aNr);
+                    break;
+            }
+
+            Words.noun.Used(someoneNr);
+            EndingRitual(2, presentationWindow.tbxResult, ref position);
         }
 
-        private void Tabchanged(object sender, EventArgs e)
+        private void btnGenerate7_Click(object sender, EventArgs e)
         {
-            if (customTabControl1.ActiveIndex == 1)
+            presentationWindow.tbxResult.Text = "";
+         
+            int someoneNr = Words.someone.RandomizeId();
+            int slant = r.Next(0, 2);
+
+            //presentationWindow.tbxResult.AppendText($"To succeed you need to be a {Words.adjective.Descriptive(adjectiveNr)} {Words.someone.Singular(someoneNr)}");
+
+            switch (slant)
             {
-                customTabControl1.Size = new Size(614, 135);
+                case 0:
+                    int aNr = Words.adjective.RandomizeRelation();
+
+                    if (Words.adjective.Preposition(aNr) == " ")
+                    {
+                        presentationWindow.tbxResult.Text = $"All you need to be happy is{Words.someone.AOrAn(someoneNr)}{Words.someone.Singular(someoneNr)} who is {Words.adjective.Descriptive(aNr)}";
+                    }
+                    else
+                    {
+                        presentationWindow.tbxResult.Text = $"The secret to happiness is to be {Words.adjective.Descriptive(aNr)}{Words.adjective.Preposition(aNr)}{Words.someone.Plural(someoneNr)}";
+                        
+                    }
+                    Words.adjective.Used(aNr);
+                    break;
+
+                case 1:
+
+                    int verbNr = Words.verb.RandomizeRelation();
+
+
+                    // The patch to happiness is
+                    presentationWindow.tbxResult.Text = $"Make yourself happy by {Words.verb.IngForm(verbNr)}{Words.verb.Preposition(verbNr)}{Words.someone.Plural(someoneNr)}";
+
+                    Words.verb.Used(verbNr);
+                    break;
             }
-            else
-            {
-                customTabControl1.Size = new Size(614, 332);
-            }
-            
+
+            Words.someone.Used(someoneNr);
+            EndingRitual(2, presentationWindow.tbxResult, ref position);
+        }
+
+        private void btnGenerate8_Click(object sender, EventArgs e)
+        {
+            presentationWindow.tbxResult.Text = "";
+
+            int nounNr = Words.noun.RandomizeId();
+            int adjectiveNr = Words.adjective.RandomizeId(nounNr);
+                
+            presentationWindow.tbxResult.AppendText($"Your {Words.noun.Plural(nounNr)} can never be too {Words.adjective.Descriptive(adjectiveNr)}");
+
+            Words.noun.Used(nounNr);
+            Words.adjective.Used(adjectiveNr);
+            EndingRitual(2, presentationWindow.tbxResult, ref position);
         }
 
         private void btnGenerate9_Click(object sender, EventArgs e)
@@ -320,6 +364,130 @@ namespace Headline_Randomizer
             Words.noun.Used(nounNr);
             Words.verb.Used(verbNr);
             EndingRitual(2, presentationWindow.tbxResult, ref position);
+        }
+
+        private void BtnGenerate10_Click(object sender, EventArgs e)
+        {
+            presentationWindow.tbxResult.Text = "";
+            int slant = r.Next(0, 2);
+
+            List<string> with = new List<string>
+            {
+                "Allow yourself to", "Push yourself to", "Let yourself", "Enable yourself to", "Permit yourself to", "Prepare yourself to"
+            };
+
+            List<string> without = new List<string>
+            {
+                "Have the courage to", "Take a risk and", "Be brave enough to", "Be strong enough to", "Have enough confidence to",
+            };
+
+            switch (slant)
+            {
+                case 0:
+                    int verbNr = Words.verb.RandomizeId(0);
+                    presentationWindow.tbxResult.Text = $"{without[r.Next(0, without.Count)]} {Words.verb.BaseForm(verbNr)}{Words.verb.Preposition(verbNr)}yourself";
+                    Words.verb.Used(verbNr);
+                    break;
+
+                case 1:
+                    int slant2 = r.Next(0, 2);
+                    int adjectiveNr = Words.adjective.RandomizeId(0);
+                    string preposition = Words.adjective.Preposition(adjectiveNr);
+
+                    if (preposition == " ")
+                    {
+                        presentationWindow.tbxResult.Text = $"{with[r.Next(0, with.Count)]} be {Words.adjective.Descriptive(adjectiveNr)}";
+                    }
+                    else
+                    {
+                        presentationWindow.tbxResult.Text = $"{without[r.Next(0, without.Count)]} be {Words.adjective.Descriptive(adjectiveNr)}{Words.adjective.Preposition(adjectiveNr)}yourself";
+                    }
+                    Words.adjective.Used(adjectiveNr);
+                    break;
+            }
+
+            EndingRitual(2, presentationWindow.tbxResult, ref position);
+        }
+
+        private void BtnGenerate11_Click(object sender, EventArgs e)
+        {
+            presentationWindow.tbxResult.Text = "";
+            int slant = r.Next(1,2);
+            int verbNr;
+
+            switch (slant)
+            {
+                case 0:
+                    //int someoneNr = Words.someone.RandomizeId();
+                    //verbNr = Words.verb.RandomizeId(someoneNr);
+
+                    //presentationWindow.tbxResult.AppendText($"Thou shalt {Words.verb.BaseForm(verbNr)}{Words.verb.Preposition(verbNr)}your {Words.someone.Plural(someoneNr)}");
+
+                    //Words.verb.Used(verbNr);
+                    //Words.noun.Used(someoneNr);
+                    //EndingRitual(2, presentationWindow.tbxResult, ref position);
+                    break;
+
+                case 1:
+                case 2:
+                    verbNr = Words.verb.RandomizeId(0);
+
+                    presentationWindow.tbxResult.Text = $"Thou shalt {Words.verb.BaseForm(verbNr)}{Words.verb.Preposition(verbNr)}people ";
+                    Words.verb.Used(verbNr);
+                    int slant2 = r.Next(0, 2);
+
+                    if (slant2 == 0)
+                    {
+                        int relationNr = Words.verb.RandomizeRelation();
+                        presentationWindow.tbxResult.AppendText($"you {Words.verb.BaseForm(relationNr)}{Words.verb.Preposition(relationNr)}");
+                        Words.verb.Used(relationNr);
+                    }
+                    else
+                    {
+                        int relationNr = Words.adjective.RandomizeRelation();
+                        presentationWindow.tbxResult.AppendText(Words.adjective.Preposition(relationNr) == " " ? $"who are {Words.adjective.Descriptive(relationNr)}" : $"you are {Words.adjective.Descriptive(relationNr)}{Words.adjective.Preposition(relationNr)}");
+                        Words.adjective.Used(relationNr);
+                    }
+                    break;
+            }
+
+            
+            EndingRitual(2, presentationWindow.tbxResult, ref position);
+        }
+
+        private void btnClear3_Click(object sender, EventArgs e)
+        {
+            presentationWindow.tbxResult.Text = "";
+        }
+
+        private void btnClear2_Click(object sender, EventArgs e)
+        {
+            presentationWindow.tbxResult.Text = "";
+        }
+
+        public void EndingRitual(int loadNr, TextBox tb, ref int position)
+        {
+            //tb.Text = tb.Text.Replace("  ", " ");
+            Common.ToFile(presentationWindow.tbxResult.Text);
+            Common.AdjustSize(tb);
+            Db.recentStrings.Add(tb.Text);
+            position = Db.recentStrings.Count - 1;
+            Words.FreeNeeded(loadNr);
+        }
+
+        
+
+        private void Tabchanged(object sender, EventArgs e)
+        {
+            if (customTabControl1.ActiveIndex == 2)
+            {
+                customTabControl1.Size = new Size(614, 135);
+            }
+            else
+            {
+                customTabControl1.Size = new Size(614, 332);
+            }
+            
         }
 
         private void lekarToolStripMenuItem_Click(object sender, EventArgs e)
@@ -359,21 +527,6 @@ namespace Headline_Randomizer
             }
         }
 
-        private void btnClear3_Click(object sender, EventArgs e)
-        {
-            presentationWindow.tbxResult.Text = "";
-        }
-
-        public static void SaveToFile(string text)
-        {
-            string text2 = $"{text}.     ";
-            StreamWriter sw = new StreamWriter($"OnSteam.txt");
-
-            sw.WriteLine(text2);
-
-            sw.Close();
-        }
-
         private void LanguageToolStripMenuItem_Click(object sender, EventArgs e)
         {
             Version.Reset();
@@ -381,5 +534,6 @@ namespace Headline_Randomizer
             Process.Start($"{AppDomain.CurrentDomain.BaseDirectory}Language Form.exe");
             Environment.Exit(0);
         }
+ 
     }
 }

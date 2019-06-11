@@ -24,51 +24,46 @@ namespace English
 
         public Random r = new Random();
         
-        //public static void FreeNeededRelations(int antal)
-        //{
-        //    string used = "Used";
-        //    using (SQLiteConnection connection = new SQLiteConnection(Db.connectionString))
-        //    {
-        //        connection.Open();
-        //        SQLiteCommand command = new SQLiteCommand();
-        //        command.Connection = connection;
-        //        int antalRader = 0;
+        static public string[,] idQueries = UpdateIdQueries();
+        static public string[,] resetQueries = UpdateResetQueries();
 
-        //        // Adjektiv relation
-        //        command.CommandText = $"SELECT COUNT(*) FROM TblAdjectives WHERE {used} = 0 AND [Relation] = 'True' {QueryRestrictions()("AND")}";
-        //        antalRader = (Int32)command.ExecuteScalar();
-
-        //        if (antalRader < antal)
-        //        {
-        //            string rad1 = Db.GetValue("SELECT TOP 1 Id FROM TblAdjectives WHERE [Relation] = 'True' ORDER BY Id ASC");
-        //            string sistaRad = Db.GetValue("SELECT TOP 1 Id FROM TblAdjectives WHERE [Relation] = 'True' ORDER BY Id DESC");
-        //            command.CommandText = $"UPDATE TblAdjectives SET {used} = 0 WHERE [Relation] = 'True' AND Id BETWEEN {rad1} AND {sistaRad}";
-        //            command.ExecuteNonQuery();
-        //        }
-
-        //        // Relation Verb
-        //        command.CommandText = $"SELECT COUNT(*) FROM TblVerbs WHERE [Relation] = 'True' AND {used} = 0 {QueryRestrictions()("AND")}";
-        //        antalRader = (Int32)command.ExecuteScalar();
-
-        //        if (antalRader < antal)
-        //        {
-        //            string rad1 = Db.GetValue("SELECT TOP 1 Id FROM TblVerbs WHERE [Relation] = 'True' ORDER BY Id ASC");
-        //            string sistaRad = Db.GetValue("SELECT TOP 1 Id FROM TblVerbs WHERE [Relation] = 'True' ORDER BY Id DESC");
-        //            command.CommandText = $"UPDATE TblVerbs SET {used} = 0 WHERE [Relation] = 'True' AND Id BETWEEN {rad1} AND {sistaRad}";
-        //            command.ExecuteNonQuery();
-        //        }
-
-        //        connection.Close();
-        //    }
-        //}
-
-        static public string[,] queryBits = UpdateQueryBits();
-
-        static public string[,] UpdateQueryBits()
+        public static string SuitableFor()
         {
-            string suitableFor = $"[Suitable for] IN ('Children', 'Adolescents', 'Adults')";
+            return $"[Suitable for] IN ('Children', 'Adolescents', 'Adults')";
+        }
 
-            string[,] queryBits =
+        static public string[,] UpdateResetQueries()
+        {
+            string suitableFor = SuitableFor();
+
+            string[,] resetQueries =
+            {
+                {"TblAdjectives", $"{suitableFor} AND Fits = 'Someone (Strict)'"},
+                {"TblAdjectives", $"{suitableFor} AND Fits = 'Someone & Something'"},
+                {"TblAdjectives", $"{suitableFor} AND Fits = 'Relation (Strict)'"},
+                {"TblAdjectives", $"{suitableFor} AND Fits = 'Relation & Something'"},
+                {"TblJokeNames", $"{suitableFor}"},
+                {"TblMissions", $"{suitableFor}"},
+                {"TblNobelPrizes", $"{suitableFor}"},
+                {"TblNouns", $"{suitableFor} AND [Term for] = 'Someone'"},
+                {"TblNouns", $"{suitableFor} AND [Term for] = 'Something'"},
+                {"TblStatus", $"{suitableFor}"},
+                {"TblVerbs", $"{suitableFor} AND Fits IN ('Someone (Strict)', 'Someone')"},
+                {"TblVerbs", $"{suitableFor} AND Fits = 'Something'"},
+                {"TblVerbs", $"{suitableFor} AND Fits = 'Someone & Something'"},
+                {"TblVerbs", $"{suitableFor} AND Fits IN ('Relation (Strict)', 'Relation')"},
+                {"TblVerbs", $"{suitableFor} AND Fits = 'Relation & Something'"},
+
+            };
+
+            return resetQueries;
+        }
+
+        static public string[,] UpdateIdQueries()
+        {
+            string suitableFor = SuitableFor();
+
+            string[,] idQueries =
             {
                 // 0 = Adjectives that fits Something
                 { "TblAdjectives", $"{suitableFor} AND NOT Fits IN ('Someone (Strict)', 'Relation (Strict)')" },
@@ -91,17 +86,21 @@ namespace English
                 // 9 = Verbs that fits Something
                 { "TblVerbs", $"{suitableFor} AND NOT Fits IN ('Someone (Strict)', 'Relation (Strict)')"},
                 // 10
-                { "TblVerbs", $"{suitableFor}"}
+                { "TblVerbs", $"{suitableFor}"},
+                // 11 Relation Verbs
+                { "TblVerbs", $"{suitableFor} AND Fits IN ('Relation (Strict)', 'Relation', 'Relation & Something')"},
+                // 12 Relation Adjectives
+                { "TblAdjectives", $"{suitableFor} AND Fits IN ('Relation (Strict)', 'Relation & Something')"}
             };
 
-            return queryBits;
+            return idQueries;
         }
 
         static public void FreeNeeded(int limit)
         {
-            for (int i = 0; i < queryBits.Length / 2; i++)
+            for (int i = 0; i < resetQueries.Length / 2; i++)
             {
-                Db.SetMultiple(queryBits[i, 0], queryBits[i, 1], "Used = 0", limit);
+                Db.SetMultiple(resetQueries[i, 0], resetQueries[i, 1], "Used = 0", limit);
             }
         }
 
@@ -127,30 +126,40 @@ namespace English
     {
         public override int RandomizeId()
         {
-            return Convert.ToInt32($"{Db.RandomizeValue("Select Id", $"FROM TblVerbs WHERE {queryBits[10, 1]} AND Used = 0")}");
+            return Convert.ToInt32($"{Db.RandomizeValue("Select Id", $"FROM TblVerbs WHERE {idQueries[10, 1]} AND Used = 0")}");
         }
 
         public override int RandomizeId(int nounId)
         {
-            string termFor = Db.GetValue($"SELECT [Term for] FROM TblNouns WHERE Id = {nounId}");
+            string termFor;
+
+            if (nounId == 0)
+            {
+                termFor = "Someone";
+            }
+            else
+            {
+                termFor = Db.GetValue($"SELECT [Term for] FROM TblNouns WHERE Id = {nounId}");
+            }
+
             int result = 0;
 
             if (termFor == "Someone" || termFor == "Someone & Location" || termFor == "Someone & Something")
             {
-                result = Convert.ToInt32($"{Db.RandomizeValue("Select Id", $"FROM TblVerbs WHERE {queryBits[10, 1]} AND Used = 0")}");
+                result = Convert.ToInt32($"{Db.RandomizeValue("Select Id", $"FROM TblVerbs WHERE {idQueries[10, 1]} AND Used = 0")}");
             }
             else if (termFor == "Something" || termFor == "Someone & Something")
             {
-                result = Convert.ToInt32($"{Db.RandomizeValue("Select Id", $"FROM TblVerbs WHERE {queryBits[9, 1]} AND Used = 0")}");
+                result = Convert.ToInt32($"{Db.RandomizeValue("Select Id", $"FROM TblVerbs WHERE {idQueries[9, 1]} AND Used = 0")}");
             }
 
             return result;
         }
 
-        //public int RandomizeRelation()
-        //{
-        //    return Convert.ToInt32($"{Db.RandomizeValue("Select Id", $"FROM TblVerbs WHERE Used = 0 AND [Relation] = 'True' {QueryRestrictions()("AND")}")}");
-        //}
+        public int RandomizeRelation()
+        {
+            return Convert.ToInt32($"{Db.RandomizeValue("Select Id", $"FROM TblVerbs WHERE {idQueries[11, 1]} AND Used = 0")}");
+        }
 
         public override void Used(int id)
         {
@@ -194,24 +203,39 @@ namespace English
     {
         public override int RandomizeId()
         {
-            return Convert.ToInt32($"{Db.RandomizeValue("Select Id", $"FROM TblAdjectives WHERE {queryBits[1,1]} AND Used = 0")}");
+            return Convert.ToInt32($"{Db.RandomizeValue("Select Id", $"FROM TblAdjectives WHERE {idQueries[1,1]} AND Used = 0")}");
         }
 
         public override int RandomizeId(int nounId)
         {
-            string termFor = Db.GetValue($"SELECT [Term for] FROM TblNouns WHERE Id = {nounId}");
+            string termFor;
+
+            if (nounId == 0)
+            {
+                termFor = "Someone";
+            }
+            else
+            {
+                termFor = Db.GetValue($"SELECT [Term for] FROM TblNouns WHERE Id = {nounId}");
+            }
+            
             int result = 0;
 
             if (termFor == "Someone" || termFor == "Someone & Location" || termFor == "Someone & Something")
             {
-                result = Convert.ToInt32($"{Db.RandomizeValue("Select Id", $"FROM TblAdjectives WHERE {queryBits[1, 1]} AND Used = 0")}");
+                result = Convert.ToInt32($"{Db.RandomizeValue("Select Id", $"FROM TblAdjectives WHERE {idQueries[1, 1]} AND Used = 0")}");
             }
             else if (termFor == "Something" || termFor == "Someone & Something")
             {
-                result = Convert.ToInt32($"{Db.RandomizeValue("Select Id", $"FROM TblAdjectives WHERE {queryBits[0, 1]} AND Used = 0")}");
+                result = Convert.ToInt32($"{Db.RandomizeValue("Select Id", $"FROM TblAdjectives WHERE {idQueries[0, 1]} AND Used = 0")}");
             }
 
             return result;
+        }
+
+        public int RandomizeRelation()
+        {
+            return Convert.ToInt32($"{Db.RandomizeValue("Select Id", $"FROM TblAdjectives WHERE {idQueries[12, 1]} AND Used = 0")}");
         }
 
         public override void Used(int id)
@@ -272,11 +296,6 @@ namespace English
         //        else { return ""; }
         //    }
         //}
-
-        //public int RandomizeRelation()
-        //{
-        //    return Convert.ToInt32($"{Db.RandomizeValue("Select Id", $"FROM TblAdjectives WHERE Used = 0 AND [Relation] = 'True' {QueryRestrictions()("AND")}")}");
-        //}
     }
 
     public class Nouns : Words
@@ -308,7 +327,16 @@ namespace English
 
         public string AOrAn(int id)
         {
-            return Db.GetValue($"SELECT [A/An] FROM TblNouns WHERE Id = {id})");
+            string result = Db.GetValue($"SELECT [A/An] FROM TblNouns WHERE Id = {id}");
+
+            if (result == "")
+            {
+                return " ";
+            }
+            else
+            {
+                return $" {result} ";
+            }
         }
 
         public string Singular(int id)
@@ -326,7 +354,7 @@ namespace English
     {
         public override int RandomizeId()
         {
-            return Convert.ToInt32($"{Db.RandomizeValue("Select Id", $"FROM TblNouns WHERE {queryBits[5, 1]} AND Used = 0")}");
+            return Convert.ToInt32($"{Db.RandomizeValue("Select Id", $"FROM TblNouns WHERE {idQueries[5, 1]} AND Used = 0")}");
         }
 
     }
@@ -335,7 +363,7 @@ namespace English
     {
         public override int RandomizeId()
         {
-            return Convert.ToInt32($"{Db.RandomizeValue("Select Id", $"FROM TblNouns WHERE {queryBits[6, 1]} AND Used = 0")}");
+            return Convert.ToInt32($"{Db.RandomizeValue("Select Id", $"FROM TblNouns WHERE {idQueries[6, 1]} AND Used = 0")}");
         }
     }
 
@@ -351,7 +379,7 @@ namespace English
     {
         public override int RandomizeId()
         {
-            return Convert.ToInt32($"{Db.RandomizeValue("Select Id", $"FROM TblNobelPrizes WHERE {queryBits[4,1]} AND Used = 0")}");
+            return Convert.ToInt32($"{Db.RandomizeValue("Select Id", $"FROM TblNobelPrizes WHERE {idQueries[4,1]} AND Used = 0")}");
         }
 
         public override void Used(int id)
@@ -369,7 +397,7 @@ namespace English
     {
         public override int RandomizeId()
         {
-            return Convert.ToInt32($"{Db.RandomizeValue("Select Id", $"FROM TblJokeNames WHERE {queryBits[2,1]} AND Used = 0")}");
+            return Convert.ToInt32($"{Db.RandomizeValue("Select Id", $"FROM TblJokeNames WHERE {idQueries[2,1]} AND Used = 0")}");
         }
 
         public override void Used(int id)

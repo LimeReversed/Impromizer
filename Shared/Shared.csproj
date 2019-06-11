@@ -77,14 +77,12 @@
       <DependentUpon>Help.cs</DependentUpon>
     </Compile>
     <Compile Include="Version.cs" />
-    <Compile Include="Ord.cs" />
     <Compile Include="PresentationWindow.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="PresentationWindow.Designer.cs">
       <DependentUpon>PresentationWindow.cs</DependentUpon>
     </Compile>
-    <Compile Include="Words.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

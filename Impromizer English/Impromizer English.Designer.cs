@@ -37,6 +37,13 @@
             this.btnGenerate3 = new System.Windows.Forms.Button();
             this.btnGenerate2 = new System.Windows.Forms.Button();
             this.btnGenerate1 = new System.Windows.Forms.Button();
+            this.tabPage1 = new System.Windows.Forms.TabPage();
+            this.btnGenerate11 = new System.Windows.Forms.Button();
+            this.btnClear2 = new System.Windows.Forms.Button();
+            this.btnGenerate6 = new System.Windows.Forms.Button();
+            this.btnGenerate8 = new System.Windows.Forms.Button();
+            this.btnGenerate10 = new System.Windows.Forms.Button();
+            this.btnGenerate7 = new System.Windows.Forms.Button();
             this.tabPage2 = new System.Windows.Forms.TabPage();
             this.btnGenerate9 = new System.Windows.Forms.Button();
             this.btnClear3 = new System.Windows.Forms.Button();
@@ -48,6 +55,7 @@
             this.languageToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.customTabControl1.SuspendLayout();
             this.tabPage3.SuspendLayout();
+            this.tabPage1.SuspendLayout();
             this.tabPage2.SuspendLayout();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
@@ -55,6 +63,7 @@
             // customTabControl1
             // 
             this.customTabControl1.Controls.Add(this.tabPage3);
+            this.customTabControl1.Controls.Add(this.tabPage1);
             this.customTabControl1.Controls.Add(this.tabPage2);
             this.customTabControl1.DisplayStyle = System.Windows.Forms.TabStyle.Angled;
             // 
@@ -236,6 +245,156 @@
             this.btnGenerate1.MouseDown += new System.Windows.Forms.MouseEventHandler(this.btnGenerate1_MouseDown);
             this.btnGenerate1.MouseUp += new System.Windows.Forms.MouseEventHandler(this.btnGenerate1_MouseUp);
             // 
+            // tabPage1
+            // 
+            this.tabPage1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.tabPage1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.tabPage1.Controls.Add(this.btnGenerate11);
+            this.tabPage1.Controls.Add(this.btnClear2);
+            this.tabPage1.Controls.Add(this.btnGenerate6);
+            this.tabPage1.Controls.Add(this.btnGenerate8);
+            this.tabPage1.Controls.Add(this.btnGenerate10);
+            this.tabPage1.Controls.Add(this.btnGenerate7);
+            this.tabPage1.Location = new System.Drawing.Point(4, 36);
+            this.tabPage1.Margin = new System.Windows.Forms.Padding(2);
+            this.tabPage1.Name = "tabPage1";
+            this.tabPage1.Padding = new System.Windows.Forms.Padding(2);
+            this.tabPage1.Size = new System.Drawing.Size(606, 292);
+            this.tabPage1.TabIndex = 4;
+            this.tabPage1.Text = "Wisdom";
+            // 
+            // btnGenerate11
+            // 
+            this.btnGenerate11.BackColor = System.Drawing.SystemColors.Highlight;
+            this.btnGenerate11.BackgroundImage = global::Headline_Randomizer.Properties.Resources._11;
+            this.btnGenerate11.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.btnGenerate11.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnGenerate11.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnGenerate11.Font = new System.Drawing.Font("Calibri", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnGenerate11.ForeColor = System.Drawing.Color.White;
+            this.btnGenerate11.Location = new System.Drawing.Point(-1, -1);
+            this.btnGenerate11.Name = "btnGenerate11";
+            this.btnGenerate11.Padding = new System.Windows.Forms.Padding(0, 0, 0, 10);
+            this.btnGenerate11.Size = new System.Drawing.Size(305, 99);
+            this.btnGenerate11.TabIndex = 17;
+            this.btnGenerate11.TabStop = false;
+            this.btnGenerate11.Text = "&Though shalt__";
+            this.btnGenerate11.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
+            this.btnGenerate11.UseVisualStyleBackColor = false;
+            this.btnGenerate11.Click += new System.EventHandler(this.BtnGenerate11_Click);
+            this.btnGenerate11.MouseDown += new System.Windows.Forms.MouseEventHandler(this.BtnGenerate11_MouseDown);
+            this.btnGenerate11.MouseUp += new System.Windows.Forms.MouseEventHandler(this.BtnGenerate11_MouseUp);
+            // 
+            // btnClear2
+            // 
+            this.btnClear2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.btnClear2.BackgroundImage = global::Headline_Randomizer.Properties.Resources.buttongrey3;
+            this.btnClear2.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.btnClear2.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnClear2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnClear2.Font = new System.Drawing.Font("Calibri", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnClear2.ForeColor = System.Drawing.Color.White;
+            this.btnClear2.ImageAlign = System.Drawing.ContentAlignment.TopLeft;
+            this.btnClear2.ImageKey = "(none)";
+            this.btnClear2.Location = new System.Drawing.Point(303, 194);
+            this.btnClear2.Name = "btnClear2";
+            this.btnClear2.Size = new System.Drawing.Size(304, 99);
+            this.btnClear2.TabIndex = 13;
+            this.btnClear2.Text = "Clear";
+            this.btnClear2.UseVisualStyleBackColor = false;
+            this.btnClear2.Click += new System.EventHandler(this.btnClear2_Click);
+            this.btnClear2.MouseDown += new System.Windows.Forms.MouseEventHandler(this.btnClear2_MouseDown);
+            this.btnClear2.MouseUp += new System.Windows.Forms.MouseEventHandler(this.btnClear2_MouseUp);
+            // 
+            // btnGenerate6
+            // 
+            this.btnGenerate6.BackColor = System.Drawing.SystemColors.Highlight;
+            this.btnGenerate6.BackgroundImage = global::Headline_Randomizer.Properties.Resources._4;
+            this.btnGenerate6.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.btnGenerate6.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnGenerate6.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnGenerate6.Font = new System.Drawing.Font("Calibri", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnGenerate6.ForeColor = System.Drawing.Color.White;
+            this.btnGenerate6.Location = new System.Drawing.Point(0, 194);
+            this.btnGenerate6.Name = "btnGenerate6";
+            this.btnGenerate6.Padding = new System.Windows.Forms.Padding(0, 0, 0, 10);
+            this.btnGenerate6.Size = new System.Drawing.Size(305, 99);
+            this.btnGenerate6.TabIndex = 16;
+            this.btnGenerate6.TabStop = false;
+            this.btnGenerate6.Text = "???";
+            this.btnGenerate6.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
+            this.btnGenerate6.UseVisualStyleBackColor = false;
+            this.btnGenerate6.Visible = false;
+            this.btnGenerate6.Click += new System.EventHandler(this.btnGenerate6_Click);
+            // 
+            // btnGenerate8
+            // 
+            this.btnGenerate8.BackColor = System.Drawing.SystemColors.Highlight;
+            this.btnGenerate8.BackgroundImage = global::Headline_Randomizer.Properties.Resources._8;
+            this.btnGenerate8.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.btnGenerate8.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnGenerate8.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnGenerate8.Font = new System.Drawing.Font("Calibri", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnGenerate8.ForeColor = System.Drawing.Color.White;
+            this.btnGenerate8.Location = new System.Drawing.Point(-1, 97);
+            this.btnGenerate8.Name = "btnGenerate8";
+            this.btnGenerate8.Padding = new System.Windows.Forms.Padding(0, 0, 0, 10);
+            this.btnGenerate8.Size = new System.Drawing.Size(305, 98);
+            this.btnGenerate8.TabIndex = 15;
+            this.btnGenerate8.TabStop = false;
+            this.btnGenerate8.Text = "&__can never be too__";
+            this.btnGenerate8.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
+            this.btnGenerate8.UseVisualStyleBackColor = false;
+            this.btnGenerate8.Click += new System.EventHandler(this.btnGenerate8_Click);
+            this.btnGenerate8.MouseDown += new System.Windows.Forms.MouseEventHandler(this.BtnGenerate8_MouseDown);
+            this.btnGenerate8.MouseUp += new System.Windows.Forms.MouseEventHandler(this.BtnGenerate8_MouseUp);
+            // 
+            // btnGenerate10
+            // 
+            this.btnGenerate10.BackColor = System.Drawing.SystemColors.Highlight;
+            this.btnGenerate10.BackgroundImage = global::Headline_Randomizer.Properties.Resources._10;
+            this.btnGenerate10.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.btnGenerate10.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnGenerate10.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnGenerate10.Font = new System.Drawing.Font("Calibri", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnGenerate10.ForeColor = System.Drawing.Color.White;
+            this.btnGenerate10.Location = new System.Drawing.Point(303, -1);
+            this.btnGenerate10.Name = "btnGenerate10";
+            this.btnGenerate10.Padding = new System.Windows.Forms.Padding(0, 0, 0, 10);
+            this.btnGenerate10.Size = new System.Drawing.Size(304, 99);
+            this.btnGenerate10.TabIndex = 14;
+            this.btnGenerate10.TabStop = false;
+            this.btnGenerate10.Text = "&Allow yourself to__";
+            this.btnGenerate10.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
+            this.btnGenerate10.UseVisualStyleBackColor = false;
+            this.btnGenerate10.Click += new System.EventHandler(this.BtnGenerate10_Click);
+            this.btnGenerate10.MouseDown += new System.Windows.Forms.MouseEventHandler(this.BtnGenerate10_MouseDown);
+            this.btnGenerate10.MouseUp += new System.Windows.Forms.MouseEventHandler(this.BtnGenerate10_MouseUp);
+            // 
+            // btnGenerate7
+            // 
+            this.btnGenerate7.BackColor = System.Drawing.SystemColors.WindowFrame;
+            this.btnGenerate7.BackgroundImage = global::Headline_Randomizer.Properties.Resources._7;
+            this.btnGenerate7.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.btnGenerate7.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnGenerate7.FlatAppearance.BorderColor = System.Drawing.Color.White;
+            this.btnGenerate7.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.btnGenerate7.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnGenerate7.Font = new System.Drawing.Font("Calibri", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnGenerate7.ForeColor = System.Drawing.Color.White;
+            this.btnGenerate7.Location = new System.Drawing.Point(303, 97);
+            this.btnGenerate7.Name = "btnGenerate7";
+            this.btnGenerate7.Padding = new System.Windows.Forms.Padding(0, 0, 0, 10);
+            this.btnGenerate7.Size = new System.Drawing.Size(304, 98);
+            this.btnGenerate7.TabIndex = 18;
+            this.btnGenerate7.TabStop = false;
+            this.btnGenerate7.Text = "&The secret to happiness__";
+            this.btnGenerate7.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
+            this.btnGenerate7.UseVisualStyleBackColor = false;
+            this.btnGenerate7.Click += new System.EventHandler(this.btnGenerate7_Click);
+            this.btnGenerate7.MouseDown += new System.Windows.Forms.MouseEventHandler(this.BtnGenerate7_MouseDown);
+            this.btnGenerate7.MouseUp += new System.Windows.Forms.MouseEventHandler(this.BtnGenerate7_MouseUp);
+            // 
             // tabPage2
             // 
             this.tabPage2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
@@ -305,10 +464,11 @@
             this.omToolStripMenuItem,
             this.languageToolStripMenuItem});
             this.menuStrip1.LayoutStyle = System.Windows.Forms.ToolStripLayoutStyle.HorizontalStackWithOverflow;
-            this.menuStrip1.Location = new System.Drawing.Point(0, 360);
+            this.menuStrip1.Location = new System.Drawing.Point(0, 362);
             this.menuStrip1.Name = "menuStrip1";
+            this.menuStrip1.Padding = new System.Windows.Forms.Padding(4, 1, 0, 1);
             this.menuStrip1.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.menuStrip1.Size = new System.Drawing.Size(691, 33);
+            this.menuStrip1.Size = new System.Drawing.Size(691, 31);
             this.menuStrip1.TabIndex = 8;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -379,6 +539,7 @@
             this.Move += new System.EventHandler(this.MoveWindow1);
             this.customTabControl1.ResumeLayout(false);
             this.tabPage3.ResumeLayout(false);
+            this.tabPage1.ResumeLayout(false);
             this.tabPage2.ResumeLayout(false);
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
@@ -405,7 +566,13 @@
         private System.Windows.Forms.ToolStripMenuItem lekarToolStripMenuItem1;
         private System.Windows.Forms.ToolStripMenuItem omToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem languageToolStripMenuItem;
-
+        private System.Windows.Forms.TabPage tabPage1;
+        private System.Windows.Forms.Button btnGenerate11;
+        private System.Windows.Forms.Button btnClear2;
+        private System.Windows.Forms.Button btnGenerate6;
+        private System.Windows.Forms.Button btnGenerate8;
+        private System.Windows.Forms.Button btnGenerate10;
+        private System.Windows.Forms.Button btnGenerate7;
     }
 }
 
