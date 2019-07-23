@@ -139,7 +139,7 @@ namespace English
             }
             else
             {
-                termFor = Db.GetValue($"SELECT [Term for] FROM TblNouns WHERE Id = {nounId}");
+                termFor = Db.GetValue($"SELECT [Term for] FROM TblNouns WHERE Id = {nounId}", Db.connectionString);
             }
 
             int result = 0;
@@ -168,7 +168,7 @@ namespace English
 
         public string Preposition(int id)
         {
-            string prep = $"{Db.GetValue($"SELECT Preposition FROM TblVerbs WHERE Id = {id}")}";
+            string prep = $"{Db.GetValue($"SELECT Preposition FROM TblVerbs WHERE Id = {id}", Db.connectionString)}";
 
             // If it returns "" then just return a space. If however it returns a preposition
             // then add a space before and after. That way when I insert it in a string
@@ -185,17 +185,17 @@ namespace English
 
         public string BaseForm(int id)
         {
-            return Db.GetValue($"SELECT Base FROM TblVerbs WHERE Id = {id}");
+            return Db.GetValue($"SELECT Base FROM TblVerbs WHERE Id = {id}", Db.connectionString);
         }
 
         public string IngForm(int id)
         {
-            return Db.GetValue($"SELECT [-ing] FROM TblVerbs WHERE Id = {id}");
+            return Db.GetValue($"SELECT [-ing] FROM TblVerbs WHERE Id = {id}", Db.connectionString);
         }
 
         public string SForm(int id)
         {
-            return Db.GetValue($"SELECT [-s] FROM TblVerbs WHERE Id = {id}");
+            return Db.GetValue($"SELECT [-s] FROM TblVerbs WHERE Id = {id}", Db.connectionString);
         }
     }
 
@@ -216,7 +216,7 @@ namespace English
             }
             else
             {
-                termFor = Db.GetValue($"SELECT [Term for] FROM TblNouns WHERE Id = {nounId}");
+                termFor = Db.GetValue($"SELECT [Term for] FROM TblNouns WHERE Id = {nounId}", Db.connectionString);
             }
             
             int result = 0;
@@ -245,7 +245,7 @@ namespace English
 
         public string Preposition(int id)
         {
-            string prep = $"{Db.GetValue($"SELECT Preposition FROM TblAdjectives WHERE Id = {id}")}";
+            string prep = $"{Db.GetValue($"SELECT Preposition FROM TblAdjectives WHERE Id = {id}", Db.connectionString)}";
             if (prep == "")
             {
                 return " ";
@@ -258,7 +258,7 @@ namespace English
 
         public string Descriptive(int id)
         {
-            return $"{Db.GetValue($"SELECT Descriptive FROM TblAdjectives WHERE Id = {id}")}";
+            return $"{Db.GetValue($"SELECT Descriptive FROM TblAdjectives WHERE Id = {id}", Db.connectionString)}";
         }
 
         //public string Automatic(int adjectiveId, int nounId, bool singular)
@@ -314,7 +314,7 @@ namespace English
 
         public string Preposition(int id)
         {
-            string prep = $"{Db.GetValue($"SELECT Preposition FROM TblNouns WHERE Id = {id}")}";
+            string prep = $"{Db.GetValue($"SELECT Preposition FROM TblNouns WHERE Id = {id}", Db.connectionString)}";
             if (prep == "")
             {
                 return " ";
@@ -327,7 +327,7 @@ namespace English
 
         public string AOrAn(int id)
         {
-            string result = Db.GetValue($"SELECT [A/An] FROM TblNouns WHERE Id = {id}");
+            string result = Db.GetValue($"SELECT [A/An] FROM TblNouns WHERE Id = {id}", Db.connectionString);
 
             if (result == "")
             {
@@ -341,12 +341,12 @@ namespace English
 
         public string Singular(int id)
         {
-            return $"{Db.GetValue($"SELECT [Singular] FROM TblNouns WHERE Id = {id}")}";
+            return $"{Db.GetValue($"SELECT [Singular] FROM TblNouns WHERE Id = {id}", Db.connectionString)}";
         }
 
         public string Plural(int id)
         {
-            return $"{Db.GetValue($"SELECT Plural FROM TblNouns WHERE Id = {id}")}";
+            return $"{Db.GetValue($"SELECT Plural FROM TblNouns WHERE Id = {id}", Db.connectionString)}";
         }
     }
 
@@ -389,7 +389,7 @@ namespace English
 
         public string Prize(int id)
         {
-            return $"{Db.GetValue($"SELECT Prize FROM TblNobelPrizes WHERE Id = {id}")}";
+            return $"{Db.GetValue($"SELECT Prize FROM TblNobelPrizes WHERE Id = {id}", Db.connectionString)}";
         }
     }
 
@@ -407,7 +407,7 @@ namespace English
 
         public string Name(int id)
         {
-            return $"{Db.GetValue($"SELECT Name FROM TblJokeNames WHERE Id = {id}")}";
+            return $"{Db.GetValue($"SELECT Name FROM TblJokeNames WHERE Id = {id}", Db.connectionString)}";
         }
     }
 

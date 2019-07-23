@@ -9,6 +9,10 @@ namespace Headline_Randomizer
     public class Common
     {
         public static bool helpOpen = false;
+        public static bool fullVersion = true;
+
+        static public string myDocumentsPath = $"{Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments)}\\Impromizer\\";
+        static public string baseDirectoryPath = $"{AppDomain.CurrentDomain.BaseDirectory}";
 
         //object.image = Image.FromFile(filelocation)
 

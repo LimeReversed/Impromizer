@@ -17,10 +17,10 @@ namespace Headline_Randomizer
         {
             if (Debugger.IsAttached)
             {
-                Version.Reset();
+                Config.ResetRegValue();
             }
 
-            switch (Version.GetLanguageSelection())
+            switch (Config.GetRegValue("Language", "None"))
             {
                 case "English":
                     {

@@ -29,7 +29,62 @@ namespace Headline_Randomizer
             presentationWindow.Show();
 
             // Set Db variables
-            Db.connectionString = $"Data Source= {Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments)}\\Impromizer\\WordsDatabaseEnglish.db3";
+            Db.connectionString = $"Data Source = {Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments)}\\Impromizer\\WordsDatabaseEnglish.db3";
+            Db.factoryResetString = $"Data Source = {AppDomain.CurrentDomain.BaseDirectory}Databases\\WordsDatabaseEnglish.db3";
+
+            // Copy database
+            if (!Directory.Exists($"{Common.myDocumentsPath}"))
+            {
+                Directory.CreateDirectory($"{Common.myDocumentsPath}");
+
+                System.IO.File.Copy($"{Common.baseDirectoryPath}Databases\\WordsDatabaseEnglish.db3",
+                                        $"{Common.myDocumentsPath}WordsDatabaseEnglish.db3", true);
+
+                System.IO.File.Copy($"{Common.baseDirectoryPath}Databases\\BackupEnglish.db3",
+                                            $"{Common.myDocumentsPath}BackupEnglish.db3", true);
+
+            }
+
+            else if (!File.Exists($"{Common.myDocumentsPath}BackupEnglish.db3") && File.Exists($"{Common.myDocumentsPath}WordsDatabaseEnglish.db3"))
+            {
+                System.IO.File.Copy($"{Common.baseDirectoryPath}Databases\\BackupEnglish.db3",
+                                            $"{Common.myDocumentsPath}BackupEnglish.db3", true);
+            }
+
+            else if (!File.Exists($"{Common.myDocumentsPath}WordsDatabaseEnglish.db3") && File.Exists($"{Common.myDocumentsPath}BackupEnglish.db3"))
+            {
+                System.IO.File.Copy($"{Common.baseDirectoryPath}Databases\\WordsDatabaseEnglish.db3",
+                                        $"{Common.myDocumentsPath}WordsDatabaseEnglish.db3", true);
+            }
+
+            else if (!File.Exists($"{Common.myDocumentsPath}WordsDatabaseEnglish.db3") && !File.Exists($"{Common.myDocumentsPath}BackupEnglish.db3"))
+            {
+                System.IO.File.Copy($"{Common.baseDirectoryPath}Databases\\WordsDatabaseEnglish.db3",
+                                        $"{Common.myDocumentsPath}WordsDatabaseEnglish.db3", true);
+
+                System.IO.File.Copy($"{Common.baseDirectoryPath}Databases\\BackupEnglish.db3",
+                                            $"{Common.myDocumentsPath}BackupEnglish.db3", true);
+            }
+
+            else if (Db.GetValue("SELECT name FROM sqlite_master WHERE type='table' AND name='TblVersion'", Db.connectionString) == "TblVersion"
+                    && Convert.ToInt32(Db.GetValue("Select Version FROM TblVersion", Db.connectionString)) >= Convert.ToInt32(Db.GetValue("Select Version FROM TblVersion", Db.factoryResetString)))
+            {
+
+            }
+
+            else
+            {
+                File.Delete($"{Common.myDocumentsPath}WordsDatabaseEnglish.db3");
+                File.Delete($"{Common.myDocumentsPath}BackupEnglish.db3");
+
+                System.IO.File.Copy($"{Common.baseDirectoryPath}Databases\\WordsDatabaseEnglish.db3",
+                                        $"{Common.myDocumentsPath}WordsDatabaseEnglish.db3", true);
+
+                System.IO.File.Copy($"{Common.baseDirectoryPath}Databases\\BackupEnglish.db3",
+                                            $"{Common.myDocumentsPath}BackupEnglish.db3", true);
+            }
+
+
 
             Words.FreeNeeded(1000);
         }
@@ -529,7 +584,7 @@ namespace Headline_Randomizer
 
         private void LanguageToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            Version.Reset();
+            Config.ResetRegValue();
 
             Process.Start($"{AppDomain.CurrentDomain.BaseDirectory}Language Form.exe");
             Environment.Exit(0);

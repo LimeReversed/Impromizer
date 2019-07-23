@@ -1,12 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Data.SQLite;
-// Since this is a different namespace I need to add Headline_Randomizer here to 
+﻿// Since this is a different namespace I need to add Headline_Randomizer here to 
 // connect to things that are there. 
 using Headline_Randomizer;
+using System;
+using System.Text;
 
 namespace Svenska
 {
@@ -32,9 +28,42 @@ namespace Svenska
         
         public static string SuitableFor()
         {
-            return $"[Lämpligt för] IN ('Barn', 'Ungdomar', 'Vuxna')";
+            if (Common.fullVersion)
+            {
+                StringBuilder builder = new StringBuilder();
+
+                if (Config.GetRegValue("SuitableForChildren", "1") == "1")
+                {
+                    builder.Append("'Barn', ");
+                }
+                if (Config.GetRegValue("SuitableForAdolescents", "1") == "1")
+                {
+                    builder.Append("'Ungdomar', ");
+                }
+                if (Config.GetRegValue("SuitableForAdults", "1") == "1")
+                {
+                    builder.Append("'Vuxna', ");
+                }
+                if (Config.GetRegValue("SuitableForunoffendable", "0") == "1")
+                {
+                    builder.Append("'Okränkbara', ");
+                }
+
+                builder.Remove(builder.Length - 2, 2);
+                string restriction = $"[Lämpligt för] IN({builder.ToString()})";
+                return restriction;
+            }
+
+            else
+            {
+                return $"[Lämpligt för] IN ('Barn', 'Ungdomar', 'Vuxna')";
+            }
+
         }
 
+        // Här skapas en array med alla queries som behövs för att återställa de kategorier som behöver
+        // återställas från "Använt" till oanvänt. Tanken är att ingen query ska titta på en kategori
+        // som en anna query tittar på. Detta gör att vissa kan slås ihop och vissa inte kan det. 
         static public string[,] UpdateResetQueries()
         {
             string suitableFor = SuitableFor();
@@ -50,6 +79,7 @@ namespace Svenska
                 {"TblNobelPrizes", $"{suitableFor}"},
                 {"TblNouns", $"{suitableFor} AND [Benämner] IN ('Någon', 'Någon & Plats')"},
                 {"TblNouns", $"{suitableFor} AND [Benämner] = 'Något'"},
+                {"TblNouns", $"{suitableFor} AND [Benämner] = 'Plats'"},
                 {"TblStatus", $"{suitableFor}"},
                 {"TblVerbs", $"{suitableFor} AND Passar IN ('Någon (Strikt)', 'Någon')"},
                 {"TblVerbs", $"{suitableFor} AND Passar = 'Något'"},
@@ -59,7 +89,9 @@ namespace Svenska
 
             return resetQueries;
         }
-
+         
+        // Skapa array med queries som används för att generera ord. Detta för att slippa ändra på
+        // flera olika ställen när jag vill uppdatera dessa queries. 
         static public string[,] UpdateIdQueries()
         {
             string suitableFor = SuitableFor();
@@ -97,6 +129,7 @@ namespace Svenska
             return idQueries;
         }
 
+        // Loopa ovanstånede resetQueries för att frigöra de som behövs frigöras. 
         static public void FreeNeeded(int limit)
         {
             for (int i = 0;  i < resetQueries.Length / 2; i++)
@@ -140,7 +173,7 @@ namespace Svenska
             }
             else
             {
-                benämner = Db.GetValue($"SELECT Benämner FROM TblNouns WHERE Id = {nounId}");
+                benämner = Db.GetValue($"SELECT Benämner FROM TblNouns WHERE Id = {nounId}", Db.connectionString);
             }
 
             int result = 0;
@@ -149,7 +182,7 @@ namespace Svenska
             {
                 result = Convert.ToInt32($"{Db.RandomizeValue("Select Id", $"FROM TblVerbs WHERE {idQueries[10, 1]} AND Använt = 0")}");
             }
-            else if (benämner == "Något" || benämner == "Någon & Något")
+            else if (benämner == "Något" || benämner == "Någon & Något" || benämner == "Plats")
             {
                 result = Convert.ToInt32($"{Db.RandomizeValue("Select Id", $"FROM TblVerbs WHERE {idQueries[9, 1]} AND Använt = 0")}");
             }
@@ -169,7 +202,7 @@ namespace Svenska
 
         public string Preposition(int id)
         {
-            string prep = $"{Db.GetValue($"SELECT Preposition FROM TblVerbs WHERE Id = {id}")}";
+            string prep = $"{Db.GetValue($"SELECT Preposition FROM TblVerbs WHERE Id = {id}", Db.connectionString)}";
 
             // If it returns "" then just return a space. If however it returns a preposition
             // then add a space before and after. That way when I insert it in a string
@@ -186,22 +219,22 @@ namespace Svenska
 
         public string Infinitiv(int id)
         {
-            return Db.GetValue($"SELECT Infinitiv FROM TblVerbs WHERE Id = {id}");
+            return Db.GetValue($"SELECT Infinitiv FROM TblVerbs WHERE Id = {id}", Db.connectionString);
         }
 
         public string Uppmaning(int id)
         {
-            return Db.GetValue($"SELECT Uppmaning FROM TblVerbs WHERE Id = {id}");
+            return Db.GetValue($"SELECT Uppmaning FROM TblVerbs WHERE Id = {id}", Db.connectionString);
         }
 
         public string Perfekt(int id)
         {
-            return Db.GetValue($"SELECT Perfekt FROM TblVerbs WHERE Id = {id}");
+            return Db.GetValue($"SELECT Perfekt FROM TblVerbs WHERE Id = {id}", Db.connectionString);
         }
 
         public string Presens(int id)
         {
-            return Db.GetValue($"SELECT Presens FROM TblVerbs WHERE Id = {id}");
+            return Db.GetValue($"SELECT Presens FROM TblVerbs WHERE Id = {id}", Db.connectionString);
         }
     }
 
@@ -222,7 +255,7 @@ namespace Svenska
             }
             else
             {
-                benämner = Db.GetValue($"SELECT Benämner FROM TblNouns WHERE Id = {nounId}");
+                benämner = Db.GetValue($"SELECT Benämner FROM TblNouns WHERE Id = {nounId}", Db.connectionString);
             }
 
             int result = 0;
@@ -231,7 +264,7 @@ namespace Svenska
             {
                 result = Convert.ToInt32($"{Db.RandomizeValue("Select Id", $"FROM TblAdjectives WHERE {idQueries[1, 1]} AND Använt = 0")}");
             }
-            else if (benämner == "Något" || benämner == "Någon & Något")
+            else if (benämner == "Något" || benämner == "Någon & Något" || benämner == "Plats")
             {
                 result = Convert.ToInt32($"{Db.RandomizeValue("Select Id", $"FROM TblAdjectives WHERE {idQueries[0, 1]} AND Använt = 0")}");
             }
@@ -251,7 +284,7 @@ namespace Svenska
 
         public string Preposition(int id)
         {
-            string prep = $"{Db.GetValue($"SELECT Preposition FROM TblAdjectives WHERE Id = {id}")}";
+            string prep = $"{Db.GetValue($"SELECT Preposition FROM TblAdjectives WHERE Id = {id}", Db.connectionString)}";
             if (prep == "")
             {
                 return " ";
@@ -263,49 +296,49 @@ namespace Svenska
         }
         public string Plural(int id)
         {
-            return $"{Db.GetValue($"SELECT Plural FROM TblAdjectives WHERE Id = {id}")}";
+            return $"{Db.GetValue($"SELECT Plural FROM TblAdjectives WHERE Id = {id}", Db.connectionString)}";
         }
 
         public string NGenus(int id)
         {
-            return Db.GetValue($"SELECT [N-genus] FROM TblAdjectives WHERE Id = {id}");
+            return Db.GetValue($"SELECT [N-genus] FROM TblAdjectives WHERE Id = {id}", Db.connectionString);
         }
 
         public string TGenus(int id)
         {
-            return Db.GetValue($"SELECT [T-genus] FROM TblAdjectives WHERE Id = {id}");
+            return Db.GetValue($"SELECT [T-genus] FROM TblAdjectives WHERE Id = {id}", Db.connectionString);
         }
 
         public string Automatic(int adjectiveId, int nounId, bool singular)
         {
             if (singular)
             {
-                string genus = Db.GetValue($"SELECT Genus FROM TblNouns WHERE Id = {nounId}");
+                string genus = nounId == 0 ? "N-genus" : $"{Db.GetValue($"SELECT Genus FROM TblNouns WHERE Id = {nounId}", Db.connectionString)}";
 
                 if (genus == @"N-genus" || genus == @"N-undantag")
-                    return Db.GetValue($"SELECT [N-genus] FROM TblAdjectives WHERE Id = {adjectiveId}");
+                    return Db.GetValue($"SELECT [N-genus] FROM TblAdjectives WHERE Id = {adjectiveId}", Db.connectionString);
                 else if (genus == @"T-genus" || genus == @"T-undantag")
                 {
-                    return Db.GetValue($"SELECT [T-genus] FROM TblAdjectives WHERE Id = {adjectiveId}");
+                    return Db.GetValue($"SELECT [T-genus] FROM TblAdjectives WHERE Id = {adjectiveId}", Db.connectionString);
                 }
                 else { return ""; }
             }
 
             else
             {
-                string genus = Db.GetValue($"SELECT Genus FROM TblNouns WHERE Id = {nounId}");
+                string genus = nounId == 0 ? "N-genus" : $"{Db.GetValue($"SELECT Genus FROM TblNouns WHERE Id = {nounId}", Db.connectionString)}";
 
                 if (genus == @"N-genus" || genus == @"T-genus")
-                    return Db.GetValue($"SELECT Plural FROM TblAdjectives WHERE Id = {adjectiveId}");
+                    return Db.GetValue($"SELECT Plural FROM TblAdjectives WHERE Id = {adjectiveId}", Db.connectionString);
 
                 else if (genus == @"T-undantag")
                 {
-                    return Db.GetValue($"SELECT [T-genus] FROM TblAdjectives WHERE Id = {adjectiveId}");
+                    return Db.GetValue($"SELECT [T-genus] FROM TblAdjectives WHERE Id = {adjectiveId}", Db.connectionString);
                 }
 
                 else if (genus == @"N-undantag")
                 {
-                    return Db.GetValue($"SELECT [N-genus] FROM TblAdjectives WHERE Id = {adjectiveId}");
+                    return Db.GetValue($"SELECT [N-genus] FROM TblAdjectives WHERE Id = {adjectiveId}", Db.connectionString);
                 }
 
                 else { return ""; }
@@ -329,7 +362,7 @@ namespace Svenska
 
         public string Preposition(int id)
         {
-            string prep = $"{Db.GetValue($"SELECT Preposition FROM TblNouns WHERE Id = {id}")}";
+            string prep = $"{Db.GetValue($"SELECT Preposition FROM TblNouns WHERE Id = {id}", Db.connectionString)}";
             if (prep == "")
             {
                 return " ";
@@ -343,34 +376,43 @@ namespace Svenska
         public string EnEllerEtt(int id)
         {
             //Koppla Primary key Id med foreign key Genus
-            return Db.GetValue($"SELECT [En/Ett] FROM TblGenus WHERE Id IN (SELECT [Genus] FROM TblNouns WHERE Id = {id})");
+            string result = Db.GetValue($"SELECT [En/Ett] FROM TblGenus WHERE Id IN (SELECT [Genus] FROM TblNouns WHERE Id = {id})", Db.connectionString);
+
+            if (result == "")
+            {
+                return " ";
+            }
+            else
+            {
+                return $" {result} ";
+            }
         }
 
         public string DinEllerDitt(int id, bool singular)
         {
             if (singular)
             {
-                return Db.GetValue($"SELECT [Din/Ditt] FROM TblGenus WHERE Id IN (SELECT Genus FROM TblNouns WHERE Id = {id})");
+                return Db.GetValue($"SELECT [Din/Ditt] FROM TblGenus WHERE Id IN (SELECT Genus FROM TblNouns WHERE Id = {id})", Db.connectionString);
             }
             else
             {
-                return Db.GetValue($"SELECT [Din/Ditt Plural] FROM TblGenus WHERE Id IN (SELECT Genus FROM TblNouns WHERE Id = {id})");
+                return Db.GetValue($"SELECT [Din/Ditt Plural] FROM TblGenus WHERE Id IN (SELECT Genus FROM TblNouns WHERE Id = {id})", Db.connectionString);
             }
         }
 
         public string SingularObest(int id)
         {
-            return $"{Db.GetValue($"SELECT [Singular obestämd] FROM TblNouns WHERE Id = {id}")}";
+            return $"{Db.GetValue($"SELECT [Singular obestämd] FROM TblNouns WHERE Id = {id}", Db.connectionString)}";
         }
 
         public string SingularBest(int id)
         {
-            return $"{Db.GetValue($"SELECT [Singular bestämd] FROM TblNouns WHERE Id = {id}")}";
+            return $"{Db.GetValue($"SELECT [Singular bestämd] FROM TblNouns WHERE Id = {id}", Db.connectionString)}";
         }
 
         public string Plural(int id)
         {
-            return $"{Db.GetValue($"SELECT Plural FROM TblNouns WHERE Id = {id}")}";
+            return $"{Db.GetValue($"SELECT Plural FROM TblNouns WHERE Id = {id}", Db.connectionString)}";
         }
     }
 
@@ -413,7 +455,7 @@ namespace Svenska
 
         public string Prize(int id)
         {
-            return $"{Db.GetValue($"SELECT Pris FROM TblNobelPrizes WHERE Id = {id}")}";
+            return $"{Db.GetValue($"SELECT Pris FROM TblNobelPrizes WHERE Id = {id}", Db.connectionString)}";
         }
     }
 
@@ -431,7 +473,7 @@ namespace Svenska
 
         public string Name(int id)
         {
-            return $"{Db.GetValue($"SELECT Namn FROM TblJokeNames WHERE Id = {id}")}";
+            return $"{Db.GetValue($"SELECT Namn FROM TblJokeNames WHERE Id = {id}", Db.connectionString)}";
         }
     }
 
@@ -449,12 +491,12 @@ namespace Svenska
 
         public string HighStatus(int id)
         {
-            return Db.GetValue($"SELECT Högstatus FROM TblStatus WHERE Id = { id }");
+            return Db.GetValue($"SELECT Högstatus FROM TblStatus WHERE Id = { id }", Db.connectionString);
         }
 
         public string LowStatus(int id)
         {
-            return Db.GetValue($"SELECT Lågstatus FROM TblStatus WHERE Id = { id }");
+            return Db.GetValue($"SELECT Lågstatus FROM TblStatus WHERE Id = { id }", Db.connectionString);
         }
     }
 
@@ -472,7 +514,58 @@ namespace Svenska
 
         public string Beskrivning(int id)
         {
-            return $"{Db.GetValue($"SELECT [Uppdrag] FROM TblMissions WHERE Id = {id}")}";
+            return $"{Db.GetValue($"SELECT [Uppdrag] FROM TblMissions WHERE Id = {id}", Db.connectionString)}";
+        }
+    }
+
+    // Låt mig presentera nya Scentences. Den här genererar inte bara ord som ovan utan bygger hela meningar. 
+   
+    public class Sentences
+    {
+        public static Random r = new Random();
+
+        // När jag vill bygga relation ändras meningen på särskilda sätt när det är ett verb, ett adjektiv
+        // eller ett adjektiv med en preposition. Istället för att skriva den här algoritmen flera gånger om
+        // skapade jag istället en metod som fungerar vilken relation jag än vill bygga. Den tar emot parametrar
+        // om vilken text som ska vara innan och efter de ovanstående variationerna och info om verbform
+        // och den info som "adjective.Automatisk()" behöver. 
+        public static string BuildRelation(string preVerb, string postVerb, string preA1, string postA1, string preA2, string postA2,
+                        string verbForm, bool a1Singular, int a1NounNr, bool a2Singular, int a2NounNr, int slant)
+        {
+            string result = "";
+
+            if (slant == 0)
+            {
+                int verbNr = Words.verb.RandomizeRelation();
+                string verb = Db.GetValue($"SELECT [{verbForm}] FROM TblVerbs WHERE Id = {verbNr}", Db.connectionString);
+                string preposition = Words.verb.Preposition(verbNr);
+
+                result = $"{preVerb} {verb}{preposition}{postVerb}";
+
+                Words.verb.Used(verbNr);
+            }
+            else
+            {
+                int aNr = Words.adjective.RandomizeRelation();
+                string adjective = Words.adjective.Automatic(aNr, a1NounNr, a1Singular);
+                string adjective2 = Words.adjective.Automatic(aNr, a2NounNr, a2Singular);
+                string preposition = Words.adjective.Preposition(aNr);
+
+                switch (preposition)
+                {
+                    case " ":
+                        result = $"{preA1} {adjective} {postA1}";
+                        break;
+
+                    default:
+                        result = $"{preA2} {adjective2}{preposition}{postA2}";
+                        break;
+                }
+
+                Words.adjective.Used(aNr);
+            }
+
+            return result;
         }
     }
 }

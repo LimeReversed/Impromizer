@@ -26,20 +26,28 @@ namespace Headline_Randomizer
 
                 if (language == "Swedish")
                 {
+                    
                     tabsInfo.TabPages[0].Text = "Om";
                     tabsInfo.TabPages[1].Text = "Lekar";
+                    tabsInfo.TabPages[2].Text = "Scener";
+                    tabsInfo.TabPages[3].Text = "Grammatik";
                     InsertText(rtbAbout, "TextSwe\\Omappen.rtf");
                     InsertText(rtbGames, "TextSwe\\Lekar.rtf");
-            
-                    //rtbScenes.Rtf = File.ReadAllText($"{AppDomain.CurrentDomain.BaseDirectory}Text\\Scener.rtf");
-                    //rtbCustom.Rtf = File.ReadAllText($"{AppDomain.CurrentDomain.BaseDirectory}Text\\Grammatik.rtf");
+                    InsertText(rtbScenes, "TextSwe\\Scener.rtf");
+                    InsertText(rtbGrammar, "TextSwe\\Grammatik.rtf");
+
                 }
                 else
                 {
+                    string message = "Full version only. Currently there is only a full version in Swedish. However, there will be a full English version if there's enough demand.";
                     tabsInfo.TabPages[0].Text = "About";
                     tabsInfo.TabPages[1].Text = "Games";
+                    tabsInfo.TabPages[2].Text = "Scenes";
+                    tabsInfo.TabPages[3].Text = "Grammar";
                     InsertText(rtbAbout, "TextEng\\About.rtf");
                     InsertText(rtbGames, "TextEng\\Games.rtf");
+                    rtbScenes.Text = message;
+                    rtbGrammar.Text = message;
 
                     //rtbScenes.Rtf = File.ReadAllText($"{AppDomain.CurrentDomain.BaseDirectory}Text\\Scener.rtf");
                     //rtbCustom.Rtf = File.ReadAllText($"{AppDomain.CurrentDomain.BaseDirectory}Text\\Grammatik.rtf");

@@ -9,7 +9,7 @@
   <Identity
     Name="3385Limethefruit.ImpromizerFree"
     Publisher="CN=0423C562-EE89-474B-9333-8B1ADF4BA8BB"
-    Version="2.2.23.0" />
+    Version="2.3.2.0" />
 
   <Properties>
     <DisplayName>Impromizer (Free)</DisplayName>
@@ -32,23 +32,18 @@
       EntryPoint="$targetentrypoint$">
       <uap:VisualElements
         DisplayName="Impromizer (Free)"
-        Description="Impromizer"
+        Description="Impromizer (Free) UWP"
         BackgroundColor="transparent"
         Square150x150Logo="Images\Square150x150Logo.png"
         Square44x44Logo="Images\Square44x44Logo.png">
-        <uap:DefaultTile Wide310x150Logo="Images\Wide310x150Logo.png"  ShortName="Impromizer" Square71x71Logo="Images\SmallTile.png" Square310x310Logo="Images\LargeTile.png">
-          <uap:ShowNameOnTiles>
-            <uap:ShowOn Tile="square150x150Logo"/>
-            <uap:ShowOn Tile="wide310x150Logo"/>
-            <uap:ShowOn Tile="square310x310Logo"/>
-          </uap:ShowNameOnTiles>
-        </uap:DefaultTile >
+        <uap:DefaultTile Wide310x150Logo="Images\Wide310x150Logo.png" />
         <uap:SplashScreen Image="Images\SplashScreen.png" />
       </uap:VisualElements>
     </Application>
   </Applications>
 
   <Capabilities>
+    <Capability Name="internetClient" />
     <rescap:Capability Name="runFullTrust" />
   </Capabilities>
 </Package>

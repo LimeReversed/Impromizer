@@ -34,15 +34,23 @@
             this.rtbAbout = new System.Windows.Forms.RichTextBox();
             this.tabPage1 = new System.Windows.Forms.TabPage();
             this.rtbGames = new System.Windows.Forms.RichTextBox();
+            this.tabPage2 = new System.Windows.Forms.TabPage();
+            this.tabPage3 = new System.Windows.Forms.TabPage();
+            this.rtbScenes = new System.Windows.Forms.RichTextBox();
+            this.rtbGrammar = new System.Windows.Forms.RichTextBox();
             this.tabsInfo.SuspendLayout();
             this.tabPage4.SuspendLayout();
             this.tabPage1.SuspendLayout();
+            this.tabPage2.SuspendLayout();
+            this.tabPage3.SuspendLayout();
             this.SuspendLayout();
             // 
             // tabsInfo
             // 
             this.tabsInfo.Controls.Add(this.tabPage4);
             this.tabsInfo.Controls.Add(this.tabPage1);
+            this.tabsInfo.Controls.Add(this.tabPage2);
+            this.tabsInfo.Controls.Add(this.tabPage3);
             this.tabsInfo.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tabsInfo.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.tabsInfo.Location = new System.Drawing.Point(0, 0);
@@ -57,7 +65,7 @@
             this.tabPage4.Controls.Add(this.rtbAbout);
             this.tabPage4.Location = new System.Drawing.Point(4, 28);
             this.tabPage4.Name = "tabPage4";
-            this.tabPage4.Padding = new System.Windows.Forms.Padding(3, 3, 3, 3);
+            this.tabPage4.Padding = new System.Windows.Forms.Padding(3);
             this.tabPage4.Size = new System.Drawing.Size(361, 505);
             this.tabPage4.TabIndex = 3;
             this.tabPage4.Text = "About";
@@ -105,6 +113,60 @@
             this.rtbGames.TabStop = false;
             this.rtbGames.Text = "";
             // 
+            // tabPage2
+            // 
+            this.tabPage2.Controls.Add(this.rtbScenes);
+            this.tabPage2.Location = new System.Drawing.Point(4, 28);
+            this.tabPage2.Name = "tabPage2";
+            this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage2.Size = new System.Drawing.Size(361, 505);
+            this.tabPage2.TabIndex = 4;
+            this.tabPage2.Text = "Scener";
+            this.tabPage2.UseVisualStyleBackColor = true;
+            // 
+            // tabPage3
+            // 
+            this.tabPage3.Controls.Add(this.rtbGrammar);
+            this.tabPage3.Location = new System.Drawing.Point(4, 28);
+            this.tabPage3.Name = "tabPage3";
+            this.tabPage3.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage3.Size = new System.Drawing.Size(361, 505);
+            this.tabPage3.TabIndex = 5;
+            this.tabPage3.Text = "Grammatik";
+            this.tabPage3.UseVisualStyleBackColor = true;
+            // 
+            // rtbScenes
+            // 
+            this.rtbScenes.BackColor = System.Drawing.SystemColors.Control;
+            this.rtbScenes.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.rtbScenes.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.rtbScenes.ForeColor = System.Drawing.Color.Black;
+            this.rtbScenes.Location = new System.Drawing.Point(3, 3);
+            this.rtbScenes.Margin = new System.Windows.Forms.Padding(0);
+            this.rtbScenes.Name = "rtbScenes";
+            this.rtbScenes.ReadOnly = true;
+            this.rtbScenes.ScrollBars = System.Windows.Forms.RichTextBoxScrollBars.Vertical;
+            this.rtbScenes.Size = new System.Drawing.Size(355, 499);
+            this.rtbScenes.TabIndex = 2;
+            this.rtbScenes.TabStop = false;
+            this.rtbScenes.Text = "";
+            // 
+            // rtbGrammar
+            // 
+            this.rtbGrammar.BackColor = System.Drawing.SystemColors.Control;
+            this.rtbGrammar.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.rtbGrammar.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.rtbGrammar.ForeColor = System.Drawing.Color.Black;
+            this.rtbGrammar.Location = new System.Drawing.Point(3, 3);
+            this.rtbGrammar.Margin = new System.Windows.Forms.Padding(0);
+            this.rtbGrammar.Name = "rtbGrammar";
+            this.rtbGrammar.ReadOnly = true;
+            this.rtbGrammar.ScrollBars = System.Windows.Forms.RichTextBoxScrollBars.Vertical;
+            this.rtbGrammar.Size = new System.Drawing.Size(355, 499);
+            this.rtbGrammar.TabIndex = 2;
+            this.rtbGrammar.TabStop = false;
+            this.rtbGrammar.Text = "";
+            // 
             // Help
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -122,6 +184,8 @@
             this.tabsInfo.ResumeLayout(false);
             this.tabPage4.ResumeLayout(false);
             this.tabPage1.ResumeLayout(false);
+            this.tabPage2.ResumeLayout(false);
+            this.tabPage3.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -132,5 +196,9 @@
         private System.Windows.Forms.TabPage tabPage4;
         private System.Windows.Forms.RichTextBox rtbAbout;
         private System.Windows.Forms.RichTextBox rtbGames;
+        private System.Windows.Forms.TabPage tabPage2;
+        private System.Windows.Forms.RichTextBox rtbScenes;
+        private System.Windows.Forms.TabPage tabPage3;
+        private System.Windows.Forms.RichTextBox rtbGrammar;
     }
 }

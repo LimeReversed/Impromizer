@@ -22,83 +22,149 @@ namespace Headline_Randomizer
         static public string backupString;
         static public string factoryResetString;
 
-        //static public void DefaultTable(string table, string connectionString, string fromString)
-        //{
-        //    // Remove all items from the selected table at the string you want to update. 
-        //    Db.Command($"TRUNCATE TABLE[{table}];", connectionString);
+        static public void DefaultTable(string table, string connectionString, string fromString)
+        {
+            // Remove all items from the selected table at the string you want to update. 
+            Command($"DELETE FROM {table}", connectionString);
+            Command($"DELETE FROM SQLITE_SEQUENCE WHERE name = '{table}'", connectionString);
 
-        //    using (SQLiteConnection connection = new SQLiteConnection(fromString))
-        //    {
-        //        connection.Open();
-        //        // Select all from the table from the database you want o take info from. 
-        //        using (SQLiteCommand command = new SQLiteCommand($"SELECT * FROM {table}", connection))
-        //        {
-        //            int row = 1;
-        //            SQLiteDataReader reader = command.ExecuteReader();
+            using (SQLiteConnection connection = new SQLiteConnection(fromString))
+            {
+                connection.Open();
+                // Select all from the table from the database you want o take info from. 
+                using (SQLiteCommand command = new SQLiteCommand($"SELECT * FROM {table}", connection))
+                {
+                    int row = 1;
+                    SQLiteDataReader reader = command.ExecuteReader();
 
-        //            // Goes through all rows
-        //            while (reader.Read())
-        //            {
-        //                // Goes through all colums of current row. 
-        //                for (int i = 1; i < reader.FieldCount; i++)
-        //                {
-        //                    // if curent row is the first column (After Id), then insert, mening crete new row. 
-        //                    if (i == 1)
-        //                    {
-        //                        Db.Command($"INSERT INTO {table} ([{reader.GetName(i)}]) VALUES ('{reader.GetValue(i)}')", connectionString);
-        //                    }
+                    // Goes through all rows
+                    while (reader.Read())
+                    {
+                        // Goes through all colums of current row. 
+                        for (int i = 1; i < reader.FieldCount; i++)
+                        {
+                            // if curent row is the first column (After Id), then insert, mening crete new row. 
+                            if (i == 1)
+                            {
+                                Command($"INSERT INTO {table} ([{reader.GetName(i)}]) VALUES ('{reader.GetValue(i)}')", connectionString);
+                            }
 
-        //                    // If a row has already been added you don't want to create a new one for the second column. 
-        //                    // So you just update the other column in the existing row. 
-        //                    else
-        //                    {
-        //                        Db.Command($"UPDATE {table} SET [{reader.GetName(i)}] = '{reader.GetValue(i)}' WHERE Id = {row}", connectionString);
-        //                    }
-        //                }
-        //                row++;
-        //            }
+                            // If a row has already been added you don't want to create a new one for the second column. 
+                            // So you just update the other column in the existing row. 
+                            else
+                            {
+                                Command($"UPDATE {table} SET [{reader.GetName(i)}] = '{reader.GetValue(i)}' WHERE Id = {row}", connectionString);
+                            }
+                        }
+                        row++;
+                    }
 
-        //            reader.Close();
-        //            connection.Close();
-        //        }
-        //    }
-        //}
+                    reader.Close();
+                    connection.Close();
+                }
+            }
+        }
 
-        //static public void LoadFromBackup()
-        //{
-        //    DefaultTable("TblAdjectives", Db.connectionString, Db.backupString);
-        //    DefaultTable("TblJokeNames", Db.connectionString, Db.backupString);
-        //    DefaultTable("TblMissions", Db.connectionString, Db.backupString);
-        //    DefaultTable("TblNobelPrizes", Db.connectionString, Db.backupString);
-        //    DefaultTable("TblNouns", Db.connectionString, Db.backupString);
-        //    DefaultTable("TblSavedResults", Db.connectionString, Db.backupString); // Or not?
-        //    DefaultTable("TblStatus", Db.connectionString, Db.backupString);
-        //    DefaultTable("TblVerbs", Db.connectionString, Db.backupString);
-        //}
+        static public void TransferNewWords(string table, string connectionString, string fromString)
+        {
+            int existingVersion = Convert.ToInt32($"{Db.GetValue("SELECT Version FROM TblVersion", Db.connectionString)}");
+            using (SQLiteConnection connection = new SQLiteConnection(fromString))
+            {
+                connection.Open();
+                // Select all from the table from the database you want o take info from. 
+                using (SQLiteCommand command = new SQLiteCommand($"SELECT * FROM {table} WHERE Version > {existingVersion}", connection))
+                {
+                    int row = 1;
+                    SQLiteDataReader reader = command.ExecuteReader();
 
-        //static public void SaveToBackup()
-        //{
-        //    DefaultTable("TblAdjectives", Db.backupString, Db.connectionString);
-        //    DefaultTable("TblJokeNames", Db.backupString, Db.connectionString);
-        //    DefaultTable("TblMissions", Db.backupString, Db.connectionString);
-        //    DefaultTable("TblNobelPrizes", Db.backupString, Db.connectionString);
-        //    DefaultTable("TblNouns", Db.backupString, Db.connectionString);
-        //    DefaultTable("TblSavedResults", Db.backupString, Db.connectionString); // Or not?
-        //    DefaultTable("TblStatus", Db.backupString, Db.connectionString);
-        //    DefaultTable("TblVerbs", Db.backupString, Db.connectionString);
-        //}
+                    StringBuilder columns = new StringBuilder();
+                    StringBuilder values = new StringBuilder();
+                    // Goes through all rows
+                    while (reader.Read())
+                    {
+                        // Goes through all colums of current row. Gets the column
+                        // names and values. 
+                        for (int i = 1; i < reader.FieldCount; i++)
+                        {
+                            columns.Append($"[{reader.GetName(i)}], ");
+                            values.Append($"'{reader.GetValue(i)}', ");
+                        }
 
-        //static public void DefaultAll()
-        //{
-        //    DefaultTable("TblAdjectives", Db.connectionString, Db.factoryResetString);
-        //    DefaultTable("TblJokeNames", Db.connectionString, Db.factoryResetString);
-        //    DefaultTable("TblMissions", Db.connectionString, Db.factoryResetString);
-        //    DefaultTable("TblNobelPrizes", Db.connectionString, Db.factoryResetString);
-        //    DefaultTable("TblNouns", Db.connectionString, Db.factoryResetString);
-        //    DefaultTable("TblSavedResults", Db.connectionString, Db.factoryResetString); // Or not?
-        //    DefaultTable("TblStatus", Db.connectionString, Db.factoryResetString);
-        //    DefaultTable("TblVerbs", Db.connectionString, Db.factoryResetString);
-        //} // This might be language independent when it takes from a backupdatabase, not text files
+                        columns.Remove(columns.Length - 2, 2);
+                        values.Remove(values.Length - 2, 2);
+
+                        // Inserts Values to the correct columns. 
+                        Db.Command($"INSERT INTO {table} ({columns}) VALUES ({values})", connectionString);
+                        columns.Clear();
+                        values.Clear();
+                        row++;
+                    }
+                    
+                    reader.Close();
+                    connection.Close();
+                }
+            }
+        }
+
+        static public void LoadFromBackup(ProgressBar pBar)
+        {
+            pBar.PerformStep();
+            DefaultTable("TblAdjectives", Db.connectionString, Db.backupString);
+            pBar.PerformStep();
+            DefaultTable("TblJokeNames", Db.connectionString, Db.backupString);
+            pBar.PerformStep();
+            DefaultTable("TblMissions", Db.connectionString, Db.backupString);
+            pBar.PerformStep();
+            DefaultTable("TblNobelPrizes", Db.connectionString, Db.backupString);
+            pBar.PerformStep();
+            DefaultTable("TblNouns", Db.connectionString, Db.backupString);
+            pBar.PerformStep();
+            DefaultTable("TblSavedResults", Db.connectionString, Db.backupString);
+            pBar.PerformStep();
+            DefaultTable("TblStatus", Db.connectionString, Db.backupString);
+            pBar.PerformStep();
+            DefaultTable("TblVerbs", Db.connectionString, Db.backupString);
+        }
+
+        static public void SaveToBackup(ProgressBar pBar)
+        {
+            pBar.PerformStep();
+            DefaultTable("TblAdjectives", Db.backupString, Db.connectionString);
+            pBar.PerformStep();
+            DefaultTable("TblJokeNames", Db.backupString, Db.connectionString);
+            pBar.PerformStep();
+            DefaultTable("TblMissions", Db.backupString, Db.connectionString);
+            pBar.PerformStep();
+            DefaultTable("TblNobelPrizes", Db.backupString, Db.connectionString);
+            pBar.PerformStep();
+            DefaultTable("TblNouns", Db.backupString, Db.connectionString);
+            pBar.PerformStep();
+            DefaultTable("TblSavedResults", Db.backupString, Db.connectionString);
+            pBar.PerformStep();
+            DefaultTable("TblStatus", Db.backupString, Db.connectionString);
+            pBar.PerformStep();
+            DefaultTable("TblVerbs", Db.backupString, Db.connectionString);
+        }
+
+        static public void DefaultAll(ProgressBar pBar)
+        {
+            pBar.PerformStep();
+            DefaultTable("TblAdjectives", Db.connectionString, Db.factoryResetString);
+            pBar.PerformStep();
+            DefaultTable("TblJokeNames", Db.connectionString, Db.factoryResetString);
+            pBar.PerformStep();
+            DefaultTable("TblMissions", Db.connectionString, Db.factoryResetString);
+            pBar.PerformStep();
+            DefaultTable("TblNobelPrizes", Db.connectionString, Db.factoryResetString);
+            pBar.PerformStep();
+            DefaultTable("TblNouns", Db.connectionString, Db.factoryResetString);
+            pBar.PerformStep();
+            DefaultTable("TblSavedResults", Db.connectionString, Db.factoryResetString);
+            pBar.PerformStep();
+            DefaultTable("TblStatus", Db.connectionString, Db.factoryResetString);
+            pBar.PerformStep();
+            DefaultTable("TblVerbs", Db.connectionString, Db.factoryResetString);
+        }
 
         static public void Command(string commandstring, string connectionString)
         {
@@ -115,9 +181,9 @@ namespace Headline_Randomizer
             }
         }
 
-        static public string GetValue(string query)
+        static public string GetValue(string query, string connectionString)
         {
-            using (SQLiteConnection connection = new SQLiteConnection(Db.connectionString))
+            using (SQLiteConnection connection = new SQLiteConnection(connectionString))
             {
                 connection.Open();
                 using (SQLiteCommand command = new SQLiteCommand(query, connection))
@@ -201,8 +267,8 @@ namespace Headline_Randomizer
 
                 if (amountOfRows < limit)
                 {
-                    string row1 = Db.GetValue($"SELECT Id FROM {tableName} WHERE {whereStatement} ORDER BY Id ASC LIMIT 1");
-                    string lastRow = Db.GetValue($"SELECT Id FROM {tableName} WHERE {whereStatement} ORDER BY Id DESC LIMIT 1");
+                    string row1 = Db.GetValue($"SELECT Id FROM {tableName} WHERE {whereStatement} ORDER BY Id ASC LIMIT 1", Db.connectionString);
+                    string lastRow = Db.GetValue($"SELECT Id FROM {tableName} WHERE {whereStatement} ORDER BY Id DESC LIMIT 1", Db.connectionString);
                     command.CommandText = $"UPDATE {tableName} SET {setStatement} WHERE {whereStatement} AND Id BETWEEN {row1} AND {lastRow}";
                     command.ExecuteNonQuery();
                 }

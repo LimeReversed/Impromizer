@@ -10,5 +10,10 @@ namespace Headline_Randomizer
         {
             InitializeComponent();
         }
+
+        private void TbxResult_TextChanged(object sender, EventArgs e)
+        {
+            
+        }
     }
 }
