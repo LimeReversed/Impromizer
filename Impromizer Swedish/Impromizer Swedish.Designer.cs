@@ -90,6 +90,7 @@
             this.omToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.språkToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.inställningarToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.upgradeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.backToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.forwardToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.lekarToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -1018,7 +1019,8 @@
             this.lekarToolStripMenuItem1,
             this.omToolStripMenuItem,
             this.språkToolStripMenuItem,
-            this.inställningarToolStripMenuItem});
+            this.inställningarToolStripMenuItem,
+            this.upgradeToolStripMenuItem});
             this.menuStrip1.LayoutStyle = System.Windows.Forms.ToolStripLayoutStyle.HorizontalStackWithOverflow;
             this.menuStrip1.Location = new System.Drawing.Point(0, 353);
             this.menuStrip1.Name = "menuStrip1";
@@ -1044,6 +1046,7 @@
             this.savedResultsStripMenuItem.Name = "savedResultsStripMenuItem";
             this.savedResultsStripMenuItem.Size = new System.Drawing.Size(42, 29);
             this.savedResultsStripMenuItem.Text = "";
+            this.savedResultsStripMenuItem.Visible = false;
             this.savedResultsStripMenuItem.Click += new System.EventHandler(this.SavedResultsStripMenuItem_Click);
             // 
             // toolStripMenuItem2
@@ -1089,7 +1092,18 @@
             this.inställningarToolStripMenuItem.Name = "inställningarToolStripMenuItem";
             this.inställningarToolStripMenuItem.Size = new System.Drawing.Size(118, 29);
             this.inställningarToolStripMenuItem.Text = "Inställningar";
+            this.inställningarToolStripMenuItem.Visible = false;
             this.inställningarToolStripMenuItem.Click += new System.EventHandler(this.InställningarToolStripMenuItem_Click);
+            // 
+            // upgradeToolStripMenuItem
+            // 
+            this.upgradeToolStripMenuItem.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(23)))), ((int)(((byte)(23)))), ((int)(((byte)(23)))));
+            this.upgradeToolStripMenuItem.Font = new System.Drawing.Font("Calibri", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.upgradeToolStripMenuItem.ForeColor = System.Drawing.Color.White;
+            this.upgradeToolStripMenuItem.Name = "upgradeToolStripMenuItem";
+            this.upgradeToolStripMenuItem.Size = new System.Drawing.Size(114, 29);
+            this.upgradeToolStripMenuItem.Text = "Uppgradera";
+            this.upgradeToolStripMenuItem.Click += new System.EventHandler(this.UpgradeToolStripMenuItem_ClickAsync);
             // 
             // backToolStripMenuItem
             // 
@@ -1241,6 +1255,7 @@
         private System.Windows.Forms.Label lblPaidOnly;
         private System.Windows.Forms.Label lblPaidOnly2;
         private System.Windows.Forms.ToolStripMenuItem savedResultsStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem upgradeToolStripMenuItem;
     }
 }
 

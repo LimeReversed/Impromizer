@@ -10,6 +10,10 @@ using System.Configuration;
 // This way I can also have a Engelska class without having to change too much
 using Svenska;
 using Microsoft.Win32;
+using System.Threading.Tasks;
+using Windows.Services.Store;
+using System.Runtime.InteropServices;
+using System.Reflection;
 
 
 // Svenska 
@@ -17,24 +21,37 @@ namespace Headline_Randomizer
 {
     public partial class Swedish : Form
     {
+        [ComImport]
+        [Guid("3E68D4BD-7135-4D10-8018-9FB6D9F33FA1")]
+        [InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
+        public interface IInitializeWithWindow
+        {
+            void Initialize(IntPtr hwnd);
+        }
+
         // Creating objects to be able to reach their properties
         PresentationWindow presentationWindow = new PresentationWindow();
         Random r = new Random();
         int position;
-        
+        Subscription subscription = new Subscription();
+
 
         public Swedish()
         {
             InitializeComponent();
+            // Added subscription. here in two places
+            //context = StoreContext.GetDefault();
 
             // Show the second window at a precise location relative to the main window.
             presentationWindow.Location = new Point(Location.X + 8, Location.Y + Size.Height);
             presentationWindow.Show();
 
             // Set variables in Db so the swedish info is reachable through there. 
-            Db.connectionString = $"Data Source = {Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments)}\\Impromizer\\WordsDatabaseSwedish.db3";
-            Db.backupString = $"Data Source = {Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments)}\\Impromizer\\BackupSwedish.db3";
+            Db.connectionString = $"Data Source = {Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments)}\\Impromizer\\WordsDatabaseSwedish.db3; Password={Common.password};";
+            Db.backupString = $"Data Source = {Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments)}\\Impromizer\\BackupSwedish.db3; Password={Common.password};";
             Db.factoryResetString = $"Data Source = {AppDomain.CurrentDomain.BaseDirectory}Databases\\WordsDatabaseSwedish.db3";
+
+            
 
             if (!Directory.Exists($"{Common.myDocumentsPath}"))
             {
@@ -46,18 +63,21 @@ namespace Headline_Randomizer
                 System.IO.File.Copy($"{Common.baseDirectoryPath}Databases\\BackupSwedish.db3",
                                             $"{Common.myDocumentsPath}BackupSwedish.db3", true);
 
+
             }
 
             else if (!File.Exists($"{Common.myDocumentsPath}BackupSwedish.db3") && File.Exists($"{Common.myDocumentsPath}WordsDatabaseSwedish.db3"))
             {
                 System.IO.File.Copy($"{Common.baseDirectoryPath}Databases\\BackupSwedish.db3",
                                             $"{Common.myDocumentsPath}BackupSwedish.db3", true);
+
             }
 
             else if (!File.Exists($"{Common.myDocumentsPath}WordsDatabaseSwedish.db3") && File.Exists($"{Common.myDocumentsPath}BackupSwedish.db3"))
             {
                 System.IO.File.Copy($"{Common.baseDirectoryPath}Databases\\WordsDatabaseSwedish.db3",
                                         $"{Common.myDocumentsPath}WordsDatabaseSwedish.db3", true);
+
             }
 
             else if (!File.Exists($"{Common.myDocumentsPath}WordsDatabaseSwedish.db3") && !File.Exists($"{Common.myDocumentsPath}BackupSwedish.db3"))
@@ -67,8 +87,12 @@ namespace Headline_Randomizer
 
                 System.IO.File.Copy($"{Common.baseDirectoryPath}Databases\\BackupSwedish.db3",
                                             $"{Common.myDocumentsPath}BackupSwedish.db3", true);
+
+                
             }
 
+            Db.SetPassword(Common.password, $"Data Source = {Common.myDocumentsPath}WordsDatabaseSwedish.db3");
+            Db.SetPassword(Common.password, $"Data Source = {Common.myDocumentsPath}BackupSwedish.db3");
 
             // Check existance and version of the Db, copy if newer and give options if modified. 
             if (Db.GetValue("SELECT name FROM sqlite_master WHERE type='table' AND name='TblVersion'", Db.connectionString) == "TblVersion"
@@ -105,6 +129,8 @@ namespace Headline_Randomizer
                     File.Delete($"{Common.myDocumentsPath}WordsDatabaseSwedish.db3");
                     System.IO.File.Copy($"{Common.baseDirectoryPath}Databases\\WordsDatabaseSwedish.db3",
                                         $"{Common.myDocumentsPath}WordsDatabaseSwedish.db3", true);
+
+                    Db.SetPassword(Common.password, $"Data Source = {Common.myDocumentsPath}WordsDatabaseSwedish.db3");
                 }
                 
             }
@@ -122,10 +148,13 @@ namespace Headline_Randomizer
 
                 System.IO.File.Copy($"{Common.baseDirectoryPath}Databases\\WordsDatabaseSwedish.db3",
                                     $"{Common.myDocumentsPath}WordsDatabaseSwedish.db3", true);
+
+                Db.SetPassword(Common.password, $"Data Source = {Common.myDocumentsPath}WordsDatabaseSwedish.db3");
             }
 
-            Words.FreeNeeded(1000);
+            
 
+            Words.FreeNeeded(1000);
 
             // Load settings
             RegistryKey rk = Registry.CurrentUser.CreateSubKey("SOFTWARE\\Lime the fruit\\Impromizer");
@@ -155,29 +184,43 @@ namespace Headline_Randomizer
             cbMission.SelectedIndex = Convert.ToInt32(Config.GetRegValue("MissionChoice", "1"));
 
 
+            // Set full version
+            List<Control> addToControlList = new List<Control> { btnGenerateRelation, btnGenerateMission, btnGenerateLocation, lblMissionChoice, lblParticipants,
+                lblRelationChoice, btnAddParticipant, btnRemoveParticipant, btnhide, btnClearScene, cbParticipants, cbMission, cbRelation,
+                groupBox5, groupBox6, groupBox7, groupBox8, btnGenerate, btnUndo, btnCustomClear};
+
+            List<Control> addToinvertedControlList = new List<Control> { lblPaidOnly, lblPaidOnly2 };
+
+            List<ToolStripMenuItem> addToMenueItems = new List<ToolStripMenuItem> { inställningarToolStripMenuItem, savedResultsStripMenuItem };
+
+            List<ToolStripMenuItem> addToInvertedMenueItems = new List<ToolStripMenuItem> { upgradeToolStripMenuItem };
+
+            Common.form = this;
+
+            Common.controlItems.Clear();
+            Common.controlItems.AddRange(addToControlList);
+
+            Common.invertedControlItems.Clear();
+            Common.invertedControlItems.AddRange(addToinvertedControlList);
+
+            Common.menuItems.Clear();
+            Common.menuItems.AddRange(addToMenueItems);
+
+            Common.invertedmenuItems.Clear();
+            Common.invertedmenuItems.AddRange(addToInvertedMenueItems);
+
+            Subscription.subscriptionStoreId = "9NXSC657B5DB";
+            subscription.CheckAndSetVersion();
+
+            Subscription.subscriptionStoreId = "9N66GC16QH94";
+            subscription.CheckAndSetVersion();
+
             //Hide/Show Items exclusive to the full version
             // Add items that are either visible or not depending on version, then loop through them setting
             // them as visible or not visible. 
-            List<Control> fullVersionItems = new List<Control>
-            {
-                btnGenerateRelation, btnGenerateMission, btnGenerateLocation, lblMissionChoice, lblParticipants,
-                lblRelationChoice, btnAddParticipant, btnRemoveParticipant, btnhide, btnClearScene, cbParticipants, cbMission, cbRelation,
-                groupBox5, groupBox6, groupBox7, groupBox8, btnGenerate, btnUndo, btnCustomClear
-            };
 
-            for (int i = 0; i < fullVersionItems.Count; i++)
-            {
-                fullVersionItems[i].Enabled = Common.fullVersion;
-                fullVersionItems[i].Visible = Common.fullVersion;
-            }
 
-            inställningarToolStripMenuItem.Enabled = Common.fullVersion;
-            inställningarToolStripMenuItem.Visible = Common.fullVersion;
-            savedResultsStripMenuItem.Visible = Common.fullVersion;
-            savedResultsStripMenuItem.Enabled = Common.fullVersion;
-            lblPaidOnly.Visible = !Common.fullVersion;
-            lblPaidOnly2.Visible = !Common.fullVersion;
-            this.Text = Common.fullVersion ? "Impromizer" : "Impromizer (Free)";
+
 
             // Make "TbxResult_TextChanged" subscribe to the "TextChanged" event in the presentationWindow-Form.   
             presentationWindow.tbxResult.TextChanged += new System.EventHandler(this.TbxResult_TextChanged);
@@ -1807,6 +1850,13 @@ namespace Headline_Randomizer
                 Db.Command($"DELETE FROM TblSavedResults WHERE Mening = '{presentationWindow.tbxResult.Text}'", Db.connectionString);
                 savedResultsStripMenuItem.ForeColor = Color.White;
             }
+        }
+
+
+        private void UpgradeToolStripMenuItem_ClickAsync(object sender, EventArgs e)
+        {
+            SubscriptionDialogue dialogue = new SubscriptionDialogue();
+
         }
 
 

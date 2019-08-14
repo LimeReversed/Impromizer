@@ -29,7 +29,7 @@ namespace Headline_Randomizer
             presentationWindow.Show();
 
             // Set Db variables
-            Db.connectionString = $"Data Source = {Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments)}\\Impromizer\\WordsDatabaseEnglish.db3";
+            Db.connectionString = $"Data Source = {Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments)}\\Impromizer\\WordsDatabaseEnglish.db3; Password={Common.password};";
             Db.factoryResetString = $"Data Source = {AppDomain.CurrentDomain.BaseDirectory}Databases\\WordsDatabaseEnglish.db3";
 
             // Copy database
@@ -45,19 +45,7 @@ namespace Headline_Randomizer
 
             }
 
-            else if (!File.Exists($"{Common.myDocumentsPath}BackupEnglish.db3") && File.Exists($"{Common.myDocumentsPath}WordsDatabaseEnglish.db3"))
-            {
-                System.IO.File.Copy($"{Common.baseDirectoryPath}Databases\\BackupEnglish.db3",
-                                            $"{Common.myDocumentsPath}BackupEnglish.db3", true);
-            }
-
-            else if (!File.Exists($"{Common.myDocumentsPath}WordsDatabaseEnglish.db3") && File.Exists($"{Common.myDocumentsPath}BackupEnglish.db3"))
-            {
-                System.IO.File.Copy($"{Common.baseDirectoryPath}Databases\\WordsDatabaseEnglish.db3",
-                                        $"{Common.myDocumentsPath}WordsDatabaseEnglish.db3", true);
-            }
-
-            else if (!File.Exists($"{Common.myDocumentsPath}WordsDatabaseEnglish.db3") && !File.Exists($"{Common.myDocumentsPath}BackupEnglish.db3"))
+            else if (!File.Exists($"{Common.myDocumentsPath}BackupEnglish.db3") || !File.Exists($"{Common.myDocumentsPath}WordsDatabaseEnglish.db3"))
             {
                 System.IO.File.Copy($"{Common.baseDirectoryPath}Databases\\WordsDatabaseEnglish.db3",
                                         $"{Common.myDocumentsPath}WordsDatabaseEnglish.db3", true);
@@ -66,7 +54,10 @@ namespace Headline_Randomizer
                                             $"{Common.myDocumentsPath}BackupEnglish.db3", true);
             }
 
-            else if (Db.GetValue("SELECT name FROM sqlite_master WHERE type='table' AND name='TblVersion'", Db.connectionString) == "TblVersion"
+            Db.SetPassword(Common.password, $"Data Source = {Common.myDocumentsPath}WordsDatabaseEnglish.db3");
+            Db.SetPassword(Common.password, $"Data Source = {Common.myDocumentsPath}BackupEnglish.db3");
+
+            if (Db.GetValue("SELECT name FROM sqlite_master WHERE type='table' AND name='TblVersion'", Db.connectionString) == "TblVersion"
                     && Convert.ToInt32(Db.GetValue("Select Version FROM TblVersion", Db.connectionString)) >= Convert.ToInt32(Db.GetValue("Select Version FROM TblVersion", Db.factoryResetString)))
             {
 
@@ -82,6 +73,9 @@ namespace Headline_Randomizer
 
                 System.IO.File.Copy($"{Common.baseDirectoryPath}Databases\\BackupEnglish.db3",
                                             $"{Common.myDocumentsPath}BackupEnglish.db3", true);
+
+                Db.SetPassword(Common.password, $"Data Source = {Common.myDocumentsPath}WordsDatabaseEnglish.db3");
+                Db.SetPassword(Common.password, $"Data Source = {Common.myDocumentsPath}BackupEnglish.db3");
             }
 
 

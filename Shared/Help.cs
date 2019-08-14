@@ -2,6 +2,7 @@
 using System.Windows.Forms;
 using System.IO;
 using System.Diagnostics;
+using System.Reflection;
 
 namespace Headline_Randomizer
 {
@@ -11,6 +12,7 @@ namespace Headline_Randomizer
         public Help()
         {
                 InitializeComponent();
+                
                 this.Show();
                 
         }
@@ -20,6 +22,7 @@ namespace Headline_Randomizer
             if (!Common.helpOpen)
             {
                 InitializeComponent();
+              
                 this.Show();
                 Common.helpOpen = true;
                 tabsInfo.SelectedIndex = selectedindex;
@@ -31,12 +34,12 @@ namespace Headline_Randomizer
                     tabsInfo.TabPages[1].Text = "Lekar";
                     tabsInfo.TabPages[2].Text = "Scener";
                     tabsInfo.TabPages[3].Text = "Grammatik";
-                    InsertText(rtbAbout, "TextSwe\\Omappen.rtf");
-                    InsertText(rtbGames, "TextSwe\\Lekar.rtf");
-                    InsertText(rtbScenes, "TextSwe\\Scener.rtf");
-                    InsertText(rtbGrammar, "TextSwe\\Grammatik.rtf");
-
+                    Common.InsertText(rtbAbout, "TextSwe\\Omappen.rtf");
+                    Common.InsertText(rtbGames, "TextSwe\\Lekar.rtf");
+                    Common.InsertText(rtbScenes, "TextSwe\\Scener.rtf");
+                    Common.InsertText(rtbGrammar, "TextSwe\\Grammatik.rtf");
                 }
+
                 else
                 {
                     string message = "Full version only. Currently there is only a full version in Swedish. However, there will be a full English version if there's enough demand.";
@@ -44,8 +47,8 @@ namespace Headline_Randomizer
                     tabsInfo.TabPages[1].Text = "Games";
                     tabsInfo.TabPages[2].Text = "Scenes";
                     tabsInfo.TabPages[3].Text = "Grammar";
-                    InsertText(rtbAbout, "TextEng\\About.rtf");
-                    InsertText(rtbGames, "TextEng\\Games.rtf");
+                    Common.InsertText(rtbAbout, "TextEng\\About.rtf");
+                    Common.InsertText(rtbGames, "TextEng\\Games.rtf");
                     rtbScenes.Text = message;
                     rtbGrammar.Text = message;
 
@@ -61,15 +64,6 @@ namespace Headline_Randomizer
             Common.helpOpen = false;
         }
 
-        void InsertText(RichTextBox tbx, string file)
-        {
-
-            tbx.Rtf = File.ReadAllText($"{AppDomain.CurrentDomain.BaseDirectory}{file}");
-            tbx.SelectAll();
-            tbx.SelectionIndent += 20;
-            tbx.SelectionRightIndent += 20;
-            tbx.SelectionLength = 0;
-            tbx.DeselectAll();
-        }
+        
     }
 }

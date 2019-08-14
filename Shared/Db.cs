@@ -275,5 +275,23 @@ namespace Headline_Randomizer
                 connection.Close();
             }
         }
+
+        static public void SetPassword(string password, string connectionString)
+        {
+
+            using (SQLiteConnection connection = new SQLiteConnection(connectionString))
+            {
+                connection.Open();
+                try
+                {
+                    connection.ChangePassword(password);
+                }
+                catch
+                {
+                }
+                
+                connection.Close();
+            }
+        }
     }
 }

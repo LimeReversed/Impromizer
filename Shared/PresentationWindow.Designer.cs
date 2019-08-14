@@ -40,28 +40,26 @@
             this.tbxResult.Cursor = System.Windows.Forms.Cursors.Arrow;
             this.tbxResult.Font = new System.Drawing.Font("Microsoft Sans Serif", 24F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.tbxResult.ForeColor = System.Drawing.SystemColors.WindowText;
-            this.tbxResult.Location = new System.Drawing.Point(15, 12);
-            this.tbxResult.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.tbxResult.Location = new System.Drawing.Point(10, 8);
             this.tbxResult.Multiline = true;
             this.tbxResult.Name = "tbxResult";
             this.tbxResult.ReadOnly = true;
-            this.tbxResult.Size = new System.Drawing.Size(1006, 162);
+            this.tbxResult.Size = new System.Drawing.Size(671, 105);
             this.tbxResult.TabIndex = 3;
             this.tbxResult.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.tbxResult.TextChanged += new System.EventHandler(this.TbxResult_TextChanged);
             // 
             // PresentationWindow
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ControlLightLight;
-            this.ClientSize = new System.Drawing.Size(1036, 185);
+            this.ClientSize = new System.Drawing.Size(691, 120);
             this.ControlBox = false;
             this.Controls.Add(this.tbxResult);
             this.ForeColor = System.Drawing.SystemColors.ControlLightLight;
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-            this.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.Name = "PresentationWindow";
             this.StartPosition = System.Windows.Forms.FormStartPosition.Manual;
             this.Text = "Presentation Window";

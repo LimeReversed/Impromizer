@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
+using System.Reflection;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
@@ -15,10 +16,11 @@ namespace Headline_Randomizer
         [STAThread]
         static void Main()
         {
-            if (Debugger.IsAttached)
-            {
-                Config.ResetRegValue();
-            }
+            //if (Debugger.IsAttached)
+            //{
+            //    Config.ResetRegValue();
+            //}
+
 
             switch (Config.GetRegValue("Language", "None"))
             {

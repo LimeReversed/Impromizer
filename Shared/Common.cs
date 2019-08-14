@@ -3,13 +3,21 @@ using System.Linq;
 using System.Windows.Forms;
 using System.IO;
 using System;
+using System.Collections.Generic;
 
 namespace Headline_Randomizer
 {
     public class Common
     {
+        static public List<Control> controlItems = new List<Control>();
+        static public List<Control> invertedControlItems = new List<Control>();
+        static public List<ToolStripMenuItem> menuItems = new List<ToolStripMenuItem>();
+        static public List<ToolStripMenuItem> invertedmenuItems = new List<ToolStripMenuItem>();
+        static public string version;
+        static public string password = "RjlÖ?%jNl3$92jAL";
+        static public Form form = new Form();
         public static bool helpOpen = false;
-        public static bool fullVersion = true;
+        public static bool fullVersion = false;
 
         static public string myDocumentsPath = $"{Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments)}\\Impromizer\\";
         static public string baseDirectoryPath = $"{AppDomain.CurrentDomain.BaseDirectory}";
@@ -94,8 +102,48 @@ namespace Headline_Randomizer
         static public void ToFile(string text)
         {
             StreamWriter writer = new StreamWriter($"{Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments)}\\Impromizer\\LatestResult.txt");
-            writer.Write(text);
+            writer.Write($"{text}.   ");
             writer.Close();
+        }
+
+        static public void SetVersion()
+        {
+            for (int i = 0; i < controlItems.Count; i++)
+            {
+                controlItems[i].Enabled = Common.fullVersion;
+                controlItems[i].Visible = Common.fullVersion;
+            }
+
+            for (int i = 0; i < invertedControlItems.Count; i++)
+            {
+                invertedControlItems[i].Enabled = !Common.fullVersion;
+                invertedControlItems[i].Visible = !Common.fullVersion;
+            }
+
+            for (int i = 0; i < menuItems.Count; i++)
+            {
+                menuItems[i].Enabled = Common.fullVersion;
+                menuItems[i].Visible = Common.fullVersion;
+            }
+
+            for (int i = 0; i < invertedmenuItems.Count; i++)
+            {
+                invertedmenuItems[i].Enabled = !Common.fullVersion;
+                invertedmenuItems[i].Visible = !Common.fullVersion;
+            }
+
+            form.Text = Common.fullVersion ? "Impromizer" : "Impromizer (Free)";
+        }
+
+        static public void InsertText(RichTextBox tbx, string file)
+        {
+
+            tbx.Rtf = File.ReadAllText($"{AppDomain.CurrentDomain.BaseDirectory}{file}");
+            tbx.SelectAll();
+            tbx.SelectionIndent += 20;
+            tbx.SelectionRightIndent += 20;
+            tbx.SelectionLength = 0;
+            tbx.DeselectAll();
         }
     }
 }
