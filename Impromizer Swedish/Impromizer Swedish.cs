@@ -91,7 +91,6 @@ namespace Headline_Randomizer
                 
             }
 
-            // Jag har ännu inte lärt mig säkerhet för databaser fullt =P Detta är iaf ett steg. 
             Db.SetPassword(Common.password, $"Data Source = {Common.myDocumentsPath}WordsDatabaseSwedish.db3");
             Db.SetPassword(Common.password, $"Data Source = {Common.myDocumentsPath}BackupSwedish.db3");
 
