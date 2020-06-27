@@ -81,11 +81,22 @@ namespace Headline_Randomizer
                 if (!tb.Text.Contains("\r\n"))
                 {
                     int middleChar = tb.Text.Count() / 2;
-                    while (tb.Text[middleChar] != 32)
+                    int stepCount = 0;
+                    while (tb.Text[middleChar + stepCount] != 32 && tb.Text[middleChar - stepCount] != 32)
                     {
-                        middleChar = middleChar + 1;
+                        stepCount++;
                     }
-                    tb.Text = tb.Text.Insert(middleChar + 1, "\r\n");
+
+                    if (tb.Text[middleChar + stepCount] == 32)
+                    {
+                        tb.Text = tb.Text.Insert(middleChar + stepCount, "\r\n");
+                    }
+                    else
+                    {
+                        tb.Text = tb.Text.Insert(middleChar - stepCount, "\r\n");
+                    }
+                        
+                    
                 }
 
                 tb.Location = new System.Drawing.Point(10, 8);
