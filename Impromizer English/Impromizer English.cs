@@ -337,7 +337,7 @@ namespace Headline_Randomizer
             switch (slant)
             {
                 case 0:
-                    int aNr = Words.adjective.RandomizeRelation();
+                    int aNr = Words.adjective.RandomizeId("TblAdjectives INNER JOIN TblRelationAdjectives ON TblAdjectives.Id = TblRelationAdjectives.Id");
 
                     if (Words.adjective.Preposition(aNr) == " ")
                     {
@@ -353,8 +353,7 @@ namespace Headline_Randomizer
 
                 case 1:
 
-                    int verbNr = Words.verb.RandomizeRelation();
-
+                    int verbNr = Words.verb.RandomizeId("TblVerbs INNER JOIN TblRelationVerbs ON TblRelationVerbs.Id = TblVerbs.Id");
 
                     // The patch to happiness is
                     presentationWindow.tbxResult.Text = $"Make yourself happy by {Words.verb.IngForm(verbNr)}{Words.verb.Preposition(verbNr)}{Words.someone.Plural(someoneNr)}";
@@ -466,13 +465,13 @@ namespace Headline_Randomizer
 
                     if (slant2 == 0)
                     {
-                        int relationNr = Words.verb.RandomizeRelation();
+                        int relationNr = Words.verb.RandomizeId("TblVerbs INNER JOIN TblRelationVerbs ON TblRelationVerbs.Id = TblVerbs.Id");
                         presentationWindow.tbxResult.AppendText($"you {Words.verb.BaseForm(relationNr)}{Words.verb.Preposition(relationNr)}");
                         Words.verb.Used(relationNr);
                     }
                     else
                     {
-                        int relationNr = Words.adjective.RandomizeRelation();
+                        int relationNr = Words.adjective.RandomizeId("TblAdjectives INNER JOIN TblRelationAdjectives ON TblAdjectives.Id = TblRelationAdjectives.Id");
                         presentationWindow.tbxResult.AppendText(Words.adjective.Preposition(relationNr) == " " ? $"who are {Words.adjective.Descriptive(relationNr)}" : $"you are {Words.adjective.Descriptive(relationNr)}{Words.adjective.Preposition(relationNr)}");
                         Words.adjective.Used(relationNr);
                     }
@@ -643,6 +642,15 @@ namespace Headline_Randomizer
                 customTabControl1.SelectTab(2);
                 btnGamingTips.PerformClick();
             }
+        }
+
+        private void btnRelation_Click(object sender, EventArgs e)
+        {
+            presentationWindow.tbxResult.Text = "";
+
+            int verbNr = Words.verb.RandomizeId("TblVerbs INNER JOIN TblRelationVerbs ON TblVerbs.Id = TblRelationVerbs.Id", "AND Positive = 1");
+
+            presentationWindow.tbxResult.Text = $"{Words.verb.BaseForm(verbNr)}";
         }
     }
 }

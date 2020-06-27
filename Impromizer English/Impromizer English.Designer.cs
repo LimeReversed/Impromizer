@@ -420,7 +420,7 @@
             this.btnYouShouldHave.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnYouShouldHave.Font = new System.Drawing.Font("Calibri", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnYouShouldHave.ForeColor = System.Drawing.Color.White;
-            this.btnYouShouldHave.Location = new System.Drawing.Point(301, 98);
+            this.btnYouShouldHave.Location = new System.Drawing.Point(303, 98);
             this.btnYouShouldHave.Name = "btnYouShouldHave";
             this.btnYouShouldHave.Padding = new System.Windows.Forms.Padding(0, 0, 0, 10);
             this.btnYouShouldHave.Size = new System.Drawing.Size(305, 99);
