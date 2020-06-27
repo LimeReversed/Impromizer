@@ -10,6 +10,7 @@ using System.Windows.Forms;
 using System.IO;
 using English;
 using System.Diagnostics;
+using System.Speech.Synthesis;
 
 namespace Headline_Randomizer
 {
@@ -78,9 +79,6 @@ namespace Headline_Randomizer
                 Db.SetPassword(Common.password, $"Data Source = {Common.myDocumentsPath}BackupEnglish.db3");
             }
 
-
-
-            Words.FreeNeeded(1000);
         }
 
         
@@ -316,34 +314,15 @@ namespace Headline_Randomizer
 
         private void btnGenerate6_Click(object sender, EventArgs e)
         {
-            presentationWindow.tbxResult.Text = "";
-            int slant = r.Next(0, 2);
-            int someoneNr = Words.someone.RandomizeId();
+            string[] yesAnswers = { "Yes", "Sure, why not", "Totally", "Obviously", "I guess" };
+            string[] noAnswers = { "No", "Nope", "Hell no", "Not quite", "Not really", "N to the O" };
+            // Ask again later, I don't care, 
 
-            
-
-            List<string> start = new List<string> {"All you need to be happy is"};
-            presentationWindow.tbxResult.Text = $"{start[r.Next(0, start.Count)]}";
-
-            switch (slant)
-            {
-                case 0:
-                    int verbNr = Words.verb.RandomizeRelation();
-
-                    presentationWindow.tbxResult.AppendText($"{Words.noun.AOrAn(someoneNr)}{Words.noun.Singular(someoneNr)} that you {Words.verb.BaseForm(verbNr)}{Words.verb.Preposition(verbNr)}");
-                    Words.verb.Used(verbNr);
-                    break;
-
-                case 1:
-                    int aNr = Words.adjective.RandomizeRelation();
-
-                    presentationWindow.tbxResult.AppendText($"{Words.noun.AOrAn(someoneNr)}{Words.someone.Singular(someoneNr)} {(Words.adjective.Preposition(aNr) == " " ? "who is" : "you are")} {Words.adjective.Descriptive(aNr)}{Words.adjective.Preposition(aNr)}");
-                    Words.adjective.Used(aNr);
-                    break;
-            }
-
-            Words.noun.Used(someoneNr);
-            EndingRitual(2, presentationWindow.tbxResult, ref position);
+            int randomNumber = r.Next(0, 2);
+            string answer = randomNumber == 1 ?
+                yesAnswers[r.Next(0, yesAnswers.Length)] : noAnswers[r.Next(0, noAnswers.Length)];
+            presentationWindow.tbxResult.Text = answer;
+            EndingRitual(0, presentationWindow.tbxResult, ref position);
         }
 
         private void btnGenerate7_Click(object sender, EventArgs e)
@@ -518,19 +497,29 @@ namespace Headline_Randomizer
         {
             //tb.Text = tb.Text.Replace("  ", " ");
             Common.ToFile(presentationWindow.tbxResult.Text);
+            TextToVoice(presentationWindow.tbxResult.Text);
             Common.AdjustSize(tb);
+            
             Db.recentStrings.Add(tb.Text);
             position = Db.recentStrings.Count - 1;
-            Words.FreeNeeded(loadNr);
+            //Words.FreeNeeded(loadNr);
         }
 
-        
+        private void TextToVoice(string text)
+        {
+            SpeechSynthesizer synth = new SpeechSynthesizer();
+            //synth.SetOutputToDefaultAudioDevice();
+            synth.Rate = -1;
+            var voice = synth.GetInstalledVoices();
+            synth.SelectVoiceByHints(VoiceGender.Female);
+            synth.SpeakAsync(text);
+        }
 
         private void Tabchanged(object sender, EventArgs e)
         {
             if (customTabControl1.ActiveIndex == 2)
             {
-                customTabControl1.Size = new Size(614, 135);
+                customTabControl1.Size = new Size(614, 234);
             }
             else
             {
@@ -583,6 +572,77 @@ namespace Headline_Randomizer
             Process.Start($"{AppDomain.CurrentDomain.BaseDirectory}Language Form.exe");
             Environment.Exit(0);
         }
- 
+
+        int lastUsedNounNr = 1;
+        int lastUsedVerbNr = 1;
+        int lastCoinToss = 1;
+        private void btnGamingTips_Click(object sender, EventArgs e)
+        {
+            presentationWindow.tbxResult.Text = "";
+            int nounNr = Words.noun.RandomizeId("TblGamingNouns INNER JOIN TblNouns ON TblGamingNouns.Id = TblNouns.Id");
+            int verbNr = Words.verb.RandomizeId(nounNr, "TblGamingVerbs INNER JOIN TblVerbs ON TblGamingVerbs.Id = TblVerbs.Id");
+            int coinToss = r.Next(0, 2);
+
+            lastUsedNounNr = nounNr;
+            lastUsedVerbNr = verbNr;
+            lastCoinToss = coinToss;
+
+            int choose = r.Next(0, 2);
+
+            if (choose == 0)
+            {
+                string[] beginnings = { "Try", "The trick is", "This requires", "Have you tried" };
+                
+
+                presentationWindow.tbxResult.AppendText($"{beginnings[r.Next(0, beginnings.Length)]} " +
+                   $"{Words.verb.IngForm(verbNr)}{Words.verb.Preposition(verbNr)}" +
+                   (coinToss == 0 ? $"the {Words.noun.Singular(nounNr)}!" : $"{Words.noun.Plural(nounNr)}!"));
+            }
+            else
+            {
+                string[] beginnings = { "You should", "You have to", "Why don't you" };
+
+                presentationWindow.tbxResult.AppendText($"{beginnings[r.Next(0, beginnings.Length)]} " +
+                    $"{Words.verb.BaseForm(verbNr)}{Words.verb.Preposition(verbNr)}" +
+                    (coinToss == 0 ? $"the {Words.noun.Singular(nounNr)}!" : $"{Words.noun.Plural(nounNr)}!"));
+            }
+            
+
+            //Create the sentence for should have here?
+            EndingRitual(2, presentationWindow.tbxResult, ref position);
+        }
+
+        private void btnYouShouldHave_Click(object sender, EventArgs e)
+        {
+            presentationWindow.tbxResult.Text = "";
+            
+            int choose = r.Next(0, 2);
+
+            if (choose == 0)
+            {
+                string[] beginnings = { "Why didnt you", "You didn't", "I told you to" };
+                presentationWindow.tbxResult.AppendText($"{beginnings[r.Next(0, beginnings.Length)]} " +
+                    $"{Words.verb.BaseForm(lastUsedVerbNr)}{Words.verb.Preposition(lastUsedVerbNr)}" +
+                    (lastCoinToss == 0 ? $"the {Words.noun.Singular(lastUsedNounNr)}!" : $"{Words.noun.Plural(lastUsedNounNr)}!"));
+            }
+            else
+            {
+                string[] beginnings = { "You should have", "This wouldn't have happened if you had"};
+                presentationWindow.tbxResult.AppendText($"{beginnings[r.Next(0, beginnings.Length)]} " +
+                    $"{Words.verb.PerfektparticipForm(lastUsedVerbNr)}{Words.verb.Preposition(lastUsedVerbNr)}" +
+                    (lastCoinToss == 0 ? $"the {Words.noun.Singular(lastUsedNounNr)}!" : $"{Words.noun.Plural(lastUsedNounNr)}!"));
+            }
+         
+            EndingRitual(2, presentationWindow.tbxResult, ref position);
+        }
+
+        private void English_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.Control && e.KeyCode == Keys.N)
+            {
+                customTabControl1.SelectTab(2);
+                btnGamingTips.PerformClick();
+            }
+        }
     }
 }

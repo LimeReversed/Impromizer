@@ -6,7 +6,7 @@ using System.IO;
 using System.Text;
 using System.Configuration;
 using System.Data.SQLite;
-
+using System.Threading.Tasks;
 
 namespace Headline_Randomizer
 {
@@ -202,20 +202,36 @@ namespace Headline_Randomizer
             }
         }
 
-        static public string RandomizeValue(string selectStatement, string restOfQuery)
+        //****FIX****
+        /*I can have the selevtstatement include from so that I have the whole join statement.And the have AND used = 0 inside randomize value.
+         * That way I can remove that from the query if there aren't enough words. And the set the db to update all of the words based on 
+         * the same select statement and wheres. 
+         
+        Ta bort from? lägga till hårdkodat i commandtext?
+        
+        Kan skicka över att begränsa urvalet av ord exempelvis someone / something osv genom att agöra inner joins i databasen isf.*/
+
+        static public string RandomizeValue(string sourceTable, string fromStatement, string whereStatement)
         {
+            bool allUsed = false;
+
             using (SQLiteConnection connection = new SQLiteConnection(Db.connectionString))
             {
                 connection.Open();
 
                 // Get the amount of rows,
-                using (SQLiteCommand command = new SQLiteCommand($"SELECT COUNT(*) {restOfQuery}", connection))
+                using (SQLiteCommand command = new SQLiteCommand($"SELECT COUNT(*) FROM {fromStatement} WHERE {whereStatement} AND Used = 0", connection))
                 {
                     int rowCount = Convert.ToInt32(command.ExecuteScalar());
 
+                    if (rowCount < 1)
+                    {
+                        allUsed = true;
+                    }
+
                     // Change the query from amount of rows to whatever the parameters say. 
-                    command.CommandText = $"{selectStatement} {restOfQuery}";
-                    
+                    command.CommandText = $"SELECT {sourceTable}.Id FROM {fromStatement} WHERE {whereStatement} {(allUsed ? "" : "AND Used = 0")}";
+
                     string value = "";
                     SQLiteDataReader reader = command.ExecuteReader();
 
@@ -231,6 +247,12 @@ namespace Headline_Randomizer
                             value = reader.GetValue(0).ToString();
                             reader.Close();
                             connection.Close();
+
+                            if (allUsed)
+                            {
+                                Task.Run(() => ResetUsedOn(fromStatement, whereStatement, sourceTable));
+                            }
+                            
                             return value;
                         }
                         else { j++; }
@@ -244,7 +266,49 @@ namespace Headline_Randomizer
             }
         }
 
-       
+        //static public string RandomizeValue(string selectStatement, string restOfQuery)
+        //{
+        //    using (SQLiteConnection connection = new SQLiteConnection(Db.connectionString))
+        //    {
+        //        connection.Open();
+
+        //        // Get the amount of rows,
+        //        using (SQLiteCommand command = new SQLiteCommand($"SELECT COUNT(*) {restOfQuery}", connection))
+        //        {
+        //            int rowCount = Convert.ToInt32(command.ExecuteScalar());
+
+        //            // Change the query from amount of rows to whatever the parameters say. 
+        //            command.CommandText = $"{selectStatement} {restOfQuery}";
+
+        //            string value = "";
+        //            SQLiteDataReader reader = command.ExecuteReader();
+
+        //            int i = Db.r.Next(0, rowCount);
+        //            int j = 0;
+
+        //            // Go through all rows until you reach the one with the Id randomized when the i 
+        //            // variable was initialized. And then get the Id of that row.
+        //            while (reader.Read())
+        //            {
+        //                if (j == i)
+        //                {
+        //                    value = reader.GetValue(0).ToString();
+        //                    reader.Close();
+        //                    connection.Close();
+        //                    return value;
+        //                }
+        //                else { j++; }
+        //            }
+
+        //            reader.Close();
+        //            connection.Close();
+        //            return value;
+
+        //        }
+        //    }
+        //}
+
+
         //    catch (Exception Ex)
         //    {
         //        System.Windows.Forms.MessageBox.Show("error: " + Ex.ToString());
@@ -252,8 +316,24 @@ namespace Headline_Randomizer
         //        System.Windows.Forms.MessageBox.Show("error: " + Ex.Source);
         //        System.Windows.Forms.MessageBox.Show("error: " + Ex.Message);
         //    }
-        
+
         // If the requested value is below a certain number then it will set all target values to the requested value.  
+
+        static public void ResetUsedOn(string fromStatement, string whereStatement, string sourceTable)
+        {
+            using (SQLiteConnection connection = new SQLiteConnection(Db.connectionString))
+            {
+                connection.Open();
+                SQLiteCommand command = new SQLiteCommand();
+                command.Connection = connection;
+               
+                command.CommandText = $"UPDATE {sourceTable} Set Used = 0 WHERE Id IN (SELECT {sourceTable}.Id FROM {fromStatement} WHERE {whereStatement})";
+                command.ExecuteNonQuery();
+                
+                connection.Close();
+            }
+        }
+
         static public void SetMultiple(string tableName, string whereStatement, string setStatement, int limit)
         {
             using (SQLiteConnection connection = new SQLiteConnection(Db.connectionString))

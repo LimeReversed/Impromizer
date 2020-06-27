@@ -45,6 +45,8 @@
             this.btnGenerate10 = new System.Windows.Forms.Button();
             this.btnGenerate7 = new System.Windows.Forms.Button();
             this.tabPage2 = new System.Windows.Forms.TabPage();
+            this.btnYouShouldHave = new System.Windows.Forms.Button();
+            this.btnGamingTips = new System.Windows.Forms.Button();
             this.btnGenerate9 = new System.Windows.Forms.Button();
             this.btnClear3 = new System.Windows.Forms.Button();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
@@ -321,10 +323,9 @@
             this.btnGenerate6.Size = new System.Drawing.Size(305, 99);
             this.btnGenerate6.TabIndex = 16;
             this.btnGenerate6.TabStop = false;
-            this.btnGenerate6.Text = "???";
+            this.btnGenerate6.Text = "&YesOrNo";
             this.btnGenerate6.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
             this.btnGenerate6.UseVisualStyleBackColor = false;
-            this.btnGenerate6.Visible = false;
             this.btnGenerate6.Click += new System.EventHandler(this.btnGenerate6_Click);
             // 
             // btnGenerate8
@@ -342,7 +343,7 @@
             this.btnGenerate8.Size = new System.Drawing.Size(305, 98);
             this.btnGenerate8.TabIndex = 15;
             this.btnGenerate8.TabStop = false;
-            this.btnGenerate8.Text = "&__can never be too__";
+            this.btnGenerate8.Text = "__&can never be too__";
             this.btnGenerate8.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
             this.btnGenerate8.UseVisualStyleBackColor = false;
             this.btnGenerate8.Click += new System.EventHandler(this.btnGenerate8_Click);
@@ -388,7 +389,7 @@
             this.btnGenerate7.Size = new System.Drawing.Size(304, 98);
             this.btnGenerate7.TabIndex = 18;
             this.btnGenerate7.TabStop = false;
-            this.btnGenerate7.Text = "&The secret to happiness__";
+            this.btnGenerate7.Text = "T&he secret to happiness__";
             this.btnGenerate7.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
             this.btnGenerate7.UseVisualStyleBackColor = false;
             this.btnGenerate7.Click += new System.EventHandler(this.btnGenerate7_Click);
@@ -398,6 +399,8 @@
             // tabPage2
             // 
             this.tabPage2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.tabPage2.Controls.Add(this.btnYouShouldHave);
+            this.tabPage2.Controls.Add(this.btnGamingTips);
             this.tabPage2.Controls.Add(this.btnGenerate9);
             this.tabPage2.Controls.Add(this.btnClear3);
             this.tabPage2.Location = new System.Drawing.Point(4, 36);
@@ -405,6 +408,50 @@
             this.tabPage2.Size = new System.Drawing.Size(606, 292);
             this.tabPage2.TabIndex = 3;
             this.tabPage2.Text = "Other";
+            // 
+            // btnYouShouldHave
+            // 
+            this.btnYouShouldHave.BackColor = System.Drawing.SystemColors.WindowFrame;
+            this.btnYouShouldHave.BackgroundImage = global::Headline_Randomizer.Properties.Resources._9;
+            this.btnYouShouldHave.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.btnYouShouldHave.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnYouShouldHave.FlatAppearance.BorderColor = System.Drawing.Color.White;
+            this.btnYouShouldHave.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.btnYouShouldHave.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnYouShouldHave.Font = new System.Drawing.Font("Calibri", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnYouShouldHave.ForeColor = System.Drawing.Color.White;
+            this.btnYouShouldHave.Location = new System.Drawing.Point(301, 98);
+            this.btnYouShouldHave.Name = "btnYouShouldHave";
+            this.btnYouShouldHave.Padding = new System.Windows.Forms.Padding(0, 0, 0, 10);
+            this.btnYouShouldHave.Size = new System.Drawing.Size(305, 99);
+            this.btnYouShouldHave.TabIndex = 20;
+            this.btnYouShouldHave.TabStop = false;
+            this.btnYouShouldHave.Text = "&You should have...";
+            this.btnYouShouldHave.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
+            this.btnYouShouldHave.UseVisualStyleBackColor = false;
+            this.btnYouShouldHave.Click += new System.EventHandler(this.btnYouShouldHave_Click);
+            // 
+            // btnGamingTips
+            // 
+            this.btnGamingTips.BackColor = System.Drawing.SystemColors.WindowFrame;
+            this.btnGamingTips.BackgroundImage = global::Headline_Randomizer.Properties.Resources._9;
+            this.btnGamingTips.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.btnGamingTips.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnGamingTips.FlatAppearance.BorderColor = System.Drawing.Color.White;
+            this.btnGamingTips.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.btnGamingTips.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnGamingTips.Font = new System.Drawing.Font("Calibri", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnGamingTips.ForeColor = System.Drawing.Color.White;
+            this.btnGamingTips.Location = new System.Drawing.Point(-1, 98);
+            this.btnGamingTips.Name = "btnGamingTips";
+            this.btnGamingTips.Padding = new System.Windows.Forms.Padding(0, 0, 0, 10);
+            this.btnGamingTips.Size = new System.Drawing.Size(305, 99);
+            this.btnGamingTips.TabIndex = 19;
+            this.btnGamingTips.TabStop = false;
+            this.btnGamingTips.Text = "&Gaming tips";
+            this.btnGamingTips.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
+            this.btnGamingTips.UseVisualStyleBackColor = false;
+            this.btnGamingTips.Click += new System.EventHandler(this.btnGamingTips_Click);
             // 
             // btnGenerate9
             // 
@@ -531,11 +578,13 @@
             this.ForeColor = System.Drawing.Color.White;
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.KeyPreview = true;
             this.MaximizeBox = false;
             this.Name = "English";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Impromizer (Free)";
             this.TopMost = true;
+            this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.English_KeyDown);
             this.Move += new System.EventHandler(this.MoveWindow1);
             this.customTabControl1.ResumeLayout(false);
             this.tabPage3.ResumeLayout(false);
@@ -573,6 +622,8 @@
         private System.Windows.Forms.Button btnGenerate8;
         private System.Windows.Forms.Button btnGenerate10;
         private System.Windows.Forms.Button btnGenerate7;
+        private System.Windows.Forms.Button btnGamingTips;
+        private System.Windows.Forms.Button btnYouShouldHave;
     }
 }
 
