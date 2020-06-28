@@ -55,6 +55,7 @@
             this.lekarToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.omToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.languageToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.btnInsult = new System.Windows.Forms.Button();
             this.customTabControl1.SuspendLayout();
             this.tabPage3.SuspendLayout();
             this.tabPage1.SuspendLayout();
@@ -399,6 +400,7 @@
             // tabPage2
             // 
             this.tabPage2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.tabPage2.Controls.Add(this.btnInsult);
             this.tabPage2.Controls.Add(this.btnYouShouldHave);
             this.tabPage2.Controls.Add(this.btnGamingTips);
             this.tabPage2.Controls.Add(this.btnGenerate9);
@@ -420,7 +422,7 @@
             this.btnYouShouldHave.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnYouShouldHave.Font = new System.Drawing.Font("Calibri", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnYouShouldHave.ForeColor = System.Drawing.Color.White;
-            this.btnYouShouldHave.Location = new System.Drawing.Point(303, 98);
+            this.btnYouShouldHave.Location = new System.Drawing.Point(0, 197);
             this.btnYouShouldHave.Name = "btnYouShouldHave";
             this.btnYouShouldHave.Padding = new System.Windows.Forms.Padding(0, 0, 0, 10);
             this.btnYouShouldHave.Size = new System.Drawing.Size(305, 99);
@@ -564,6 +566,28 @@
             this.languageToolStripMenuItem.Text = "Language";
             this.languageToolStripMenuItem.Click += new System.EventHandler(this.LanguageToolStripMenuItem_Click);
             // 
+            // btnInsult
+            // 
+            this.btnInsult.BackColor = System.Drawing.SystemColors.WindowFrame;
+            this.btnInsult.BackgroundImage = global::Headline_Randomizer.Properties.Resources._9;
+            this.btnInsult.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.btnInsult.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnInsult.FlatAppearance.BorderColor = System.Drawing.Color.White;
+            this.btnInsult.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.btnInsult.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnInsult.Font = new System.Drawing.Font("Calibri", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnInsult.ForeColor = System.Drawing.Color.White;
+            this.btnInsult.Location = new System.Drawing.Point(305, 98);
+            this.btnInsult.Name = "btnInsult";
+            this.btnInsult.Padding = new System.Windows.Forms.Padding(0, 0, 0, 10);
+            this.btnInsult.Size = new System.Drawing.Size(305, 99);
+            this.btnInsult.TabIndex = 21;
+            this.btnInsult.TabStop = false;
+            this.btnInsult.Text = "Insult";
+            this.btnInsult.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
+            this.btnInsult.UseVisualStyleBackColor = false;
+            this.btnInsult.Click += new System.EventHandler(this.btnInsult_Click);
+            // 
             // English
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -624,6 +648,7 @@
         private System.Windows.Forms.Button btnGenerate7;
         private System.Windows.Forms.Button btnGamingTips;
         private System.Windows.Forms.Button btnYouShouldHave;
+        private System.Windows.Forms.Button btnInsult;
     }
 }
 

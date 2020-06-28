@@ -343,6 +343,17 @@ namespace English
             Db.Command($"UPDATE TblNouns SET Used = 1 WHERE Id = {id}", Db.connectionString);
         }
 
+        public bool IsPerson(int id)
+        {
+            string result = $"{Db.GetValue($"SELECT Someone FROM TblNouns WHERE Id = {id}", Db.connectionString)}";
+            if (result == "1")
+            {
+                return true;
+            }
+
+            return false;
+        }
+
         public string Preposition(int id)
         {
             string prep = $"{Db.GetValue($"SELECT Preposition FROM TblNouns WHERE Id = {id}", Db.connectionString)}";
