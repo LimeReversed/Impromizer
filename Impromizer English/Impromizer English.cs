@@ -657,15 +657,7 @@ namespace Headline_Randomizer
         {
             presentationWindow.tbxResult.Text = "";
 
-            //int verbNr = Words.verb.RandomizeId("TblVerbs INNER JOIN TblRelationVerbs ON TblVerbs.Id = TblRelationVerbs.Id", "AND Positive = 1");
-
-            int nounNr = Words.noun.RandomizeId("TblNouns INNER JOIN TblPolarityOfNouns ON TblNouns.Id = TblPolarityOfNouns.Id", "AND Negative = 1");
-            int adjectiveNr = Words.adjective.RandomizeId(nounNr, "TblAdjectives INNER JOIN TblPolarityOfAdjectives ON TblAdjectives.Id = TblPolarityOfAdjectives.Id", "AND Negative = 1");
-            string thatOrWho = Words.noun.IsPerson(nounNr) ? "who" : "that";
-            //int nounNr = Words.noun.RandomizeId();
-            //int adjectiveNr = Words.adjective.RandomizeId(nounNr, "TblAdjectives INNER JOIN TblPolarityOfAdjectives ON TblAdjectives.Id = TblPolarityOfAdjectives.Id", "AND Negative = 1");
-
-            presentationWindow.tbxResult.Text = $"Lime is{Words.noun.AOrAn(nounNr)}{Words.noun.Singular(nounNr)}, {thatOrWho} is {Words.adjective.Descriptive(adjectiveNr)}";
+            presentationWindow.tbxResult.Text = SentenceBuilder.BuildJudgement("Lime", false, false);
             EndingRitual(2, presentationWindow.tbxResult, ref position);
         }
     
