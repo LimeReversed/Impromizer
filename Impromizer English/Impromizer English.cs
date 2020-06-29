@@ -30,7 +30,7 @@ namespace Headline_Randomizer
             presentationWindow.Show();
 
             // Set Db variables
-            Db.connectionString = $"Data Source = {Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments)}\\Impromizer\\WordsDatabaseEnglish.db3; Password={Common.password};";
+            Db.connectionString = $"Data Source = {Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments)}\\Impromizer\\WordsDatabaseEnglish.db3;";
             Db.factoryResetString = $"Data Source = {AppDomain.CurrentDomain.BaseDirectory}Databases\\WordsDatabaseEnglish.db3";
 
             // Copy database
@@ -55,8 +55,8 @@ namespace Headline_Randomizer
                                             $"{Common.myDocumentsPath}BackupEnglish.db3", true);
             }
 
-            Db.SetPassword(Common.password, $"Data Source = {Common.myDocumentsPath}WordsDatabaseEnglish.db3");
-            Db.SetPassword(Common.password, $"Data Source = {Common.myDocumentsPath}BackupEnglish.db3");
+            //Db.SetPassword(Common.password, $"Data Source = {Common.myDocumentsPath}WordsDatabaseEnglish.db3");
+            //Db.SetPassword(Common.password, $"Data Source = {Common.myDocumentsPath}BackupEnglish.db3");
 
             if (Db.GetValue("SELECT name FROM sqlite_master WHERE type='table' AND name='TblVersion'", Db.connectionString) == "TblVersion"
                     && Convert.ToInt32(Db.GetValue("Select Version FROM TblVersion", Db.connectionString)) >= Convert.ToInt32(Db.GetValue("Select Version FROM TblVersion", Db.factoryResetString)))
@@ -637,10 +637,46 @@ namespace Headline_Randomizer
 
         private void English_KeyDown(object sender, KeyEventArgs e)
         {
-            if (e.Control && e.KeyCode == Keys.N)
+            if (e.Shift && e.KeyCode == Keys.G)
             {
                 customTabControl1.SelectTab(2);
                 btnGamingTips.PerformClick();
+            }
+            else if (e.Shift && e.KeyCode == Keys.S)
+            {
+                customTabControl1.SelectTab(2);
+                btnYouShouldHave.PerformClick();
+            }
+            else if (e.Shift && e.KeyCode == Keys.I)
+            {
+                customTabControl1.SelectTab(3);
+                btnInsult.PerformClick();
+            }
+            else if (e.Shift && e.KeyCode == Keys.C)
+            {
+                customTabControl1.SelectTab(3);
+                btnCompliment.PerformClick();
+            }
+            else if (e.Shift && e.KeyCode == Keys.Y)
+            {
+                customTabControl1.SelectTab(1);
+                btnGenerate6.PerformClick();
+            }
+            else if (e.Shift && e.KeyCode == Keys.W)
+            {
+                customTabControl1.SelectTab(1);
+
+                int coinToss = r.Next(0, 2);
+
+                if (coinToss == 0) 
+                {
+                    btnGenerate11.PerformClick();
+                }
+                else
+                {
+                    btnGenerate7.PerformClick();
+                }
+ 
             }
         }
 
@@ -657,9 +693,21 @@ namespace Headline_Randomizer
         {
             presentationWindow.tbxResult.Text = "";
 
-            presentationWindow.tbxResult.Text = SentenceBuilder.BuildJudgement("Lime", false, false);
+            presentationWindow.tbxResult.Text = SentenceBuilder.BuildJudgement(cbPeople.Text, chbRequiresAre.Checked, false);
             EndingRitual(2, presentationWindow.tbxResult, ref position);
         }
-    
+
+        private void btnCompliment_Click(object sender, EventArgs e)
+        {
+            presentationWindow.tbxResult.Text = "";
+
+            presentationWindow.tbxResult.Text = SentenceBuilder.BuildJudgement(cbPeople.Text, chbRequiresAre.Checked, true);
+            EndingRitual(2, presentationWindow.tbxResult, ref position);
+        }
+
+        private void btnAddToComboBox_Click(object sender, EventArgs e)
+        {
+            cbPeople.Items.Add(cbPeople.Text);
+        }
     }
 }

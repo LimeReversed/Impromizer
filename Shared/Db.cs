@@ -359,19 +359,19 @@ namespace Headline_Randomizer
         static public void SetPassword(string password, string connectionString)
         {
 
-            using (SQLiteConnection connection = new SQLiteConnection(connectionString))
-            {
-                connection.Open();
-                try
-                {
-                    connection.ChangePassword(password);
-                }
-                catch
-                {
-                }
-                
-                connection.Close();
-            }
+            //using (SQLiteConnection connection = new SQLiteConnection(connectionString))
+            //{
+            //    connection.Open();
+            //    try
+            //    {
+            //        connection.ChangePassword(password, "");
+            //    }
+            //    catch
+            //    {
+            //    }
+
+            //    connection.Close();
+            //}
         }
     }
 }

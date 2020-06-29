@@ -40,11 +40,11 @@ namespace Headline_Randomizer
             {
                 int nounNr = Words.noun.RandomizeId("TblNouns INNER JOIN TblPolarityOfNouns ON TblNouns.Id = TblPolarityOfNouns.Id", primaryWhereStatement);
                 int verbNr = Words.verb.RandomizeId(nounNr, "TblVerbs INNER JOIN TblPolarityOfVerbs ON TblVerbs.Id = TblPolarityOfVerbs.Id", secondaryWhereStatement);
-                return $"{target} {Words.verb.SForm(verbNr)}{Words.verb.Preposition(verbNr)}{Words.noun.Plural(nounNr)}";
+                return $"{target} {(targetRequiresAre ? Words.verb.BaseForm(verbNr) : Words.verb.SForm(verbNr))}{Words.verb.Preposition(verbNr)}{Words.noun.Plural(nounNr)}";
             }
             else
             {
-                return SentenceBuilder.BuildRelation("I", false, target, targetRequiresAre, positiveStatement: primaryWhereStatement);
+                return SentenceBuilder.BuildRelation("I", false, Common.FirstLetterLower(target), targetRequiresAre, positiveStatement: primaryWhereStatement);
             }
 
         }

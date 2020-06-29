@@ -38,6 +38,20 @@ namespace Headline_Randomizer
             }
         }
 
+        static public string FirstLetterLower(string line)
+        {
+            if (line == "")
+            {
+                MessageBox.Show("Det fanns inget att generera");
+                return "";
+            }
+            else
+            {
+                string firstLetter = line[0].ToString().ToLower();
+                return $"{firstLetter}{line.Substring(1, line.Length - 1)}";
+            }
+        }
+
         // Method for sizing text automatically
         static private float GetFontSize(TextBox label, string text, int margin, float min_size, float max_size)
         {
