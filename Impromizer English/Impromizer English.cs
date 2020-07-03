@@ -495,10 +495,10 @@ namespace Headline_Randomizer
         public void EndingRitual(int loadNr, TextBox tb, ref int position)
         {
             //tb.Text = tb.Text.Replace("  ", " ");
-            Common.ToFile(presentationWindow.tbxResult.Text);
+           
             TextToVoice(presentationWindow.tbxResult.Text);
             Common.AdjustSize(tb);
-            
+            Common.ToFile(presentationWindow.tbxResult.Text);
             Db.recentStrings.Add(tb.Text);
             position = Db.recentStrings.Count - 1;
             //Words.FreeNeeded(loadNr);
@@ -708,6 +708,23 @@ namespace Headline_Randomizer
         private void btnAddToComboBox_Click(object sender, EventArgs e)
         {
             cbPeople.Items.Add(cbPeople.Text);
+        }
+
+        bool streamingModeOn = false;
+        private void streamingModeToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (streamingModeOn)
+            {
+                presentationWindow.BackColor = Color.Lime;
+                presentationWindow.tbxResult.TextAlign = HorizontalAlignment.Center;
+                presentationWindow.tbxResult.Font = new Font();
+            }
+            else
+            {
+
+            }
+
+            streamingModeOn = !streamingModeOn;
         }
     }
 }

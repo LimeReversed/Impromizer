@@ -103,31 +103,32 @@ namespace Headline_Randomizer
 
                     if (tb.Text[middleChar + stepCount] == 32)
                     {
-                        tb.Text = tb.Text.Insert(middleChar + stepCount, "\r\n");
+                        tb.Text = tb.Text.Insert(middleChar + (stepCount + 1), "\r\n");
+                      
                     }
                     else
                     {
-                        tb.Text = tb.Text.Insert(middleChar - stepCount, "\r\n");
+                        tb.Text = tb.Text.Insert(middleChar - (stepCount - 1), "\r\n");
                     }
                         
                     
                 }
 
                 tb.Location = new System.Drawing.Point(10, 8);
-                tb.Font = new System.Drawing.Font("Adobe Fan Heiti Std", GetFontSize(tb, tb.Text, 3, 1f, 100f), System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+                tb.Font = new System.Drawing.Font(tb.Font.Name, GetFontSize(tb, tb.Text, 3, 1f, 100f), System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
 
             }
             else
             {
-                tb.Font = new System.Drawing.Font("Adobe Fan Heiti Std", GetFontSize(tb, tb.Text, 3, 1f, 100f), System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-                tb.Location = new System.Drawing.Point(10, 25);
+                tb.Font = new System.Drawing.Font(tb.Font.Name, GetFontSize(tb, tb.Text, 3, 1f, 100f), System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+                tb.Location = new System.Drawing.Point(10, 8);
             }
         }
 
         static public void ToFile(string text)
         {
             StreamWriter writer = new StreamWriter($"{Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments)}\\Impromizer\\LatestResult.txt");
-            writer.Write($"{text}.   ");
+            writer.Write($"{text}");
             writer.Close();
         }
 

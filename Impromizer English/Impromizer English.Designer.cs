@@ -61,6 +61,7 @@
             this.lekarToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.omToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.languageToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.streamingModeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.customTabControl1.SuspendLayout();
             this.tabPage3.SuspendLayout();
             this.tabPage1.SuspendLayout();
@@ -609,7 +610,8 @@
             this.toolStripMenuItem2,
             this.lekarToolStripMenuItem1,
             this.omToolStripMenuItem,
-            this.languageToolStripMenuItem});
+            this.languageToolStripMenuItem,
+            this.streamingModeToolStripMenuItem});
             this.menuStrip1.LayoutStyle = System.Windows.Forms.ToolStripLayoutStyle.HorizontalStackWithOverflow;
             this.menuStrip1.Location = new System.Drawing.Point(0, 362);
             this.menuStrip1.Name = "menuStrip1";
@@ -663,6 +665,14 @@
             this.languageToolStripMenuItem.Size = new System.Drawing.Size(95, 29);
             this.languageToolStripMenuItem.Text = "Language";
             this.languageToolStripMenuItem.Click += new System.EventHandler(this.LanguageToolStripMenuItem_Click);
+            // 
+            // streamingModeToolStripMenuItem
+            // 
+            this.streamingModeToolStripMenuItem.ForeColor = System.Drawing.Color.White;
+            this.streamingModeToolStripMenuItem.Name = "streamingModeToolStripMenuItem";
+            this.streamingModeToolStripMenuItem.Size = new System.Drawing.Size(107, 29);
+            this.streamingModeToolStripMenuItem.Text = "Streaming mode";
+            this.streamingModeToolStripMenuItem.Click += new System.EventHandler(this.streamingModeToolStripMenuItem_Click);
             // 
             // English
             // 
@@ -732,6 +742,7 @@
         private System.Windows.Forms.Button btnAddToComboBox;
         private System.Windows.Forms.ComboBox cbPeople;
         private System.Windows.Forms.CheckBox chbRequiresAre;
+        private System.Windows.Forms.ToolStripMenuItem streamingModeToolStripMenuItem;
     }
 }
 
