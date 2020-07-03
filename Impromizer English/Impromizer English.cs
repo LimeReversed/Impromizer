@@ -713,17 +713,22 @@ namespace Headline_Randomizer
         bool streamingModeOn = false;
         private void streamingModeToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if (streamingModeOn)
+            if (!streamingModeOn)
             {
                 presentationWindow.BackColor = Color.Lime;
-                presentationWindow.tbxResult.TextAlign = HorizontalAlignment.Center;
-                presentationWindow.tbxResult.Font = new Font();
+                presentationWindow.tbxResult.BackColor = Color.Lime;
+                presentationWindow.tbxResult.TextAlign = HorizontalAlignment.Left;
+                presentationWindow.tbxResult.Font = new Font("OCR A Std", 24);
             }
             else
             {
-
+                presentationWindow.BackColor = Color.White;
+                presentationWindow.tbxResult.BackColor = Color.White;
+                presentationWindow.tbxResult.TextAlign = HorizontalAlignment.Center;
+                presentationWindow.tbxResult.Font = new Font("Calibri", 24);
             }
 
+            Common.AdjustSize(presentationWindow.tbxResult);
             streamingModeOn = !streamingModeOn;
         }
     }

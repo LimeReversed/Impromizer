@@ -34,11 +34,11 @@
             // 
             // tbxResult
             // 
-            this.tbxResult.BackColor = System.Drawing.Color.Lime;
+            this.tbxResult.BackColor = System.Drawing.Color.White;
             this.tbxResult.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.tbxResult.CausesValidation = false;
             this.tbxResult.Cursor = System.Windows.Forms.Cursors.Arrow;
-            this.tbxResult.Font = new System.Drawing.Font("OCR A Std", 24F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.tbxResult.Font = new System.Drawing.Font("Calibri", 24F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.tbxResult.ForeColor = System.Drawing.SystemColors.WindowText;
             this.tbxResult.Location = new System.Drawing.Point(10, 8);
             this.tbxResult.Multiline = true;
@@ -46,13 +46,15 @@
             this.tbxResult.ReadOnly = true;
             this.tbxResult.Size = new System.Drawing.Size(671, 105);
             this.tbxResult.TabIndex = 3;
+            this.tbxResult.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.tbxResult.WordWrap = false;
             this.tbxResult.TextChanged += new System.EventHandler(this.TbxResult_TextChanged);
             // 
             // PresentationWindow
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackColor = System.Drawing.Color.Lime;
+            this.BackColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(691, 120);
             this.ControlBox = false;
             this.Controls.Add(this.tbxResult);

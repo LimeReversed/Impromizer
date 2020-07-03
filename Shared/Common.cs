@@ -115,12 +115,12 @@ namespace Headline_Randomizer
                 }
 
                 tb.Location = new System.Drawing.Point(10, 8);
-                tb.Font = new System.Drawing.Font(tb.Font.Name, GetFontSize(tb, tb.Text, 3, 1f, 100f), System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+                tb.Font = new System.Drawing.Font(tb.Font.Name, GetFontSize(tb, tb.Text, 5, 1f, 100f), System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
 
             }
             else
             {
-                tb.Font = new System.Drawing.Font(tb.Font.Name, GetFontSize(tb, tb.Text, 3, 1f, 100f), System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+                tb.Font = new System.Drawing.Font(tb.Font.Name, GetFontSize(tb, tb.Text, 5, 1f, 100f), System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
                 tb.Location = new System.Drawing.Point(10, 8);
             }
         }
