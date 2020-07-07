@@ -321,8 +321,9 @@ namespace Headline_Randomizer
             int randomNumber = r.Next(0, 2);
             string answer = randomNumber == 1 ?
                 yesAnswers[r.Next(0, yesAnswers.Length)] : noAnswers[r.Next(0, noAnswers.Length)];
-            presentationWindow.tbxResult.Text = answer;
-            EndingRitual(0, presentationWindow.tbxResult, ref position);
+            //presentationWindow.tbxResult.Text = answer;
+            //EndingRitual(0, presentationWindow.tbxResult, ref position);
+            TextToVoice(answer);
         }
 
         private void btnGenerate7_Click(object sender, EventArgs e)
@@ -492,33 +493,13 @@ namespace Headline_Randomizer
             presentationWindow.tbxResult.Text = "";
         }
 
-        public void EndingRitual(int loadNr, TextBox tb, ref int position)
-        {
-            //tb.Text = tb.Text.Replace("  ", " ");
-           
-            TextToVoice(presentationWindow.tbxResult.Text);
-            Common.AdjustSize(tb);
-            Common.ToFile(presentationWindow.tbxResult.Text);
-            Db.recentStrings.Add(tb.Text);
-            position = Db.recentStrings.Count - 1;
-            //Words.FreeNeeded(loadNr);
-        }
-
-        private void TextToVoice(string text)
-        {
-            SpeechSynthesizer synth = new SpeechSynthesizer();
-            //synth.SetOutputToDefaultAudioDevice();
-            synth.Rate = -1;
-            var voice = synth.GetInstalledVoices();
-            synth.SelectVoiceByHints(VoiceGender.Female);
-            synth.SpeakAsync(text);
-        }
-
+      
         private void Tabchanged(object sender, EventArgs e)
         {
             if (customTabControl1.ActiveIndex == 2)
             {
-                customTabControl1.Size = new Size(614, 234);
+                //customTabControl1.Size = new Size(614, 234);
+                customTabControl1.Size = new Size(614, 332);
             }
             else
             {
@@ -666,11 +647,15 @@ namespace Headline_Randomizer
             {
                 customTabControl1.SelectTab(1);
 
-                int coinToss = r.Next(0, 2);
+                int coinToss = r.Next(0, 3);
 
                 if (coinToss == 0) 
                 {
                     btnGenerate11.PerformClick();
+                }
+                else if (coinToss == 1)
+                {
+                    btnGenerate10.PerformClick();
                 }
                 else
                 {
@@ -718,18 +703,60 @@ namespace Headline_Randomizer
                 presentationWindow.BackColor = Color.Lime;
                 presentationWindow.tbxResult.BackColor = Color.Lime;
                 presentationWindow.tbxResult.TextAlign = HorizontalAlignment.Left;
-                presentationWindow.tbxResult.Font = new Font("OCR A Std", 24);
+                presentationWindow.tbxResult.Font = new Font("OCR A Std", 24f);
             }
             else
             {
                 presentationWindow.BackColor = Color.White;
                 presentationWindow.tbxResult.BackColor = Color.White;
                 presentationWindow.tbxResult.TextAlign = HorizontalAlignment.Center;
-                presentationWindow.tbxResult.Font = new Font("Calibri", 24);
+                presentationWindow.tbxResult.Font = new Font("Calibri", 24f);
             }
 
             Common.AdjustSize(presentationWindow.tbxResult);
             streamingModeOn = !streamingModeOn;
+        }
+
+        private async void btnIntro_Click(object sender, EventArgs e)
+        {
+            string introPartOne = "Hi, my name is Miss Random, but you can call me Miranda.";
+            presentationWindow.tbxResult.Text = introPartOne;
+            Common.AdjustSize(presentationWindow.tbxResult);
+            TextToVoice(introPartOne, false);
+
+            string introPartTwo = "I randomize words and put them into sentences. Dice to see you!";
+            presentationWindow.tbxResult.Text = introPartTwo;
+            Common.AdjustSize(presentationWindow.tbxResult);
+            TextToVoice(introPartTwo, true);
+        }
+
+        public void EndingRitual(int loadNr, TextBox tb, ref int position, bool async = true)
+        {
+            //tb.Text = tb.Text.Replace("  ", " ");
+
+            TextToVoice(presentationWindow.tbxResult.Text, async);
+            Common.AdjustSize(tb);
+            Common.ToFile(presentationWindow.tbxResult.Text);
+            Db.recentStrings.Add(tb.Text);
+            position = Db.recentStrings.Count - 1;
+            //Words.FreeNeeded(loadNr);
+        }
+
+        private void TextToVoice(string text, bool async = true)
+        {
+            SpeechSynthesizer synth = new SpeechSynthesizer();
+            //synth.SetOutputToDefaultAudioDevice();
+            synth.Rate = -1;
+            var voice = synth.GetInstalledVoices();
+            synth.SelectVoiceByHints(VoiceGender.Female);
+            if (async)
+            {
+                synth.SpeakAsync(text);
+            }
+            else
+            {
+                synth.Speak(text);
+            }
         }
     }
 }

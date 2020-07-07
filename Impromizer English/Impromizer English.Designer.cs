@@ -62,6 +62,7 @@
             this.omToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.languageToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.streamingModeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.btnIntro = new System.Windows.Forms.Button();
             this.customTabControl1.SuspendLayout();
             this.tabPage3.SuspendLayout();
             this.tabPage1.SuspendLayout();
@@ -408,6 +409,7 @@
             // tabPage2
             // 
             this.tabPage2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.tabPage2.Controls.Add(this.btnIntro);
             this.tabPage2.Controls.Add(this.btnYouShouldHave);
             this.tabPage2.Controls.Add(this.btnGamingTips);
             this.tabPage2.Controls.Add(this.btnGenerate9);
@@ -674,6 +676,28 @@
             this.streamingModeToolStripMenuItem.Text = "Streaming mode";
             this.streamingModeToolStripMenuItem.Click += new System.EventHandler(this.streamingModeToolStripMenuItem_Click);
             // 
+            // btnIntro
+            // 
+            this.btnIntro.BackColor = System.Drawing.SystemColors.WindowFrame;
+            this.btnIntro.BackgroundImage = global::Headline_Randomizer.Properties.Resources._9;
+            this.btnIntro.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.btnIntro.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnIntro.FlatAppearance.BorderColor = System.Drawing.Color.White;
+            this.btnIntro.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.btnIntro.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnIntro.Font = new System.Drawing.Font("Calibri", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnIntro.ForeColor = System.Drawing.Color.White;
+            this.btnIntro.Location = new System.Drawing.Point(-1, 196);
+            this.btnIntro.Name = "btnIntro";
+            this.btnIntro.Padding = new System.Windows.Forms.Padding(0, 0, 0, 10);
+            this.btnIntro.Size = new System.Drawing.Size(305, 99);
+            this.btnIntro.TabIndex = 21;
+            this.btnIntro.TabStop = false;
+            this.btnIntro.Text = "Introduction";
+            this.btnIntro.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
+            this.btnIntro.UseVisualStyleBackColor = false;
+            this.btnIntro.Click += new System.EventHandler(this.btnIntro_Click);
+            // 
             // English
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -743,6 +767,7 @@
         private System.Windows.Forms.ComboBox cbPeople;
         private System.Windows.Forms.CheckBox chbRequiresAre;
         private System.Windows.Forms.ToolStripMenuItem streamingModeToolStripMenuItem;
+        private System.Windows.Forms.Button btnIntro;
     }
 }
 
