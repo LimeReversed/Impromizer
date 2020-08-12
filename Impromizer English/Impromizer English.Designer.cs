@@ -45,16 +45,33 @@
             this.btnGenerate10 = new System.Windows.Forms.Button();
             this.btnGenerate7 = new System.Windows.Forms.Button();
             this.tabPage2 = new System.Windows.Forms.TabPage();
+            this.btnBreak = new System.Windows.Forms.Button();
+            this.btnIntro = new System.Windows.Forms.Button();
             this.btnYouShouldHave = new System.Windows.Forms.Button();
             this.btnGamingTips = new System.Windows.Forms.Button();
             this.btnGenerate9 = new System.Windows.Forms.Button();
             this.btnClear3 = new System.Windows.Forms.Button();
             this.tabPage4 = new System.Windows.Forms.TabPage();
+            this.label2 = new System.Windows.Forms.Label();
+            this.label1 = new System.Windows.Forms.Label();
+            this.btnPronounce = new System.Windows.Forms.Button();
+            this.tbPronunciation = new System.Windows.Forms.TextBox();
+            this.tbName = new System.Windows.Forms.TextBox();
             this.chbRequiresAre = new System.Windows.Forms.CheckBox();
             this.btnAddToComboBox = new System.Windows.Forms.Button();
             this.cbPeople = new System.Windows.Forms.ComboBox();
             this.btnCompliment = new System.Windows.Forms.Button();
             this.btnInsult = new System.Windows.Forms.Button();
+            this.tabPage5 = new System.Windows.Forms.TabPage();
+            this.btnKnockOther = new System.Windows.Forms.Button();
+            this.btnKnockName = new System.Windows.Forms.Button();
+            this.tabPage6 = new System.Windows.Forms.TabPage();
+            this.btnClearConspiracy = new System.Windows.Forms.Button();
+            this.btnYes80 = new System.Windows.Forms.Button();
+            this.btnWin = new System.Windows.Forms.Button();
+            this.btnExcuse = new System.Windows.Forms.Button();
+            this.btnWhy = new System.Windows.Forms.Button();
+            this.btnConspiracy = new System.Windows.Forms.Button();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.toolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem2 = new System.Windows.Forms.ToolStripMenuItem();
@@ -62,13 +79,18 @@
             this.omToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.languageToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.streamingModeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.btnIntro = new System.Windows.Forms.Button();
+            this.tabPage7 = new System.Windows.Forms.TabPage();
+            this.btnTellMe = new System.Windows.Forms.Button();
+            this.btnLine = new System.Windows.Forms.Button();
             this.customTabControl1.SuspendLayout();
             this.tabPage3.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.tabPage2.SuspendLayout();
             this.tabPage4.SuspendLayout();
+            this.tabPage5.SuspendLayout();
+            this.tabPage6.SuspendLayout();
             this.menuStrip1.SuspendLayout();
+            this.tabPage7.SuspendLayout();
             this.SuspendLayout();
             // 
             // customTabControl1
@@ -77,6 +99,9 @@
             this.customTabControl1.Controls.Add(this.tabPage1);
             this.customTabControl1.Controls.Add(this.tabPage2);
             this.customTabControl1.Controls.Add(this.tabPage4);
+            this.customTabControl1.Controls.Add(this.tabPage5);
+            this.customTabControl1.Controls.Add(this.tabPage6);
+            this.customTabControl1.Controls.Add(this.tabPage7);
             this.customTabControl1.DisplayStyle = System.Windows.Forms.TabStyle.Angled;
             // 
             // 
@@ -409,6 +434,7 @@
             // tabPage2
             // 
             this.tabPage2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.tabPage2.Controls.Add(this.btnBreak);
             this.tabPage2.Controls.Add(this.btnIntro);
             this.tabPage2.Controls.Add(this.btnYouShouldHave);
             this.tabPage2.Controls.Add(this.btnGamingTips);
@@ -419,6 +445,50 @@
             this.tabPage2.Size = new System.Drawing.Size(606, 292);
             this.tabPage2.TabIndex = 3;
             this.tabPage2.Text = "Other";
+            // 
+            // btnBreak
+            // 
+            this.btnBreak.BackColor = System.Drawing.SystemColors.WindowFrame;
+            this.btnBreak.BackgroundImage = global::Headline_Randomizer.Properties.Resources._9;
+            this.btnBreak.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.btnBreak.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnBreak.FlatAppearance.BorderColor = System.Drawing.Color.White;
+            this.btnBreak.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.btnBreak.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnBreak.Font = new System.Drawing.Font("Calibri", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnBreak.ForeColor = System.Drawing.Color.White;
+            this.btnBreak.Location = new System.Drawing.Point(303, 196);
+            this.btnBreak.Name = "btnBreak";
+            this.btnBreak.Padding = new System.Windows.Forms.Padding(0, 0, 0, 10);
+            this.btnBreak.Size = new System.Drawing.Size(305, 99);
+            this.btnBreak.TabIndex = 22;
+            this.btnBreak.TabStop = false;
+            this.btnBreak.Text = "Try to entertain";
+            this.btnBreak.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
+            this.btnBreak.UseVisualStyleBackColor = false;
+            this.btnBreak.Click += new System.EventHandler(this.btnBreak_Click);
+            // 
+            // btnIntro
+            // 
+            this.btnIntro.BackColor = System.Drawing.SystemColors.WindowFrame;
+            this.btnIntro.BackgroundImage = global::Headline_Randomizer.Properties.Resources._9;
+            this.btnIntro.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.btnIntro.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnIntro.FlatAppearance.BorderColor = System.Drawing.Color.White;
+            this.btnIntro.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.btnIntro.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnIntro.Font = new System.Drawing.Font("Calibri", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnIntro.ForeColor = System.Drawing.Color.White;
+            this.btnIntro.Location = new System.Drawing.Point(-1, 196);
+            this.btnIntro.Name = "btnIntro";
+            this.btnIntro.Padding = new System.Windows.Forms.Padding(0, 0, 0, 10);
+            this.btnIntro.Size = new System.Drawing.Size(305, 99);
+            this.btnIntro.TabIndex = 21;
+            this.btnIntro.TabStop = false;
+            this.btnIntro.Text = "Introduction";
+            this.btnIntro.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
+            this.btnIntro.UseVisualStyleBackColor = false;
+            this.btnIntro.Click += new System.EventHandler(this.btnIntro_Click);
             // 
             // btnYouShouldHave
             // 
@@ -512,6 +582,11 @@
             // tabPage4
             // 
             this.tabPage4.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.tabPage4.Controls.Add(this.label2);
+            this.tabPage4.Controls.Add(this.label1);
+            this.tabPage4.Controls.Add(this.btnPronounce);
+            this.tabPage4.Controls.Add(this.tbPronunciation);
+            this.tabPage4.Controls.Add(this.tbName);
             this.tabPage4.Controls.Add(this.chbRequiresAre);
             this.tabPage4.Controls.Add(this.btnAddToComboBox);
             this.tabPage4.Controls.Add(this.cbPeople);
@@ -524,11 +599,60 @@
             this.tabPage4.TabIndex = 5;
             this.tabPage4.Text = "Judgements";
             // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label2.Location = new System.Drawing.Point(370, 117);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(47, 19);
+            this.label2.TabIndex = 31;
+            this.label2.Text = "Name";
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.Location = new System.Drawing.Point(370, 169);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(98, 19);
+            this.label1.TabIndex = 30;
+            this.label1.Text = "Pronunciation";
+            // 
+            // btnPronounce
+            // 
+            this.btnPronounce.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.btnPronounce.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnPronounce.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnPronounce.Location = new System.Drawing.Point(374, 235);
+            this.btnPronounce.Name = "btnPronounce";
+            this.btnPronounce.Size = new System.Drawing.Size(92, 34);
+            this.btnPronounce.TabIndex = 29;
+            this.btnPronounce.Text = "Pronounce";
+            this.btnPronounce.UseVisualStyleBackColor = false;
+            this.btnPronounce.Click += new System.EventHandler(this.btnPronounce_Click);
+            // 
+            // tbPronunciation
+            // 
+            this.tbPronunciation.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.tbPronunciation.Location = new System.Drawing.Point(374, 191);
+            this.tbPronunciation.Name = "tbPronunciation";
+            this.tbPronunciation.Size = new System.Drawing.Size(165, 27);
+            this.tbPronunciation.TabIndex = 28;
+            // 
+            // tbName
+            // 
+            this.tbName.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.tbName.Location = new System.Drawing.Point(374, 139);
+            this.tbName.Name = "tbName";
+            this.tbName.Size = new System.Drawing.Size(165, 27);
+            this.tbName.TabIndex = 27;
+            // 
             // chbRequiresAre
             // 
             this.chbRequiresAre.AutoSize = true;
             this.chbRequiresAre.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.chbRequiresAre.Location = new System.Drawing.Point(374, 65);
+            this.chbRequiresAre.Location = new System.Drawing.Point(374, 24);
             this.chbRequiresAre.Name = "chbRequiresAre";
             this.chbRequiresAre.Size = new System.Drawing.Size(151, 23);
             this.chbRequiresAre.TabIndex = 26;
@@ -539,9 +663,10 @@
             // 
             this.btnAddToComboBox.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.btnAddToComboBox.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnAddToComboBox.Location = new System.Drawing.Point(374, 138);
+            this.btnAddToComboBox.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnAddToComboBox.Location = new System.Drawing.Point(474, 235);
             this.btnAddToComboBox.Name = "btnAddToComboBox";
-            this.btnAddToComboBox.Size = new System.Drawing.Size(165, 34);
+            this.btnAddToComboBox.Size = new System.Drawing.Size(65, 34);
             this.btnAddToComboBox.TabIndex = 25;
             this.btnAddToComboBox.Text = "Add";
             this.btnAddToComboBox.UseVisualStyleBackColor = false;
@@ -549,13 +674,14 @@
             // 
             // cbPeople
             // 
+            this.cbPeople.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cbPeople.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cbPeople.FormattingEnabled = true;
-            this.cbPeople.Location = new System.Drawing.Point(374, 98);
+            this.cbPeople.Location = new System.Drawing.Point(374, 53);
             this.cbPeople.Name = "cbPeople";
-            this.cbPeople.Size = new System.Drawing.Size(165, 21);
+            this.cbPeople.Size = new System.Drawing.Size(165, 27);
             this.cbPeople.TabIndex = 24;
             this.cbPeople.TabStop = false;
-            this.cbPeople.Text = "Lime";
             // 
             // btnCompliment
             // 
@@ -600,6 +726,197 @@
             this.btnInsult.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
             this.btnInsult.UseVisualStyleBackColor = false;
             this.btnInsult.Click += new System.EventHandler(this.btnInsult_Click);
+            // 
+            // tabPage5
+            // 
+            this.tabPage5.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.tabPage5.Controls.Add(this.btnKnockOther);
+            this.tabPage5.Controls.Add(this.btnKnockName);
+            this.tabPage5.Location = new System.Drawing.Point(4, 36);
+            this.tabPage5.Name = "tabPage5";
+            this.tabPage5.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage5.Size = new System.Drawing.Size(606, 292);
+            this.tabPage5.TabIndex = 6;
+            this.tabPage5.Text = "Jokes";
+            // 
+            // btnKnockOther
+            // 
+            this.btnKnockOther.BackColor = System.Drawing.SystemColors.WindowFrame;
+            this.btnKnockOther.BackgroundImage = global::Headline_Randomizer.Properties.Resources._7;
+            this.btnKnockOther.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.btnKnockOther.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnKnockOther.FlatAppearance.BorderColor = System.Drawing.Color.White;
+            this.btnKnockOther.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.btnKnockOther.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnKnockOther.Font = new System.Drawing.Font("Calibri", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnKnockOther.ForeColor = System.Drawing.Color.White;
+            this.btnKnockOther.Location = new System.Drawing.Point(303, 0);
+            this.btnKnockOther.Name = "btnKnockOther";
+            this.btnKnockOther.Padding = new System.Windows.Forms.Padding(0, 0, 0, 10);
+            this.btnKnockOther.Size = new System.Drawing.Size(304, 98);
+            this.btnKnockOther.TabIndex = 20;
+            this.btnKnockOther.TabStop = false;
+            this.btnKnockOther.Text = "Knock knock... (Other)";
+            this.btnKnockOther.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
+            this.btnKnockOther.UseVisualStyleBackColor = false;
+            this.btnKnockOther.Click += new System.EventHandler(this.btnKnockOther_Click);
+            // 
+            // btnKnockName
+            // 
+            this.btnKnockName.BackColor = System.Drawing.SystemColors.WindowFrame;
+            this.btnKnockName.BackgroundImage = global::Headline_Randomizer.Properties.Resources._7;
+            this.btnKnockName.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.btnKnockName.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnKnockName.FlatAppearance.BorderColor = System.Drawing.Color.White;
+            this.btnKnockName.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.btnKnockName.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnKnockName.Font = new System.Drawing.Font("Calibri", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnKnockName.ForeColor = System.Drawing.Color.White;
+            this.btnKnockName.Location = new System.Drawing.Point(-1, 0);
+            this.btnKnockName.Name = "btnKnockName";
+            this.btnKnockName.Padding = new System.Windows.Forms.Padding(0, 0, 0, 10);
+            this.btnKnockName.Size = new System.Drawing.Size(304, 98);
+            this.btnKnockName.TabIndex = 19;
+            this.btnKnockName.TabStop = false;
+            this.btnKnockName.Text = "Knock knock... (Name)";
+            this.btnKnockName.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
+            this.btnKnockName.UseVisualStyleBackColor = false;
+            this.btnKnockName.Click += new System.EventHandler(this.btnKnockName_Click);
+            // 
+            // tabPage6
+            // 
+            this.tabPage6.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.tabPage6.Controls.Add(this.btnClearConspiracy);
+            this.tabPage6.Controls.Add(this.btnYes80);
+            this.tabPage6.Controls.Add(this.btnWin);
+            this.tabPage6.Controls.Add(this.btnExcuse);
+            this.tabPage6.Controls.Add(this.btnWhy);
+            this.tabPage6.Controls.Add(this.btnConspiracy);
+            this.tabPage6.Location = new System.Drawing.Point(4, 36);
+            this.tabPage6.Name = "tabPage6";
+            this.tabPage6.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage6.Size = new System.Drawing.Size(606, 292);
+            this.tabPage6.TabIndex = 7;
+            this.tabPage6.Text = "Conspiracy";
+            // 
+            // btnClearConspiracy
+            // 
+            this.btnClearConspiracy.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.btnClearConspiracy.BackgroundImage = global::Headline_Randomizer.Properties.Resources.buttongrey3;
+            this.btnClearConspiracy.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.btnClearConspiracy.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnClearConspiracy.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnClearConspiracy.Font = new System.Drawing.Font("Calibri", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnClearConspiracy.ForeColor = System.Drawing.Color.White;
+            this.btnClearConspiracy.ImageAlign = System.Drawing.ContentAlignment.TopLeft;
+            this.btnClearConspiracy.ImageKey = "(none)";
+            this.btnClearConspiracy.Location = new System.Drawing.Point(302, 196);
+            this.btnClearConspiracy.Name = "btnClearConspiracy";
+            this.btnClearConspiracy.Size = new System.Drawing.Size(304, 99);
+            this.btnClearConspiracy.TabIndex = 23;
+            this.btnClearConspiracy.Text = "Clear";
+            this.btnClearConspiracy.UseVisualStyleBackColor = false;
+            this.btnClearConspiracy.Click += new System.EventHandler(this.btnClearConspiracy_Click);
+            // 
+            // btnYes80
+            // 
+            this.btnYes80.BackColor = System.Drawing.SystemColors.Highlight;
+            this.btnYes80.BackgroundImage = global::Headline_Randomizer.Properties.Resources._4;
+            this.btnYes80.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.btnYes80.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnYes80.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnYes80.Font = new System.Drawing.Font("Calibri", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnYes80.ForeColor = System.Drawing.Color.White;
+            this.btnYes80.Location = new System.Drawing.Point(304, 98);
+            this.btnYes80.Name = "btnYes80";
+            this.btnYes80.Padding = new System.Windows.Forms.Padding(0, 0, 0, 10);
+            this.btnYes80.Size = new System.Drawing.Size(305, 99);
+            this.btnYes80.TabIndex = 22;
+            this.btnYes80.TabStop = false;
+            this.btnYes80.Text = "Yes 80%";
+            this.btnYes80.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
+            this.btnYes80.UseVisualStyleBackColor = false;
+            this.btnYes80.Click += new System.EventHandler(this.btnYes80_Click);
+            // 
+            // btnWin
+            // 
+            this.btnWin.BackColor = System.Drawing.SystemColors.Highlight;
+            this.btnWin.BackgroundImage = global::Headline_Randomizer.Properties.Resources._4;
+            this.btnWin.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.btnWin.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnWin.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnWin.Font = new System.Drawing.Font("Calibri", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnWin.ForeColor = System.Drawing.Color.White;
+            this.btnWin.Location = new System.Drawing.Point(0, 196);
+            this.btnWin.Name = "btnWin";
+            this.btnWin.Padding = new System.Windows.Forms.Padding(0, 0, 0, 10);
+            this.btnWin.Size = new System.Drawing.Size(305, 99);
+            this.btnWin.TabIndex = 21;
+            this.btnWin.TabStop = false;
+            this.btnWin.Text = "Miranda Wins";
+            this.btnWin.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
+            this.btnWin.UseVisualStyleBackColor = false;
+            this.btnWin.Click += new System.EventHandler(this.btnWin_Click);
+            // 
+            // btnExcuse
+            // 
+            this.btnExcuse.BackColor = System.Drawing.SystemColors.Highlight;
+            this.btnExcuse.BackgroundImage = global::Headline_Randomizer.Properties.Resources._4;
+            this.btnExcuse.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.btnExcuse.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnExcuse.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnExcuse.Font = new System.Drawing.Font("Calibri", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnExcuse.ForeColor = System.Drawing.Color.White;
+            this.btnExcuse.Location = new System.Drawing.Point(0, 98);
+            this.btnExcuse.Name = "btnExcuse";
+            this.btnExcuse.Padding = new System.Windows.Forms.Padding(0, 0, 0, 10);
+            this.btnExcuse.Size = new System.Drawing.Size(305, 99);
+            this.btnExcuse.TabIndex = 19;
+            this.btnExcuse.TabStop = false;
+            this.btnExcuse.Text = "Excuse";
+            this.btnExcuse.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
+            this.btnExcuse.UseVisualStyleBackColor = false;
+            this.btnExcuse.Click += new System.EventHandler(this.btnExcuse_Click);
+            // 
+            // btnWhy
+            // 
+            this.btnWhy.BackColor = System.Drawing.SystemColors.Highlight;
+            this.btnWhy.BackgroundImage = global::Headline_Randomizer.Properties.Resources._4;
+            this.btnWhy.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.btnWhy.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnWhy.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnWhy.Font = new System.Drawing.Font("Calibri", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnWhy.ForeColor = System.Drawing.Color.White;
+            this.btnWhy.Location = new System.Drawing.Point(304, -1);
+            this.btnWhy.Name = "btnWhy";
+            this.btnWhy.Padding = new System.Windows.Forms.Padding(0, 0, 0, 10);
+            this.btnWhy.Size = new System.Drawing.Size(305, 99);
+            this.btnWhy.TabIndex = 18;
+            this.btnWhy.TabStop = false;
+            this.btnWhy.Text = "Counter";
+            this.btnWhy.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
+            this.btnWhy.UseVisualStyleBackColor = false;
+            this.btnWhy.Click += new System.EventHandler(this.btnWhy_Click);
+            // 
+            // btnConspiracy
+            // 
+            this.btnConspiracy.BackColor = System.Drawing.SystemColors.Highlight;
+            this.btnConspiracy.BackgroundImage = global::Headline_Randomizer.Properties.Resources._4;
+            this.btnConspiracy.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.btnConspiracy.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnConspiracy.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnConspiracy.Font = new System.Drawing.Font("Calibri", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnConspiracy.ForeColor = System.Drawing.Color.White;
+            this.btnConspiracy.Location = new System.Drawing.Point(0, -1);
+            this.btnConspiracy.Name = "btnConspiracy";
+            this.btnConspiracy.Padding = new System.Windows.Forms.Padding(0, 0, 0, 10);
+            this.btnConspiracy.Size = new System.Drawing.Size(305, 99);
+            this.btnConspiracy.TabIndex = 17;
+            this.btnConspiracy.TabStop = false;
+            this.btnConspiracy.Text = "Conspiracy";
+            this.btnConspiracy.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
+            this.btnConspiracy.UseVisualStyleBackColor = false;
+            this.btnConspiracy.Click += new System.EventHandler(this.btnConspiracy_Click);
             // 
             // menuStrip1
             // 
@@ -676,27 +993,57 @@
             this.streamingModeToolStripMenuItem.Text = "Streaming mode";
             this.streamingModeToolStripMenuItem.Click += new System.EventHandler(this.streamingModeToolStripMenuItem_Click);
             // 
-            // btnIntro
+            // tabPage7
             // 
-            this.btnIntro.BackColor = System.Drawing.SystemColors.WindowFrame;
-            this.btnIntro.BackgroundImage = global::Headline_Randomizer.Properties.Resources._9;
-            this.btnIntro.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.btnIntro.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnIntro.FlatAppearance.BorderColor = System.Drawing.Color.White;
-            this.btnIntro.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.btnIntro.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnIntro.Font = new System.Drawing.Font("Calibri", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnIntro.ForeColor = System.Drawing.Color.White;
-            this.btnIntro.Location = new System.Drawing.Point(-1, 196);
-            this.btnIntro.Name = "btnIntro";
-            this.btnIntro.Padding = new System.Windows.Forms.Padding(0, 0, 0, 10);
-            this.btnIntro.Size = new System.Drawing.Size(305, 99);
-            this.btnIntro.TabIndex = 21;
-            this.btnIntro.TabStop = false;
-            this.btnIntro.Text = "Introduction";
-            this.btnIntro.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
-            this.btnIntro.UseVisualStyleBackColor = false;
-            this.btnIntro.Click += new System.EventHandler(this.btnIntro_Click);
+            this.tabPage7.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.tabPage7.Controls.Add(this.btnLine);
+            this.tabPage7.Controls.Add(this.btnTellMe);
+            this.tabPage7.Location = new System.Drawing.Point(4, 36);
+            this.tabPage7.Name = "tabPage7";
+            this.tabPage7.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage7.Size = new System.Drawing.Size(606, 292);
+            this.tabPage7.TabIndex = 8;
+            this.tabPage7.Text = "Stories";
+            // 
+            // btnTellMe
+            // 
+            this.btnTellMe.BackColor = System.Drawing.SystemColors.Highlight;
+            this.btnTellMe.BackgroundImage = global::Headline_Randomizer.Properties.Resources._3;
+            this.btnTellMe.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.btnTellMe.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnTellMe.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnTellMe.Font = new System.Drawing.Font("Calibri", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnTellMe.ForeColor = System.Drawing.Color.White;
+            this.btnTellMe.Location = new System.Drawing.Point(-2, -1);
+            this.btnTellMe.Name = "btnTellMe";
+            this.btnTellMe.Padding = new System.Windows.Forms.Padding(0, 0, 0, 10);
+            this.btnTellMe.Size = new System.Drawing.Size(305, 98);
+            this.btnTellMe.TabIndex = 10;
+            this.btnTellMe.TabStop = false;
+            this.btnTellMe.Text = "Tell me...";
+            this.btnTellMe.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
+            this.btnTellMe.UseVisualStyleBackColor = false;
+            this.btnTellMe.Click += new System.EventHandler(this.btnTellMe_Click);
+            // 
+            // btnLine
+            // 
+            this.btnLine.BackColor = System.Drawing.SystemColors.Highlight;
+            this.btnLine.BackgroundImage = global::Headline_Randomizer.Properties.Resources._3;
+            this.btnLine.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.btnLine.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnLine.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnLine.Font = new System.Drawing.Font("Calibri", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnLine.ForeColor = System.Drawing.Color.White;
+            this.btnLine.Location = new System.Drawing.Point(301, -1);
+            this.btnLine.Name = "btnLine";
+            this.btnLine.Padding = new System.Windows.Forms.Padding(0, 0, 0, 10);
+            this.btnLine.Size = new System.Drawing.Size(305, 98);
+            this.btnLine.TabIndex = 11;
+            this.btnLine.TabStop = false;
+            this.btnLine.Text = "Line";
+            this.btnLine.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
+            this.btnLine.UseVisualStyleBackColor = false;
+            this.btnLine.Click += new System.EventHandler(this.btnLine_Click);
             // 
             // English
             // 
@@ -718,7 +1065,6 @@
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Impromizer (Free)";
             this.TopMost = true;
-            this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.English_KeyDown);
             this.Move += new System.EventHandler(this.MoveWindow1);
             this.customTabControl1.ResumeLayout(false);
             this.tabPage3.ResumeLayout(false);
@@ -726,8 +1072,11 @@
             this.tabPage2.ResumeLayout(false);
             this.tabPage4.ResumeLayout(false);
             this.tabPage4.PerformLayout();
+            this.tabPage5.ResumeLayout(false);
+            this.tabPage6.ResumeLayout(false);
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
+            this.tabPage7.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -768,6 +1117,25 @@
         private System.Windows.Forms.CheckBox chbRequiresAre;
         private System.Windows.Forms.ToolStripMenuItem streamingModeToolStripMenuItem;
         private System.Windows.Forms.Button btnIntro;
+        private System.Windows.Forms.TabPage tabPage5;
+        private System.Windows.Forms.Button btnKnockName;
+        private System.Windows.Forms.Button btnKnockOther;
+        private System.Windows.Forms.TextBox tbPronunciation;
+        private System.Windows.Forms.TextBox tbName;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Button btnPronounce;
+        private System.Windows.Forms.TabPage tabPage6;
+        private System.Windows.Forms.Button btnConspiracy;
+        private System.Windows.Forms.Button btnWhy;
+        private System.Windows.Forms.Button btnExcuse;
+        private System.Windows.Forms.Button btnWin;
+        private System.Windows.Forms.Button btnYes80;
+        private System.Windows.Forms.Button btnClearConspiracy;
+        private System.Windows.Forms.Button btnBreak;
+        private System.Windows.Forms.TabPage tabPage7;
+        private System.Windows.Forms.Button btnLine;
+        private System.Windows.Forms.Button btnTellMe;
     }
 }
 
